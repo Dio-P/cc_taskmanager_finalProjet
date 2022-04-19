@@ -30,7 +30,8 @@ public class Task {
     @Column(name="task_type")
     private TaskType taskType;
 
-    @Column(name="category")
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     @Column(name="priority")
@@ -44,7 +45,8 @@ public class Task {
 
 //    private List<User> collaborators;
 
-    @Column(name="user")
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Task(String name, String description, String date, String time, int duration, TaskType taskType, Category category, Priority priority, boolean completed, String completedTimeStamp, User user) {

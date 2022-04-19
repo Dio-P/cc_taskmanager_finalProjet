@@ -1,6 +1,9 @@
 package com.example.task_manager_server.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="categories")
@@ -22,11 +25,20 @@ public class Category {
     @Column(name="goal_duration")
     private int goalDuration;
 
-    public Category(String title, String colour, Goal goal, int goalDuration) {
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<Task> tasks;
+
+    public Category(String title, String colour, Goal goal, int goalDuration, User user) {
         this.title = title;
         this.colour = colour;
         this.goal = goal;
         this.goalDuration = goalDuration;
+        this.user = user;
     }
 
     public Category(){
