@@ -69,7 +69,22 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canFindTasksByAuthId(){
+		User user = new User("auth0");
+		userRepository.save(user);
+		Category category = new Category("Chores", "ffffff", Goal.DAILY,60,user);
+		categoryRepository.save(category);
+		Task task = new Task("Pay vehicle tax","","12/4/22", null, 10, TaskType.DO_ON,category,Priority.HIGH,false,null,user);
+		taskRepository.save(task);
+		assertEquals(1, taskRepository.findByUserAuthId("auth0").size());
+	}
 
+	@Test
+	public void canGetCategoriesByAuthID(){
+		User user = new User("auth0");
+		userRepository.save(user);
+		Category category = new Category("Chores", "ffffff", Goal.DAILY,60,user);
+		categoryRepository.save(category);
+		assertEquals(1, categoryRepository.findByUserAuthId("auth0").size());
 	}
 
 }
