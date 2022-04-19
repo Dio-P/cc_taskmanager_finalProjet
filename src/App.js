@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import taskList from "./helpers/dummyTasksApi.json";
-import MainPageContainer from './containers/WholeMainPageContainer';
+import WholeMainPageContainer from './containers/WholeMainPageContainer';
 
 
 import './App.css';
 
 function App() {
   const [allTasks, setAllTasks] = useState(null);
-  const [completedTask, setCompletedTasks] = useState(null);
+  const [completedTasks, setCompletedTasks] = useState(null);
   const [uncompletedTasks, setUncompletedTasks] = useState(null);
 
 
@@ -39,7 +39,7 @@ function App() {
     }, [allTasks]);
 
   return (
-    <MainPageContainer/>
+    <WholeMainPageContainer completedTasks={ completedTasks } uncompletedTasks={ uncompletedTasks }/>
   );
 }
 
