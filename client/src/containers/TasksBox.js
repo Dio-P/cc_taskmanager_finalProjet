@@ -10,7 +10,7 @@ const TasksBox = ({ tasks, title }) => {
 
            {   
            tasks.map(task => (
-              <Task title={task.title}/>
+              <Task task={task}/>
            ))
     
            }  

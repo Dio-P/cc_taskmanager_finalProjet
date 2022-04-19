@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import taskList from "./helpers/dummyTasksApi.json";
 import WholeMainPageContainer from './containers/WholeMainPageContainer';
+import DistinctTaskPage from './containers/DistinctTaskPage';
 import {
   Route,
   Routes,
@@ -48,6 +49,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<WholeMainPageContainer completedTasks={ completedTasks } uncompletedTasks={ uncompletedTasks }/>}/>
+      <Route path="/task/:task_title" element={<DistinctTaskPage completedTasks={ completedTasks } uncompletedTasks={ uncompletedTasks }/>}/>
     </Routes>
   );
 }
