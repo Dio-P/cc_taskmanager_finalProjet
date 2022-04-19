@@ -33,14 +33,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-
+//this is to enable access to h2 console, remove after development/test phase!
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/h2-console/**").permitAll();
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
-
+// keep this bit below!!
         http.cors().and().authorizeRequests()
                 .mvcMatchers("/tasks").authenticated()
                 .mvcMatchers("/users").authenticated()
