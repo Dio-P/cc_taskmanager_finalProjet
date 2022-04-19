@@ -48,8 +48,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<WholeMainPageContainer completedTasks={ completedTasks } uncompletedTasks={ uncompletedTasks }/>}/>
-      <Route path="/task/:task_title" element={<DistinctTaskPage completedTasks={ completedTasks } uncompletedTasks={ uncompletedTasks }/>}/>
+      <Route path="/" element={<WholeMainPageContainer uncompletedTasks={ uncompletedTasks } completedTasks={ completedTasks }/>}/>
+      <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
     </Routes>
   );
 }

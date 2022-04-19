@@ -7,7 +7,7 @@ const Task = ({ task }) => {
     const onTaskClick = (e) => {
         console.log("a task has been clicked");
         navigate(`/task/:${task.title}`, {
-            state: {task:task}
+            state: {task}
         })
     }
 

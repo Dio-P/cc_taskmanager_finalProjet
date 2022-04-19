@@ -30,7 +30,7 @@
 
     {
         "user": "Rach",
-        "title": "front end",
+        "title": "front end style",
         "description": "starting with tailwind and css",
         "type": "SOMEDAY",
         "duration": "70",
@@ -38,6 +38,19 @@
         "category": "third project",
         "collaborators": [],
         "completed": false,
+        "completedTimeStamp": ""
+    },
+
+    {
+        "user": "Rach",
+        "title": "css",
+        "description": "starting with tailwind and css",
+        "type": "SOMEDAY",
+        "duration": "70",
+        "priority": "high",
+        "category": "third project",
+        "collaborators": [],
+        "completed": true,
         "completedTimeStamp": ""
     }
 ]

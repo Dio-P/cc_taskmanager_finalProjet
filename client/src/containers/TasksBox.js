@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Task from "../components/Task";
 
-const TasksBox = ({ tasks, title }) => {
+const TasksBox = ({ tasks, taksCompl, title }) => {
     
 
     return (
@@ -12,8 +12,15 @@ const TasksBox = ({ tasks, title }) => {
            tasks.map(task => (
               <Task task={task}/>
            ))
-    
            }  
+
+            {   
+           taksCompl.map(task => (
+              <Task task={task}/>
+           ))
+           }    
+
+
         </div>
     )
 }
