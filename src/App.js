@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+
 import './App.css';
 
 function App() {
+  const [allTasks, setAllTasks] = useState(null);
+  const [completedTask, setCompletedTasks] = useState(null);
+  const [uncompletedTasks, setUncompletedTasks] = useState(null);
+
+
+    useEffect(() => {
+      // the api call that will get the initial data
+      // setAllTasks()
+    }, []);
+
+    useEffect(() => {
+      // setting the comleted and unclompleted tasks 
+      // in different states.
+      let completedHelper = [];
+      let uncompletedHelper = [];
+      if(allTasks){
+        for(let task of allTasks){
+          if(task.completed){
+            completedHelper.push(task);
+
+          }else{
+            uncompletedHelper.push(task);
+
+          }
+        }
+        setCompletedTasks(completedHelper);
+        setUncompletedTasks(uncompletedHelper);
+      }
+      
+    }, [allTasks]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      
     </div>
   );
 }
