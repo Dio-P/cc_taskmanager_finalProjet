@@ -24,10 +24,10 @@ const TasksBox = (props) => {
             <h3>{type}</h3>
 
            {/* {         
-           uncompletedTasks.map(task => (
+           props[0].map(task => (
               <p>{task.title}</p>
            ))
-           }  */}
+           }   */}
         </div>
     )
 }

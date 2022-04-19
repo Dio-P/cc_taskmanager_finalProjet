@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   const [allTasks, setAllTasks] = useState(null);
   const [completedTasks, setCompletedTasks] = useState(null);
-  const [uncompletedTasks, setUncompletedTasks] = useState(null);
+  const [uncompletedTasks, setUncompletedTasks] = useState([]);
 
 
     useEffect(() => {
