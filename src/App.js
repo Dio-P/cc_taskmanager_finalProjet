@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import taskList from "./helpers/dummyTasksApi.json"
 
 import './App.css';
 
@@ -10,7 +11,7 @@ function App() {
 
     useEffect(() => {
       // the api call that will get the initial data
-      // setAllTasks()
+      setAllTasks(taskList)
     }, []);
 
     useEffect(() => {
