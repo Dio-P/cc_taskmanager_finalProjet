@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import taskList from "./helpers/dummyTasksApi.json"
+import taskList from "./helpers/dummyTasksApi.json";
+import MainPageContainer from './containers/WholeMainPageContainer';
+
 
 import './App.css';
 
@@ -17,6 +19,7 @@ function App() {
     useEffect(() => {
       // setting the comleted and unclompleted tasks 
       // in different states.
+      console.log("allTasks", allTasks);////////////
       let completedHelper = [];
       let uncompletedHelper = [];
       if(allTasks){
@@ -36,9 +39,7 @@ function App() {
     }, [allTasks]);
 
   return (
-    <div>
-      
-    </div>
+    <MainPageContainer/>
   );
 }
 

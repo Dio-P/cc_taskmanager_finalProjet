@@ -10,7 +10,7 @@
         "priority": "high",
         "category": "third project",
         "collaborators": [],
-        "completed": "false",
+        "completed": false,
         "completedTimeStamp": ""
     },
 
@@ -24,7 +24,7 @@
         "priority": "high",
         "category": "third project",
         "collaborators": [],
-        "completed": "false",
+        "completed": false,
         "completedTimeStamp": ""
     },
 
@@ -37,7 +37,7 @@
         "priority": "high",
         "category": "third project",
         "collaborators": [],
-        "completed": "false",
+        "completed": false,
         "completedTimeStamp": ""
     }
 ]
