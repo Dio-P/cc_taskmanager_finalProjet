@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import taskList from "./helpers/dummyTasksApi.json";
 import WholeMainPageContainer from './containers/WholeMainPageContainer';
+import {
+  Route,
+  Routes,
+  Outlet,
+  useNavigate
+} from "react-router-dom";
 
 
 import './App.css';
@@ -40,8 +46,9 @@ function App() {
     }, [allTasks]);
 
   return (
-    
-    <WholeMainPageContainer completedTasks={ completedTasks } uncompletedTasks={ uncompletedTasks }/>
+    <Routes>
+      <Route path="/" element={<WholeMainPageContainer completedTasks={ completedTasks } uncompletedTasks={ uncompletedTasks }/>}/>
+    </Routes>
   );
 }
 

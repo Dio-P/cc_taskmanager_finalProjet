@@ -49,9 +49,9 @@ const AllTasksContainer = ({ uncompletedTasks }) => {
             <p>Loading</p>
             :
             <div>
-            <TasksBox doOns={ doOns }/>
-            <TasksBox doBys={ doBys }/>
-            <TasksBox somedays={ somedays }/>
+            <TasksBox tasks={ doOns } title = "Weeks Tasks"/>
+            <TasksBox tasks={ doBys } title = "Get it done soon"/>
+            <TasksBox tasks={ somedays } title = "Get it done someday"/>
             </div>
             }
             
