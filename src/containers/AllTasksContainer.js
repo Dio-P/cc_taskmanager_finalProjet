@@ -31,7 +31,7 @@ const AllTasksContainer = ({ uncompletedTasks }) => {
                 setDoBys(doBysHelper);
                 setSomedays(somedaysHelper);
         // }
-    }, []);
+    }, [uncompletedTasks]);
 
     useEffect(() => {
         if(doOns&& doBys&& somedays){
