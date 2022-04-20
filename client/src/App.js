@@ -153,6 +153,7 @@ function App() {
       completedTasks={ completedTasks } 
       categories={ categories }
       priorities={ priorities }
+      user = { user }
       />}/>
       
       <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>

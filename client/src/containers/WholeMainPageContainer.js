@@ -1,14 +1,14 @@
 import AllTasksContainer from './AllTasksContainer';
 import TasksBoxMainMenuBar from '../components/TasksBoxMainMenuBar';
 
-const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, priorities }) => {
+const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, priorities, user }) => {
     return (
         <div>
             <TasksBoxMainMenuBar 
             categories={ categories }
             priorities={ priorities }
             />
-            <p>Hello Rachel</p>
+            <p>Hello {user.email} </p>
             <AllTasksContainer uncompletedTasks={ uncompletedTasks } completedTasks={ completedTasks }/>
 
         </div>

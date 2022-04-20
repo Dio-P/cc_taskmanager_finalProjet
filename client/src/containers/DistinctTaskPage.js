@@ -38,7 +38,7 @@ const DistinctTaskPage = () => {
 
              <div>
                  <h4>Category</h4>
-                 <p>{ task.category }</p>
+                 <p>{ task.category.title }</p>
              </div>
 
              <div>
