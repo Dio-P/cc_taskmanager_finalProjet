@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/auth0")
 public class CategoryController {
 
     @Autowired

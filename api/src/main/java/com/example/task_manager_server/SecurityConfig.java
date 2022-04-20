@@ -42,9 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
 // keep this bit below!!
         http.cors().and().authorizeRequests()
-                .mvcMatchers("/tasks").authenticated()
-                .mvcMatchers("/users").authenticated()
-                .mvcMatchers("/categories").authenticated()
+                .mvcMatchers("/auth0/tasks").permitAll()
+                .mvcMatchers("/auth0/users").authenticated()
+                .mvcMatchers("/auth0/categories").authenticated()
+                .mvcMatchers("/h2").permitAll()
                 .and()
                 .oauth2ResourceServer().jwt();
     }

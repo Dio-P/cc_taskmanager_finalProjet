@@ -27,7 +27,7 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args){
 
-        User user1 = new User("auth0|625d433147a7f7006f3d12b4");
+        User user1 = new User("google-oauth2|115148861114920303466");
         userRepository.save(user1);
 
         User user2 = new User("auth0|625d60ed379bfd006f275c70");

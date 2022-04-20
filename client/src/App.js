@@ -7,22 +7,91 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import { useAuth0 } from '@auth0/auth0-react';
+import configData from "./config.json";
 
 
 import './App.css';
 
 function App() {
+
+  const {
+    isLoading,
+    error,
+    isAuthenticated,
+    user,
+    getAccessTokenSilently,
+    loginWithRedirect,
+    logout,
+  } = useAuth0();
+
+  const [accessToken, setAccessToken] = useState(null);
   const [allTasks, setAllTasks] = useState(null);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [uncompletedTasks, setUncompletedTasks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [priorities, setPriorities] = useState([]);
-
+  const [isLoaded, setIsLoaded] = useState(false); 
+  // const [fetchedTasks, setFetchedTasks] = useState([]);
 
     useEffect(() => {
-      // the api call that will get the initial data
-      setAllTasks(taskList)
-    }, []);
+      const getAccessToken = async () => {
+        try {
+          const accessToken = await getAccessTokenSilently({
+            audience: configData.audience,
+            scope: configData.scope,
+          });
+          setAccessToken(accessToken);
+          setIsLoaded(true);
+        } catch (e) {
+          console.log(e.message);
+        }
+      };
+      getAccessToken();
+    }, [getAccessTokenSilently]);
+
+    // useEffect(() => {
+    //   // the api call that will get the initial data
+    //   setAllTasks(taskList)
+    // }, []);
+
+    useEffect(() => {
+      if (!isLoaded) {
+        return;
+      }
+
+      const getTasks =  async (authId) => {
+          fetch("http://localhost:8080/auth0/tasks", 
+          {
+            method: "GET",
+            headers: new Headers({
+            Authorization: "Bearer " + accessToken,
+            "Content-Type": "application/json",
+            }),
+          })
+          .then(function (res) {
+            return res.json();
+          })
+          .then(function (resJson) {
+            setAllTasks(resJson);
+          })
+          .catch((e) => console.log(e));
+    }
+        getTasks();
+        postUser();
+    }, [isLoaded]);
+
+    const postUser = (payload) => {
+      fetch('http://localhost:8080/auth0/users', {
+        method: "POST",
+        headers: new Headers({
+          Authorization: "Bearer " + accessToken,
+          "Content-Type": "application/json",
+        })
+      })
+      .then(res => res.json())
+      .catch((e) => console.log(e));
+  }
 
     useEffect(() => {
       // setting the comleted and unclompleted tasks 
@@ -62,6 +131,18 @@ function App() {
       setPriorities(dummyPrioritiesList)
       
     }, [allTasks]);
+
+    if (error) {
+      return <div>Oops... {error.message}</div>;
+    }
+    
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+    
+    if (!isAuthenticated) {
+      return loginWithRedirect();
+    }
 
     
 
