@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import TasksBox from "./TasksBox";
 
-const AllTasksContainer = ({ uncompletedTasks }) => {
+const AllTasksContainer = ({ uncompletedTasks, completedTasks }) => {
     const [doOns, setDoOns] = useState([]);
     const [doBys, setDoBys] = useState([]);
     const [somedays, setSomedays] = useState([]);
+    const [doOnsCompl, setDoOnsCompl] = useState([]);
+    const [doBysCompl, setDoBysCompl] = useState([]);
+    const [somedaysCompl, setSomedaysCompl] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -34,6 +37,32 @@ const AllTasksContainer = ({ uncompletedTasks }) => {
     }, [uncompletedTasks]);
 
     useEffect(() => {
+        const doOnsHelper = [];
+        const doBysHelper = [];
+        const somedaysHelper = [];
+
+        // deviding the tasks by type and setting it in states
+        // if(uncompletedTasks){
+            for(let task of completedTasks){
+                console.log("task", task);
+                if(task.type==="DO_ON"){
+                    doOnsHelper.push(task)
+
+                }if(task.type==="DO_BY"){
+                    doBysHelper.push(task)
+
+                }if(task.type==="SOMEDAY"){
+                    somedaysHelper.push(task)
+
+                }
+            }
+            setDoOnsCompl(doOnsHelper);
+            setDoBysCompl(doBysHelper);
+            setSomedaysCompl(somedaysHelper);
+        // }
+    }, [completedTasks]);
+
+    useEffect(() => {
         if(doOns&& doBys&& somedays){
             setLoading(false);
         }
@@ -49,9 +78,9 @@ const AllTasksContainer = ({ uncompletedTasks }) => {
             <p>Loading</p>
             :
             <div>
-            <TasksBox doOns={ doOns }/>
-            <TasksBox doBys={ doBys }/>
-            <TasksBox somedays={ somedays }/>
+            <TasksBox tasks={ doOns } taksCompl={ doOnsCompl } title = "Weeks Tasks"/>
+            <TasksBox tasks={ doBys } taksCompl={ doBysCompl } title = "Get it done soon"/>
+            <TasksBox tasks={ somedays } taksCompl={ somedaysCompl } title = "Get it done someday"/>
             </div>
             }
             

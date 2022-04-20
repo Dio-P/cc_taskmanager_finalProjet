@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
 import AllTasksContainer from './AllTasksContainer';
+import TasksBoxMainMenuBar from '../components/TasksBoxMainMenuBar';
 
-const WholeMainPageContainer= ({ uncompletedTasks }) => {
+const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, priorities }) => {
     return (
         <div>
-            <button>Menu Button</button>
+            <TasksBoxMainMenuBar 
+            categories={ categories }
+            priorities={ priorities }
+            />
             <p>Hello Rachel</p>
-            <AllTasksContainer uncompletedTasks={ uncompletedTasks }/>
+            <AllTasksContainer uncompletedTasks={ uncompletedTasks } completedTasks={ completedTasks }/>
 
         </div>
     )
