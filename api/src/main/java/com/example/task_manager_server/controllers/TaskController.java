@@ -41,8 +41,11 @@ public class TaskController {
         }
         return new ResponseEntity<>(task, HttpStatus.UNAUTHORIZED);
 
-
-
     }
+
+//    @PostMapping(value="/tasks/{id}")
+//    public ResponseEntity<Task> updateTask(@RequestBody Task task){
+//        taskRepository.
+//    }
 
 }

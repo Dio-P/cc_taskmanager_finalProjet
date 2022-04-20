@@ -1,16 +1,18 @@
 package com.example.task_manager_server.controllers;
 
 import com.example.task_manager_server.models.Category;
+import com.example.task_manager_server.models.Task;
+import com.example.task_manager_server.models.User;
 import com.example.task_manager_server.repositories.CategoryRepository;
+import com.example.task_manager_server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -19,10 +21,26 @@ public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping(value="/categories")
     public ResponseEntity<List<Category>> getCategories(){
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         return new ResponseEntity<>(categoryRepository.findByUserAuthId(userId), HttpStatus.OK);
+    }
+
+    @PostMapping(value="/categories")
+    public ResponseEntity<Category> createCategory(@RequestBody Category category){
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> user = userRepository.findByAuthId(userId);
+        if (user.isPresent()){
+            category.setUser(user.get());
+            categoryRepository.save(category);
+            return new ResponseEntity<>(category, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(category, HttpStatus.UNAUTHORIZED);
+
     }
 
 }
