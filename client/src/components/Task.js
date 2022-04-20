@@ -12,8 +12,8 @@ const Task = ({ task }) => {
 
     return (
             <div>
-                <input type="checkbox" id="horns" name="horns"/>
-                <label for="horns"> <button onClick={onTaskClick}>{ task.title }</button> </label>
+                <input type="checkbox" id="task" name="task"/>
+                <label for="task"> <button onClick={onTaskClick}>{ task.title }</button> </label>
             </div>
       )
 }

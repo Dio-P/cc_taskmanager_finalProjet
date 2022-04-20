@@ -30,7 +30,7 @@ public class DataLoader implements ApplicationRunner {
         User user1 = new User("google-oauth2|115148861114920303466");
         userRepository.save(user1);
 
-        User user2 = new User("auth0|625d60ed379bfd006f275c70");
+        User user2 = new User("google-oauth2|100172415311420940348");
         userRepository.save(user2);
 
         Category category1 = new Category("Project","#800080", Goal.NONE,0,user1);
@@ -68,6 +68,66 @@ public class DataLoader implements ApplicationRunner {
                 user1
         );
         taskRepository.save(task2);
+
+        Task task3 = new Task(
+                "3setting the authorisation up",
+                "finding a way to connect the users with the database",
+                "26.05.2022",
+                "15:14",
+                70,
+                TaskType.DO_ON,
+                category1,
+                Priority.HIGH,
+                false,
+                "",
+                user2
+        );
+        taskRepository.save(task3);
+
+        Task task4 = new Task(
+                "1setting the authorisation up",
+                "finding a way to connect the users with the database",
+                "26.05.2022",
+                "15:14",
+                70,
+                TaskType.DO_BY,
+                category1,
+                Priority.LOW,
+                true,
+                "",
+                user2
+        );
+        taskRepository.save(task4);
+
+        Task task5 = new Task(
+                "2setting the authorisation up",
+                "finding a way to connect the users with the database",
+                "26.05.2022",
+                "15:14",
+                70,
+                TaskType.SOMEDAY,
+                category1,
+                Priority.MEDIUM,
+                true,
+                "",
+                user2
+        );
+        taskRepository.save(task5);
+
+        Task task6 = new Task(
+                "6setting the authorisation up",
+                "finding a way to connect the users with the database",
+                "26.05.2022",
+                "15:14",
+                70,
+                TaskType.DO_BY,
+                category1,
+                Priority.LOW,
+                false,
+                "",
+                user2
+        );
+        taskRepository.save(task6);
     }
 
 }
