@@ -25,6 +25,7 @@ public class User {
     private List<Task> tasks;
 
 //    add many to many for collaborations
+//    private List<Task> collabTasks;
 
 
     public User(String authId ) {

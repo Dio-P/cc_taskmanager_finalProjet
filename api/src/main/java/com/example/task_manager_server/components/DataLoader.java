@@ -33,17 +33,18 @@ public class DataLoader implements ApplicationRunner {
         User user2 = new User("auth0|625d60ed379bfd006f275c70");
         userRepository.save(user2);
 
-        Category category1 = new Category("Family","#800080", Goal.NONE,0,user1);
+        Category category1 = new Category("Project","#800080", Goal.NONE,0,user1);
         categoryRepository.save(category1);
 
-        Category category2 = new Category("Chores", "#FF0000", Goal.WEEKLY, 2,user2 );
+        Category category2 = new Category("Project", "#FF0000", Goal.WEEKLY, 2,user2 );
+        categoryRepository.save(category2);
 
         Task task1 = new Task(
-                "Buy birthday present",
-                "Get the blue bike that Iris wants from Halfords",
-                "27/04/22",
-                "10:00",
-                30,
+                "setting the authorisation up",
+                "finding a way to connect the users with the database",
+                "26.05.2022",
+                "15:14",
+                70,
                 TaskType.DO_ON,
                 category1,
                 Priority.HIGH,
@@ -54,14 +55,14 @@ public class DataLoader implements ApplicationRunner {
         taskRepository.save(task1);
 
         Task task2 = new Task(
-                "Go shopping",
-                "milk, bread, cheese",
-                "22/04/22",
-                "17:00",
+                "front end style",
+                "starting with tailwind and css",
+                null,
+                null,
                 60,
-                TaskType.DO_ON,
+                TaskType.SOMEDAY,
                 category2,
-                Priority.MEDIUM,
+                Priority.HIGH,
                 false,
                 "",
                 user1
