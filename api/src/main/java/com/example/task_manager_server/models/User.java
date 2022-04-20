@@ -24,6 +24,8 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Task> tasks;
 
+//    add many to many for collaborations
+
 
     public User(String authId ) {
 
