@@ -1,5 +1,7 @@
 package com.example.task_manager_server.controllers;
 
+import com.example.task_manager_server.dtos.CategoryDTO;
+import com.example.task_manager_server.dtos.TaskDTO;
 import com.example.task_manager_server.models.Category;
 import com.example.task_manager_server.models.Task;
 import com.example.task_manager_server.models.User;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +29,40 @@ public class TaskController {
     UserRepository userRepository;
 
     @GetMapping(value="/tasks")
-    public ResponseEntity<List<Task>> getTasksForUser(){
+    public ResponseEntity<List<TaskDTO>> getTasksForUser(){
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
-        return new ResponseEntity<>(taskRepository.findByUserAuthId(userId), HttpStatus.OK);
+//
+//        do find by user id, return list of tasks
+        List<Task> foundTasks = taskRepository.findByUserAuthId(userId);
+
+
+        List<TaskDTO> taskDTOS = foundTasks.stream().map((task) -> {
+            CategoryDTO categoryDTO = new CategoryDTO(
+                    task.getCategory().getId(),
+                    task.getCategory().getTitle(),
+                    task.getCategory().getColour(),
+                    task.getCategory().getGoal(),
+                    task.getCategory().getGoalDuration()
+            );
+
+            TaskDTO taskDTO = new TaskDTO(
+                    task.getId(),
+                    task.getTitle(),
+                    task.getDescription(),
+                    task.getDate(),
+                    task.getTime(),
+                    task.getDuration(),
+                    task.getType(),
+                    categoryDTO,
+                    task.getPriority(),
+                    task.isCompleted(),
+                    task.getCompletedTimeStamp()
+            );
+            return taskDTO;
+        }).toList();
+
+
+        return new ResponseEntity<>(taskDTOS, HttpStatus.OK);
     }
 
     @PostMapping(value="/tasks")
