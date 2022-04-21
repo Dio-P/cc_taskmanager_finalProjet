@@ -11,23 +11,31 @@ const DistinctTaskPage = () => {
 
     const [loading, setLoading] = useState(true);
 
+    const [editTitle, setEditTitle] = useState(false);
     const [taskTitle, setTaskTitle] = useState(task.title);
-    const [taskCompleted, setTaskCompleted] = useState(task.completed);
+    
+    const [taskCompleted, setTaskCompleted] = useState(task.completed);///////////
 
+    const [editCategory, setEditCategory] = useState(false);
     const [taskCategory, setTaskCategory] = useState(task.category.title);
+    const [editPriority, setEditPriority] = useState(false);
     const [taskPriority, setTaskPriority] = useState(task.priority);
+    
 
-    const [hasDescription, setHasDescription] = useState(false);
+    const [editDescription, setEditDescription] = useState(false);
     const [taskDescription, setTaskDescription] = useState(task.description);
-    const [hasDate, setHasDate] = useState(false);
+    const [editDate, setEditDate] = useState(false);
     const [taskDate, setTaskDate] = useState(task.date);
-    const [hasTime, setHasTime] = useState(false);
-    const [taskTime, setTaskTime] = useState(null);
-    const [timedTaskType, setTimedTaskType] = useState(null);
+    const [editTime, setEditTime] = useState(false);
+    const [taskTime, setTaskTime] = useState(task.time);
+    const [editdatedTaskType, setEditdatedTaskType] = useState(false);
+    const [datedTaskType, setDatedTaskType] = useState(task.type);
+    
+    
 
-    const [hasDuration, setHasDuration] = useState(false);
-    const [taskDuration, setTaskDuration] = useState(null);
-    const [hasCollaborators, setHasCollaborators] = useState(false);
+    const [editDuration, setEditDuration] = useState(false);
+    const [taskDuration, setTaskDuration] = useState(task.duration);
+    const [editCollaborators, setEditCollaborators] = useState(false);
     const [taskCollaborators, setTaskCollaborators] = useState(null);
 
     
@@ -66,32 +74,40 @@ const DistinctTaskPage = () => {
                  <p>{ taskDescription }</p>
              </div>
 
+            <div>
+                <div>
+                    {taskDate?
+                        <p>{ taskDate }</p>
+                        :
+                        null
+                        }
+                </div>
+
+                <div className="distinctTaskFieldBox">
+                    <p>{ datedTaskType }</p>
+                </div>
+             </div>
+
              <div>
-                {taskDate?
-                    <p>{ taskDate }</p>
+                {taskTime?
+                    <p>{ taskTime }</p>
                     :
                     null
                     }
              </div>
 
-             <div className="distinctTaskFieldBox">
-                <p>{ task.type }</p>
-
-                
-
-                {task.time?
-                <p>{ task.time }</p>
-                :
-                null
-                }
+             <div>
+                 <p>{taskDuration}</p>
              </div>
+
+             
 
              <div>
                  <h4>Collaborators</h4>
              </div>
         </div>
         }
-                     
+
         </div>
     )
 }
