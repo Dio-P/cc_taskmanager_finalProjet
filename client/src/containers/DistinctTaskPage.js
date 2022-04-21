@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import DropDownMenu from "../components/DropDownMenu";
-
+import DropDownMenuCategory from "../components/DropDownMenuCategory";
+import DropDownMenuPriority from "../components/DropDownMenuPriority";
 
 const DistinctTaskPage = () => {
     const location = useLocation();
@@ -19,7 +19,7 @@ const DistinctTaskPage = () => {
     const [taskCompleted, setTaskCompleted] = useState(task.completed);///////////
 
     const [editCategory, setEditCategory] = useState(false);
-    const [taskCategory, setTaskCategory] = useState(task.category.title);
+    const [taskCategory, setTaskCategory] = useState(task.category);
     const [editPriority, setEditPriority] = useState(false);
     const [taskPriority, setTaskPriority] = useState(task.priority);
     
@@ -60,10 +60,10 @@ const DistinctTaskPage = () => {
 
     const onClickingDone = () => {
         const updatedTask= { }
-        updatedTask["title"]=taskTitle;
-        updatedTask["category"]=taskCategory;
-        updatedTask["priority"]=taskPriority;
-        updatedTask["completed"]=false;
+        updatedTask["title"] = taskTitle;
+        updatedTask["category"] = taskCategory;
+        updatedTask["priority"] = taskPriority;
+        updatedTask["completed"]=taskCompleted;
         updatedTask["completedTimeStamp"]=Date.now();
 
         if(taskDescription){updatedTask["description"]=taskDescription;}
@@ -116,12 +116,12 @@ const DistinctTaskPage = () => {
 
                 <div>
                     <label>Category</label>
-                    <p>{ taskCategory }</p>
+                    <p>{ taskCategory.title }</p>
                     {!editCategory?
                         <button onClick={()=>setEditCategory(true)}>Edit</button>
                     :
                         <>
-                            <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
+                            <DropDownMenuCategory options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
                             <button onClick={()=>{
                                 setEditCategory(false)
                                 onClickingDone()
@@ -139,7 +139,7 @@ const DistinctTaskPage = () => {
                         <button onClick={()=>setEditPriority(true)}>Edit</button>
                     :
                         <>
-                            <DropDownMenu options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
+                            <DropDownMenuPriority options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
                             <button onClick={()=>{
                                 setEditPriority(false)
                                 onClickingDone()

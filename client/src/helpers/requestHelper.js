@@ -2,7 +2,7 @@ export const createRequestHelper = (accessToken) => {
     return {
         get: async function(url){
             console.log("get url", url);
-            console.trace();
+            // console.trace();
             const response = await fetch(`http://localhost:8080/auth0/${url}`, { 
                 method: "GET",
                 headers: new Headers({
@@ -14,7 +14,7 @@ export const createRequestHelper = (accessToken) => {
         },
         post: async function(url, body){
             console.log("post url and body", url, body);
-            console.trace();
+            // console.trace();
             const response = await fetch(`http://localhost:8080/auth0/${url}`, { 
                 method: "POST",
                 headers: new Headers({

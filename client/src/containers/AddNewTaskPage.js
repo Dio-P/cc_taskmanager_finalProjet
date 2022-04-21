@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
-import DropDownMenu from "../components/DropDownMenu";
+import DropDownMenuCategory from "../components/DropDownMenuCategory";
+import DropDownMenuPriority from "../components/DropDownMenuPriority";
 
 const AddNewTaskPage = () => {
     const [taskTitle, setTaskTitle] = useState("");
@@ -52,7 +53,13 @@ const AddNewTaskPage = () => {
         e.preventDefault();
         let newTask = {};
         newTask["title"]=taskTitle;
-        newTask["category"]=taskCategory;
+        newTask["category"]= {
+            colour: "#800080",
+            goal: "NONE",
+            goalDuration: 0,
+            id: 1,
+            title: taskCategory
+        }
         newTask["priority"]=taskPriority;
         newTask["completed"]=false;
         newTask["completedTimeStamp"]=Date.now();
@@ -98,10 +105,10 @@ const AddNewTaskPage = () => {
                 <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
 
                 <label htmlFor="taskCategory">Task Category</label>
-                <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
+                <DropDownMenuCategory options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
 
                 <label htmlFor="taskPriority">Task Priority</label>
-                <DropDownMenu options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
+                <DropDownMenuPriority options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
 
                 {hasDescription?
                 <>

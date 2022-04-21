@@ -100,15 +100,8 @@ function App() {
   }
 
   const getCategories = () => {
-    fetch("http://localhost:8080/auth0/categories")
-    .then(res => {
-      console.log("res not J", res);
-      res.json()
-    })
-    .then(data=> {
-      console.log("data", data);
-      setCategories(data)
-    })
+    get("categories")
+    .then(data=> setCategories(data))
   }
 
     useEffect(() => {
@@ -137,8 +130,8 @@ function App() {
     useEffect(() => {
       // get the categories from api
       const dummyCategoriesList = ["studieng", "playing", "making something beautiful", "get bored", "play tetris"]
-      // console.log("categories", categories);
-      setCategories(dummyCategoriesList)
+      console.log("categories", categories);
+      // setCategories(dummyCategoriesList)
       
     }, [allTasks, categories]);
 

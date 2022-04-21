@@ -1,6 +1,7 @@
 package com.example.task_manager_server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
@@ -31,6 +32,7 @@ public class Task {
     private TaskType type;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
@@ -46,6 +48,7 @@ public class Task {
 //    private List<User> collaborators;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

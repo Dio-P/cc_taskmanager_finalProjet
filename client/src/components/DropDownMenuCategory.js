@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-const DropDownMenu = ({ options, setValueFromDropDown }) => {
+const DropDownMenuCategory = ({ options, setValueFromDropDown }) => {
     // const location = useLocation();
     // const options = location.state.options;
 
@@ -16,11 +16,11 @@ const DropDownMenu = ({ options, setValueFromDropDown }) => {
         <select onChange={e=>sendChoosenValueUp(e)} name="" id="">
             <option value="">--Please choose an option--</option>
             {options.map(option =>
-                <option value={option}>{option}</option>)}
+                <option value={option.title}>{option.title}</option>)}
             
         </select>
 
     )
 }
 
-export default DropDownMenu;
+export default DropDownMenuCategory;
