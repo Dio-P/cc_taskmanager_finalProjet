@@ -44,9 +44,12 @@ public class TaskController {
 
     }
 
-//    @PostMapping(value="/tasks/{id}")
-//    public ResponseEntity<Task> updateTask(@RequestBody Task task){
-//        taskRepository.
-//    }
+    @PutMapping(value="/tasks/{id}", consumes = {"*/*"})
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task){
+        task.setId(id);
+        taskRepository.save(task);
+        return new ResponseEntity<>(task, HttpStatus.CREATED);
+    }
+
 
 }
