@@ -2,14 +2,25 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const DistinctTaskPage = () => {
-    const [taskTitle, setTaskTitle] = useState("");
-    const [taskCategory, setTaskCategory] = useState(null);
-    const [taskPriority, setTaskPriority] = useState(null);
+    const location = useLocation();
+    const task = location.state.task;
+    const categories = location.state.categories;
+    const priorities = location.state.priorities;
+    console.log("location", location);
+    console.log("task", task);
+
+    const [loading, setLoading] = useState(true);
+
+    const [taskTitle, setTaskTitle] = useState(task.title);
+    const [taskCompleted, setTaskCompleted] = useState(task.completed);
+
+    const [taskCategory, setTaskCategory] = useState(task.category.title);
+    const [taskPriority, setTaskPriority] = useState(task.priority);
 
     const [hasDescription, setHasDescription] = useState(false);
-    const [taskDescription, setTaskDescription] = useState(null);
+    const [taskDescription, setTaskDescription] = useState(task.description);
     const [hasDate, setHasDate] = useState(false);
-    const [taskDate, setTaskDate] = useState(null);
+    const [taskDate, setTaskDate] = useState(task.date);
     const [hasTime, setHasTime] = useState(false);
     const [taskTime, setTaskTime] = useState(null);
     const [timedTaskType, setTimedTaskType] = useState(null);
@@ -20,13 +31,11 @@ const DistinctTaskPage = () => {
     const [taskCollaborators, setTaskCollaborators] = useState(null);
 
     
-
-    const location = useLocation();
-    const task = location.state.task;
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
-    console.log("location", location);
-    console.log("task", task);
+    useEffect(() => {
+        setLoading(false)
+        
+    }, [taskTitle, taskCompleted, taskCategory, taskPriority]);
+    
 
     const onClickingTheCheckedButton = () => {
             
@@ -36,16 +45,39 @@ const DistinctTaskPage = () => {
         
 
         <div>
-            <h3>{task.title}</h3>
-            <input type="checkbox" checked={task.completed}/>
+            {loading?
+            <h3>Loading</h3>
+            :
+            <div>
+            <h3>{taskTitle}</h3>
+            <input type="checkbox" checked={taskCompleted}/>
+
+            <div>
+                 <h4>Category</h4>
+                 <p>{ taskCategory }</p>
+             </div>
+
+             <div>
+                 <h4>Priority</h4>
+                 <p>{ taskPriority }</p>
+             </div>
+
+             <div>
+                 <p>{ taskDescription }</p>
+             </div>
+
+             <div>
+                {taskDate?
+                    <p>{ taskDate }</p>
+                    :
+                    null
+                    }
+             </div>
+
              <div className="distinctTaskFieldBox">
                 <p>{ task.type }</p>
 
-                {task.date?
-                <p>{ task.date }</p>
-                :
-                null
-                }
+                
 
                 {task.time?
                 <p>{ task.time }</p>
@@ -57,20 +89,9 @@ const DistinctTaskPage = () => {
              <div>
                  <h4>Collaborators</h4>
              </div>
-
-             <div>
-                 <h4>Category</h4>
-                 <p>{ task.category.title }</p>
-             </div>
-
-             <div>
-                 <h4>Priority</h4>
-                 <p>{ task.priority }</p>
-             </div>
-
-             <div>
-                 <p>{ task.description }</p>
-             </div>
+        </div>
+        }
+                     
         </div>
     )
 }
