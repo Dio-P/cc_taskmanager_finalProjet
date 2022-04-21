@@ -1,6 +1,7 @@
 package com.example.task_manager_server.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Category {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonBackReference
+    @JsonIgnoreProperties({"category"})
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Task> tasks;
 
