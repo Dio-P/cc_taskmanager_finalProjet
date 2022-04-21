@@ -150,7 +150,11 @@ const DistinctTaskPage = () => {
                     </div>
 
                     <div>
-                        <p>{ datedTaskType }</p>
+                        <label> Type </label>
+                        <label htmlFor="taskDate">Do On</label>
+                        <input type="radio" name="timedTaskType" id="do_on" value="DO_ON" checked={datedTaskType==="DO_ON"?true:false} onChange={e=> setDatedTaskType(e.target.value)}/>
+                        <label htmlFor="taskDate">Do By</label>
+                        <input type="radio" name="timedTaskType" id="do_on" value="DO_BY" checked={datedTaskType==="DO_BY"?true:false} onChange={e=> setDatedTaskType(e.target.value)}/>
                     </div>
 
                 </div>
