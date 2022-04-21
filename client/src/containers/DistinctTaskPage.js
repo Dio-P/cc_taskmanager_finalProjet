@@ -195,9 +195,22 @@ const DistinctTaskPage = () => {
                     null
                 }
 
+                {taskDuration?
                 <div>
-                    <p>{taskDuration}</p>
+                    <label htmlFor="taskDuration">Task Duration</label>
+                    <p>{ taskDuration }</p>
+                    {!editDuration?
+                        <button onClick={()=> setEditDuration(true)}>Edit</button>
+                    :
+                        <>
+                            <input type="text" name="taskDuration" id="taskDuration" placeholder="in minutes" value={taskDuration} onChange={e=> setTaskDuration(e.target.value)}/>
+                            <button onClick={()=> setEditDuration(false)}>Done</button>
+                        </>
+                    }
                 </div>
+                :
+                    null
+                }  
 
                 
 
