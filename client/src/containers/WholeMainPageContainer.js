@@ -9,7 +9,12 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
             priorities={ priorities }
             />
             <p>Hello {user.email} </p>
-            <AllTasksContainer uncompletedTasks={ uncompletedTasks } completedTasks={ completedTasks }/>
+            <AllTasksContainer 
+            uncompletedTasks={ uncompletedTasks } 
+            completedTasks={ completedTasks }
+            categories={ categories }
+            priorities={ priorities }
+            />
 
         </div>
     )

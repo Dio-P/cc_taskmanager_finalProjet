@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import DropDownMenu from "../components/DropDownMenu";
 
 const AddNewTaskPage = () => {
-    // const [taskToBeEdited, setTaskToBeEdited] = useState(null);
     const [taskTitle, setTaskTitle] = useState("");
     const [taskCategory, setTaskCategory] = useState(null);
     const [taskPriority, setTaskPriority] = useState(null);
@@ -12,9 +11,10 @@ const AddNewTaskPage = () => {
     const [taskDescription, setTaskDescription] = useState(null);
     const [hasDate, setHasDate] = useState(false);
     const [taskDate, setTaskDate] = useState(null);
+    const [datedTaskType, setDatedTaskType] = useState(null);
     const [hasTime, setHasTime] = useState(false);
     const [taskTime, setTaskTime] = useState(null);
-    const [timedTaskType, setTimedTaskType] = useState(null);
+    
 
     const [hasDuration, setHasDuration] = useState(false);
     const [taskDuration, setTaskDuration] = useState(null);
@@ -57,7 +57,7 @@ const AddNewTaskPage = () => {
         if(taskDescription){newTask["description"]=taskDescription;}
         if(taskDate){
             newTask["date"]=taskDate;
-            newTask["type"]=timedTaskType;
+            newTask["type"]=datedTaskType;
         }else{
             newTask["type"]="SOMEDAY";
 
@@ -88,13 +88,12 @@ const AddNewTaskPage = () => {
             <form onSubmit={addNewTask}>
                 <label htmlFor="taskTitle">Task Title</label>
                 <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
-                {/* <h3>{taskTitle}</h3> */}
 
                 <label htmlFor="taskCategory">Task Category</label>
-                <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption, categories)=> setCategoryFromDropDown(choosenOption)} />
+                <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
 
                 <label htmlFor="taskPriority">Task Priority</label>
-                <DropDownMenu options={ priorities } setValueFromDropDown={(choosenOption, categories)=> setPriorityFromDropDown(choosenOption)} />
+                <DropDownMenu options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
 
                 {hasDescription?
                 <>
@@ -112,9 +111,9 @@ const AddNewTaskPage = () => {
                     <input type="date" name="taskDate" id="taskDate" value={taskDate} onChange={e=> setTaskDate(e.target.value)}/>
                     <div>
                     <label htmlFor="taskDate">Do On</label>
-                    <input type="radio" name="timedTaskType" id="do_on" value="DO_ON" onChange={e=> setTimedTaskType(e.target.value)}/>
+                    <input type="radio" name="timedTaskType" id="do_on" value="DO_ON" onChange={e=> setDatedTaskType(e.target.value)}/>
                     <label htmlFor="taskDate">Do By</label>
-                    <input type="radio" name="timedTaskType" id="do_on" value="DO_BY" onChange={e=> setTimedTaskType(e.target.value)}/>
+                    <input type="radio" name="timedTaskType" id="do_on" value="DO_BY" onChange={e=> setDatedTaskType(e.target.value)}/>
 
                     </div>
                     <button onClick={()=> setHasDate(false)}>- Remove Date</button>
