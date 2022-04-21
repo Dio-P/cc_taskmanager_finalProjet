@@ -56,57 +56,75 @@ const DistinctTaskPage = () => {
             {loading?
             <h3>Loading</h3>
             :
-            <div>
-            <h3>{taskTitle}</h3>
-            <input type="checkbox" checked={taskCompleted}/>
+
 
             <div>
-                 <h4>Category</h4>
-                 <p>{ taskCategory }</p>
-             </div>
-
-             <div>
-                 <h4>Priority</h4>
-                 <p>{ taskPriority }</p>
-             </div>
-
-             <div>
-                 <p>{ taskDescription }</p>
-             </div>
-
-            <div>
+                
                 <div>
-                    {taskDate?
-                        <p>{ taskDate }</p>
+                    <label htmlFor="taskTitle">Task Title</label>
+                    <h3>{taskTitle}</h3>
+                    {!editTitle?
+                    <button onClick={()=>setEditTitle(true)}>Edit</button>
+                    :
+                    <>
+                        <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
+                        <button onClick={()=>setEditTitle(false)}>Done</button>
+                    </>
+                    }  
+                </div>
+                
+                <div>
+                    <input type="checkbox" checked={taskCompleted}/>
+                </div>
+            
+
+                <div>
+                    <h4>Category</h4>
+                    <p>{ taskCategory }</p>
+                </div>
+
+                <div>
+                    <h4>Priority</h4>
+                    <p>{ taskPriority }</p>
+                </div>
+
+                <div>
+                    <p>{ taskDescription }</p>
+                </div>
+
+                <div>
+                    <div>
+                        {taskDate?
+                            <p>{ taskDate }</p>
+                            :
+                            null
+                            }
+                    </div>
+
+                    <div className="distinctTaskFieldBox">
+                        <p>{ datedTaskType }</p>
+                    </div>
+                </div>
+
+                <div>
+                    {taskTime?
+                        <p>{ taskTime }</p>
                         :
                         null
                         }
                 </div>
 
-                <div className="distinctTaskFieldBox">
-                    <p>{ datedTaskType }</p>
+                <div>
+                    <p>{taskDuration}</p>
                 </div>
-             </div>
 
-             <div>
-                {taskTime?
-                    <p>{ taskTime }</p>
-                    :
-                    null
-                    }
-             </div>
+                
 
-             <div>
-                 <p>{taskDuration}</p>
-             </div>
-
-             
-
-             <div>
-                 <h4>Collaborators</h4>
-             </div>
-        </div>
-        }
+                <div>
+                    <h4>Collaborators</h4>
+                </div>
+            </div>
+            }
 
         </div>
     )
