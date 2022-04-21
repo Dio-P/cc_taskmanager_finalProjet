@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TasksBox from "./TasksBox";
 
-const AllTasksContainer = ({ uncompletedTasks, completedTasks }) => {
+const AllTasksContainer = ({ uncompletedTasks, completedTasks, categories, priorities }) => {
     const [doOns, setDoOns] = useState([]);
     const [doBys, setDoBys] = useState([]);
     const [somedays, setSomedays] = useState([]);
@@ -78,9 +78,30 @@ const AllTasksContainer = ({ uncompletedTasks, completedTasks }) => {
             <p>Loading</p>
             :
             <div>
-            <TasksBox tasks={ doOns } taksCompl={ doOnsCompl } title = "Weeks Tasks"/>
-            <TasksBox tasks={ doBys } taksCompl={ doBysCompl } title = "Get it done soon"/>
-            <TasksBox tasks={ somedays } taksCompl={ somedaysCompl } title = "Get it done someday"/>
+            <TasksBox 
+                tasks={ doOns } 
+                tasksComplete={ doOnsCompl }
+                categories={ categories }
+                priorities={ priorities } 
+                title = "Weeks Tasks"
+            />
+
+            <TasksBox 
+                tasks={ doBys } 
+                tasksComplete={ doBysCompl }
+                categories={ categories }
+                priorities={ priorities }
+                title = "Get it done soon"
+            />
+
+            <TasksBox 
+                tasks={ somedays } 
+                tasksComplete={ somedaysCompl }
+                categories={ categories }
+                priorities={ priorities }
+                title = "Get it done someday"
+            />
+
             </div>
             }
             

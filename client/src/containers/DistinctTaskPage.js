@@ -1,8 +1,30 @@
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const DistinctTaskPage = () => {
+    const [taskTitle, setTaskTitle] = useState("");
+    const [taskCategory, setTaskCategory] = useState(null);
+    const [taskPriority, setTaskPriority] = useState(null);
+
+    const [hasDescription, setHasDescription] = useState(false);
+    const [taskDescription, setTaskDescription] = useState(null);
+    const [hasDate, setHasDate] = useState(false);
+    const [taskDate, setTaskDate] = useState(null);
+    const [hasTime, setHasTime] = useState(false);
+    const [taskTime, setTaskTime] = useState(null);
+    const [timedTaskType, setTimedTaskType] = useState(null);
+
+    const [hasDuration, setHasDuration] = useState(false);
+    const [taskDuration, setTaskDuration] = useState(null);
+    const [hasCollaborators, setHasCollaborators] = useState(false);
+    const [taskCollaborators, setTaskCollaborators] = useState(null);
+
+    
+
     const location = useLocation();
     const task = location.state.task;
+    const categories = location.state.categories;
+    const priorities = location.state.priorities;
     console.log("location", location);
     console.log("task", task);
 

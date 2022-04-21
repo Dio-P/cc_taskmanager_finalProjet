@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import DropDownMenu from "../components/DropDownMenu";
 
 const AddNewTaskPage = () => {
-    // const [taskToBeEdited, setTaskToBeEdited] = useState(null);
     const [taskTitle, setTaskTitle] = useState("");
     const [taskCategory, setTaskCategory] = useState(null);
     const [taskPriority, setTaskPriority] = useState(null);
@@ -88,7 +87,6 @@ const AddNewTaskPage = () => {
             <form onSubmit={addNewTask}>
                 <label htmlFor="taskTitle">Task Title</label>
                 <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
-                {/* <h3>{taskTitle}</h3> */}
 
                 <label htmlFor="taskCategory">Task Category</label>
                 <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption, categories)=> setCategoryFromDropDown(choosenOption)} />

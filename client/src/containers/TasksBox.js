@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Task from "../components/Task";
 
-const TasksBox = ({ tasks, taksCompl, title }) => {
+const TasksBox = ({ tasks, tasksComplete, title, categories, priorities }) => {
     
 
     return (
@@ -10,13 +10,21 @@ const TasksBox = ({ tasks, taksCompl, title }) => {
 
            {   
            tasks.map(task => (
-              <Task task={task}/>
+              <Task 
+                task={ task }
+                categories={ categories }
+                priorities={ priorities }
+              />
            ))
            }  
 
             {   
-           taksCompl.map(task => (
-              <Task task={task}/>
+           tasksComplete.map(task => (
+              <Task 
+                task={ task }
+                categories={ categories }
+                priorities={ priorities }
+              />
            ))
            }    
 
