@@ -1,8 +1,6 @@
 package com.example.task_manager_server.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name="tasks")
@@ -13,7 +11,7 @@ public class Task {
     private Long id;
 
     @Column(name="name")
-    private String name;
+    private String title;
 
     @Column(name="description")
     private String description;
@@ -28,7 +26,7 @@ public class Task {
     private int duration;
 
     @Column(name="task_type")
-    private TaskType taskType;
+    private TaskType type;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
@@ -49,13 +47,13 @@ public class Task {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Task(String name, String description, String date, String time, int duration, TaskType taskType, Category category, Priority priority, boolean completed, String completedTimeStamp, User user) {
-        this.name = name;
+    public Task(String title, String description, String date, String time, int duration, TaskType type, Category category, Priority priority, boolean completed, String completedTimeStamp, User user) {
+        this.title = title;
         this.description = description;
         this.date = date;
         this.time = time;
         this.duration = duration;
-        this.taskType = taskType;
+        this.type = type;
         this.category = category;
         this.priority = priority;
         this.completed = completed;
@@ -76,12 +74,12 @@ public class Task {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -148,12 +146,12 @@ public class Task {
         this.user = user;
     }
 
-    public TaskType getTaskType() {
-        return taskType;
+    public TaskType getType() {
+        return type;
     }
 
-    public void setTaskType(TaskType taskType) {
-        this.taskType = taskType;
+    public void setType(TaskType type) {
+        this.type = type;
     }
 
     public Priority getPriority() {
