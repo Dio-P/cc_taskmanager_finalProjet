@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import DropDownMenu from "../components/DropDownMenu";
+
 
 const DistinctTaskPage = () => {
     const location = useLocation();
@@ -45,6 +47,17 @@ const DistinctTaskPage = () => {
     }, [taskTitle, taskCompleted, taskCategory, taskPriority]);
     
 
+    const setCategoryFromDropDown = (choosenOption) => {
+        setTaskCategory(choosenOption);
+   
+    
+    }
+
+    const setPriorityFromDropDown = (choosenOption) => {
+            setTaskPriority(choosenOption);
+        
+    }
+
     const onClickingTheCheckedButton = () => {
             
     }
@@ -61,26 +74,38 @@ const DistinctTaskPage = () => {
             <div>
                 
                 <div>
-                    <label htmlFor="taskTitle">Task Title</label>
+                    <label>Task Title</label>
                     <h3>{taskTitle}</h3>
                     {!editTitle?
-                    <button onClick={()=>setEditTitle(true)}>Edit</button>
+                        <button onClick={()=>setEditTitle(true)}>Edit</button>
                     :
-                    <>
-                        <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
-                        <button onClick={()=>setEditTitle(false)}>Done</button>
-                    </>
+                        <>
+                            <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
+                            <button onClick={()=>setEditTitle(false)}>Done</button>
+                        </>
                     }  
                 </div>
                 
                 <div>
+                    <label>Completed</label>
                     <input type="checkbox" onClick={()=>setTaskCompleted(!taskCompleted)} checked={taskCompleted}/>
                 </div>
             
 
                 <div>
-                    <h4>Category</h4>
+                    <label>Category</label>
                     <p>{ taskCategory }</p>
+                    {!editCategory?
+                        <button onClick={()=>setEditCategory(true)}>Edit</button>
+                    :
+                        <>
+                            <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption, categories)=> setCategoryFromDropDown(choosenOption)} />
+                            <button onClick={()=>setEditCategory(false)}>Done</button>
+                        </>
+
+                    }
+                    
+
                 </div>
 
                 <div>
