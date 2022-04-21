@@ -70,7 +70,6 @@ const DistinctTaskPage = () => {
             <h3>Loading</h3>
             :
 
-
             <div>
                 
                 <div>
@@ -106,6 +105,7 @@ const DistinctTaskPage = () => {
                     }
                 </div>
 
+                
                 <div>
                     <label>Priority</label>
                     <p>{ taskPriority }</p>
@@ -120,6 +120,8 @@ const DistinctTaskPage = () => {
                     }
                 </div>
 
+                
+                {taskDescription?
                 <div>
                     <label> Description </label>
                     <p>{ taskDescription }</p>
@@ -132,6 +134,10 @@ const DistinctTaskPage = () => {
                         </>
                     }
                 </div>
+                :
+                    null
+                }
+                
 
                 {taskDate?
                 <div>
@@ -176,7 +182,6 @@ const DistinctTaskPage = () => {
                             null  
                 }
 
-                    
 
                 {taskTime?
                 <div>
@@ -195,6 +200,7 @@ const DistinctTaskPage = () => {
                     null
                 }
 
+
                 {taskDuration?
                 <div>
                     <label htmlFor="taskDuration">Task Duration</label>
@@ -212,7 +218,6 @@ const DistinctTaskPage = () => {
                     null
                 }  
 
-                
 
                 <div>
                     <h4>Collaborators</h4>
