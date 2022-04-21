@@ -58,8 +58,28 @@ const DistinctTaskPage = () => {
         
     }
 
-    const onClickingTheCheckedButton = () => {
-            
+    const onClickingDone = () => {
+        const updatedTask= { }
+        updatedTask["title"]=taskTitle;
+        updatedTask["category"]=taskCategory;
+        updatedTask["priority"]=taskPriority;
+        updatedTask["completed"]=false;
+        updatedTask["completedTimeStamp"]=Date.now();
+
+        if(taskDescription){updatedTask["description"]=taskDescription;}
+        if(taskDate){
+            updatedTask["date"]=taskDate;
+            updatedTask["type"]=datedTaskType;
+        }else{
+            updatedTask["type"]="SOMEDAY";
+
+        }
+        if(taskTime){updatedTask["time"]=taskTime;}
+        if(taskDuration){updatedTask["duration"]=taskDuration;}
+        
+        console.log("updatedTask", updatedTask);
+        // send the object
+        // redirect to home page            
     }
 
     return (
@@ -80,7 +100,10 @@ const DistinctTaskPage = () => {
                     :
                         <>
                             <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
-                            <button onClick={()=>setEditTitle(false)}>Done</button>
+                            <button onClick={()=>{
+                                setEditTitle(false)
+                                onClickingDone()
+                                }}>Done</button>
                         </>
                     }  
                 </div>
@@ -99,7 +122,10 @@ const DistinctTaskPage = () => {
                     :
                         <>
                             <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
-                            <button onClick={()=>setEditCategory(false)}>Done</button>
+                            <button onClick={()=>{
+                                setEditCategory(false)
+                                onClickingDone()
+                                }}>Done</button>
                         </>
 
                     }
@@ -114,7 +140,10 @@ const DistinctTaskPage = () => {
                     :
                         <>
                             <DropDownMenu options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
-                            <button onClick={()=>setEditPriority(false)}>Done</button>
+                            <button onClick={()=>{
+                                setEditPriority(false)
+                                onClickingDone()
+                                }}>Done</button>
                         </>
 
                     }
@@ -130,7 +159,10 @@ const DistinctTaskPage = () => {
                     :
                         <>
                             <input type="text" name="taskDescription" id="taskDescription" value={taskDescription} onChange={e=> setTaskDescription(e.target.value)}/>
-                            <button onClick={()=>setEditDescription(false)}>Done</button>
+                            <button onClick={()=>{
+                                setEditDescription(false)
+                                onClickingDone()
+                                }}>Done</button>
                         </>
                     }
                 </div>
@@ -150,7 +182,10 @@ const DistinctTaskPage = () => {
                         :
                             <>
                                 <input type="date" name="taskDate" id="taskDate" value={taskDate} onChange={e=> setTaskDate(e.target.value)}/>
-                                <button onClick={()=>setEditDate(false)}>Done</button>
+                                <button onClick={()=>{
+                                setEditDate(false)
+                                onClickingDone()
+                                }}>Done</button>
                             </>
                         }
                     </div>
@@ -178,7 +213,7 @@ const DistinctTaskPage = () => {
                     </div>
 
                 </div>
-                            :
+                        :
                             null  
                 }
 
@@ -192,7 +227,10 @@ const DistinctTaskPage = () => {
                     :
                         <>
                             <input type="time" name="taskDate" id="taskDate" value={taskTime} onChange={e=> setTaskTime(e.target.value)}/>
-                            <button onClick={()=> setEditTime(false)}>Edit</button>
+                            <button onClick={()=>{
+                                setEditTime(false)
+                                onClickingDone()
+                                }}>Done</button>
                         </>
                     }    
                 </div>
@@ -210,7 +248,10 @@ const DistinctTaskPage = () => {
                     :
                         <>
                             <input type="text" name="taskDuration" id="taskDuration" placeholder="in minutes" value={taskDuration} onChange={e=> setTaskDuration(e.target.value)}/>
-                            <button onClick={()=> setEditDuration(false)}>Done</button>
+                            <button onClick={()=>{
+                                setEditDuration(false)
+                                onClickingDone()
+                                }}>Done</button>
                         </>
                     }
                 </div>

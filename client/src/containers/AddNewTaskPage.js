@@ -11,9 +11,10 @@ const AddNewTaskPage = () => {
     const [taskDescription, setTaskDescription] = useState(null);
     const [hasDate, setHasDate] = useState(false);
     const [taskDate, setTaskDate] = useState(null);
+    const [datedTaskType, setDatedTaskType] = useState(null);
     const [hasTime, setHasTime] = useState(false);
     const [taskTime, setTaskTime] = useState(null);
-    const [timedTaskType, setTimedTaskType] = useState(null);
+    
 
     const [hasDuration, setHasDuration] = useState(false);
     const [taskDuration, setTaskDuration] = useState(null);
@@ -56,7 +57,7 @@ const AddNewTaskPage = () => {
         if(taskDescription){newTask["description"]=taskDescription;}
         if(taskDate){
             newTask["date"]=taskDate;
-            newTask["type"]=timedTaskType;
+            newTask["type"]=datedTaskType;
         }else{
             newTask["type"]="SOMEDAY";
 
@@ -110,9 +111,9 @@ const AddNewTaskPage = () => {
                     <input type="date" name="taskDate" id="taskDate" value={taskDate} onChange={e=> setTaskDate(e.target.value)}/>
                     <div>
                     <label htmlFor="taskDate">Do On</label>
-                    <input type="radio" name="timedTaskType" id="do_on" value="DO_ON" onChange={e=> setTimedTaskType(e.target.value)}/>
+                    <input type="radio" name="timedTaskType" id="do_on" value="DO_ON" onChange={e=> setDatedTaskType(e.target.value)}/>
                     <label htmlFor="taskDate">Do By</label>
-                    <input type="radio" name="timedTaskType" id="do_on" value="DO_BY" onChange={e=> setTimedTaskType(e.target.value)}/>
+                    <input type="radio" name="timedTaskType" id="do_on" value="DO_BY" onChange={e=> setDatedTaskType(e.target.value)}/>
 
                     </div>
                     <button onClick={()=> setHasDate(false)}>- Remove Date</button>
