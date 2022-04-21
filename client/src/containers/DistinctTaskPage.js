@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
+import RequestContext from "../context/RequestContext";
 
 const DistinctTaskPage = () => {
     const location = useLocation();
@@ -39,7 +40,7 @@ const DistinctTaskPage = () => {
     const [taskDuration, setTaskDuration] = useState(task.duration);
     const [editCollaborators, setEditCollaborators] = useState(false);
     const [taskCollaborators, setTaskCollaborators] = useState(null);
-
+    const {get, post} = useContext(RequestContext);
     
     useEffect(() => {
         setLoading(false)
@@ -78,7 +79,7 @@ const DistinctTaskPage = () => {
         if(taskDuration){updatedTask["duration"]=taskDuration;}
         
         console.log("updatedTask", updatedTask);
-        // send the object
+        post("tasks", updatedTask)
         // redirect to home page            
     }
 
