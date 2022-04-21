@@ -30,8 +30,8 @@ public class Category {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonIgnoreProperties({"category"})
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Task> tasks;
 
     public Category(String title, String colour, Goal goal, int goalDuration, User user) {

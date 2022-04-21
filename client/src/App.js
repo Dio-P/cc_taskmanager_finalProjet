@@ -9,9 +9,11 @@ import {
 } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import configData from "./config.json";
+import { createRequestHelper } from './helpers/requestHelper';
 
 
 import './App.css';
+import RequestContext from './context/RequestContext';
 
 function App() {
 
@@ -31,8 +33,21 @@ function App() {
   const [uncompletedTasks, setUncompletedTasks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [priorities, setPriorities] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false); 
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [get, setGet] = useState();
+  const [post, setPost] = useState();
+
   // const [fetchedTasks, setFetchedTasks] = useState([]);
+
+    useEffect(() => {
+      if(!isLoaded){
+        return
+      }
+      const requestHelper = createRequestHelper(accessToken);
+      setGet(()=> requestHelper.get);
+      setPost(()=> requestHelper.post);
+
+    }, [accessToken]);
 
     useEffect(() => {
       const getAccessToken = async () => {
@@ -61,17 +76,7 @@ function App() {
       }
 
       const getTasks =  async (authId) => {
-          fetch("http://localhost:8080/auth0/tasks", 
-          {
-            method: "GET",
-            headers: new Headers({
-            Authorization: "Bearer " + accessToken,
-            "Content-Type": "application/json",
-            }),
-          })
-          .then(function (res) {
-            return res.json();
-          })
+        get("tasks")
           .then(function (resJson) {
             setAllTasks(resJson);
           })
@@ -79,7 +84,8 @@ function App() {
     }
         getTasks();
         postUser();
-    }, [isLoaded]);
+        getCategories();
+    }, [get, post]);
 
     const postUser = (payload) => {
       fetch('http://localhost:8080/auth0/users', {
@@ -91,6 +97,18 @@ function App() {
       })
       .then(res => res.json())
       .catch((e) => console.log(e));
+  }
+
+  const getCategories = () => {
+    fetch("http://localhost:8080/auth0/categories")
+    .then(res => {
+      console.log("res not J", res);
+      res.json()
+    })
+    .then(data=> {
+      console.log("data", data);
+      setCategories(data)
+    })
   }
 
     useEffect(() => {
@@ -119,10 +137,10 @@ function App() {
     useEffect(() => {
       // get the categories from api
       const dummyCategoriesList = ["studieng", "playing", "making something beautiful", "get bored", "play tetris"]
-      console.log("categories must have been gotten");
+      // console.log("categories", categories);
       setCategories(dummyCategoriesList)
       
-    }, [allTasks]);
+    }, [allTasks, categories]);
 
     useEffect(() => {
       // get the categories from api
@@ -147,18 +165,19 @@ function App() {
     
 
   return (
-    <Routes>
-      <Route path="/" element={<WholeMainPageContainer 
-      uncompletedTasks={ uncompletedTasks } 
-      completedTasks={ completedTasks } 
-      categories={ categories }
-      priorities={ priorities }
-      user = { user }
-      />}/>
-      
-      <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
-      <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
-    </Routes>
+    <RequestContext.Provider value={{get, post}}>
+      <Routes>
+        <Route path="/" element={<WholeMainPageContainer 
+        uncompletedTasks={ uncompletedTasks } 
+        completedTasks={ completedTasks } 
+        categories={ categories }
+        priorities={ priorities }
+        user = { user }
+        />}/>
+        <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
+        <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
+      </Routes>
+    </RequestContext.Provider>
   );
 }
 

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import RequestContext from "../context/RequestContext";
 import DropDownMenu from "../components/DropDownMenu";
 
 const AddNewTaskPage = () => {
@@ -24,6 +25,8 @@ const AddNewTaskPage = () => {
     const location = useLocation();
     const categories = location.state.categories;
     const priorities = location.state.priorities;
+
+    const {get, post} = useContext(RequestContext);
 
     // let year = Date.prototype.getFullYear()
     // let month = Date.prototype.getMonth()
@@ -66,9 +69,14 @@ const AddNewTaskPage = () => {
         if(taskDuration){newTask["duration"]=taskDuration;}
         
         console.log("newTask", newTask);
-        // send the object
-        // redirect to home page
+        console.log("post", post);
+
+       post("tasks", newTask)
     }
+    
+
+        // redirect to home page
+    
     // const location = useLocation();
     
 

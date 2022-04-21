@@ -17,12 +17,13 @@ public class User {
     @Column(name="auth_id")
     private String authId;
 
-    @JsonIgnoreProperties({"user"})
+
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Category> categories;
 
-    @JsonIgnoreProperties({"user"})
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Task> tasks;
 
 //    add many to many for collaborations

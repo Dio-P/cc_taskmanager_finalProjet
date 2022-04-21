@@ -1,5 +1,7 @@
 package com.example.task_manager_server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
