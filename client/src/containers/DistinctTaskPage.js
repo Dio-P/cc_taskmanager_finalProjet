@@ -99,37 +99,66 @@ const DistinctTaskPage = () => {
                         <button onClick={()=>setEditCategory(true)}>Edit</button>
                     :
                         <>
-                            <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption, categories)=> setCategoryFromDropDown(choosenOption)} />
+                            <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
                             <button onClick={()=>setEditCategory(false)}>Done</button>
                         </>
 
                     }
-                    
-
                 </div>
 
                 <div>
-                    <h4>Priority</h4>
+                    <label>Priority</label>
                     <p>{ taskPriority }</p>
+                    {!editPriority?
+                        <button onClick={()=>setEditPriority(true)}>Edit</button>
+                    :
+                        <>
+                            <DropDownMenu options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
+                            <button onClick={()=>setEditPriority(false)}>Done</button>
+                        </>
+
+                    }
                 </div>
 
                 <div>
+                    <label> Description </label>
                     <p>{ taskDescription }</p>
+                    {!editDescription?
+                        <button onClick={()=>setEditDescription(true)}>Edit</button>
+                    :
+                        <>
+                            <input type="text" name="taskDescription" id="taskDescription" value={taskDescription} onChange={e=> setTaskDescription(e.target.value)}/>
+                            <button onClick={()=>setEditDescription(false)}>Done</button>
+                        </>
+                    }
                 </div>
 
+                {taskDate?
                 <div>
+
                     <div>
-                        {taskDate?
-                            <p>{ taskDate }</p>
-                            :
-                            null
-                            }
+                        <label> Date </label>
+                        <p>{ taskDate }</p>
+                        {!editDate?
+                            <button onClick={()=>setEditDate(true)}>Edit</button>
+                        :
+                            <>
+                                <input type="date" name="taskDate" id="taskDate" value={taskDate} onChange={e=> setTaskDate(e.target.value)}/>
+                                <button onClick={()=>setEditDate(false)}>Done</button>
+                            </>
+                        }
                     </div>
 
-                    <div className="distinctTaskFieldBox">
+                    <div>
                         <p>{ datedTaskType }</p>
                     </div>
+
                 </div>
+                            :
+                            null  
+                }
+
+                    
 
                 <div>
                     {taskTime?

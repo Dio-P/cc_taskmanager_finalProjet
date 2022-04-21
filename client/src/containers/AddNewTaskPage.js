@@ -89,10 +89,10 @@ const AddNewTaskPage = () => {
                 <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
 
                 <label htmlFor="taskCategory">Task Category</label>
-                <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption, categories)=> setCategoryFromDropDown(choosenOption)} />
+                <DropDownMenu options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
 
                 <label htmlFor="taskPriority">Task Priority</label>
-                <DropDownMenu options={ priorities } setValueFromDropDown={(choosenOption, categories)=> setPriorityFromDropDown(choosenOption)} />
+                <DropDownMenu options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
 
                 {hasDescription?
                 <>
