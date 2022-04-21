@@ -74,7 +74,7 @@ const DistinctTaskPage = () => {
                 </div>
                 
                 <div>
-                    <input type="checkbox" checked={taskCompleted}/>
+                    <input type="checkbox" onClick={()=>setTaskCompleted(!taskCompleted)} checked={taskCompleted}/>
                 </div>
             
 
