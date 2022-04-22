@@ -36,13 +36,13 @@ public class DataLoader implements ApplicationRunner {
         User user3 = new User("auth0|625d60ed379bfd006f275c70");
         userRepository.save(user3);
 
-        Category category1 = new Category("Project","#800080", Goal.NONE,0,user1);
+        Category category1 = new Category("Project","#800080", GoalType.NONE,0,user1);
         categoryRepository.save(category1);
 
-        Category category2 = new Category("Project", "#FF0000", Goal.WEEKLY, 2,user2 );
+        Category category2 = new Category("Project", "#FF0000", GoalType.WEEKLY, 2,user2 );
         categoryRepository.save(category2);
 
-        Category category3 = new Category("Project", "#FF0000", Goal.WEEKLY, 2,user3 );
+        Category category3 = new Category("Project", "#FF0000", GoalType.WEEKLY, 2,user3 );
         categoryRepository.save(category3);
 
         Task task1 = new Task(

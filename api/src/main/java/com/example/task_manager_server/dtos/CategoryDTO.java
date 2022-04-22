@@ -1,12 +1,6 @@
 package com.example.task_manager_server.dtos;
 
-import com.example.task_manager_server.models.Goal;
-import com.example.task_manager_server.models.Task;
-import com.example.task_manager_server.models.User;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-import java.util.List;
+import com.example.task_manager_server.models.GoalType;
 
 public class CategoryDTO {
 
@@ -16,15 +10,15 @@ public class CategoryDTO {
 
     private String colour;
 
-    private Goal goal;
+    private GoalType goalType;
 
     private int goalDuration;
 
-    public CategoryDTO(Long id, String title, String colour, Goal goal, int goalDuration) {
+    public CategoryDTO(Long id, String title, String colour, GoalType goalType, int goalDuration) {
         this.id = id;
         this.title = title;
         this.colour = colour;
-        this.goal = goal;
+        this.goalType = goalType;
         this.goalDuration = goalDuration;
     }
 
@@ -55,12 +49,12 @@ public class CategoryDTO {
         this.colour = colour;
     }
 
-    public Goal getGoal() {
-        return goal;
+    public GoalType getGoal() {
+        return goalType;
     }
 
-    public void setGoal(Goal goal) {
-        this.goal = goal;
+    public void setGoal(GoalType goalType) {
+        this.goalType = goalType;
     }
 
     public int getGoalDuration() {

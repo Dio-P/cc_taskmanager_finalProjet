@@ -1,9 +1,8 @@
 package com.example.task_manager_server.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,7 +22,7 @@ public class Category {
     private String colour;
 
     @Column(name="goal")
-    private Goal goal;
+    private GoalType goalType;
 
     @Column(name="goal_duration")
     private int goalDuration;
@@ -39,10 +38,24 @@ public class Category {
     @JsonIgnoreProperties("category")
     private List<Task> tasks;
 
-    public Category(String title, String colour, Goal goal, int goalDuration, User user) {
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name="goals_categories",
+            joinColumns = {@JoinColumn(name="category_id",
+                    nullable = false,
+                    updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="goal_id",
+                    nullable = false,
+                    updatable = false)}
+    )
+    @JsonIgnoreProperties("category")
+    private List<Goal> goals;
+
+    public Category(String title, String colour, GoalType goalType, int goalDuration, User user) {
         this.title = title;
         this.colour = colour;
-        this.goal = goal;
+        this.goalType = goalType;
         this.goalDuration = goalDuration;
         this.user = user;
     }
@@ -75,12 +88,12 @@ public class Category {
         this.colour = colour;
     }
 
-    public Goal getGoal() {
-        return goal;
+    public GoalType getGoal() {
+        return goalType;
     }
 
-    public void setGoal(Goal goal) {
-        this.goal = goal;
+    public void setGoal(GoalType goalType) {
+        this.goalType = goalType;
     }
 
     public int getGoalDuration() {
