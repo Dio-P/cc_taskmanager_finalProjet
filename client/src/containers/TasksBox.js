@@ -10,7 +10,8 @@ const TasksBox = ({ tasks, tasksComplete, title, categories, priorities }) => {
 
            {   
            tasks.map(task => (
-              <Task 
+              <Task
+                key={ Date.now() }
                 task={ task }
                 categories={ categories }
                 priorities={ priorities }
@@ -20,7 +21,8 @@ const TasksBox = ({ tasks, tasksComplete, title, categories, priorities }) => {
 
             {   
            tasksComplete.map(task => (
-              <Task 
+              <Task
+                key={ Date.now() }
                 task={ task }
                 categories={ categories }
                 priorities={ priorities }

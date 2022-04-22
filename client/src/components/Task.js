@@ -17,7 +17,7 @@ const Task = ({ task, categories, priorities }) => {
     return (
             <div>
                 <input type="checkbox" id="task" name="task"/>
-                <label for="task"> <button onClick={onTaskClick}>{ task.title }</button> </label>
+                <label htmlFor="task"> <button onClick={onTaskClick}>{ task.title }</button> </label>
             </div>
       )
 }

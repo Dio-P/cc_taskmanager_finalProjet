@@ -18,7 +18,7 @@ const AllTasksContainer = ({ uncompletedTasks, completedTasks, categories, prior
         // deviding the tasks by type and setting it in states
         // if(uncompletedTasks){
             for(let task of uncompletedTasks){
-                console.log("task", task);
+                // console.log("task", task);/////////////
                 if(task.type==="DO_ON"){
                     doOnsHelper.push(task)
 
@@ -44,7 +44,7 @@ const AllTasksContainer = ({ uncompletedTasks, completedTasks, categories, prior
         // deviding the tasks by type and setting it in states
         // if(uncompletedTasks){
             for(let task of completedTasks){
-                console.log("task", task);
+                // console.log("task", task);/////////////
                 if(task.type==="DO_ON"){
                     doOnsHelper.push(task)
 

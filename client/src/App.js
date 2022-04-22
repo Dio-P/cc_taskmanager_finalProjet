@@ -101,15 +101,17 @@ function App() {
   }
 
   const getCategories = () => {
+    console.log("categories called");////////////
     get("categories")
-    .then(data=> setCategories(data))
+      // .then(res=> (console.log("categoriesGotten", res)))
+    .then(data=> (setCategories(data)))
   }
 
     useEffect(() => {
       // setting the comleted and unclompleted tasks 
       // in different states.
       if(allTasks){
-      console.log("allTasks", allTasks);////////////
+      // console.log("allTasks", allTasks);////////////
       let completedHelper = [];
       let uncompletedHelper = [];
       
