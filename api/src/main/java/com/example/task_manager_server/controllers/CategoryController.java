@@ -1,5 +1,6 @@
 package com.example.task_manager_server.controllers;
 
+import com.example.task_manager_server.dtos.CategoryDTO;
 import com.example.task_manager_server.models.Category;
 import com.example.task_manager_server.models.Task;
 import com.example.task_manager_server.models.User;
@@ -26,9 +27,21 @@ public class CategoryController {
     UserRepository userRepository;
 
     @GetMapping(value="/categories")
-    public ResponseEntity<List<Category>> getCategories(){
+    public ResponseEntity<List<CategoryDTO>> getCategories(){
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
-        return new ResponseEntity<>(categoryRepository.findByUserAuthId(userId), HttpStatus.OK);
+        List<Category> foundCategories = categoryRepository.findByUserAuthId(userId);
+
+        List<CategoryDTO> categoryDTOS = foundCategories.stream().map((category) -> {
+            CategoryDTO categoryDTO = new CategoryDTO(
+                    category.getId(),
+                    category.getTitle(),
+                    category.getColour(),
+                    category.getGoal(),
+                    category.getGoalDuration()
+            );
+            return categoryDTO;
+        }).toList();
+        return new ResponseEntity<>(categoryDTOS, HttpStatus.OK);
     }
 
     @PostMapping(value="/categories")

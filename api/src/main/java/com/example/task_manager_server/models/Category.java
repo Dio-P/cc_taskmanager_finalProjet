@@ -1,6 +1,7 @@
 package com.example.task_manager_server.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -30,6 +31,7 @@ public class Category {
     @ManyToOne
 //    @JsonManagedReference(value = "user-category")
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
