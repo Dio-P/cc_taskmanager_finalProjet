@@ -80,9 +80,21 @@ public class TaskController {
 
     @PutMapping(value="/tasks/{id}", consumes = {"*/*"})
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task){
-        task.setId(id);
-        taskRepository.save(task);
-        return new ResponseEntity<>(task, HttpStatus.CREATED);
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> user = userRepository.findByAuthId(userId);
+        if (user.isPresent()){
+            task.setUser(user.get());
+            task.setId(id);
+            taskRepository.save(task);
+            return new ResponseEntity<>(task, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(task, HttpStatus.UNAUTHORIZED);
+    }
+
+    @DeleteMapping(value="/tasks/{id}", consumes = {"*/*"})
+    public ResponseEntity<Long> deleteTasks(@PathVariable Long id) {
+        taskRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
 

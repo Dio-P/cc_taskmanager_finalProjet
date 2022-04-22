@@ -57,4 +57,25 @@ public class CategoryController {
 
     }
 
+    @PutMapping(value="/categories/{id}", consumes = {"*/*"})
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> user = userRepository.findByAuthId(userId);
+        if (user.isPresent()) {
+            category.setUser(user.get());
+            category.setId(id);
+            categoryRepository.save(category);
+            return new ResponseEntity<>(category, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(category, HttpStatus.UNAUTHORIZED);
+    }
+
+    @DeleteMapping(value="/categories/{id}", consumes = {"*/*"})
+    public ResponseEntity<Long> deleteCategory(@PathVariable Long id) {
+        categoryRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+
+
 }
