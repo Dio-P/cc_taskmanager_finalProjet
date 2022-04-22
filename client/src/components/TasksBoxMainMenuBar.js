@@ -3,24 +3,38 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import DropDownMenuCategory from "./DropDownMenuCategory";
 import DropDownMenuPriority from "./DropDownMenuPriority";
+import MultipleOptionsDropdown from "./MultipleOptionsDropdown";
 
 
 
 
 const TasksBoxMainMenuBar = ({ categories, priorities }) => {
-    const[categoriesToDisplay, setCategoriesToDisplay] = useState();
-    const[prioritiesToDisplay, setPrioritiesToDisplay] = useState();
+    const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
+    const [prioritiesIsOpen, setPriotiesIsOpen] = useState(false);
+    const [categoriesTitles, setCategoriesTitles] = useState([])
 
-    const setCategoryFromDropDown = (choosenOption) => {
-        setCategoriesToDisplay(choosenOption);
+    useEffect(() => {
+        let categoriesTitles = categories.map(category => (
+            category.title
+            ))
+        setCategoriesTitles(categoriesTitles)
+        
+        
+    }, [categories]);
+
+    // const[categoriesToDisplay, setCategoriesToDisplay] = useState();
+    // const[prioritiesToDisplay, setPrioritiesToDisplay] = useState();
+
+//     const setCategoryFromDropDown = (choosenOption) => {
+//         setCategoriesToDisplay(choosenOption);
    
     
-}
+// }
 
-    const setPriorityFromDropDown = (choosenOption) => {
-        setPrioritiesToDisplay(choosenOption);
+//     const setPriorityFromDropDown = (choosenOption) => {
+//         setPrioritiesToDisplay(choosenOption);
         
-    }
+    // }
     // const [newTask, setNewTask] = useState()
 
     // const navigate = useNavigate();
@@ -41,8 +55,24 @@ const TasksBoxMainMenuBar = ({ categories, priorities }) => {
 
     return (
         <div>
-            <DropDownMenuCategory options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
-            <DropDownMenuPriority options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
+            <>
+                <div>
+                    <button onClick={()=> setPriotiesIsOpen(!prioritiesIsOpen)}>Priorities</button>
+                    {prioritiesIsOpen?
+                        <MultipleOptionsDropdown options={ priorities }/>
+                    :
+                        null
+                    }
+                </div>
+                <div>
+                    <button onClick={()=> setCategoriesIsOpen(!categoriesIsOpen)}>Categories</button>
+                    {categoriesIsOpen?
+                        <MultipleOptionsDropdown options={ categoriesTitles }/>
+                    :
+                        null
+                    }
+                </div>
+            </>
         </div>
 
     )

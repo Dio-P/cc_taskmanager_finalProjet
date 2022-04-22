@@ -18,9 +18,9 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
                 </>
             :
                 <Menu
-                closeMenuFunction={ ()=>closeMenuFunction() }
-                categories={ categories }
-                priorities={ priorities }
+                    closeMenuFunction={ ()=>closeMenuFunction() }
+                    categories={ categories }
+                    priorities={ priorities }
                 />
             }
             <TasksBoxMainMenuBar 
@@ -29,10 +29,10 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
             />
             <p>Hello {user.email} </p>
             <AllTasksContainer 
-            uncompletedTasks={ uncompletedTasks } 
-            completedTasks={ completedTasks }
-            categories={ categories }
-            priorities={ priorities }
+                uncompletedTasks={ uncompletedTasks } 
+                completedTasks={ completedTasks }
+                categories={ categories }
+                priorities={ priorities }
             />
 
         </div>
