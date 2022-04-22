@@ -91,5 +91,11 @@ public class TaskController {
         return new ResponseEntity<>(task, HttpStatus.UNAUTHORIZED);
     }
 
+    @DeleteMapping(value="/tasks/{id}", consumes = {"*/*"})
+    public ResponseEntity<Long> deleteTasks(@PathVariable Long id) {
+        taskRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
 
 }
