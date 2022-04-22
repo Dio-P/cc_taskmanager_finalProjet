@@ -1,61 +1,40 @@
-package com.example.task_manager_server.models;
+package com.example.task_manager_server.dtos;
 
+import com.example.task_manager_server.models.Category;
+import com.example.task_manager_server.models.Priority;
+import com.example.task_manager_server.models.TaskType;
+import com.example.task_manager_server.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="tasks")
-public class Task {
+public class TaskDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name")
     private String title;
 
-    @Column(name="description")
     private String description;
 
-    @Column(name="date")
     private String date;
 
-    @Column(name="time")
     private String time;
 
-    @Column(name="duration")
     private int duration;
 
-    @Column(name="task_type")
     private TaskType type;
 
-    @ManyToOne
-//    @JsonManagedReference(value = "task-category")
-    @JoinColumn(name = "category_id", nullable = false)
-    @JsonIgnoreProperties(value={"category.task", "category.user"})
-    private Category category;
+    private CategoryDTO category;
 
-    @Column(name="priority")
     private Priority priority;
 
-    @Column(name="completed")
     private boolean completed;
 
-    @Column(name="completed_timestamp")
     private String completedTimeStamp;
 
-//    private List<User> collaborators;
-
-    @ManyToOne
-//    @JsonManagedReference(value = "user-task")
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnore
-    private User user;
-
-    public Task(String title, String description, String date, String time, int duration, TaskType type, Category category, Priority priority, boolean completed, String completedTimeStamp, User user) {
+    public TaskDTO(Long id, String title, String description, String date, String time, int duration, TaskType type, CategoryDTO category, Priority priority, boolean completed, String completedTimeStamp) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.date = date;
@@ -66,12 +45,9 @@ public class Task {
         this.priority = priority;
         this.completed = completed;
         this.completedTimeStamp = completedTimeStamp;
-//        this.collaborators = collaborators;
-        this.user = user;
     }
 
-    public Task(){
-
+    public TaskDTO() {
     }
 
     public Long getId() {
@@ -122,12 +98,28 @@ public class Task {
         this.duration = duration;
     }
 
-    public Category getCategory() {
+    public TaskType getType() {
+        return type;
+    }
+
+    public void setType(TaskType type) {
+        this.type = type;
+    }
+
+    public CategoryDTO getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryDTO category) {
         this.category = category;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public boolean isCompleted() {
@@ -144,29 +136,5 @@ public class Task {
 
     public void setCompletedTimeStamp(String completedTimeStamp) {
         this.completedTimeStamp = completedTimeStamp;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public TaskType getType() {
-        return type;
-    }
-
-    public void setType(TaskType type) {
-        this.type = type;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
     }
 }

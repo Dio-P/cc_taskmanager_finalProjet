@@ -44,6 +44,7 @@ function App() {
         return
       }
       const requestHelper = createRequestHelper(accessToken);
+      console.log(accessToken)
       setGet(()=> requestHelper.get);
       setPost(()=> requestHelper.post);
 

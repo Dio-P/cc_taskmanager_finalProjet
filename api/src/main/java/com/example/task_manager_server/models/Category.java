@@ -28,12 +28,13 @@ public class Category {
     private int goalDuration;
 
     @ManyToOne
-    @JsonManagedReference
+//    @JsonManagedReference(value = "user-category")
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    @JsonBackReference
+//    @JsonBackReference(value = "task-category")
+    @JsonIgnoreProperties("category")
     private List<Task> tasks;
 
     public Category(String title, String colour, Goal goal, int goalDuration, User user) {
