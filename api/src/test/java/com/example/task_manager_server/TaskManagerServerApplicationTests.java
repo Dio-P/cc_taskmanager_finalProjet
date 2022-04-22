@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -41,7 +39,7 @@ class TaskManagerServerApplicationTests {
 	public void canCreateCategory(){
 		User user = new User("auth0");
 		userRepository.save(user);
-		Category category = new Category("Chores", "ffffff", Goal.DAILY,60,user);
+		Category category = new Category("Chores", "ffffff", GoalType.DAILY,60,user);
 		categoryRepository.save(category);
 		assertEquals(1, categoryRepository.findAll().size());
 	}
@@ -51,7 +49,7 @@ class TaskManagerServerApplicationTests {
 	public void canCreateTask(){
 		User user = new User("auth0");
 		userRepository.save(user);
-		Category category = new Category("Chores", "ffffff", Goal.DAILY,60,user);
+		Category category = new Category("Chores", "ffffff", GoalType.DAILY,60,user);
 		categoryRepository.save(category);
 		Task task = new Task("Pay vehicle tax","","12/4/22", null, 10, TaskType.DO_ON,category,Priority.HIGH,false,null,user);
 		taskRepository.save(task);
@@ -71,7 +69,7 @@ class TaskManagerServerApplicationTests {
 	public void canFindTasksByAuthId(){
 		User user = new User("auth0");
 		userRepository.save(user);
-		Category category = new Category("Chores", "ffffff", Goal.DAILY,60,user);
+		Category category = new Category("Chores", "ffffff", GoalType.DAILY,60,user);
 		categoryRepository.save(category);
 		Task task = new Task("Pay vehicle tax","","12/4/22", null, 10, TaskType.DO_ON,category,Priority.HIGH,false,null,user);
 		taskRepository.save(task);
@@ -82,7 +80,7 @@ class TaskManagerServerApplicationTests {
 	public void canGetCategoriesByAuthID(){
 		User user = new User("auth0");
 		userRepository.save(user);
-		Category category = new Category("Chores", "ffffff", Goal.DAILY,60,user);
+		Category category = new Category("Chores", "ffffff", GoalType.DAILY,60,user);
 		categoryRepository.save(category);
 		assertEquals(1, categoryRepository.findByUserAuthId("auth0").size());
 	}

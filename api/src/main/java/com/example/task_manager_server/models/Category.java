@@ -1,9 +1,7 @@
 package com.example.task_manager_server.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,7 +21,7 @@ public class Category {
     private String colour;
 
     @Column(name="goal")
-    private Goal goal;
+    private GoalType goalType;
 
     @Column(name="goal_duration")
     private int goalDuration;
@@ -39,10 +37,10 @@ public class Category {
     @JsonIgnoreProperties("category")
     private List<Task> tasks;
 
-    public Category(String title, String colour, Goal goal, int goalDuration, User user) {
+    public Category(String title, String colour, GoalType goalType, int goalDuration, User user) {
         this.title = title;
         this.colour = colour;
-        this.goal = goal;
+        this.goalType = goalType;
         this.goalDuration = goalDuration;
         this.user = user;
     }
@@ -75,12 +73,12 @@ public class Category {
         this.colour = colour;
     }
 
-    public Goal getGoal() {
-        return goal;
+    public GoalType getGoal() {
+        return goalType;
     }
 
-    public void setGoal(Goal goal) {
-        this.goal = goal;
+    public void setGoal(GoalType goalType) {
+        this.goalType = goalType;
     }
 
     public int getGoalDuration() {
