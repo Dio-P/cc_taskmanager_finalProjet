@@ -2,6 +2,7 @@ package com.example.task_manager_server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,21 +29,30 @@ public class Goal {
     @JsonIgnore
     private User user;
 
-    @OneToMany(mappedBy = "goal", fetch = FetchType.LAZY)
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name="goals_categories",
+            joinColumns = {@JoinColumn(name="goal_id",
+                    nullable = false,
+                    updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="category_id",
+                    nullable = false,
+                    updatable = false)}
+    )
     @JsonIgnoreProperties("goal")
     private List<Category> categories;
 
-    @OneToMany(mappedBy = "goal", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("goal")
-    private List<TaskType> taskTypes;
-
-    public Goal(GoalType frequency, String startDate, int percentage, User user, List<Category> categories, List<TaskType> taskTypes) {
+    public Goal(GoalType frequency, String startDate, int percentage, User user, List<Category> categories) {
         this.frequency = frequency;
         this.startDate = startDate;
         this.percentage = percentage;
         this.user = user;
         this.categories = categories;
-        this.taskTypes = taskTypes;
+    }
+
+    public Goal(){
+
     }
 
     public GoalType getFrequency() {
@@ -83,14 +93,6 @@ public class Goal {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
-    }
-
-    public List<TaskType> getTaskTypes() {
-        return taskTypes;
-    }
-
-    public void setTaskTypes(List<TaskType> taskTypes) {
-        this.taskTypes = taskTypes;
     }
 
     public Long getId() {

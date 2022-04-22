@@ -2,6 +2,7 @@ package com.example.task_manager_server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -36,6 +37,20 @@ public class Category {
 //    @JsonBackReference(value = "task-category")
     @JsonIgnoreProperties("category")
     private List<Task> tasks;
+
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name="goals_categories",
+            joinColumns = {@JoinColumn(name="category_id",
+                    nullable = false,
+                    updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="goal_id",
+                    nullable = false,
+                    updatable = false)}
+    )
+    @JsonIgnoreProperties("category")
+    private List<Goal> goals;
 
     public Category(String title, String colour, GoalType goalType, int goalDuration, User user) {
         this.title = title;
