@@ -70,5 +70,12 @@ public class CategoryController {
         return new ResponseEntity<>(category, HttpStatus.UNAUTHORIZED);
     }
 
+    @DeleteMapping(value="/categories/{id}", consumes = {"*/*"})
+    public ResponseEntity<Long> deleteCategory(@PathVariable Long id) {
+        categoryRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+
 
 }
