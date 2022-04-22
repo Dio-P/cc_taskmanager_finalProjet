@@ -17,10 +17,10 @@ export const createRequestHelper = (accessToken) => {
             // console.trace();
             const response = await fetch(`http://localhost:8080/auth0/${url}`, { 
                 method: "POST",
+                body: JSON.stringify(body),
                 headers: new Headers({
                     Authorization: "Bearer " + accessToken,
                     "Content-Type": "application/json",
-                    body: JSON.stringify(body)
                 }),
             })
             return await response.json();
