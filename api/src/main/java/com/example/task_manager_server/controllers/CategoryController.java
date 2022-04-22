@@ -57,4 +57,11 @@ public class CategoryController {
 
     }
 
+    @PutMapping(value="/categories/{id}", consumes = {"*/*"})
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
+        category.setId(id);
+        categoryRepository.save(category);
+        return new ResponseEntity<>(category, HttpStatus.CREATED);
+    }
+
 }
