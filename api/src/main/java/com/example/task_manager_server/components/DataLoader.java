@@ -33,11 +33,17 @@ public class DataLoader implements ApplicationRunner {
         User user2 = new User("google-oauth2|100172415311420940348");
         userRepository.save(user2);
 
+        User user3 = new User("auth0|625d60ed379bfd006f275c70");
+        userRepository.save(user3);
+
         Category category1 = new Category("Project","#800080", Goal.NONE,0,user1);
         categoryRepository.save(category1);
 
         Category category2 = new Category("Project", "#FF0000", Goal.WEEKLY, 2,user2 );
         categoryRepository.save(category2);
+
+        Category category3 = new Category("Project", "#FF0000", Goal.WEEKLY, 2,user3 );
+        categoryRepository.save(category3);
 
         Task task1 = new Task(
                 "setting the authorisation up",
@@ -128,6 +134,21 @@ public class DataLoader implements ApplicationRunner {
                 user2
         );
         taskRepository.save(task6);
+
+        Task task7 = new Task(
+                "3setting the authorisation up",
+                "finding a way to connect the users with the database",
+                "26.05.2022",
+                "15:14",
+                70,
+                TaskType.DO_ON,
+                category1,
+                Priority.HIGH,
+                false,
+                "",
+                user3
+        );
+        taskRepository.save(task7);
     }
 
 }
