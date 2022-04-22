@@ -19,11 +19,13 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
             :
                 <Menu
                 closeMenuFunction={ ()=>closeMenuFunction() }
+                categories={ categories }
+                priorities={ priorities }
                 />
             }
             <TasksBoxMainMenuBar 
-            categories={ categories }
-            priorities={ priorities }
+                categories={ categories }
+                priorities={ priorities }
             />
             <p>Hello {user.email} </p>
             <AllTasksContainer 

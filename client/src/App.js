@@ -12,7 +12,7 @@ import configData from "./config.json";
 import { createRequestHelper } from './helpers/requestHelper';
 
 
-import './App.css';
+import './styles/App.css';
 import RequestContext from './context/RequestContext';
 
 function App() {
