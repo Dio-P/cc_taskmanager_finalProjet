@@ -28,9 +28,11 @@ const CategoriesPage = () => {
                     priorities={ priorities }
                 />
             }
-            <button onClick={()=> closeMenuFunction()}>X</button>
             <h1>Hello from the Categories Page</h1>
-            <AllCategoriesContainerForCatPage/>
+            <AllCategoriesContainerForCatPage
+            categories={ categories }
+            priorities={ priorities }
+            />
         </div>
     )
 }

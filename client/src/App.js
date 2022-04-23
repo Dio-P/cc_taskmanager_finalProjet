@@ -13,6 +13,7 @@ import { createRequestHelper } from './helpers/requestHelper';
 import ProfilePage from './containers/ProfilePage';
 import GoalsPage from './components/GoalsPage';
 import CategoriesPage from './containers/CategoriesPage';
+import DistinctCategoryPage from './containers/DistinctCategoryPage';
 
 
 import './styles/App.css';
@@ -177,6 +178,7 @@ function App() {
         <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
         <Route path="/goals" element={ <GoalsPage/> }/>
         <Route path="/categories" element={ <CategoriesPage/> }/>
+        <Route path="/category/:category_title" element={ <DistinctCategoryPage/> }/>
         <Route path="/profile" element={ <ProfilePage/> }/>
       </Routes>
     </RequestContext.Provider>
