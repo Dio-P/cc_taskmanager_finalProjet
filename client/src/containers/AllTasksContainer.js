@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TasksBox from "./TasksBox";
 
-const AllTasksContainer = ({ uncompletedTasks, completedTasks, categories, priorities }) => {
+const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay, categories, priorities }) => {
     const [doOns, setDoOns] = useState([]);
     const [doBys, setDoBys] = useState([]);
     const [somedays, setSomedays] = useState([]);
@@ -17,7 +17,7 @@ const AllTasksContainer = ({ uncompletedTasks, completedTasks, categories, prior
 
         // deviding the tasks by type and setting it in states
         // if(uncompletedTasks){
-            for(let task of uncompletedTasks){
+            for(let task of uncompletedTasksToDisplay){
                 // console.log("task", task);/////////////
                 if(task.type==="DO_ON"){
                     doOnsHelper.push(task)
@@ -34,7 +34,7 @@ const AllTasksContainer = ({ uncompletedTasks, completedTasks, categories, prior
                 setDoBys(doBysHelper);
                 setSomedays(somedaysHelper);
         // }
-    }, [uncompletedTasks]);
+    }, [uncompletedTasksToDisplay]);
 
     useEffect(() => {
         const doOnsHelper = [];
@@ -43,7 +43,7 @@ const AllTasksContainer = ({ uncompletedTasks, completedTasks, categories, prior
 
         // deviding the tasks by type and setting it in states
         // if(uncompletedTasks){
-            for(let task of completedTasks){
+            for(let task of completedTasksToDisplay){
                 // console.log("task", task);/////////////
                 if(task.type==="DO_ON"){
                     doOnsHelper.push(task)
@@ -60,7 +60,7 @@ const AllTasksContainer = ({ uncompletedTasks, completedTasks, categories, prior
             setDoBysCompl(doBysHelper);
             setSomedaysCompl(somedaysHelper);
         // }
-    }, [completedTasks]);
+    }, [completedTasksToDisplay]);
 
     useEffect(() => {
         if(doOns&& doBys&& somedays){
