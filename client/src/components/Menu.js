@@ -4,8 +4,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Menu = ({ closeMenuFunction, categories, priorities }) => {
     const navigate = useNavigate();
 
-    const addTask = () => {
-        navigate("/task/createNewTask", {
+    const onClick = (url) => {
+        navigate(url, {
             state:{
                 categories: categories,
                 priorities: priorities
@@ -29,13 +29,13 @@ const Menu = ({ closeMenuFunction, categories, priorities }) => {
                 <a href="/">View Tasks</a>
             </li>
             <li>
-                <button className="addNewTaskButton" onClick={addTask}>Add New Tasks</button>
+                <button className="addNewTaskButton" onClick={()=> onClick("/task/createNewTask")}>Add New Tasks</button>
             </li>
             <li>
-                <a href="/categories">Categories</a>
+                <button className="allCategoriesButton" onClick={()=> onClick("/categories")}>Categories</button>
             </li>
             <li>
-                <a href="/goals">Goals</a>
+                <button className="allGoalsButton" onClick={()=> onClick("/goals")}>Goals</button>
             </li>
             <li>
                 <button onClick={() => logout({ returnTo: window.location.origin })}>
