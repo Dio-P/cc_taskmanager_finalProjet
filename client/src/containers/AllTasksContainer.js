@@ -72,8 +72,6 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
 
     return (
         <div>
-            
-            controlers 
             {(loading)? 
             <p>Loading</p>
             :
