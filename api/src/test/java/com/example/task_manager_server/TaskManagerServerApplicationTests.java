@@ -96,8 +96,7 @@ class TaskManagerServerApplicationTests {
 	public void canCreateGoal() {
 		User user = new User("auth0");
 		userRepository.save(user);
-		List<Category> categories = new ArrayList<>();
-		Goal goal = new Goal(GoalType.DAILY, "30-04-22", 20, user, categories);
+		Goal goal = new Goal(GoalType.DAILY, "30-04-22", 20, user);
 		goalRepository.save(goal);
 		assertEquals(1, goalRepository.findAll().size());
 	}

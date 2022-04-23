@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -50,6 +51,7 @@ public class Category {
         this.title = title;
         this.colour = colour;
         this.user = user;
+        this.goals = new ArrayList<Goal>();
     }
 
     public Category(){
@@ -94,5 +96,17 @@ public class Category {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public List<Goal> getGoals() {
+        return goals;
+    }
+
+    public void setGoals(List<Goal> goals) {
+        this.goals = goals;
+    }
+
+    public void addGoal(Goal goal) {
+        this.goals.add(goal);
     }
 }

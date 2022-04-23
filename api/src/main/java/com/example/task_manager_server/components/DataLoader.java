@@ -46,25 +46,25 @@ public class DataLoader implements ApplicationRunner {
         Category category1 = new Category("Project","#800080",user1);
         categoryRepository.save(category1);
 
-        Category category2 = new Category("Project", "#FF0000", user2 );
+        Category category2 = new Category("Project", "#FF0000", user2);
         categoryRepository.save(category2);
 
-        Category category3 = new Category("Project", "#FF0000", user3 );
+        Category category3 = new Category("Project", "#FF0000", user3);
         categoryRepository.save(category3);
 
-        List<Category> categories = new ArrayList<>();
-        categories.add(category1);
-        Goal goal1 = new Goal(GoalType.DAILY, "30-04-22", 20, user1, categories);
+        Goal goal1 = new Goal(GoalType.DAILY, "30-04-22", 20, user1);
+        goalRepository.save(goal1);
+        goal1.addCategory(category1);
         goalRepository.save(goal1);
 
-        List<Category> categories2 = new ArrayList<>();
-        categories.add(category2);
-        Goal goal2 = new Goal(GoalType.WEEKLY, "28-05-22", 10, user2, categories2);
+        Goal goal2 = new Goal(GoalType.WEEKLY, "28-05-22", 10, user2);
+        goalRepository.save(goal2);
+        goal2.addCategory(category2);
         goalRepository.save(goal2);
 
-        List<Category> categories3 = new ArrayList<>();
-        categories.add(category3);
-        Goal goal3 = new Goal(GoalType.DAILY, "10-06-22", 30, user3, categories3);
+        Goal goal3 = new Goal(GoalType.DAILY, "10-06-22", 30, user3);
+        goalRepository.save(goal3);
+        goal3.addCategory(category3);
         goalRepository.save(goal3);
 
         Task task1 = new Task(
