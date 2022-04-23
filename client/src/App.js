@@ -140,7 +140,7 @@ function App() {
 
     useEffect(() => {
       // get the categories from api
-      const dummyPrioritiesList = ["low", "medium", "high"]
+      const dummyPrioritiesList = ["LOW", "MEDIUM", "HIGH"]
       console.log("Priorities must have been gotten");
       setPriorities(dummyPrioritiesList)
       

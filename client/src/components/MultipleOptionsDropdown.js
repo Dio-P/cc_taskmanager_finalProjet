@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 
 const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown }) => {
-    const [option, setOption] = useState();
-    const [toDisplay, setToDisplay] = useState();
-
     const [optionshandler, setOptionshandler] = useState(null);
 
     useEffect(() => {
@@ -23,19 +20,11 @@ const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown }) => {
 
     useEffect(() => {
         console.log("optionshandler", optionshandler);
-        
+        setOptionsFromDropDown(optionshandler)
     }, [optionshandler]);
-
-    useEffect(() => {
-        console.log("optionObject", {option: option, toDisplay: toDisplay});
-        setOptionsFromDropDown({option: option, toDisplay: toDisplay})
-
-    }, [option, toDisplay]);
 
     const onClick = (e) => {
         let option = e.target.value;
-        // setOption(e.target.value)
-        // setToDisplay(()=>!toDisplay)
         setOptionshandler({
             ...optionshandler,
             [option]: {

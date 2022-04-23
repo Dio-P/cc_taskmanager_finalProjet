@@ -10,57 +10,70 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
     const [uncompletedTasksToDisplay, setUncompletedTasksToDisplay] = useState([]);
     const [completedTasksToDisplay, setCompletedTasksToDisplay] = useState([]);
 
-    const [prioritiesToDisplayHelper, setPrioritiesToDisplayHelper] = useState([]);
-    const [categoriesToDisplayHelper, setCategoriesToDisplayHelper] = useState([]);
-
-    useEffect(() => {
-        console.log("categoriesToDisplay", categoriesToDisplay);
-        
-    }, [categoriesToDisplay]);
-
-    useEffect(() => {
-        console.log("prioritiesToDisplay", prioritiesToDisplay);
-        
-    }, [prioritiesToDisplay]);
-
-    useEffect(() => {
-        console.log("categoriesToDisplayHelper", categoriesToDisplayHelper);
-        setCategoriesToDisplay(categoriesToDisplayHelper.map(
-            categoryToDisplayObject => categoryToDisplayObject.option
-            ))
-        
-    }, [categoriesToDisplayHelper]);
-
-    useEffect(() => {
-        console.log("prioritiesToDisplayHelper", prioritiesToDisplayHelper);
-        setPrioritiesToDisplay(prioritiesToDisplayHelper.map(
-            priorityToDisplayObject => priorityToDisplayObject.option
-        ))
-        
-    }, [prioritiesToDisplayHelper]);
-
     const closeMenuFunction = () => {
         setIsMenuOpen(false);
     }
 
-    const setPrioritiesFromDropDown = (choosenOption) => {
-        if(choosenOption.toDisplay){
-            setPrioritiesToDisplayHelper([...prioritiesToDisplayHelper, choosenOption]);
-        }else{
-            setPrioritiesToDisplayHelper(prioritiesToDisplayHelper.filter(
-                priorityInArray => priorityInArray !== choosenOption
-                ))
+    useEffect(() => {
+        let uncompletedTaskToDisplayHelper = [];
+        let completedTaskToDisplayHelper = [];
+
+        for(let task of uncompletedTasks){
+            if(
+                categoriesToDisplay.includes(task.category.title)
+                &&
+                prioritiesToDisplay.includes(task.priority)
+                ){
+                console.log("This task is to be displayed");
+                uncompletedTaskToDisplayHelper.push(task);
+                console.log("uncompletedTaskToDisplayHelper", uncompletedTaskToDisplayHelper);
+            }
         }
+
+        for(let task of completedTasks){
+            if(
+                categoriesToDisplay.includes(task.category.title)
+                &&
+                prioritiesToDisplay.includes(task.priority)
+                ){
+                console.log("This completed task is to be displayed");
+                completedTaskToDisplayHelper.push(task);
+                console.log("completedTaskToDisplayHelper", completedTaskToDisplayHelper);
+            }
+        }
+        setUncompletedTasksToDisplay(uncompletedTaskToDisplayHelper);
+        setCompletedTasksToDisplay(completedTaskToDisplayHelper);
         
+    }, [categoriesToDisplay, prioritiesToDisplay]);
+
+
+    const setPrioritiesFromDropDown = (choosenOption) => {
+        let prioritiesToDisplayHelper = [];
+        if(choosenOption){
+            let choosenPriorities = Object.values(choosenOption);
+            console.log("priorities Chosen Option", choosenOption);
+            for(let priority of choosenPriorities){
+                if(priority.toDisplay){
+                    prioritiesToDisplayHelper.push(priority.value);
+                }
+            }
+            console.log("AfterPrioritiesToDisplayHelper", prioritiesToDisplayHelper);////////
+            setPrioritiesToDisplay(prioritiesToDisplayHelper);
+        }
     }
 
     const setCategoriesFromDropDown = (choosenOption) => {
-        if(choosenOption.toDisplay){
-            setCategoriesToDisplayHelper([...categoriesToDisplayHelper, choosenOption]);
-        }else{
-            setCategoriesToDisplayHelper(categoriesToDisplayHelper.filter(
-                priorityInArray => priorityInArray !== choosenOption
-                ))
+        let categoriesToDisplayHelper = [];
+        if(choosenOption){
+            let choosenOptions = Object.values(choosenOption)
+            console.log("categories Chosen Option", choosenOption);
+            for(let category of choosenOptions){
+                if(category.toDisplay){
+                    categoriesToDisplayHelper.push(category.value);
+                }
+            }
+            console.log("AfterCategoriesToDisplayHelper", categoriesToDisplayHelper);//////
+            setCategoriesToDisplay(categoriesToDisplayHelper);
         }
     }
 
@@ -85,8 +98,8 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
             />
             <p>Hello {user.email} </p>
             <AllTasksContainer 
-                uncompletedTasksToDisplay={ uncompletedTasks } 
-                completedTasksToDisplay={ completedTasks }
+                uncompletedTasksToDisplay={ uncompletedTasksToDisplay } 
+                completedTasksToDisplay={ completedTasksToDisplay }
                 categories={ categories }
                 priorities={ priorities }
             />
