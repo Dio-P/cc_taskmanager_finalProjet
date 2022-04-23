@@ -32,10 +32,10 @@ const Menu = ({ closeMenuFunction, categories, priorities }) => {
                 <button className="addNewTaskButton" onClick={addTask}>Add New Tasks</button>
             </li>
             <li>
-                <a href="/contact">Categories</a>
+                <a href="/categories">Categories</a>
             </li>
             <li>
-                <a href="/contact">Goals</a>
+                <a href="/goals">Goals</a>
             </li>
             <li>
                 <button onClick={() => logout({ returnTo: window.location.origin })}>
@@ -48,9 +48,3 @@ const Menu = ({ closeMenuFunction, categories, priorities }) => {
 }
 
 export default Menu;
-
-<div className="taskBoxMainMenuBar">
-            
-            
-
-        </div>

@@ -10,6 +10,9 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 import configData from "./config.json";
 import { createRequestHelper } from './helpers/requestHelper';
+import ProfilePage from './containers/ProfilePage';
+import GoalsPage from './components/GoalsPage';
+import CategoriesPage from './containers/CategoriesPage';
 
 
 import './styles/App.css';
@@ -172,6 +175,9 @@ function App() {
         />}/>
         <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
         <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
+        <Route path="/goals" element={ <GoalsPage/> }/>
+        <Route path="/categories" element={ <CategoriesPage/> }/>
+        <Route path="/profile" element={ <ProfilePage/> }/>
       </Routes>
     </RequestContext.Provider>
   );

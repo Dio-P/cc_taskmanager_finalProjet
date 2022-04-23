@@ -8,26 +8,16 @@ import MultipleOptionsDropdown from "./MultipleOptionsDropdown";
 
 
 
-const TasksBoxMainMenuBar = ({ categories, priorities, setCategoriesFromDropDown, setPrioritiesFromDropDown }) => {
+const TasksBoxMainMenuBar = ({ categories, priorities, setCategoriesFromDropDown, setPrioritiesFromDropDown, categoriesTitles }) => {
     const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
-    const [prioritiesIsOpen, setPriotiesIsOpen] = useState(false);
-    const [categoriesTitles, setCategoriesTitles] = useState([])
-
-    useEffect(() => {
-        let categoriesTitles = categories.map(category => (
-            category.title
-            ))
-        setCategoriesTitles(categoriesTitles)
-        
-        
-    }, [categories]);
+    const [prioritiesIsOpen, setPrioritiesIsOpen] = useState(false);
 
 
     return (
         <div>
             <div>
                 <div>
-                    <button onClick={()=> setPriotiesIsOpen(!prioritiesIsOpen)}>Priorities</button>
+                    <button onClick={()=> setPrioritiesIsOpen(!prioritiesIsOpen)}>Priorities</button>
                     {prioritiesIsOpen?
                         <MultipleOptionsDropdown 
                             options={ priorities }

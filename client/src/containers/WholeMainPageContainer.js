@@ -5,14 +5,25 @@ import Menu from '../components/Menu';
 
 const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, priorities, user }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [categoriesToDisplay, setCategoriesToDisplay] = useState([]);
-    const [prioritiesToDisplay, setPrioritiesToDisplay] = useState([]);
-    const [uncompletedTasksToDisplay, setUncompletedTasksToDisplay] = useState([]);
-    const [completedTasksToDisplay, setCompletedTasksToDisplay] = useState([]);
+    const [categoriesTitles, setCategoriesTitles] = useState([]);
+
+    const [categoriesToDisplay, setCategoriesToDisplay] = useState(categoriesTitles);
+    const [prioritiesToDisplay, setPrioritiesToDisplay] = useState(priorities);
+    const [uncompletedTasksToDisplay, setUncompletedTasksToDisplay] = useState([uncompletedTasks]);
+    const [completedTasksToDisplay, setCompletedTasksToDisplay] = useState([completedTasks]);
 
     const closeMenuFunction = () => {
         setIsMenuOpen(false);
     }
+
+    useEffect(() => {
+        let categoriesTitles = categories.map(category => (
+            category.title
+            ))
+        setCategoriesTitles(categoriesTitles)
+        
+        
+    }, [categories]);
 
     useEffect(() => {
         let uncompletedTaskToDisplayHelper = [];
@@ -24,9 +35,9 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
                 &&
                 prioritiesToDisplay.includes(task.priority)
                 ){
-                console.log("This task is to be displayed");
+                // console.log("This task is to be displayed");//////////////////
                 uncompletedTaskToDisplayHelper.push(task);
-                console.log("uncompletedTaskToDisplayHelper", uncompletedTaskToDisplayHelper);
+                // console.log("uncompletedTaskToDisplayHelper", uncompletedTaskToDisplayHelper);////////////
             }
         }
 
@@ -36,9 +47,9 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
                 &&
                 prioritiesToDisplay.includes(task.priority)
                 ){
-                console.log("This completed task is to be displayed");
+                // console.log("This completed task is to be displayed");//////////////
                 completedTaskToDisplayHelper.push(task);
-                console.log("completedTaskToDisplayHelper", completedTaskToDisplayHelper);
+                // console.log("completedTaskToDisplayHelper", completedTaskToDisplayHelper);/////////////
             }
         }
         setUncompletedTasksToDisplay(uncompletedTaskToDisplayHelper);
@@ -51,13 +62,13 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
         let prioritiesToDisplayHelper = [];
         if(choosenOption){
             let choosenPriorities = Object.values(choosenOption);
-            console.log("priorities Chosen Option", choosenOption);
+            // console.log("priorities Chosen Option", choosenOption);////////
             for(let priority of choosenPriorities){
                 if(priority.toDisplay){
                     prioritiesToDisplayHelper.push(priority.value);
                 }
             }
-            console.log("AfterPrioritiesToDisplayHelper", prioritiesToDisplayHelper);////////
+            // console.log("AfterPrioritiesToDisplayHelper", prioritiesToDisplayHelper);////////
             setPrioritiesToDisplay(prioritiesToDisplayHelper);
         }
     }
@@ -66,13 +77,13 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
         let categoriesToDisplayHelper = [];
         if(choosenOption){
             let choosenOptions = Object.values(choosenOption)
-            console.log("categories Chosen Option", choosenOption);
+            // console.log("categories Chosen Option", choosenOption);///////////////
             for(let category of choosenOptions){
                 if(category.toDisplay){
                     categoriesToDisplayHelper.push(category.value);
                 }
             }
-            console.log("AfterCategoriesToDisplayHelper", categoriesToDisplayHelper);//////
+            // console.log("AfterCategoriesToDisplayHelper", categoriesToDisplayHelper);//////
             setCategoriesToDisplay(categoriesToDisplayHelper);
         }
     }
@@ -93,6 +104,7 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
             <TasksBoxMainMenuBar 
                 categories={ categories }
                 priorities={ priorities }
+                categoriesTitles={ categoriesTitles }
                 setPrioritiesFromDropDown={(choosenOption)=> setPrioritiesFromDropDown(choosenOption) }
                 setCategoriesFromDropDown={(choosenOption)=> setCategoriesFromDropDown(choosenOption) }
             />
