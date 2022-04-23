@@ -21,12 +21,6 @@ public class Category {
     @Column(name="colour")
     private String colour;
 
-    @Column(name="goal")
-    private GoalType goalType;
-
-    @Column(name="goal_duration")
-    private int goalDuration;
-
     @ManyToOne
 //    @JsonManagedReference(value = "user-category")
     @JoinColumn(name = "user_id", nullable = false)
@@ -52,11 +46,9 @@ public class Category {
     @JsonIgnoreProperties("category")
     private List<Goal> goals;
 
-    public Category(String title, String colour, GoalType goalType, int goalDuration, User user) {
+    public Category(String title, String colour, User user) {
         this.title = title;
         this.colour = colour;
-        this.goalType = goalType;
-        this.goalDuration = goalDuration;
         this.user = user;
     }
 
@@ -86,22 +78,6 @@ public class Category {
 
     public void setColour(String colour) {
         this.colour = colour;
-    }
-
-    public GoalType getGoal() {
-        return goalType;
-    }
-
-    public void setGoal(GoalType goalType) {
-        this.goalType = goalType;
-    }
-
-    public int getGoalDuration() {
-        return goalDuration;
-    }
-
-    public void setGoalDuration(int goalDuration) {
-        this.goalDuration = goalDuration;
     }
 
     public User getUser() {
