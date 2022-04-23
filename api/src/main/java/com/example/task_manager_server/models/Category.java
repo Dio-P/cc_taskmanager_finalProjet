@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,12 +21,6 @@ public class Category {
 
     @Column(name="colour")
     private String colour;
-
-    @Column(name="goal")
-    private GoalType goalType;
-
-    @Column(name="goal_duration")
-    private int goalDuration;
 
     @ManyToOne
 //    @JsonManagedReference(value = "user-category")
@@ -52,12 +47,11 @@ public class Category {
     @JsonIgnoreProperties("category")
     private List<Goal> goals;
 
-    public Category(String title, String colour, GoalType goalType, int goalDuration, User user) {
+    public Category(String title, String colour, User user) {
         this.title = title;
         this.colour = colour;
-        this.goalType = goalType;
-        this.goalDuration = goalDuration;
         this.user = user;
+        this.goals = new ArrayList<Goal>();
     }
 
     public Category(){
@@ -88,22 +82,6 @@ public class Category {
         this.colour = colour;
     }
 
-    public GoalType getGoal() {
-        return goalType;
-    }
-
-    public void setGoal(GoalType goalType) {
-        this.goalType = goalType;
-    }
-
-    public int getGoalDuration() {
-        return goalDuration;
-    }
-
-    public void setGoalDuration(int goalDuration) {
-        this.goalDuration = goalDuration;
-    }
-
     public User getUser() {
         return user;
     }
@@ -118,5 +96,17 @@ public class Category {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public List<Goal> getGoals() {
+        return goals;
+    }
+
+    public void setGoals(List<Goal> goals) {
+        this.goals = goals;
+    }
+
+    public void addGoal(Goal goal) {
+        this.goals.add(goal);
     }
 }

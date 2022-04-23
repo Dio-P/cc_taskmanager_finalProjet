@@ -37,16 +37,16 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canCreateUser(){
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
 		assertEquals(1, userRepository.findAll().size());
 	}
 
 	@Test
 	public void canCreateCategory(){
-		User user = new User("auth0");
+		User user = new User("auth0","Steph", "Paterson");
 		userRepository.save(user);
-		Category category = new Category("Chores", "ffffff", GoalType.DAILY,60,user);
+		Category category = new Category("Chores", "ffffff",user);
 		categoryRepository.save(category);
 		assertEquals(1, categoryRepository.findAll().size());
 	}
@@ -54,9 +54,9 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canCreateTask(){
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
-		Category category = new Category("Chores", "ffffff", GoalType.DAILY,60,user);
+		Category category = new Category("Chores", "ffffff",user);
 		categoryRepository.save(category);
 		Task task = new Task("Pay vehicle tax","","12/4/22", null, 10, TaskType.DO_ON,category,Priority.HIGH,false,null,user);
 		taskRepository.save(task);
@@ -74,9 +74,9 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canFindTasksByAuthId(){
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
-		Category category = new Category("Chores", "ffffff", GoalType.DAILY,60,user);
+		Category category = new Category("Chores", "ffffff", user);
 		categoryRepository.save(category);
 		Task task = new Task("Pay vehicle tax","","12/4/22", null, 10, TaskType.DO_ON,category,Priority.HIGH,false,null,user);
 		taskRepository.save(task);
@@ -85,19 +85,18 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canGetCategoriesByAuthID(){
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
-		Category category = new Category("Chores", "ffffff", GoalType.DAILY,60,user);
+		Category category = new Category("Chores", "ffffff",user);
 		categoryRepository.save(category);
 		assertEquals(1, categoryRepository.findByUserAuthId("auth0").size());
 	}
 
 	@Test
 	public void canCreateGoal() {
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
-		List<Category> categories = new ArrayList<>();
-		Goal goal = new Goal(GoalType.DAILY, "30-04-22", 20, user, categories);
+		Goal goal = new Goal(GoalType.DAILY, "30-04-22", 20, user);
 		goalRepository.save(goal);
 		assertEquals(1, goalRepository.findAll().size());
 	}

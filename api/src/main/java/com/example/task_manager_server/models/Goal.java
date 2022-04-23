@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -40,15 +41,15 @@ public class Goal {
                     nullable = false,
                     updatable = false)}
     )
-    @JsonIgnoreProperties("goal")
+//    @JsonIgnoreProperties("goal")
     private List<Category> categories;
 
-    public Goal(GoalType frequency, String startDate, int percentage, User user, List<Category> categories) {
+    public Goal(GoalType frequency, String startDate, int percentage, User user) {
         this.frequency = frequency;
         this.startDate = startDate;
         this.percentage = percentage;
         this.user = user;
-        this.categories = categories;
+        this.categories = new ArrayList<Category>();
     }
 
     public Goal(){
@@ -93,6 +94,10 @@ public class Goal {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public void addCategory(Category category) {
+        this.categories.add(category);
     }
 
     public Long getId() {

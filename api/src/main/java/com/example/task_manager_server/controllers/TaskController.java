@@ -40,9 +40,7 @@ public class TaskController {
             CategoryDTO categoryDTO = new CategoryDTO(
                     task.getCategory().getId(),
                     task.getCategory().getTitle(),
-                    task.getCategory().getColour(),
-                    task.getCategory().getGoal(),
-                    task.getCategory().getGoalDuration()
+                    task.getCategory().getColour()
             );
 
             TaskDTO taskDTO = new TaskDTO(

@@ -2,12 +2,16 @@ package com.example.task_manager_server.components;
 
 import com.example.task_manager_server.models.*;
 import com.example.task_manager_server.repositories.CategoryRepository;
+import com.example.task_manager_server.repositories.GoalRepository;
 import com.example.task_manager_server.repositories.TaskRepository;
 import com.example.task_manager_server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -21,29 +25,47 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    GoalRepository goalRepository;
+
     public DataLoader(){
 
     }
 
     public void run(ApplicationArguments args){
 
-        User user1 = new User("google-oauth2|115148861114920303466");
+        User user1 = new User("google-oauth2|115148861114920303466", "Steph", "Paterson");
         userRepository.save(user1);
 
-        User user2 = new User("google-oauth2|100172415311420940348");
+        User user2 = new User("google-oauth2|100172415311420940348", "Dio", "Papadopoulos");
         userRepository.save(user2);
 
-        User user3 = new User("auth0|625d60ed379bfd006f275c70");
+        User user3 = new User("auth0|625d60ed379bfd006f275c70", "Rachel", "McDonald");
         userRepository.save(user3);
 
-        Category category1 = new Category("Project","#800080", GoalType.NONE,0,user1);
+        Category category1 = new Category("Project","#800080",user1);
         categoryRepository.save(category1);
 
-        Category category2 = new Category("Project", "#FF0000", GoalType.WEEKLY, 2,user2 );
+        Category category2 = new Category("Project", "#FF0000", user2);
         categoryRepository.save(category2);
 
-        Category category3 = new Category("Project", "#FF0000", GoalType.WEEKLY, 2,user3 );
+        Category category3 = new Category("Project", "#FF0000", user3);
         categoryRepository.save(category3);
+
+        Goal goal1 = new Goal(GoalType.DAILY, "30-04-22", 20, user1);
+        goalRepository.save(goal1);
+        goal1.addCategory(category1);
+        goalRepository.save(goal1);
+
+        Goal goal2 = new Goal(GoalType.WEEKLY, "28-05-22", 10, user2);
+        goalRepository.save(goal2);
+        goal2.addCategory(category2);
+        goalRepository.save(goal2);
+
+        Goal goal3 = new Goal(GoalType.DAILY, "10-06-22", 30, user3);
+        goalRepository.save(goal3);
+        goal3.addCategory(category3);
+        goalRepository.save(goal3);
 
         Task task1 = new Task(
                 "setting the authorisation up",

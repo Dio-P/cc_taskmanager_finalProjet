@@ -10,16 +10,11 @@ public class CategoryDTO {
 
     private String colour;
 
-    private GoalType goalType;
 
-    private int goalDuration;
-
-    public CategoryDTO(Long id, String title, String colour, GoalType goalType, int goalDuration) {
+    public CategoryDTO(Long id, String title, String colour) {
         this.id = id;
         this.title = title;
         this.colour = colour;
-        this.goalType = goalType;
-        this.goalDuration = goalDuration;
     }
 
     public CategoryDTO() {
@@ -47,21 +42,5 @@ public class CategoryDTO {
 
     public void setColour(String colour) {
         this.colour = colour;
-    }
-
-    public GoalType getGoal() {
-        return goalType;
-    }
-
-    public void setGoal(GoalType goalType) {
-        this.goalType = goalType;
-    }
-
-    public int getGoalDuration() {
-        return goalDuration;
-    }
-
-    public void setGoalDuration(int goalDuration) {
-        this.goalDuration = goalDuration;
     }
 }

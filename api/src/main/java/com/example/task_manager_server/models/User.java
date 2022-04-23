@@ -17,6 +17,12 @@ public class User {
     @Column(name="auth_id")
     private String authId;
 
+    @Column(name="first_name")
+    private String firstName;
+
+    @Column(name="last_name")
+    private String lastName;
+
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 //    @JsonBackReference(value = "user-category")
@@ -32,9 +38,11 @@ public class User {
 //    private List<Task> collabTasks;
 
 
-    public User(String authId ) {
+    public User(String authId, String firstName, String lastName ) {
 
         this.authId = authId;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public User(){
@@ -71,5 +79,21 @@ public class User {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

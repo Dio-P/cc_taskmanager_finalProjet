@@ -35,9 +35,7 @@ public class CategoryController {
             CategoryDTO categoryDTO = new CategoryDTO(
                     category.getId(),
                     category.getTitle(),
-                    category.getColour(),
-                    category.getGoal(),
-                    category.getGoalDuration()
+                    category.getColour()
             );
             return categoryDTO;
         }).toList();
