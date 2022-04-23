@@ -35,7 +35,16 @@ const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown }) => {
     const onClick = (e) => {
         setOption(e.target.value)
         // setToDisplay(()=>!toDisplay)
-        optionshandler.option.checked = !optionshandler.option.checked;
+        setOptionshandler({
+            ...optionshandler,
+            [option]: {
+                value: option,
+                toDisplay: !optionshandler[option].toDisplay,
+                checked: !optionshandler[option].checked
+            }
+            
+        })
+        optionshandler[option].checked = !optionshandler.option.checked;
         e.checked=!e.checked
     }
 
