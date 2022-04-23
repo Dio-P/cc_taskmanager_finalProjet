@@ -33,7 +33,8 @@ const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown }) => {
     }, [option, toDisplay]);
 
     const onClick = (e) => {
-        setOption(e.target.value)
+        let option = e.target.value;
+        // setOption(e.target.value)
         // setToDisplay(()=>!toDisplay)
         setOptionshandler({
             ...optionshandler,
