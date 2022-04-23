@@ -34,13 +34,13 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args){
 
-        User user1 = new User("google-oauth2|115148861114920303466");
+        User user1 = new User("google-oauth2|115148861114920303466", "Steph", "Paterson");
         userRepository.save(user1);
 
-        User user2 = new User("google-oauth2|100172415311420940348");
+        User user2 = new User("google-oauth2|100172415311420940348", "Dio", "Papadopoulos");
         userRepository.save(user2);
 
-        User user3 = new User("auth0|625d60ed379bfd006f275c70");
+        User user3 = new User("auth0|625d60ed379bfd006f275c70", "Rachel", "McDonald");
         userRepository.save(user3);
 
         Category category1 = new Category("Project","#800080",user1);

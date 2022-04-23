@@ -37,14 +37,14 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canCreateUser(){
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
 		assertEquals(1, userRepository.findAll().size());
 	}
 
 	@Test
 	public void canCreateCategory(){
-		User user = new User("auth0");
+		User user = new User("auth0","Steph", "Paterson");
 		userRepository.save(user);
 		Category category = new Category("Chores", "ffffff",user);
 		categoryRepository.save(category);
@@ -54,7 +54,7 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canCreateTask(){
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
 		Category category = new Category("Chores", "ffffff",user);
 		categoryRepository.save(category);
@@ -74,7 +74,7 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canFindTasksByAuthId(){
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
 		Category category = new Category("Chores", "ffffff", user);
 		categoryRepository.save(category);
@@ -85,7 +85,7 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canGetCategoriesByAuthID(){
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
 		Category category = new Category("Chores", "ffffff",user);
 		categoryRepository.save(category);
@@ -94,7 +94,7 @@ class TaskManagerServerApplicationTests {
 
 	@Test
 	public void canCreateGoal() {
-		User user = new User("auth0");
+		User user = new User("auth0", "Steph", "Paterson");
 		userRepository.save(user);
 		Goal goal = new Goal(GoalType.DAILY, "30-04-22", 20, user);
 		goalRepository.save(goal);
