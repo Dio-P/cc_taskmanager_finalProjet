@@ -13,9 +13,8 @@ const DistinctCategoryPage = () => {
             <div>
                 <label> Colour </label>
                 <svg viewbox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="50" fill={category.colour}/>
+                    <circle cx="20" cy="20" r="20" fill={category.colour}/>
                 </svg>
-                <h1>{ category.colour }</h1>
             </div>
         </div>
     )
