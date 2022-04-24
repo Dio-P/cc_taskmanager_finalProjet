@@ -5,8 +5,10 @@ import RequestContext from '../context/RequestContext';
 
 const ProfilePage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    // substitute the one under to the actual user object value
     const [firstName, setFirstName] = useState(null);
-    const [editFirstName, setEditFirstName] = useState(false)
+    const [editFirstName, setEditFirstName] = useState(false);
+    // substitute the one under to the actual user object value
     const [lastName, setLastName] = useState(null);
     const [editLastName, setEditLastName] = useState(false);
 
@@ -18,9 +20,11 @@ const ProfilePage = () => {
     useEffect(() => {
         if(!firstName){
             setEditFirstName(true);
+
         }
         if(!lastName){
             setEditLastName(true);
+
         }
 
     }, []);
@@ -57,9 +61,9 @@ const ProfilePage = () => {
                 <>
                     <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>
                     <input type="text" id="firstName" name="firstName" onChange={e => setFirstName(e.target.value)} value={firstName}/>
-                    <button onClick={() =>{
-                            setEditFirstName(false)
+                    <button onClick={() => {
                             sendInfoDb()
+                            setEditFirstName(false)
                         }}> Done </button>
                 </>
                 }
@@ -72,9 +76,9 @@ const ProfilePage = () => {
                     <>
                         <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>
                         <input type="text" id="lastName" name="lastName" onChange={e => setLastName(e.target.value)} value={lastName}/>
-                        <button onClick={() =>{
-                            setEditLastName(false)
+                        <button onClick={() => {
                             sendInfoDb()
+                            setEditLastName(false)
                         }}> Done </button>
                     </>
                 }
