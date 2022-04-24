@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useLocation } from "react-router-dom";
 import Menu from '../components/Menu';
+import RequestContext from '../context/RequestContext';
 
 const ProfilePage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +13,7 @@ const ProfilePage = () => {
     const location = useLocation();
     const categories = location.state.categories;
     const priorities = location.state.priorities;
+    const {get, post} = useContext(RequestContext);
 
     useEffect(() => {
         if(!firstName){
@@ -25,6 +27,12 @@ const ProfilePage = () => {
 
     const closeMenuFunction = () => {
         setIsMenuOpen(false);
+    }
+
+    const sendInfoDb = () => {
+        let profileInfo = { firstName, lastName }
+        console.log("profileInfo", profileInfo);
+        // post( ,profileInfo)
     }
 
     return(
@@ -49,6 +57,10 @@ const ProfilePage = () => {
                 <>
                     <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>
                     <input type="text" id="firstName" name="firstName" onChange={e => setFirstName(e.target.value)} value={firstName}/>
+                    <button onClick={() =>{
+                            setEditFirstName(false)
+                            sendInfoDb()
+                        }}> Done </button>
                 </>
                 }
             </div>
@@ -60,6 +72,10 @@ const ProfilePage = () => {
                     <>
                         <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>
                         <input type="text" id="lastName" name="lastName" onChange={e => setLastName(e.target.value)} value={lastName}/>
+                        <button onClick={() =>{
+                            setEditLastName(false)
+                            sendInfoDb()
+                        }}> Done </button>
                     </>
                 }
             </div>

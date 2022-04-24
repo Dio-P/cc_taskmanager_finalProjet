@@ -64,6 +64,7 @@ const DistinctCategoryPage = () => {
                                 name="newTitle" 
                                 value={title} 
                                 onChange={(e)=> setTitle(e.target.value)}
+                                required
                                 />
                             <button onClick={()=> {
                                 setEditTitle(false)
@@ -88,6 +89,7 @@ const DistinctCategoryPage = () => {
                                 name="newColour" 
                                 value={colour} 
                                 onChange={(e)=> setColour(e.target.value)}
+                                required
                                 />
                             <button onClick={()=> {
                                 setEditColour(false)
