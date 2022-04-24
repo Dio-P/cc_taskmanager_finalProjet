@@ -4,7 +4,7 @@ const Task = ({ task, categories, priorities }) => {
     const navigate = useNavigate();
 
     const onTaskClick = (e) => {
-        console.log("a task has been clicked");
+        console.log("a task has been clicked");///////////
         navigate(`/task/:${task.title}`, {
             state: {
                 task:task,

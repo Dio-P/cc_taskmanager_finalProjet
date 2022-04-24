@@ -26,26 +26,21 @@ const DistinctGoalPage = () => {
     const goal = location.state.task;
     const categories = location.state.categories;
     const priorities = location.state.priorities;
+    const endDate = location.state.endDate;
 
     useEffect(() => {
-        setGoalTitle();
-        setGoalType();
-        setGoalTarget();
-        setGoalStartDate();
-        findGoalEndDate()
-        setGoalCategories();
-        setGoalActive();
+        setGoalTitle(goal.title);
+        setGoalType(goal.type);
+        setGoalTarget(goal.target);
+        setGoalStartDate(goal.startDate);
+        setGoalEndDate(goal.endDate);
+        setGoalCategories(goal.categories);
+        setGoalActive(goal.active);
 
     }, [goal]);
 
     // this needs testing
-    const findGoalEndDate = (goalStartDate, daysAfter) => {
-        let endDate = new Date(goalStartDate);
-        endDate.setDate(endDate.getDate() + daysAfter);
-        console.log("endDate", endDate);
-        setEditGoalEndDate(endDate);
 
-    }
 
     const onClickingDone = () => {
         let updatedGoal = {}

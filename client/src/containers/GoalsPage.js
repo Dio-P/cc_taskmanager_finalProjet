@@ -30,7 +30,10 @@ const GoalsPage = () => {
                 />
             }
             <p>Goals</p>
-            <AllGoalsContainer/>
+            <AllGoalsContainer
+                categories={ categories }
+                priorities={ priorities }
+            />
         </div>
     )
 }
