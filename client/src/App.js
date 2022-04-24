@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import taskList from "./helpers/dummyTasksApi.json";
 import WholeMainPageContainer from './containers/WholeMainPageContainer';
 import DistinctTaskPage from './containers/DistinctTaskPage';
 import AddNewTaskPage from './containers/AddNewTaskPage';
