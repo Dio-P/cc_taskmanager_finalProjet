@@ -99,7 +99,6 @@ const AddNewTaskPage = () => {
 
     return (
         <div>
-            
             <form onSubmit={addNewTask}>
                 <label htmlFor="taskTitle">Task Title</label>
                 <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
@@ -159,7 +158,6 @@ const AddNewTaskPage = () => {
 
                 <button type="submit">Create Task </button>
             </form>
-
         </div>
     )
     

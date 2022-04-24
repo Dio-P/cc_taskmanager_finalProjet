@@ -28,7 +28,7 @@ const CategoriesPage = () => {
                     priorities={ priorities }
                 />
             }
-            <h1>Hello from the Categories Page</h1>
+            <h1>All Categories</h1>
             <AllCategoriesContainerForCatPage
             categories={ categories }
             priorities={ priorities }
