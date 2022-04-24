@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
-const Category = ({ category }) => {
+const Category = ({ category, categories, priorities }) => {
     const navigate = useNavigate();
 
     const goToDistinctCategoryPage = () => {
         navigate(`/category/:${category.title}`, {
             state:{
-                category: category
+                category: category,
+                categories: categories,
+                priorities: priorities
             }
         });
         

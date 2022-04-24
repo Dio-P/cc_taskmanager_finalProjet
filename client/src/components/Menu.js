@@ -35,6 +35,9 @@ const Menu = ({ closeMenuFunction, categories, priorities }) => {
                 <button className="allCategoriesButton" onClick={()=> onClick("/categories")}>Categories</button>
             </li>
             <li>
+                <button className="addNewCategoryButton" onClick={()=> onClick("/category/createNewCategory")}>Add New Category</button>
+            </li>
+            <li>
                 <button className="allGoalsButton" onClick={()=> onClick("/goals")}>Goals</button>
             </li>
             <li>

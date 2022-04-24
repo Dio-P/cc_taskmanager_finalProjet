@@ -3,8 +3,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
+import Menu from "../components/Menu";
 
 const AddNewTaskPage = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [taskTitle, setTaskTitle] = useState("");
     const [taskCategory, setTaskCategory] = useState(null);
     const [taskPriority, setTaskPriority] = useState(null);
@@ -49,6 +51,10 @@ const AddNewTaskPage = () => {
         
     }
 
+    const closeMenuFunction = () => {
+        setIsMenuOpen(false);
+    }
+
     const addNewTask = (e) => {
         e.preventDefault();
         let newTask = {};
@@ -80,25 +86,20 @@ const AddNewTaskPage = () => {
 
        post("tasks", newTask)
     }
-    
-
-        // redirect to home page
-    
-    // const location = useLocation();
-    
-
-    // useEffect(() => {
-    //     if(location){
-    //         const task = location.state.task;
-    //         setTaskToBeEdited(task);
-    //     }
-        
-    // }, [location]);
    
-
-
     return (
         <div>
+            {!isMenuOpen?
+                <>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                </>
+            :
+                <Menu
+                    closeMenuFunction={ ()=>closeMenuFunction() }
+                    categories={ categories }
+                    priorities={ priorities }
+                />
+            }
             <form onSubmit={addNewTask}>
                 <label htmlFor="taskTitle">Task Title</label>
                 <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>

@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
+import Menu from "../components/Menu";
 
 const DistinctCategoryPage = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
     const [title, setTitle] = useState(null);
     const [editColour, setEditColour] = useState(false);
@@ -10,6 +12,8 @@ const DistinctCategoryPage = () => {
 
     const location = useLocation();
     const category = location.state.category;
+    const categories = location.state.categories;
+    const priorities = location.state.priorities;
     const {get, post} = useContext(RequestContext);
 
     useEffect(() => {
@@ -18,8 +22,14 @@ const DistinctCategoryPage = () => {
         
     }, [category]);
 
+    const closeMenuFunction = () => {
+        setIsMenuOpen(false);
+    }
+
     const onClickingDone = () => {
-        // post(, {colour: colour, title:title})
+        let updatedCategory = {colour: colour, title:title};
+        console.log("updatedCategory", updatedCategory);////////////
+        // post(, newCategory)
 
         // category object example
         // colour: "#FF0000"
@@ -31,6 +41,17 @@ const DistinctCategoryPage = () => {
 
     return (
         <div>
+            {!isMenuOpen?
+                <>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                </>
+            :
+                <Menu
+                    closeMenuFunction={ ()=>closeMenuFunction() }
+                    categories={ categories }
+                    priorities={ priorities }
+                />
+            }
             <div>
                 <label> Title </label>
                 <h1>{ title }</h1>
