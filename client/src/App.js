@@ -10,7 +10,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import configData from "./config.json";
 import { createRequestHelper } from './helpers/requestHelper';
 import ProfilePage from './containers/ProfilePage';
-import GoalsPage from './components/GoalsPage';
+import GoalsPage from './containers/GoalsPage';
 import CategoriesPage from './containers/CategoriesPage';
 import DistinctCategoryPage from './containers/DistinctCategoryPage';
 import AddNewCategoryPage from './containers/AddNewCategoryPage';
