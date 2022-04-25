@@ -44,7 +44,7 @@ const DistinctCategoryPage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars /></button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-2 text-xl'/></button>
                 </>
             :
                 <Menu
