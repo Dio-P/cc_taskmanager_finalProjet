@@ -79,4 +79,10 @@ public class GoalController {
         }
         return new ResponseEntity<>(goal, HttpStatus.UNAUTHORIZED);
     }
+
+    @DeleteMapping(value="/goals/{id}", consumes = {"*/*"})
+    public ResponseEntity<Long> deleteGoals(@PathVariable Long id) {
+        goalRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
 }
