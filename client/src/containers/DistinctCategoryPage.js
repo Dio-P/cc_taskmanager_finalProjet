@@ -56,7 +56,7 @@ const DistinctCategoryPage = () => {
                 <label className='basis-1/3'> Title </label>
                 <h1 className='basis-1/3'>{ title }</h1>
                     {!editTitle?
-                        <button className='basis-1/3 bg-yellow p-3 rounded shadow-md' onClick={()=> setEditTitle(true)}>Edit</button>
+                        <button className='btn' onClick={()=> setEditTitle(true)}>Edit</button>
                     :
                         <div>
                             <input 
@@ -80,7 +80,7 @@ const DistinctCategoryPage = () => {
                     <circle cx="20" cy="20" r="20" fill={colour}/>
                 </svg>
                 {!editColour?
-                        <button className='basis-1/3 bg-yellow p-3 rounded shadow-md' onClick={()=> setEditColour(true)}>Edit</button>
+                        <button className='btn' onClick={()=> setEditColour(true)}>Edit</button>
                     :
                         <div>
                             <p>Choose a new colour</p>
