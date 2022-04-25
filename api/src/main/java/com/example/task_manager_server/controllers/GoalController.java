@@ -66,4 +66,17 @@ public class GoalController {
         return new ResponseEntity<>(goal, HttpStatus.UNAUTHORIZED);
 
     }
+
+    @PutMapping(value="/goals/{id}", consumes = {"*/*"})
+    public ResponseEntity<Goal> updateTask(@PathVariable Long id, @RequestBody Goal goal){
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> user = userRepository.findByAuthId(userId);
+        if (user.isPresent()){
+            goal.setUser(user.get());
+            goal.setId(id);
+            goalRepository.save(goal);
+            return new ResponseEntity<>(goal, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(goal, HttpStatus.UNAUTHORIZED);
+    }
 }
