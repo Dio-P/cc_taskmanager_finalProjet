@@ -52,11 +52,11 @@ const DistinctCategoryPage = () => {
                     priorities={ priorities }
                 />
             }
-            <div>
-                <label> Title </label>
-                <h1>{ title }</h1>
+            <div className='flex flex-row py-10 w-5/6'>
+                <label className='basis-1/3'> Title </label>
+                <h1 className='basis-1/3'>{ title }</h1>
                     {!editTitle?
-                        <button onClick={()=> setEditTitle(true)}>Edit</button>
+                        <button className='basis-1/3 bg-yellow p-3 rounded shadow-md' onClick={()=> setEditTitle(true)}>Edit</button>
                     :
                         <div>
                             <input 
@@ -74,13 +74,13 @@ const DistinctCategoryPage = () => {
                         
                     }
             </div>
-            <div>
-                <label> Colour </label>
-                <svg viewbox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <div className='flex flex-row py-10'>
+                <label className='basis-1/3'> Colour </label>
+                <svg className='basis-1/3' viewbox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="20" cy="20" r="20" fill={colour}/>
                 </svg>
                 {!editColour?
-                        <button onClick={()=> setEditColour(true)}>Edit</button>
+                        <button className='basis-1/3 bg-yellow p-3 rounded shadow-md' onClick={()=> setEditColour(true)}>Edit</button>
                     :
                         <div>
                             <p>Choose a new colour</p>
