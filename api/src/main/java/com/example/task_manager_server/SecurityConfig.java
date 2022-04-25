@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 // keep this bit below!!
         http.cors().and().authorizeRequests()
                 .mvcMatchers("/auth0/tasks").permitAll()
-                .mvcMatchers("/auth0/users").authenticated()
+                .mvcMatchers("/auth0/users").permitAll()
                 .mvcMatchers("/auth0/categories").permitAll()
                 .mvcMatchers("/h2").permitAll()
                 .mvcMatchers("/auth0/goals").permitAll()

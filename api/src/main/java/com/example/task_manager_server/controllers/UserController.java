@@ -37,8 +37,19 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-//    create update route to add first name / last name
 
+    @PutMapping(value="/users/{id}", consumes = {"*/*"})
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> foundUser = userRepository.findByAuthId(userId);
+
+        if( !foundUser.isPresent()){
+            user.setId(id);
+            userRepository.save(user);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(user, HttpStatus.UNAUTHORIZED);
+    }
 
     @GetMapping(value="/users")
     public ResponseEntity<List<UserDTO>> getCollaborators(){
