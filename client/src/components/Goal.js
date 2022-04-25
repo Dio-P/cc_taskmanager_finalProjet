@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const Goal = ({ goal, endDate, categories, priorities }) => {
+const Goal = ({ goal, categories, priorities }) => {
     const [goalTitle, setGoalTitle] = useState(null);
     const [goalTarget, setGoalTarget] = useState(null);
     const [goalStartDate, setGoalStartDate] = useState(null);
     const [goalEndDate, setGoalEndDate] = useState(null);
+    
     const [loading, setLoading] = useState(true);
 
     const [allTaskGivenPeriod, setAllTaskGivenPeriod] = useState(null);
@@ -18,8 +19,14 @@ const Goal = ({ goal, endDate, categories, priorities }) => {
 
     useEffect(() => {
         calculatingTargetOutcome();
+        
 
     }, []);
+
+    // useEffect(() => {
+    //     calculatingTargetOutcome();
+
+    // }, [goalStartDate]);
 
 
     useEffect(() => {
@@ -31,13 +38,59 @@ const Goal = ({ goal, endDate, categories, priorities }) => {
         setGoalTitle(goal.title);
         setGoalTarget(goal.target);
         setGoalStartDate(goal.startDate);
+        findGoalEndDate(goal)
         
     }, [goal]);
 
-    useEffect(() => {
-        setGoalEndDate(endDate);
+    // useEffect(() => {
+    //     calculatingTargetOutcome();
         
-    }, [endDate]);
+    // }, [goalStartDate]);
+
+    useEffect(() => {
+        calculatingTargetOutcome();
+        
+    }, [goalEndDate]);
+
+    const findDaysAfter = (goal) => {
+        console.log("within find days after");
+        if(goal.type==="DAILY"){
+            console.log("of daily type");///////
+            console.log("1 to be returned");///////
+            return 1;
+
+        }if(goal.type==="WEEKLY"){
+            console.log("of weekly type");///////
+            console.log("7 to be returned");///////
+            return 7;
+            
+        }if(goal.type==="MONTHLY"){
+            // return 30;
+            console.log("of monthly type");///////
+            console.log("monthly to be returned");///////
+            return "MONTHLY";
+            
+        } 
+    }
+
+    const findGoalEndDate = (goal) => {
+        console.log("within find goals end date");//////////
+        let daysAfter = findDaysAfter(goal);
+        let goalStartDate = goal.startDate;
+        let endDate = new Date(goalStartDate.split("/").reverse().toString());
+        console.log("endDate", endDate);//////////
+        if(goalStartDate && daysAfter){
+            if(daysAfter==="MONTHLY"){
+                endDate.setMonth(endDate.getMonth() + 1);
+                setGoalEndDate(endDate.toLocaleDateString());
+
+            }else{
+                endDate.setDate(endDate.getDate() + daysAfter);
+                setGoalEndDate(endDate.toLocaleDateString());
+
+            }
+        }
+    }
 
     const onGoalClick = (e) => {
         console.log("a goal has been clicked", goal);/////////
@@ -46,29 +99,31 @@ const Goal = ({ goal, endDate, categories, priorities }) => {
                 goal:goal,
                 categories:categories,
                 priorities: priorities,
-                endDate: endDate
+                endDate: goalEndDate
             }
         })
     }
 
     const calculatingTargetOutcome = () => {
-        let dateNow = Date.parse(new Date());
-        console.log("endDate", endDate);
-        let dateEnd = Date.parse(new Date(endDate.split("/").reverse()));
-        console.log("dateEnd", dateEnd);
-        if(dateNow <= dateEnd){
-            console.log("penidng");////////////
-            return "penidng"
-
-        }else{
-            if(tasksOnTarget >= goalTask){
-                console.log("succeeded");//////////
-                return "succeeded"
+        if(goalEndDate){
+            let dateNow = Date.parse(new Date());
+            // console.log("endDate", goalEndDate);//////////
+            let dateEnd = Date.parse(new Date(goalEndDate.split("/").reverse()));
+            console.log("dateEnd", dateEnd);//////////////
+            if(dateNow <= dateEnd){
+                console.log("penidng");////////////
+                return "penidng"
 
             }else{
-                console.log("failed");///////
-                return "failed"
+                if(tasksOnTarget >= goalTask){
+                    console.log("succeeded");//////////
+                    return "succeeded"
 
+                }else{
+                    console.log("failed");///////
+                    return "failed"
+
+                }
             }
         }
     }
