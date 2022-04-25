@@ -8,6 +8,10 @@ public class GoalDTO {
 
     private Long id;
 
+    private boolean active;
+
+    private String title;
+
     private GoalType frequency;
 
     private String startDate;
@@ -16,8 +20,10 @@ public class GoalDTO {
 
     private List<CategoryDTO> categories;
 
-    public GoalDTO(Long id, GoalType frequency, String startDate, int percentage, List<CategoryDTO> categories) {
+    public GoalDTO(Long id, boolean active, String title, GoalType frequency, String startDate, int percentage, List<CategoryDTO> categories) {
         this.id = id;
+        this.active = active;
+        this.title = title;
         this.frequency = frequency;
         this.startDate = startDate;
         this.percentage = percentage;
@@ -66,5 +72,21 @@ public class GoalDTO {
 
     public void setCategories(List<CategoryDTO> categories) {
         this.categories = categories;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

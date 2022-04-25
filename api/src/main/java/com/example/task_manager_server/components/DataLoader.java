@@ -52,17 +52,17 @@ public class DataLoader implements ApplicationRunner {
         Category category3 = new Category("Project", "#FF0000", user3);
         categoryRepository.save(category3);
 
-        Goal goal1 = new Goal(GoalType.DAILY, "30-04-22", 20, user1);
+        Goal goal1 = new Goal(true, "My goal", GoalType.DAILY, "30-04-22", 20, user1);
         goalRepository.save(goal1);
         goal1.addCategory(category1);
         goalRepository.save(goal1);
 
-        Goal goal2 = new Goal(GoalType.WEEKLY, "28-05-22", 10, user2);
+        Goal goal2 = new Goal(true, "My goal",GoalType.WEEKLY, "28-05-22", 10, user2);
         goalRepository.save(goal2);
         goal2.addCategory(category2);
         goalRepository.save(goal2);
 
-        Goal goal3 = new Goal(GoalType.DAILY, "10-06-22", 30, user3);
+        Goal goal3 = new Goal(true, "My goal",GoalType.DAILY, "10-06-22", 30, user3);
         goalRepository.save(goal3);
         goal3.addCategory(category3);
         goalRepository.save(goal3);

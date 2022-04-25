@@ -1,7 +1,6 @@
 package com.example.task_manager_server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -16,14 +15,20 @@ public class Goal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="frequency")
-    private GoalType frequency;
+    @Column(name="active")
+    private boolean active;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name="type")
+    private GoalType type;
 
     @Column(name="start_date")
     private String startDate;
 
-    @Column(name="percentage")
-    private int percentage;
+    @Column(name="target")
+    private int target;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -44,10 +49,10 @@ public class Goal {
 //    @JsonIgnoreProperties("goal")
     private List<Category> categories;
 
-    public Goal(GoalType frequency, String startDate, int percentage, User user) {
-        this.frequency = frequency;
+    public Goal(boolean active, String title, GoalType type, String startDate, int target, User user) {
+        this.type = type;
         this.startDate = startDate;
-        this.percentage = percentage;
+        this.target = target;
         this.user = user;
         this.categories = new ArrayList<Category>();
     }
@@ -56,12 +61,12 @@ public class Goal {
 
     }
 
-    public GoalType getFrequency() {
-        return frequency;
+    public GoalType getType() {
+        return type;
     }
 
-    public void setFrequency(GoalType type) {
-        this.frequency = type;
+    public void setType(GoalType type) {
+        this.type = type;
     }
 
     public String getStartDate() {
@@ -72,12 +77,12 @@ public class Goal {
         this.startDate = startDate;
     }
 
-    public int getPercentage() {
-        return percentage;
+    public int getTarget() {
+        return target;
     }
 
-    public void setPercentage(int percentage) {
-        this.percentage = percentage;
+    public void setTarget(int target) {
+        this.target = target;
     }
 
     public User getUser() {
@@ -106,5 +111,22 @@ public class Goal {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
