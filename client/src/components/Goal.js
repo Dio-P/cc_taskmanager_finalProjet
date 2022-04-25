@@ -44,7 +44,7 @@ const Goal = ({ goal, endDate, categories, priorities }) => {
 
     return(
         <div>
-            {!loading?
+            {loading?
             <p>Loading...</p>
             :
             <>

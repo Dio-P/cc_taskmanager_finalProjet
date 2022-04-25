@@ -30,17 +30,20 @@ const AllGoalsContainer = ( {categories, priorities, goals} ) => {
         let daysAfter = findDaysAfter(goal);
         let goalStartDate = goal.startDate;
         let endDate = new Date(goalStartDate);
+        // var options = { year: "numeric", month: "numeric", day: "numeric" }; 
         if(goalStartDate && daysAfter){
             if(daysAfter==="MONTHLY"){
                 endDate.setMonth(endDate.getMonth() + 1);
+                console.log("startDateMonth", goalStartDate);//////////////
                 console.log("endDateMonth", endDate);//////////////
-                return endDate;
+                return endDate.toLocaleDateString();
 
             }else{
                 
                 endDate.setDate(endDate.getDate() + daysAfter);
+                console.log("startDate", goalStartDate);//////////////
                 console.log("endDate", endDate);//////////////
-                return endDate;
+                return endDate.toLocaleDateString();
 
             }
         }

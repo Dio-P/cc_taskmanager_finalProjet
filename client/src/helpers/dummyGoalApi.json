@@ -3,7 +3,7 @@
         "title":"Finishing the project",
         "type": "DAILY",
         "target": 20,
-        "startDate": "2022/06/12",
+        "startDate": "12/06/2022",
         "categories": {
             "colour": "#FF0000",
             "goal": "WEEKLY",
@@ -18,7 +18,7 @@
         "title":"Finishing the course",
         "type": "DAILY",
         "target": 30,
-        "startDate": "2022/06/15",
+        "startDate": "15/06/2022",
         "categories": {
             "colour": "#FF0000",
             "goal": "WEEKLY",
@@ -33,7 +33,7 @@
         "title":"Play more",
         "type": "MONTHLY",
         "target": 25,
-        "startDate": "2022/06/15",
+        "startDate": "15/06/2022",
         "categories": {
             "colour": "#FF0000",
             "goal": "WEEKLY",
@@ -48,7 +48,7 @@
         "title":"Finishing the course",
         "type": "WEEKLY",
         "target": 30,
-        "startDate": "2022/06/15",
+        "startDate": "15/06/2022",
         "categories": {
             "colour": "#FF0000",
             "goal": "WEEKLY",
