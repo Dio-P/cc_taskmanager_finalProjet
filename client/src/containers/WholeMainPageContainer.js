@@ -3,7 +3,7 @@ import AllTasksContainer from './AllTasksContainer';
 import TasksBoxMainMenuBar from '../components/TasksBoxMainMenuBar';
 import Menu from '../components/Menu';
 
-const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, priorities, user }) => {
+const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, priorities, user, goals }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [categoriesTitles, setCategoriesTitles] = useState([]);
 
@@ -105,6 +105,7 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
                     closeMenuFunction={ ()=>closeMenuFunction() }
                     categories={ categories }
                     priorities={ priorities }
+                    goals={ goals }
                 />
             }
             <TasksBoxMainMenuBar 

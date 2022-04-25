@@ -18,6 +18,7 @@ import AddNewCategoryPage from './containers/AddNewCategoryPage';
 
 import './styles/App.css';
 import RequestContext from './context/RequestContext';
+import dummyGoals from "./helpers/dummyGoalApi.json"
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
   const [uncompletedTasks, setUncompletedTasks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [priorities, setPriorities] = useState([]);
+  const [goals, setGoals] = useState([]);
+  
   const [isLoaded, setIsLoaded] = useState(false);
   const [get, setGet] = useState();
   const [post, setPost] = useState();
@@ -70,11 +73,6 @@ function App() {
       getAccessToken();
     }, [getAccessTokenSilently]);
 
-    // useEffect(() => {
-    //   // the api call that will get the initial data
-    //   setAllTasks(taskList)
-    // }, []);
-
     useEffect(() => {
       if (!isLoaded) {
         return;
@@ -90,6 +88,7 @@ function App() {
         getTasks();
         postUser();
         getCategories();
+        getGoals()
     }, [get, post]);
 
     const postUser = (payload) => {
@@ -109,6 +108,13 @@ function App() {
     get("categories")
       // .then(res=> (console.log("categoriesGotten", res)))
     .then(data=> (setCategories(data)))
+  }
+
+  const getGoals = () => {
+    console.log("goals called", dummyGoals);////////////
+    setGoals(dummyGoals)///////////Delete after getting it from api"
+    // get("goals")
+    // .then(data=> (setGoals(data)))
   }
 
     useEffect(() => {
@@ -173,6 +179,7 @@ function App() {
           categories={ categories }
           priorities={ priorities }
           user = { user }
+          goals = { goals }
         />}/>
         <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
         <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>

@@ -1,5 +1,61 @@
 [
     {
-        
+        "title":"Finishing the project",
+        "type": "DAILY",
+        "target": 20,
+        "startDate": "2022/06/12",
+        "categories": {
+            "colour": "#FF0000",
+            "goal": "WEEKLY",
+            "goalDuration": 2,
+            "id": 2,
+            "title": "Project"
+        }
+
+    },
+
+    {
+        "title":"Finishing the course",
+        "type": "DAILY",
+        "target": 30,
+        "startDate": "2022/06/15",
+        "categories": {
+            "colour": "#FF0000",
+            "goal": "WEEKLY",
+            "goalDuration": 2,
+            "id": 2,
+            "title": "Project"
+        }
+
+    },
+
+    {
+        "title":"Play more",
+        "type": "MONTHLY",
+        "target": 25,
+        "startDate": "2022/06/15",
+        "categories": {
+            "colour": "#FF0000",
+            "goal": "WEEKLY",
+            "goalDuration": 2,
+            "id": 2,
+            "title": "Project"
+        }
+
+    },
+
+    {
+        "title":"Finishing the course",
+        "type": "WEEKLY",
+        "target": 30,
+        "startDate": "2022/06/15",
+        "categories": {
+            "colour": "#FF0000",
+            "goal": "WEEKLY",
+            "goalDuration": 2,
+            "id": 2,
+            "title": "Project"
+        }
+
     }
 ]

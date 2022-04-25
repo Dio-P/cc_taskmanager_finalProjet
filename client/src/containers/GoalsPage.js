@@ -10,6 +10,7 @@ const GoalsPage = () => {
     const location = useLocation();
     const categories = location.state.categories;
     const priorities = location.state.priorities;
+    const goals = location.state.goals;
 
 
     const closeMenuFunction = () => {
@@ -27,12 +28,14 @@ const GoalsPage = () => {
                     closeMenuFunction={ ()=>closeMenuFunction() }
                     categories={ categories }
                     priorities={ priorities }
+                    goals={ goals }
                 />
             }
             <p>Goals</p>
             <AllGoalsContainer
                 categories={ categories }
                 priorities={ priorities }
+                goals={ goals }
             />
         </div>
     )

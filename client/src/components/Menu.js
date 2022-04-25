@@ -1,14 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Menu = ({ closeMenuFunction, categories, priorities }) => {
+const Menu = ({ closeMenuFunction, categories, priorities, goals }) => {
     const navigate = useNavigate();
 
     const onClick = (url) => {
         navigate(url, {
             state:{
                 categories: categories,
-                priorities: priorities
+                priorities: priorities,
+                goals: goals
             }
         });
         
