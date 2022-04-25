@@ -64,12 +64,13 @@ const DistinctTaskPage = () => {
 
     const onClickingComplete = () => {
         console.log("inside Complete");
-        let timestamp = Date.now();
         setTaskCompleted(!taskCompleted)
-        console.log("timestamp", timestamp);
-        setCompletedTimeStamp(timestamp)
-        // if(completedTimeStamp){
-        // }
+        if(!completedTimeStamp){
+            let timestamp = Date.now();
+            setCompletedTimeStamp(timestamp);
+        }else{
+            setCompletedTimeStamp(null);
+        }
     }
 
     const onClickingDone = () => {
