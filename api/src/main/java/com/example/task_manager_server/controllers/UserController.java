@@ -55,12 +55,7 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> getCollaborators(){
         List<User> users = userRepository.findAll();
         List<UserDTO> userDTOS = users.stream().map((user)->{
-            UserDTO userDTO = new UserDTO(
-                    user.getId(),
-                    user.getFirstName(),
-                    user.getLastName()
-            );
-            return userDTO;
+            return user.createDTO();
         }).toList();
 
         return new ResponseEntity<>(userDTOS, HttpStatus.OK);

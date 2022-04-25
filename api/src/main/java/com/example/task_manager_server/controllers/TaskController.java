@@ -38,19 +38,12 @@ public class TaskController {
 
 
         List<TaskDTO> taskDTOS = foundTasks.stream().map((task) -> {
-            CategoryDTO categoryDTO = new CategoryDTO(
-                    task.getCategory().getId(),
-                    task.getCategory().getTitle(),
-                    task.getCategory().getColour()
-            );
+
+            CategoryDTO categoryDTO = task.getCategory().createDTO();
 
             List<UserDTO> collaborators = new ArrayList<>();
             for(User user : task.getCollaborators()){
-                UserDTO userDTO = new UserDTO(
-                        user.getId(),
-                        user.getFirstName(),
-                        user.getLastName()
-                );
+                UserDTO userDTO = user.createDTO();
                 collaborators.add(userDTO);
             }
 
