@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
+import { FaBars } from "react-icons/fa";
 
 const DistinctCategoryPage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,7 +44,7 @@ const DistinctCategoryPage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars /></button>
                 </>
             :
                 <Menu
@@ -83,7 +84,7 @@ const DistinctCategoryPage = () => {
                         <button className='btn' onClick={()=> setEditColour(true)}>Edit</button>
                     :
                         <div>
-                            <p>Choose a new colour</p>
+                            <p>Select colour</p>
                             <input 
                                 type="color" 
                                 name="newColour" 
