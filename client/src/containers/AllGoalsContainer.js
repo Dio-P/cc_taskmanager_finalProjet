@@ -29,18 +29,26 @@ const AllGoalsContainer = ( {categories, priorities, goals} ) => {
         console.log("within find goals end date");
         let daysAfter = findDaysAfter(goal);
         let goalStartDate = goal.startDate;
-        let endDate = new Date(goalStartDate);
+        let endDate = new Date(goalStartDate.split("/").reverse().toString());
+        const options = { year: "numeric", month: "numeric", day: "numeric" }; 
         if(goalStartDate && daysAfter){
             if(daysAfter==="MONTHLY"){
+                // console.log('goalStartDate.splilt("/")', goalStartDate.split("/").reverse().toString());
+                // console.log("start Date Month", endDate);
+                // console.log("getMonth", endDate.getMonth());
                 endDate.setMonth(endDate.getMonth() + 1);
-                console.log("endDateMonth", endDate);//////////////
-                return endDate;
+                // console.log("startDateMonth", goalStartDate);//////////////
+                // console.log("endDateMonth", endDate.toLocaleDateString('en-GB',options));//////////////
+                return endDate.toLocaleDateString();
 
             }else{
-                
+                // console.log("start Date", endDate);
+                // console.log("daysAfter", daysAfter);
+                // console.log("getDay", endDate.getDate());
                 endDate.setDate(endDate.getDate() + daysAfter);
-                console.log("endDate", endDate);//////////////
-                return endDate;
+                // console.log("startDate", goalStartDate);//////////////
+                // console.log("endDate", endDate.toLocaleDateString('en-GB', options));//////////////
+                return endDate.toLocaleDateString();
 
             }
         }

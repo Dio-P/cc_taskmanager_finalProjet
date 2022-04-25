@@ -29,6 +29,7 @@ const DistinctGoalPage = () => {
     const endDate = location.state.endDate;
 
     useEffect(() => {
+        console.log("goal from inside distinct", goal);
         setGoalTitle(goal.title);
         setGoalType(goal.type);
         setGoalTarget(goal.target);
