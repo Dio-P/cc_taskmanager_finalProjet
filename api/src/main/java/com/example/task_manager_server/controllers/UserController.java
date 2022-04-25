@@ -1,5 +1,6 @@
 package com.example.task_manager_server.controllers;
 
+import com.example.task_manager_server.dtos.UserDTO;
 import com.example.task_manager_server.models.User;
 import com.example.task_manager_server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,6 +32,37 @@ public class UserController {
             User newUser = new User(userId, "", "");
             userRepository.save(newUser);
         }
-        return new ResponseEntity<>(userId, HttpStatus.CREATED);
+        HashMap<String, Boolean> response = new HashMap<>();
+        response.put("userExists", foundUser.isPresent());
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+
+    @PutMapping(value="/users/{id}", consumes = {"*/*"})
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> foundUser = userRepository.findByAuthId(userId);
+
+        if( !foundUser.isPresent()){
+            user.setId(id);
+            userRepository.save(user);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(user, HttpStatus.UNAUTHORIZED);
+    }
+
+    @GetMapping(value="/users")
+    public ResponseEntity<List<UserDTO>> getCollaborators(){
+        List<User> users = userRepository.findAll();
+        List<UserDTO> userDTOS = users.stream().map((user)->{
+            UserDTO userDTO = new UserDTO(
+                    user.getId(),
+                    user.getFirstName(),
+                    user.getLastName()
+            );
+            return userDTO;
+        }).toList();
+
+        return new ResponseEntity<>(userDTOS, HttpStatus.OK);
     }
 }

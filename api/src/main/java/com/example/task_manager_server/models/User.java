@@ -2,8 +2,10 @@ package com.example.task_manager_server.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,8 +36,18 @@ public class User {
     @JsonIgnoreProperties("user")
     private List<Task> tasks;
 
-//    add many to many for collaborations
-//    private List<Task> collabTasks;
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name="collaborators",
+            joinColumns = {@JoinColumn( name="user_id",
+                                        nullable = false,
+                                        updatable = false)},
+            inverseJoinColumns = {@JoinColumn( name="task_id",
+                                                nullable = false,
+                                                updatable = false)}
+    )
+    private List<Task> collabTasks;
 
 
     public User(String authId, String firstName, String lastName ) {
@@ -43,6 +55,7 @@ public class User {
         this.authId = authId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.collabTasks = new ArrayList<Task>();
     }
 
     public User(){
@@ -95,5 +108,17 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Task> getCollabTasks() {
+        return collabTasks;
+    }
+
+    public void setCollabTasks(List<Task> collabTasks) {
+        this.collabTasks = collabTasks;
+    }
+
+    public void addCollabTask(Task task){
+        this.collabTasks.add(task);
     }
 }

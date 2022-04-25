@@ -3,8 +3,11 @@ package com.example.task_manager_server.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="tasks")
@@ -47,7 +50,19 @@ public class Task {
     @Column(name="completed_timestamp")
     private String completedTimeStamp;
 
-//    private List<User> collaborators;
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "collaborators",
+            joinColumns = {@JoinColumn( name="task_id",
+                                        nullable = false,
+                                        updatable = false)},
+            inverseJoinColumns = {@JoinColumn(  name="user_id",
+                                                nullable = false,
+                                                updatable = false)}
+    )
+    @JsonIgnoreProperties("collabTasks")
+    private List<User> collaborators;
 
     @ManyToOne
 //    @JsonManagedReference(value = "user-task")
@@ -66,7 +81,7 @@ public class Task {
         this.priority = priority;
         this.completed = completed;
         this.completedTimeStamp = completedTimeStamp;
-//        this.collaborators = collaborators;
+        this.collaborators = new ArrayList<User>();
         this.user = user;
     }
 
@@ -168,5 +183,17 @@ public class Task {
 
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    public List<User> getCollaborators() {
+        return collaborators;
+    }
+
+    public void setCollaborators(List<User> collaborators) {
+        this.collaborators = collaborators;
+    }
+
+    public void addCollaborator(User user){
+        this.collaborators.add(user);
     }
 }

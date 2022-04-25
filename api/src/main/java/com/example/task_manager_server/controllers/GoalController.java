@@ -4,7 +4,6 @@ import com.example.task_manager_server.dtos.CategoryDTO;
 import com.example.task_manager_server.dtos.GoalDTO;
 import com.example.task_manager_server.models.Category;
 import com.example.task_manager_server.models.Goal;
-import com.example.task_manager_server.models.Task;
 import com.example.task_manager_server.models.User;
 import com.example.task_manager_server.repositories.GoalRepository;
 import com.example.task_manager_server.repositories.UserRepository;
@@ -44,9 +43,11 @@ public class GoalController {
             }
             GoalDTO goalDTO = new GoalDTO(
                     goal.getId(),
-                    goal.getFrequency(),
+                    goal.isActive(),
+                    goal.getTitle(),
+                    goal.getType(),
                     goal.getStartDate(),
-                    goal.getPercentage(),
+                    goal.getTarget(),
                     categoryDTOS
             );
             goalDTOS.add(goalDTO);

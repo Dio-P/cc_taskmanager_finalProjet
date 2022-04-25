@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 
 public class TaskDTO {
 
@@ -33,7 +34,9 @@ public class TaskDTO {
 
     private String completedTimeStamp;
 
-    public TaskDTO(Long id, String title, String description, String date, String time, int duration, TaskType type, CategoryDTO category, Priority priority, boolean completed, String completedTimeStamp) {
+    private List<UserDTO> collaborators;
+
+    public TaskDTO(Long id, String title, String description, String date, String time, int duration, TaskType type, CategoryDTO category, Priority priority, boolean completed, String completedTimeStamp, List<UserDTO> collaborators) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -45,6 +48,7 @@ public class TaskDTO {
         this.priority = priority;
         this.completed = completed;
         this.completedTimeStamp = completedTimeStamp;
+        this.collaborators = collaborators;
     }
 
     public TaskDTO() {
@@ -136,5 +140,13 @@ public class TaskDTO {
 
     public void setCompletedTimeStamp(String completedTimeStamp) {
         this.completedTimeStamp = completedTimeStamp;
+    }
+
+    public List<UserDTO> getCollaborators() {
+        return collaborators;
+    }
+
+    public void setCollaborators(List<UserDTO> collaborators) {
+        this.collaborators = collaborators;
     }
 }
