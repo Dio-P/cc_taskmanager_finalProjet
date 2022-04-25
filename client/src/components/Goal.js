@@ -9,7 +9,17 @@ const Goal = ({ goal, endDate, categories, priorities }) => {
     const [goalEndDate, setGoalEndDate] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const [allTaskGivenPeriod, setAllTaskGivenPeriod] = useState(null);
+    const [allCategoryTaskGivenPeriod, setAllCategoryTaskGivenPeriod] = useState(null);
+    const [tasksOnTarget, setTasksOnTarget] = useState(null);
+    const [goalTask, setGoalTask] = useState(null);
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        calculatingTargetOutcome();
+
+    }, []);
 
 
     useEffect(() => {
@@ -39,6 +49,28 @@ const Goal = ({ goal, endDate, categories, priorities }) => {
                 endDate: endDate
             }
         })
+    }
+
+    const calculatingTargetOutcome = () => {
+        let dateNow = Date.parse(new Date());
+        console.log("endDate", endDate);
+        let dateEnd = Date.parse(new Date(endDate.split("/").reverse()));
+        console.log("dateEnd", dateEnd);
+        if(dateNow <= dateEnd){
+            console.log("penidng");////////////
+            return "penidng"
+
+        }else{
+            if(tasksOnTarget >= goalTask){
+                console.log("succeeded");//////////
+                return "succeeded"
+
+            }else{
+                console.log("failed");///////
+                return "failed"
+
+            }
+        }
     }
 
 
