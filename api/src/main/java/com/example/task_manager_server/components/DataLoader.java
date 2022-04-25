@@ -46,26 +46,52 @@ public class DataLoader implements ApplicationRunner {
         Category category1 = new Category("Project","#800080",user1);
         categoryRepository.save(category1);
 
-        Category category2 = new Category("Project", "#FF0000", user2);
+        Category category4 = new Category("Social","#800080",user1);
+        categoryRepository.save(category4);
+
+        Category category2 = new Category("Project", "#800080", user2);
         categoryRepository.save(category2);
 
-        Category category3 = new Category("Project", "#FF0000", user3);
+        Category category5 = new Category("Social", "#FF0000", user2);
+        categoryRepository.save(category5);
+
+        Category category3 = new Category("Project", "#800080", user3);
         categoryRepository.save(category3);
+
+        Category category6 = new Category("Social", "#FF0000", user3);
+        categoryRepository.save(category6);
 
         Goal goal1 = new Goal(true, "My goal", GoalType.DAILY, "30-04-22", 20, user1);
         goalRepository.save(goal1);
         goal1.addCategory(category1);
         goalRepository.save(goal1);
 
+        Goal goal4 = new Goal(true, "My other goal", GoalType.WEEKLY, "20-04-22", 40, user1);
+        goalRepository.save(goal4);
+        goal4.addCategory(category4);
+        goalRepository.save(goal4);
+
         Goal goal2 = new Goal(true, "My goal",GoalType.WEEKLY, "28-05-22", 10, user2);
         goalRepository.save(goal2);
         goal2.addCategory(category2);
         goalRepository.save(goal2);
 
+        Goal goal5 = new Goal(true, "My other goal",GoalType.DAILY, "23-04-22", 80, user2);
+        goalRepository.save(goal5);
+        goal5.addCategory(category2);
+        goal5.addCategory(category5);
+        goalRepository.save(goal5);
+
         Goal goal3 = new Goal(true, "My goal",GoalType.DAILY, "10-06-22", 30, user3);
         goalRepository.save(goal3);
         goal3.addCategory(category3);
         goalRepository.save(goal3);
+
+        Goal goal6 = new Goal(true, "My other goal",GoalType.WEEKLY, "20-04-22", 30, user3);
+        goalRepository.save(goal6);
+        goal6.addCategory(category3);
+        goal6.addCategory(category6);
+        goalRepository.save(goal6);
 
         Task task1 = new Task(
                 "setting the authorisation up",
