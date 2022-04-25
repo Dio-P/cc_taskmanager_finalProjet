@@ -5,7 +5,7 @@ import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
 
-const AddNewGoalPage = ({ categories, priorities, goals }) => {
+const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [goalTitle, setGoalTitle] = useState(null);
     const [goalSetDate, setGoalSetDate] = useState(null);
@@ -35,7 +35,7 @@ const AddNewGoalPage = ({ categories, priorities, goals }) => {
             goalType, 
             goalTarget, 
             goalStartDate};
-        console.log("updatedGoal", updatedGoal);
+        console.log("updatedGoal", updatedGoal);/////////////
         // post(, updatedGoal);
     }
         
@@ -62,13 +62,12 @@ const AddNewGoalPage = ({ categories, priorities, goals }) => {
             <div>
                 <label> Goal Type </label>
                 <h3>{goalType}</h3>
-                <input type="text" name="goalType" id="goalType" value={goalType} onChange={e=> setGoalType(e.target.value)} required/>
+                <select name="goalType" id="goalType" onChange={e=> setGoalType(e.target.value)}>
+                    {goalTypesList.map(type => (
+                        <option value={ type }>{ type }</option>
+                    ))}
+                </select>
             </div>
-            {/* <div>
-                <label> Goal Set Date </label>
-                <h3>{goalSetDate}</h3>
-                        <input type="text" name="goalSetDate" id="goalSetDate" value={goalSetDate} onChange={e=> setGoalSetDate(e.target.value)} required/>
-            </div> */}
             <div>
                 <label> Goal Target </label>
                 <h3>{goalTarget}</h3>

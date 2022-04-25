@@ -18,7 +18,7 @@ const AddNewTaskPage = () => {
     const [datedTaskType, setDatedTaskType] = useState(null);
     const [hasTime, setHasTime] = useState(false);
     const [taskTime, setTaskTime] = useState(null);
-    
+    const [completedTimeStamp, setCompletedTimeStamp] = useState(null);
 
     const [hasDuration, setHasDuration] = useState(false);
     const [taskDuration, setTaskDuration] = useState(null);
@@ -68,7 +68,7 @@ const AddNewTaskPage = () => {
         }
         newTask["priority"]=taskPriority;
         newTask["completed"]=false;
-        newTask["completedTimeStamp"]=Date.now();
+        newTask["completedTimeStamp"]=completedTimeStamp;
 
         if(taskDescription){newTask["description"]=taskDescription;}
         if(taskDate){

@@ -33,6 +33,7 @@ const DistinctTaskPage = () => {
     const [taskTime, setTaskTime] = useState(task.time);
     const [editdatedTaskType, setEditdatedTaskType] = useState(false);
     const [datedTaskType, setDatedTaskType] = useState(task.type);
+    const [completedTimeStamp, setCompletedTimeStamp] = useState(null);
     
     
 
@@ -65,7 +66,7 @@ const DistinctTaskPage = () => {
         updatedTask["category"] = taskCategory;
         updatedTask["priority"] = taskPriority;
         updatedTask["completed"]=taskCompleted;
-        updatedTask["completedTimeStamp"]=Date.now();
+        updatedTask["completedTimeStamp"]=completedTimeStamp;
 
         if(taskDescription){updatedTask["description"]=taskDescription;}
         if(taskDate){
@@ -111,7 +112,10 @@ const DistinctTaskPage = () => {
                 
                 <div>
                     <label>Completed</label>
-                    <input type="checkbox" onClick={()=>setTaskCompleted(!taskCompleted)} checked={taskCompleted}/>
+                    <input type="checkbox" onClick={()=>{
+                        setTaskCompleted(!taskCompleted)
+                        setCompletedTimeStamp(Date.now())
+                        }} checked={taskCompleted}/>
                 </div>
             
 
