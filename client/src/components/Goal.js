@@ -30,8 +30,8 @@ const Goal = ({ goal, endDate, categories, priorities }) => {
     }, [endDate]);
 
     const onGoalClick = (e) => {
-        console.log("a goal has been clicked");/////////
-        navigate(`/task/:${goal.title}`, {
+        console.log("a goal has been clicked", goal);/////////
+        navigate(`/goal/:${goal.title}`, {
             state: {
                 goal:goal,
                 categories:categories,

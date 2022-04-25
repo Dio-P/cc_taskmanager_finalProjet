@@ -15,14 +15,8 @@ const AddNewCategoryPage = () => {
         e.preventDefault();
         let newCategory = {colour: colour, title:title};
         console.log("newCategory", newCategory);////////////
-        // post(, newCategory)
+        // post("categories", newCategory)
 
-        // category object example
-        // colour: "#FF0000"
-        // goal: "WEEKLY"
-        // goalDuration: 2
-        // id: 2
-        // title: "Project"
     }
 
     const closeMenuFunction = () => {

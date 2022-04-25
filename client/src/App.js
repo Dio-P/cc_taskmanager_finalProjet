@@ -11,6 +11,8 @@ import configData from "./config.json";
 import { createRequestHelper } from './helpers/requestHelper';
 import ProfilePage from './containers/ProfilePage';
 import GoalsPage from './containers/GoalsPage';
+import DistinctGoalPage from './containers/DistinctGoalPage';
+import AddNewGoalPage from './containers/AddNewGoalPage';
 import CategoriesPage from './containers/CategoriesPage';
 import DistinctCategoryPage from './containers/DistinctCategoryPage';
 import AddNewCategoryPage from './containers/AddNewCategoryPage';
@@ -184,6 +186,8 @@ function App() {
         <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
         <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
         <Route path="/goals" element={ <GoalsPage/> }/>
+        <Route path="/goal/:goal_title" element={ <DistinctGoalPage/> }/>
+        <Route path="/goal/createNewGoal" element={ <AddNewGoalPage/> }/>
         <Route path="/categories" element={ <CategoriesPage/> }/>
         <Route path="/category/:category_title" element={ <DistinctCategoryPage/> }/>
         <Route path="/category/createNewCategory" element={ <AddNewCategoryPage/> }/>

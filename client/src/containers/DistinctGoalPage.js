@@ -23,18 +23,17 @@ const DistinctGoalPage = () => {
     const {get, post} = useContext(RequestContext);
 
     const location = useLocation();
-    const goal = location.state.task;
+    const goal = location.state.goal;
     const categories = location.state.categories;
     const priorities = location.state.priorities;
     const endDate = location.state.endDate;
 
     useEffect(() => {
-        console.log("goal from inside distinct", goal);
         setGoalTitle(goal.title);
         setGoalType(goal.type);
         setGoalTarget(goal.target);
         setGoalStartDate(goal.startDate);
-        setGoalEndDate(goal.endDate);
+        setGoalEndDate(endDate);
         setGoalCategories(goal.categories);
         setGoalActive(goal.active);
 
@@ -52,21 +51,6 @@ const DistinctGoalPage = () => {
 
     return(
         <div>
-            {/* <div>
-                <label> Goal Set Date </label>
-                <h3>{goalSetDate}</h3>
-                {!editGoalSetDate?
-                    <button onClick={()=>setEditGoalSetDate(true)}>Edit</button>
-                :
-                    <>
-                        <input type="text" name="goalSetDate" id="goalSetDate" value={goalSetDate} onChange={e=> setGoalSetDate(e.target.value)} required/>
-                        <button onClick={()=>{
-                            setEditGoalSetDate(false)
-                            onClickingDone()
-                            }}>Done</button>
-                    </>
-                }  
-            </div> */}
             <div>
                 <label> Goal Title </label>
                 <h3>{goalTitle}</h3>
@@ -126,6 +110,10 @@ const DistinctGoalPage = () => {
                             }}>Done</button>
                     </>
                 }  
+            </div>
+            <div>
+                <label> Goal End Date </label>
+                <h3>{goalEndDate}</h3>
             </div>
 {/*             how will the categories be looked for?
             <div>
