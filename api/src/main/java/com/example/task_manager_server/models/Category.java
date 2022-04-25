@@ -24,14 +24,11 @@ public class Category {
     private String colour;
 
     @ManyToOne
-//    @JsonManagedReference(value = "user-category")
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-//    @JsonBackReference(value = "task-category")
-    @JsonIgnoreProperties("category")
     private List<Task> tasks;
 
     @ManyToMany

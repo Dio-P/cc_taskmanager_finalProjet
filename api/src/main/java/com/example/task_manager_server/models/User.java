@@ -27,13 +27,9 @@ public class User {
 
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    @JsonBackReference(value = "user-category")
-    @JsonIgnoreProperties("user")
     private List<Category> categories;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    @JsonBackReference(value = "user-task")
-    @JsonIgnoreProperties("user")
     private List<Task> tasks;
 
     @ManyToMany

@@ -46,7 +46,6 @@ public class Goal {
                     nullable = false,
                     updatable = false)}
     )
-//    @JsonIgnoreProperties("goal")
     private List<Category> categories;
 
     public Goal(boolean active, String title, GoalType type, String startDate, int target, User user) {

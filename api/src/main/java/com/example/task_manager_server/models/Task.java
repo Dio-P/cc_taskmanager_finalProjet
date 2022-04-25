@@ -36,9 +36,7 @@ public class Task {
     private TaskType type;
 
     @ManyToOne
-//    @JsonManagedReference(value = "task-category")
     @JoinColumn(name = "category_id", nullable = false)
-    @JsonIgnoreProperties(value={"category.task", "category.user"})
     private Category category;
 
     @Column(name="priority")
@@ -65,7 +63,6 @@ public class Task {
     private List<User> collaborators;
 
     @ManyToOne
-//    @JsonManagedReference(value = "user-task")
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
