@@ -9,8 +9,6 @@ const DistinctTaskPage = () => {
     const task = location.state.task;
     const categories = location.state.categories;
     const priorities = location.state.priorities;
-    console.log("location", location);/////////
-    console.log("task", task);////////////
 
     const [loading, setLoading] = useState(true);
 
@@ -47,8 +45,12 @@ const DistinctTaskPage = () => {
         setLoading(false)
         
     }, [taskTitle, taskCompleted, taskCategory, taskPriority]);
-    
 
+    useEffect(() => {
+        onClickingDone()
+        
+    }, [completedTimeStamp]);
+    
     const setCategoryFromDropDown = (choosenOption) => {
         setTaskCategory(choosenOption);
    
@@ -58,6 +60,16 @@ const DistinctTaskPage = () => {
     const setPriorityFromDropDown = (choosenOption) => {
             setTaskPriority(choosenOption);
         
+    }
+
+    const onClickingComplete = () => {
+        console.log("inside Complete");
+        let timestamp = Date.now();
+        setTaskCompleted(!taskCompleted)
+        console.log("timestamp", timestamp);
+        setCompletedTimeStamp(timestamp)
+        // if(completedTimeStamp){
+        // }
     }
 
     const onClickingDone = () => {
@@ -79,7 +91,7 @@ const DistinctTaskPage = () => {
         if(taskTime){updatedTask["time"]=taskTime;}
         if(taskDuration){updatedTask["duration"]=taskDuration;}
         
-        console.log("updatedTask", updatedTask);
+        console.log("updatedTask", updatedTask);/////////////
         post("tasks", updatedTask)
         // redirect to home page            
     }
@@ -112,10 +124,7 @@ const DistinctTaskPage = () => {
                 
                 <div>
                     <label>Completed</label>
-                    <input type="checkbox" onClick={()=>{
-                        setTaskCompleted(!taskCompleted)
-                        setCompletedTimeStamp(Date.now())
-                        }} checked={taskCompleted}/>
+                    <input type="checkbox" onClick={()=>{onClickingComplete()}} checked={taskCompleted}/>
                 </div>
             
 
