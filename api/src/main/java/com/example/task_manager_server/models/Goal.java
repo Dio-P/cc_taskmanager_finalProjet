@@ -1,5 +1,7 @@
 package com.example.task_manager_server.models;
 
+import com.example.task_manager_server.dtos.CategoryDTO;
+import com.example.task_manager_server.dtos.GoalDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cascade;
 
@@ -127,5 +129,18 @@ public class Goal {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public GoalDTO createDTO(List<CategoryDTO> category){
+        GoalDTO goalDTO = new GoalDTO(
+                this.getId(),
+                this.isActive(),
+                this.getTitle(),
+                this.getType(),
+                this.getStartDate(),
+                this.getTarget(),
+                category
+        );
+        return goalDTO;
     }
 }

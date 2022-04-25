@@ -43,8 +43,9 @@ public class UserController {
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         Optional<User> foundUser = userRepository.findByAuthId(userId);
 
-        if( !foundUser.isPresent()){
+        if( foundUser.isPresent()){
             user.setId(id);
+            user.setAuthId(userId);
             userRepository.save(user);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         }
