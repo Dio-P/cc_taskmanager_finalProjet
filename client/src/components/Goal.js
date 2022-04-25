@@ -47,7 +47,7 @@ const Goal = ({ goal, endDate, categories, priorities }) => {
             {loading?
             <p>Loading...</p>
             :
-            <>
+            <button onClick={ onGoalClick }><>
                 <div>
                     <label> Goal Title </label>
                     <p> {goalTitle} </p>
@@ -64,8 +64,7 @@ const Goal = ({ goal, endDate, categories, priorities }) => {
                     <label> Goal Target </label>
                     <p> {goalTarget} </p>
                 </div>
-                <button onClick={ onGoalClick }> See Goal Details </button>
-            </>
+            </>See Goal Details </button>
             }
             
         </div>
