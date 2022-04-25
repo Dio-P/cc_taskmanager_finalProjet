@@ -17,6 +17,6 @@ code {
 }
 
 .btn {
-  @apply basis-1/3 bg-yellow p-3 rounded shadow-md tracking-wider;
+  @apply basis-1/3 bg-yellow p-3 rounded shadow-md tracking-wider m-auto;
 }
 
