@@ -42,6 +42,9 @@ const Menu = ({ closeMenuFunction, categories, priorities, goals }) => {
                 <button className="allGoalsButton" onClick={()=> onClick("/goals")}> Goals </button>
             </li>
             <li>
+                <button className="allGoalsButton" onClick={()=> onClick("/goal/createNewGoal")}> Add New Goal </button>
+            </li>
+            <li>
                 <button onClick={() => logout({ returnTo: window.location.origin })}>
                     Log Out
                 </button>

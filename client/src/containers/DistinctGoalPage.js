@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext  } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
+import Menu from "../components/Menu";
 
 const DistinctGoalPage = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [goalTitle, setGoalTitle] = useState(null);
     const [editGoalTitle, setEditGoalTitle] = useState(false);
     // const [goalSetDate, setGoalSetDate] = useState(null);
@@ -39,11 +41,12 @@ const DistinctGoalPage = () => {
 
     }, [goal]);
 
-    // this needs testing
-
+    const closeMenuFunction = () => {
+        setIsMenuOpen(false);
+    }
 
     const onClickingDone = () => {
-        let updatedGoal = {}
+        let updatedGoal = {goalTitle, goalType, goalTarget, goalStartDate}
         console.log("updatedGoal", updatedGoal);
         // post(, updatedGoal);
         
@@ -51,6 +54,17 @@ const DistinctGoalPage = () => {
 
     return(
         <div>
+             {!isMenuOpen?
+                <>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                </>
+            :
+                <Menu
+                    closeMenuFunction={ ()=>closeMenuFunction() }
+                    categories={ categories }
+                    priorities={ priorities }
+                />
+            }
             <div>
                 <label> Goal Title </label>
                 <h3>{goalTitle}</h3>

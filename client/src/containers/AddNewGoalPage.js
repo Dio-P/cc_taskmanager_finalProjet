@@ -5,7 +5,8 @@ import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
 
-const AddNewGoalPage = () => {
+const AddNewGoalPage = ({ categories, priorities, goals }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [goalTitle, setGoalTitle] = useState(null);
     const [goalSetDate, setGoalSetDate] = useState(null);
     const [goalType, setGoalType] = useState(null);
@@ -17,20 +18,41 @@ const AddNewGoalPage = () => {
 
     const {get, post} = useContext(RequestContext);
 
-    const location = useLocation();
-    const task = location.state.task;
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
-    const goal = location.state.goals;
+    // const location = useLocation();
+    // const task = location.state.task;
+    // const categories = location.state.categories;
+    // const priorities = location.state.priorities;
+    // const goals = location.state.goals;
 
-    const onClickingDone = () => {
-        let updatedGoal = {}
+    const closeMenuFunction = () => {
+        setIsMenuOpen(false);
+    }
+
+    const onClickingDone = (e) => {
+        e.preventDefault();
+        let updatedGoal = {
+            goalTitle, 
+            goalType, 
+            goalTarget, 
+            goalStartDate};
         console.log("updatedGoal", updatedGoal);
         // post(, updatedGoal);
     }
         
     return(
         <form>
+            {!isMenuOpen?
+                <>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                </>
+            :
+                <Menu
+                    closeMenuFunction={ ()=>closeMenuFunction() }
+                    categories={ categories }
+                    priorities={ priorities }
+                    goals={ goals }
+                />
+            }
             <div>
                 <label> Goal Title </label>
                 <h3>{goalTitle}</h3>
@@ -63,7 +85,7 @@ const AddNewGoalPage = () => {
                 <h3>{goalCategories}</h3>
                 <input type="text" name="goalCategories" id="goalCategories" value={goalSetDate} onChange={e=> setGoalCategories(e.target.value)} required/>
             </div> */}
-
+            <button onClick={(e)=> onClickingDone(e)}> Create New Goal </button>
         </form>
     )
 }

@@ -185,9 +185,15 @@ function App() {
         />}/>
         <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
         <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
-        <Route path="/goals" element={ <GoalsPage/> }/>
+        <Route path="/goals" element={ <GoalsPage
+          goals={goals}
+        /> }/>
         <Route path="/goal/:goal_title" element={ <DistinctGoalPage/> }/>
-        <Route path="/goal/createNewGoal" element={ <AddNewGoalPage/> }/>
+        <Route path="/goal/createNewGoal" element={ <AddNewGoalPage
+          categories={ categories }
+          priorities={ priorities }
+          goals = { goals }
+        /> }/>
         <Route path="/categories" element={ <CategoriesPage/> }/>
         <Route path="/category/:category_title" element={ <DistinctCategoryPage/> }/>
         <Route path="/category/createNewCategory" element={ <AddNewCategoryPage/> }/>
