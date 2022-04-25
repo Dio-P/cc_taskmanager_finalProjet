@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import taskList from "./helpers/dummyTasksApi.json";
 import WholeMainPageContainer from './containers/WholeMainPageContainer';
 import DistinctTaskPage from './containers/DistinctTaskPage';
 import AddNewTaskPage from './containers/AddNewTaskPage';
@@ -10,9 +9,14 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 import configData from "./config.json";
 import { createRequestHelper } from './helpers/requestHelper';
+import ProfilePage from './containers/ProfilePage';
+import GoalsPage from './containers/GoalsPage';
+import CategoriesPage from './containers/CategoriesPage';
+import DistinctCategoryPage from './containers/DistinctCategoryPage';
+import AddNewCategoryPage from './containers/AddNewCategoryPage';
 
 
-import './App.css';
+import './styles/App.css';
 import RequestContext from './context/RequestContext';
 
 function App() {
@@ -101,15 +105,17 @@ function App() {
   }
 
   const getCategories = () => {
+    console.log("categories called");////////////
     get("categories")
-    .then(data=> setCategories(data))
+      // .then(res=> (console.log("categoriesGotten", res)))
+    .then(data=> (setCategories(data)))
   }
 
     useEffect(() => {
       // setting the comleted and unclompleted tasks 
       // in different states.
       if(allTasks){
-      console.log("allTasks", allTasks);////////////
+      // console.log("allTasks", allTasks);////////////
       let completedHelper = [];
       let uncompletedHelper = [];
       
@@ -138,7 +144,7 @@ function App() {
 
     useEffect(() => {
       // get the categories from api
-      const dummyPrioritiesList = ["low", "medium", "high"]
+      const dummyPrioritiesList = ["LOW", "MEDIUM", "HIGH"]
       console.log("Priorities must have been gotten");
       setPriorities(dummyPrioritiesList)
       
@@ -170,6 +176,11 @@ function App() {
         />}/>
         <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
         <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
+        <Route path="/goals" element={ <GoalsPage/> }/>
+        <Route path="/categories" element={ <CategoriesPage/> }/>
+        <Route path="/category/:category_title" element={ <DistinctCategoryPage/> }/>
+        <Route path="/category/createNewCategory" element={ <AddNewCategoryPage/> }/>
+        <Route path="/profile" element={ <ProfilePage/> }/>
       </Routes>
     </RequestContext.Provider>
   );

@@ -4,7 +4,7 @@ const Task = ({ task, categories, priorities }) => {
     const navigate = useNavigate();
 
     const onTaskClick = (e) => {
-        console.log("a task has been clicked");
+        console.log("a task has been clicked");///////////
         navigate(`/task/:${task.title}`, {
             state: {
                 task:task,
@@ -17,7 +17,7 @@ const Task = ({ task, categories, priorities }) => {
     return (
             <div>
                 <input type="checkbox" id="task" name="task"/>
-                <label for="task"> <button onClick={onTaskClick}>{ task.title }</button> </label>
+                <label htmlFor="task"> <button onClick={onTaskClick}>{ task.title }</button> </label>
             </div>
       )
 }

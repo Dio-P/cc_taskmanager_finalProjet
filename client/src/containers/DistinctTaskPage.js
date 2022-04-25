@@ -9,8 +9,8 @@ const DistinctTaskPage = () => {
     const task = location.state.task;
     const categories = location.state.categories;
     const priorities = location.state.priorities;
-    console.log("location", location);
-    console.log("task", task);
+    console.log("location", location);/////////
+    console.log("task", task);////////////
 
     const [loading, setLoading] = useState(true);
 
