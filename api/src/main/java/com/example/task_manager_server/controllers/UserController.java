@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 @RestController
@@ -29,6 +30,10 @@ public class UserController {
             User newUser = new User(userId, "", "");
             userRepository.save(newUser);
         }
-        return new ResponseEntity<>(userId, HttpStatus.CREATED);
+        HashMap<String, Boolean> response = new HashMap<>();
+        response.put("userExists", foundUser.isPresent());
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+//    create update route to add first name / last name
 }

@@ -2,6 +2,7 @@ package com.example.task_manager_server.controllers;
 
 import com.example.task_manager_server.dtos.CategoryDTO;
 import com.example.task_manager_server.dtos.TaskDTO;
+import com.example.task_manager_server.dtos.UserDTO;
 import com.example.task_manager_server.models.Category;
 import com.example.task_manager_server.models.Task;
 import com.example.task_manager_server.models.User;
@@ -43,6 +44,16 @@ public class TaskController {
                     task.getCategory().getColour()
             );
 
+            List<UserDTO> collaborators = new ArrayList<>();
+            for(User user : task.getCollaborators()){
+                UserDTO userDTO = new UserDTO(
+                        user.getId(),
+                        user.getFirstName(),
+                        user.getLastName()
+                );
+                collaborators.add(userDTO);
+            }
+
             TaskDTO taskDTO = new TaskDTO(
                     task.getId(),
                     task.getTitle(),
@@ -54,7 +65,8 @@ public class TaskController {
                     categoryDTO,
                     task.getPriority(),
                     task.isCompleted(),
-                    task.getCompletedTimeStamp()
+                    task.getCompletedTimeStamp(),
+                    collaborators
             );
             return taskDTO;
         }).toList();

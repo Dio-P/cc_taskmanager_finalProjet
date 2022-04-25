@@ -81,6 +81,8 @@ public class DataLoader implements ApplicationRunner {
                 user1
                 );
         taskRepository.save(task1);
+        task1.addCollaborator(user2);
+        taskRepository.save(task1);
 
         Task task2 = new Task(
                 "front end style",
@@ -110,6 +112,8 @@ public class DataLoader implements ApplicationRunner {
                 "",
                 user2
         );
+        taskRepository.save(task3);
+        task3.addCollaborator(user3);
         taskRepository.save(task3);
 
         Task task4 = new Task(
@@ -170,6 +174,8 @@ public class DataLoader implements ApplicationRunner {
                 "",
                 user3
         );
+        taskRepository.save(task7);
+        task7.addCollaborator(user1);
         taskRepository.save(task7);
     }
 
