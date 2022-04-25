@@ -35,7 +35,7 @@ const ProfilePage = () => {
 
     const sendInfoDb = () => {
         let profileInfo = { firstName, lastName }
-        console.log("profileInfo", profileInfo);
+        console.log("profileInfo", profileInfo);///////
         // post( ,profileInfo)
     }
 
@@ -56,7 +56,7 @@ const ProfilePage = () => {
             <div>
                 <label htmlFor="firstName"> First Name </label>
                 {!editFirstName?
-                    <button onClick={setEditFirstName(true)}> Edit </button>
+                    <button onClick={()=> setEditFirstName(true)}> Edit </button>
                 :
                 <>
                     <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>
@@ -71,7 +71,7 @@ const ProfilePage = () => {
             <div>
                 <label htmlFor="lastName"> Last Name </label>
                 {!editLastName?
-                    <button onClick={setEditLastName(true)}> Edit </button>
+                    <button onClick={()=> setEditLastName(true)}> Edit </button>
                 :
                     <>
                         <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>

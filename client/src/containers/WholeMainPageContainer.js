@@ -7,14 +7,20 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [categoriesTitles, setCategoriesTitles] = useState([]);
 
-    const [categoriesToDisplay, setCategoriesToDisplay] = useState(categoriesTitles);
-    const [prioritiesToDisplay, setPrioritiesToDisplay] = useState(priorities);
-    const [uncompletedTasksToDisplay, setUncompletedTasksToDisplay] = useState([uncompletedTasks]);
-    const [completedTasksToDisplay, setCompletedTasksToDisplay] = useState([completedTasks]);
+    const [categoriesToDisplay, setCategoriesToDisplay] = useState([]);
+    const [prioritiesToDisplay, setPrioritiesToDisplay] = useState([]);
+    const [uncompletedTasksToDisplay, setUncompletedTasksToDisplay] = useState([]);
+    const [completedTasksToDisplay, setCompletedTasksToDisplay] = useState([]);
 
     const closeMenuFunction = () => {
         setIsMenuOpen(false);
     }
+
+    useEffect(() => {
+        setUncompletedTasksToDisplay(uncompletedTasks);
+        setCompletedTasksToDisplay(completedTasks);
+        
+    }, [uncompletedTasks, completedTasks]);
 
     useEffect(() => {
         let categoriesTitles = categories.map(category => (

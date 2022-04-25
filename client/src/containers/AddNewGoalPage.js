@@ -11,10 +11,16 @@ const AddNewGoalPage = () => {
     const [goalType, setGoalType] = useState(null);
     const [goalTarget, setGoalTarget] = useState(null);
     const [goalStartDate, setGoalStartDate] = useState(null);
+    const [goalEndDate, setGoalEndDate] = useState(null);
     const [goalCategories, setGoalCategories] = useState(null);
     const [goalActive, setGoalActive] = useState(true);
 
     const {get, post} = useContext(RequestContext);
+
+    const location = useLocation();
+    const task = location.state.task;
+    const categories = location.state.categories;
+    const priorities = location.state.priorities;
 
     const onClickingDone = () => {
         let updatedGoal = {}
@@ -27,13 +33,13 @@ const AddNewGoalPage = () => {
             <div>
                 <label> Goal Title </label>
                 <h3>{goalTitle}</h3>
-                <input type="text" name="goalTitle" id="goalTitle" value={goalSetDate} onChange={e=> setGoalTitle(e.target.value)} required/>
+                <input type="text" name="goalTitle" id="goalTitle" value={goalTitle} onChange={e=> setGoalTitle(e.target.value)} required/>
 
             </div>
             <div>
                 <label> Goal Type </label>
                 <h3>{goalType}</h3>
-                <input type="text" name="goalType" id="goalType" value={goalSetDate} onChange={e=> setGoalType(e.target.value)} required/>
+                <input type="text" name="goalType" id="goalType" value={goalType} onChange={e=> setGoalType(e.target.value)} required/>
             </div>
             {/* <div>
                 <label> Goal Set Date </label>
@@ -43,12 +49,12 @@ const AddNewGoalPage = () => {
             <div>
                 <label> Goal Target </label>
                 <h3>{goalTarget}</h3>
-                <input type="text" name="goalTarget" id="goalTarget" value={goalSetDate} onChange={e=> setGoalTarget(e.target.value)} required/>
+                <input type="text" name="goalTarget" id="goalTarget" value={goalTarget} onChange={e=> setGoalTarget(e.target.value)} required/>
             </div>
             <div>
                 <label> Goal Start Date </label>
                 <h3>{goalStartDate}</h3>
-                <input type="date" name="goalStartDate" id="goalStartDate" value={goalSetDate} onChange={e=> setGoalStartDate(e.target.value)} required/>
+                <input type="date" name="goalStartDate" id="goalStartDate" value={goalStartDate} onChange={e=> setGoalStartDate(e.target.value)} required/>
             </div>
 {/*             how will the categories be looked for?
             <div>

@@ -13,13 +13,13 @@ const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown }) => {
                                 checked: true
                             }
             }
-            console.log("optionshandler", optionshandler);
+            console.log("optionshandler", optionshandler);////////
             setOptionshandler({...optionshandler, ...optionshandlerHelper});
         }   
     }, []);
 
     useEffect(() => {
-        console.log("optionshandler", optionshandler);
+        console.log("optionshandler", optionshandler);//////////
         setOptionsFromDropDown(optionshandler)
     }, [optionshandler]);
 
@@ -34,8 +34,6 @@ const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown }) => {
             }
             
         })
-        optionshandler[option].checked = !optionshandler.option.checked;
-        e.checked=!e.checked
     }
 
     

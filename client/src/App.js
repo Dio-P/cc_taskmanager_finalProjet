@@ -168,11 +168,11 @@ function App() {
     <RequestContext.Provider value={{get, post}}>
       <Routes>
         <Route path="/" element={<WholeMainPageContainer 
-        uncompletedTasks={ uncompletedTasks } 
-        completedTasks={ completedTasks } 
-        categories={ categories }
-        priorities={ priorities }
-        user = { user }
+          uncompletedTasks={ uncompletedTasks } 
+          completedTasks={ completedTasks } 
+          categories={ categories }
+          priorities={ priorities }
+          user = { user }
         />}/>
         <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
         <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
