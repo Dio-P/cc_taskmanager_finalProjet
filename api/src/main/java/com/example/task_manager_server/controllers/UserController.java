@@ -26,7 +26,7 @@ public class UserController {
         Optional foundUser = userRepository.findByAuthId(userId);
 
         if ( !foundUser.isPresent() ){
-            User newUser = new User(userId);
+            User newUser = new User(userId, "", "");
             userRepository.save(newUser);
         }
         return new ResponseEntity<>(userId, HttpStatus.CREATED);
