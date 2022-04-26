@@ -54,13 +54,13 @@ const DistinctCategoryPage = () => {
                 />
             }
             <div className='flex flex-row py-10 justify-center m-7'>
-                <label className='basis-1/3 font-semibold'>Title</label>
-                <h1 className='basis-1/3'>{ title }</h1>
+                <label className='basis-1/3 font-semibold text-lg'>Title</label>
+                <h1 className='basis-1/3 text-lg italic'>{ title }</h1>
                     {!editTitle?
                         <button className='btn' onClick={()=> setEditTitle(true)}>Edit</button>
                     :
                         <div>
-                            <input 
+                            <input className=''
                                 type="text" 
                                 name="newTitle" 
                                 value={title} 
@@ -76,7 +76,7 @@ const DistinctCategoryPage = () => {
                     }
             </div>
             <div className='flex flex-box py-10 justify-center m-7'>
-                <label className='basis-1/3 font-semibold'>Colour</label>
+                <label className='basis-1/3 font-semibold text-lg'>Colour</label>
                 <div className='basis-1/3'>
                     <div className='circle' style = {{backgroundColor: {colour}}}></div>
                 </div>
@@ -84,7 +84,7 @@ const DistinctCategoryPage = () => {
                         <button className='btn' onClick={()=> setEditColour(true)}>Edit</button>
                     :
                         <div>
-                            <p>Select colour</p>
+                            <p className='text-lg'>Select colour</p>
                             <input 
                                 type="color" 
                                 name="newColour" 
