@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { matchRoutes } from "react-router-dom";
 import Task from "../components/Task";
 
 const TasksBox = ({ tasks, tasksComplete, title, categories, priorities }) => {
@@ -11,7 +12,7 @@ const TasksBox = ({ tasks, tasksComplete, title, categories, priorities }) => {
            {   
            tasks.map(task => (
               <Task
-                key={ Date.now() }
+                key={ task.id }
                 task={ task }
                 categories={ categories }
                 priorities={ priorities }
@@ -22,7 +23,7 @@ const TasksBox = ({ tasks, tasksComplete, title, categories, priorities }) => {
             {   
            tasksComplete.map(task => (
               <Task
-                key={ Date.now() }
+                key={ task.id }
                 task={ task }
                 categories={ categories }
                 priorities={ priorities }

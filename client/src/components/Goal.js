@@ -72,13 +72,18 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             let periodStart= Date.parse(new Date(goalStartDate.split("-")));
             let periodEnd= Date.parse(new Date(goalEndDate.split("-")));
             let periodTaskHelper = []
+            console.log("periodStart@@@@@@@@@@", periodStart);
+            console.log("periodEnd@@@@@@@@@@", periodEnd);
+
             for(let task of completedTasks){
+                console.log("task@@@@@@@@@@@@", task);
                 if(goal.categories.includes(task.category)){
                     if(
                     completedTasks.completedTimeStamp>=periodStart
                     &&
                     completedTasks.completedTimeStamp<=periodEnd
                     ){
+                        console.log("completedTasks.completedTimeStamp@@@@@@@@@@@@", completedTasks.completedTimeStamp);
                         console.log("the task is about to be pushed");
                         periodTaskHelper.push(task);
                     }
@@ -90,7 +95,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     }
 
     const translatingTheGoalTargetIntoTasksNumber = () => {
-        const nuAllTasksPeriod = allCompletedTasksGivenPeriod.length;
+        const nuAllTasksPeriod = allCompletedTasksGivenPeriod.length||1;
         const numberOfTaksNeededToMeetTarget = (goal.target / nuAllTasksPeriod) * 100;
         return numberOfTaksNeededToMeetTarget
         
