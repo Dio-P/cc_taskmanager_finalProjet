@@ -40,11 +40,11 @@ const AddNewCategoryPage = () => {
             }
             <form onSubmit={onSubmit}>
                 <div>
-                    <label> Title </label>
+                    <label className='new-cat-title font-semibold text-lg'> Title </label>
                     <h1>{ title }</h1>
                     <div>
-                    <p>Enter a Title</p>
-                        <input 
+                    <p className='title-p'>Enter a Title</p>
+                        <input className='category-input'
                             type="text" 
                             name="newTitle" 
                             value={title} 
@@ -54,7 +54,7 @@ const AddNewCategoryPage = () => {
                     </div>
                 </div>
                 <div>
-                    <label> Colour </label>
+                    <label className='new-cat-title font-semibold text-lg'> Colour </label>
                     <div className='circle' style = {{backgroundColor: {colour}}}></div>
                     <div>
                         <p>Select a colour</p>
