@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 
-const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
+const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -53,10 +53,14 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
 
   useEffect(() => {
     let categoriesToDisplay = categories.filter((category) => {
-      return category.title.match(searchInput);
+      return category.title.toLowerCase().match(searchInput);
     });
     setCategoriesToDisplay(categoriesToDisplay);
   }, [searchInput]);
+
+//   useEffect(() => {
+//       console.log("!!!!!!!!users", users);///////////
+//   }, [users]);
 
   const closeMenuFunction = () => {
     setIsMenuOpen(false);
@@ -64,7 +68,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    setSearchInput(e.target.value);
+    setSearchInput(e.target.value.toLowerCase());
   };
 
   const onClickingACateogry = (category) => {

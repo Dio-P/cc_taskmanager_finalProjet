@@ -4,11 +4,11 @@ import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import RequestContext from "../context/RequestContext";
 
-const DistinctTaskPage = () => {
+const DistinctTaskPage = ({ categories, priorities, users }) => {
     const location = useLocation();
     const task = location.state.task;
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
+    // const categories = location.state.categories;
+    // const priorities = location.state.priorities;
 
     const [loading, setLoading] = useState(true);
 

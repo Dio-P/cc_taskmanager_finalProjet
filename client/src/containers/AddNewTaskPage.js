@@ -5,7 +5,7 @@ import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
 
-const AddNewTaskPage = () => {
+const AddNewTaskPage = ({ categories, priorities, users }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [taskTitle, setTaskTitle] = useState("");
     const [taskCategory, setTaskCategory] = useState(null);
@@ -25,9 +25,9 @@ const AddNewTaskPage = () => {
     const [hasCollaborators, setHasCollaborators] = useState(false);
     const [taskCollaborators, setTaskCollaborators] = useState(null);
 
-    const location = useLocation();
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
+    // const location = useLocation();
+    // const categories = location.state.categories;
+    // const priorities = location.state.priorities;
 
     const {get, post} = useContext(RequestContext);
 

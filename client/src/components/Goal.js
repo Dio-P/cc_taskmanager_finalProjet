@@ -97,10 +97,10 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
 
     const translatingTheGoalTargetIntoTasksNumber = () => {
         const numberAllTasksPeriod = allCompletedTasksGivenPeriod.length||1;
-        console.log("numberAllTasksPeriod", numberAllTasksPeriod);
-        console.log("goalTarget", goalTarget);
+        // console.log("numberAllTasksPeriod", numberAllTasksPeriod);
+        // console.log("goalTarget", goalTarget);
         const numberOfTaksNeededToMeetTarget = (goalTarget * numberAllTasksPeriod) / 100;
-        console.log("numberOfTaksNeededToMeetTarget", numberOfTaksNeededToMeetTarget);
+        // console.log("numberOfTaksNeededToMeetTarget", numberOfTaksNeededToMeetTarget);
         return numberOfTaksNeededToMeetTarget
         
     }
