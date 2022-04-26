@@ -55,6 +55,9 @@ public class DataLoader implements ApplicationRunner {
         Category category5 = new Category("Social", "#FF0000", user2);
         categoryRepository.save(category5);
 
+        Category category7 = new Category("Life Admin", "#FF0000", user2);
+        categoryRepository.save(category7);
+
         Category category3 = new Category("Project", "#800080", user3);
         categoryRepository.save(category3);
 
@@ -71,16 +74,22 @@ public class DataLoader implements ApplicationRunner {
         goal4.addCategory(category4);
         goalRepository.save(goal4);
 
-        Goal goal2 = new Goal(true, "My goal",GoalType.WEEKLY, "2022-05-03", 10, user2);
+        Goal goal2 = new Goal(true, "My weekly goal in the future",GoalType.WEEKLY, "2022-05-03", 10, user2);
         goalRepository.save(goal2);
         goal2.addCategory(category2);
         goalRepository.save(goal2);
 
-        Goal goal5 = new Goal(true, "My other goal",GoalType.DAILY, "2022-04-26", 80, user2);
+        Goal goal5 = new Goal(true, "My daily goal from 26th April",GoalType.DAILY, "2022-04-26", 80, user2);
         goalRepository.save(goal5);
         goal5.addCategory(category2);
         goal5.addCategory(category5);
         goalRepository.save(goal5);
+
+        Goal goal8 = new Goal(true, "My daily goal in the past",GoalType.DAILY, "2022-04-20", 80, user2);
+        goalRepository.save(goal8);
+        goal8.addCategory(category2);
+        goal8.addCategory(category7);
+        goalRepository.save(goal8);
 
         Goal goal3 = new Goal(true, "My goal",GoalType.DAILY, "2022-05-01", 30, user3);
         goalRepository.save(goal3);
