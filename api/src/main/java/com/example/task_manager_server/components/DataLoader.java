@@ -217,6 +217,36 @@ public class DataLoader implements ApplicationRunner {
         );
         taskRepository.save(task10);
 
+        Task task11 = new Task(
+                "Yet another task again",
+                "finding a way to connect the users with the database",
+                "2022-04-20",
+                "15:14",
+                70,
+                TaskType.DO_BY,
+                category2,
+                Priority.LOW,
+                true,
+                "1653001200000",
+                user2
+        );
+        taskRepository.save(task11);
+
+        Task task12 = new Task(
+                "Yet another task again again",
+                "finding a way to connect the users with the database",
+                "2022-04-20",
+                "15:14",
+                70,
+                TaskType.DO_BY,
+                category2,
+                Priority.LOW,
+                true,
+                "1653001200000",
+                user2
+        );
+        taskRepository.save(task12);
+
         Task task9 = new Task(
                 "A task",
                 "finding a way to connect the users with the database",
