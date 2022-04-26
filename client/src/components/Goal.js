@@ -96,14 +96,16 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     }
 
     const translatingTheGoalTargetIntoTasksNumber = () => {
-        const nuAllTasksPeriod = allCompletedTasksGivenPeriod.length||1;
-        const numberOfTaksNeededToMeetTarget = (goal.target / nuAllTasksPeriod) * 100;
+        const numberAllTasksPeriod = allCompletedTasksGivenPeriod.length||1;
+        console.log("numberAllTasksPeriod", numberAllTasksPeriod);
+        console.log("goalTarget", goalTarget);
+        const numberOfTaksNeededToMeetTarget = (goalTarget * numberAllTasksPeriod) / 100;
+        console.log("numberOfTaksNeededToMeetTarget", numberOfTaksNeededToMeetTarget);
         return numberOfTaksNeededToMeetTarget
         
     }
 
     const findDaysAfter = (goal) => {
-        console.log("within find days after");
         if(goal.type==="DAILY"){
             return 1;
 
