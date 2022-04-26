@@ -64,7 +64,7 @@ function App() {
         return
       }
       const requestHelper = createRequestHelper(accessToken);
-      console.log(accessToken)
+      // console.log(accessToken)///////
       setGet(()=> requestHelper.get);
       setPost(()=> requestHelper.post);
       setPut(()=> requestHelper.put);
@@ -118,9 +118,7 @@ function App() {
   }
 
   const getCategories = () => {
-    console.log("categories called");////////////
     get("categories")
-      // .then(res=> (console.log("categoriesGotten", res)))
     .then(data=> (setCategories(data)))
   }
 
@@ -155,12 +153,10 @@ function App() {
 
     useEffect(() => {
       const dummyCategoriesList = ["studieng", "playing", "making something beautiful", "get bored", "play tetris"]
-      console.log("categories", categories);//////////
       
     }, [allTasks, categories]);
 
     useEffect(() => {
-      // get the categories from api
       const prioritiesList = [ "LOW", "MEDIUM", "HIGH" ];
       setPriorities(prioritiesList);
       

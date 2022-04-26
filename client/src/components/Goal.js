@@ -68,29 +68,60 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     }
 
     const calculateAllCompletedTaskOfCategoryGivenPeriod= () => {
+        // console.log("inside calculate all completed task@@@@@@@@@@@@@@@@@@@@");
+        // console.log("goalStartDate@@@@@@@@@@@@@@@@@@@@", goalStartDate);
+        // console.log("goalEndDate@@@@@@@@@@@@@@@@@@@@", goalEndDate);
+        
         if(goalStartDate&&goalEndDate){
+            
             let periodStart= Date.parse(new Date(goalStartDate.split("-")));
             let periodEnd= Date.parse(new Date(goalEndDate.split("-")));
+            
             let periodTaskHelper = []
-            console.log("periodStart@@@@@@@@@@", periodStart);
-            console.log("periodEnd@@@@@@@@@@", periodEnd);
+            let idsArray = goal.categories.map(category => category.id);
+            // console.log("periodStart@@@@@@@@@@", periodStart);
+            // console.log("periodEnd@@@@@@@@@@", periodEnd);
 
             for(let task of completedTasks){
                 console.log("task@@@@@@@@@@@@", task);
-                if(goal.categories.includes(task.category)){
+                console.log("goalStartDate", goalStartDate);
+                console.log("goalEndDate", goalEndDate);
+                console.log("periodStart", periodStart);
+                console.log("periodEnd", periodEnd);
+                console.log("completedTasks", task.completedTimeStamp);
+                // console.log("goal.categories$$$$$$$$$$$OUT", goal.categories);
+                // console.log("Objectgoal.categories$$$$$$$$$$$OUT", Object.values(goal.categories));
+                // console.log("task.category$$$$$$$$$$$$$OUT", task.category);
+                console.log("idsArray.includes(task.category.id)", idsArray.includes(task.category.id));
+                if(idsArray.includes(task.category.id)){
+                    // console.log("goal.categories$$$$$$$$$$$IN", goal.categories);
+                    // console.log("task.category$$$$$$$$$$$$$IN", task.category);
+                    // console.log("idsArray", idsArray);
+                    // console.log("task.category.id", task.category.id);
+                    // console.log("completedTasks.completedTimeStamp@@@@@@@@@@@@", completedTasks.completedTimeStamp);
+                    
+                    console.log("completedTasks", completedTasks);
+                    
+                    console.log("task.completedTimeStamp<=periodEnd", task.completedTimeStamp<=periodEnd);
                     if(
-                    completedTasks.completedTimeStamp>=periodStart
+                        task.completedTimeStamp>=periodStart
                     &&
-                    completedTasks.completedTimeStamp<=periodEnd
+                        task.completedTimeStamp<=periodEnd
                     ){
+                        console.log("hello again");
+                        console.log("lalalla");
                         console.log("completedTasks.completedTimeStamp@@@@@@@@@@@@", completedTasks.completedTimeStamp);
                         console.log("the task is about to be pushed");
                         periodTaskHelper.push(task);
+                        console.log("periodTaskHelper", periodTaskHelper);
+                        
                     }
 
+                    setTasksOnTarget(periodTaskHelper);
                 }
+                
             }
-            setTasksOnTarget(periodTaskHelper);
+            
         }  
     }
 

@@ -78,7 +78,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
     return (
       <div>
         {categoriesToDisplay.map((category) => (
-          <button onClick={() => onClickingACateogry(category)}>
+          <button key={category.id} onClick={() => onClickingACateogry(category)}>
             {category.title}
           </button>
         ))}
@@ -229,9 +229,8 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
             Object.values(goalCategories).map((goalCategory) => (
               <div>
                 <p>{goalCategory.title} </p>
-                <button onClick={() => removeGoalCategory(goalCategory.id)}>
-                  {" "}
-                  X{" "}
+                <button key={goalCategory.id} onClick={() => removeGoalCategory(goalCategory.id)}>
+                  X
                 </button>
               </div>
             ))}
