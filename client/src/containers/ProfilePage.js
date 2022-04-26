@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { FaBars } from 'react-icons/fa';
 import { useLocation } from "react-router-dom";
 import Menu from '../components/Menu';
 import RequestContext from '../context/RequestContext';
@@ -43,7 +44,7 @@ const ProfilePage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
