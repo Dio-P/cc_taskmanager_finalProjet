@@ -21,8 +21,9 @@ code {
 }
 
 .create-btn {
-  @apply basis-1/3 bg-blue p-2 rounded shadow-md tracking-wider m-auto;
+  @apply bg-blue text-white font-semibold rounded shadow-md tracking-wider m-28 p-4;
 }
+
 .plus-btn {
   background-color: #F1B625;
   color: #fff;

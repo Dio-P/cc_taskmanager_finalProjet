@@ -122,7 +122,7 @@ const AddNewTaskPage = () => {
                 :
                 <button className='btn' onClick={()=> setHasDescription(true)}><FaPlus/>Description</button>
                 }
-
+                <br/>
                 {hasDate?
                 <>
                     <label htmlFor="taskDate">Task Date</label>
@@ -139,7 +139,7 @@ const AddNewTaskPage = () => {
                 :
                 <button className='btn' onClick={()=> setHasDate(true)}><FaPlus/>Date</button>
                 }
-
+                <br/>
                 {hasTime?
                 <>
                     <label htmlFor="taskDate">Task Time</label>
@@ -149,7 +149,7 @@ const AddNewTaskPage = () => {
                 :
                 <button className='btn' onClick={()=> setHasTime(true)}><FaPlus/>Add Time</button>
                 }
-
+                <br/>
                 {hasDuration?
                 <>
                     <label htmlFor="taskDuration">Task Duration</label>
@@ -159,7 +159,7 @@ const AddNewTaskPage = () => {
                 :
                 <button className='btn' onClick={()=> setHasDuration(true)}><FaPlus/>Add Duration</button>
                 }  
-
+                <br/>
                 <button className='create-btn' type="submit">Create Task </button>
             </form>
         </div>
