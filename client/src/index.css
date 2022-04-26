@@ -20,6 +20,9 @@ code {
   @apply basis-1/3 bg-yellow p-2 rounded shadow-md tracking-wider m-auto;
 }
 
+.create-btn {
+  @apply basis-1/3 bg-blue p-2 rounded shadow-md tracking-wider m-auto;
+}
 .plus-btn {
   background-color: #F1B625;
   color: #fff;

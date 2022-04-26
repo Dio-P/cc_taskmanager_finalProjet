@@ -4,7 +4,7 @@ import RequestContext from "../context/RequestContext";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
-import { FaBars, FaWrench } from "react-icons/fa";
+import { FaBars, FaWrench, FaPlus } from "react-icons/fa";
 
 const AddNewTaskPage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -120,7 +120,7 @@ const AddNewTaskPage = () => {
                     <button className='btn' onClick={()=> setHasDescription(false)}>Remove Description</button>
                 </>
                 :
-                <button className='btn' onClick={()=> setHasDescription(true)}>Add Description</button>
+                <button className='btn' onClick={()=> setHasDescription(true)}><FaPlus/>Description</button>
                 }
 
                 {hasDate?
@@ -134,10 +134,10 @@ const AddNewTaskPage = () => {
                     <input type="radio" name="timedTaskType" id="do_on" value="DO_BY" onChange={e=> setDatedTaskType(e.target.value)}/>
 
                     </div>
-                    <button onClick={()=> setHasDate(false)}>- Remove Date</button>
+                    <button className='btn' onClick={()=> setHasDate(false)}>- Remove Date</button>
                 </>
                 :
-                <button onClick={()=> setHasDate(true)}>+ Add Date</button>
+                <button className='btn' onClick={()=> setHasDate(true)}><FaPlus/>Date</button>
                 }
 
                 {hasTime?
@@ -147,7 +147,7 @@ const AddNewTaskPage = () => {
                     <button onClick={()=> setHasTime(false)}>- Remove Date</button>
                 </>
                 :
-                <button onClick={()=> setHasTime(true)}>+ Add Time</button>
+                <button className='btn' onClick={()=> setHasTime(true)}><FaPlus/>Add Time</button>
                 }
 
                 {hasDuration?
@@ -157,10 +157,10 @@ const AddNewTaskPage = () => {
                     <button onClick={()=> setHasDuration(false)}>- Remove Duration</button>
                 </>
                 :
-                <button onClick={()=> setHasDuration(true)}>+ Add Duration</button>
+                <button className='btn' onClick={()=> setHasDuration(true)}><FaPlus/>Add Duration</button>
                 }  
 
-                <button type="submit">Create Task </button>
+                <button className='create-btn' type="submit">Create Task </button>
             </form>
         </div>
     )
