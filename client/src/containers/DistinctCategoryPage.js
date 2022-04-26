@@ -44,7 +44,7 @@ const DistinctCategoryPage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-2 text-xl'/></button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -53,14 +53,14 @@ const DistinctCategoryPage = () => {
                     priorities={ priorities }
                 />
             }
-            <div className='flex flex-row py-10 w-5/6 m-7'>
-                <label className='basis-1/3 font-semibold'>Title</label>
-                <h1 className='basis-1/3'>{ title }</h1>
+            <div className='flex flex-row py-10 justify-center m-7'>
+                <label className='basis-1/3 font-semibold text-lg'>Title</label>
+                <h1 className='basis-1/3 text-lg italic'>{ title }</h1>
                     {!editTitle?
                         <button className='btn' onClick={()=> setEditTitle(true)}>Edit</button>
                     :
                         <div>
-                            <input 
+                            <input className='title-field'
                                 type="text" 
                                 name="newTitle" 
                                 value={title} 
@@ -75,17 +75,17 @@ const DistinctCategoryPage = () => {
                         
                     }
             </div>
-            <div className='flex flex-row py-10 m-7'>
-                <label className='basis-1/3 font-semibold'> Colour </label>
-                <svg className='basis-1/3' viewbox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="20" r="20" fill={colour}/>
-                </svg>
+            <div className='flex flex-box py-15 justify-center m-7'>
+                <label className='basis-1/3 font-semibold text-lg'>Colour</label>
+                <div className='basis-1/3'>
+                    <div className='circle' style = {{backgroundColor: {colour}}}></div>
+                </div>
                 {!editColour?
                         <button className='btn' onClick={()=> setEditColour(true)}>Edit</button>
                     :
                         <div>
-                            <p>Select colour</p>
-                            <input 
+                            <p className='colour-info'>Select colour</p>
+                            <input className='colour-selector'
                                 type="color" 
                                 name="newColour" 
                                 value={colour} 
