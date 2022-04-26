@@ -4,6 +4,7 @@ import RequestContext from "../context/RequestContext";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
+import SearchBar from "../components/SearchBar";
 
 const AddNewTaskPage = ({ categories, priorities, users }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,11 @@ const AddNewTaskPage = ({ categories, priorities, users }) => {
     const [hasDuration, setHasDuration] = useState(false);
     const [taskDuration, setTaskDuration] = useState(null);
     const [hasCollaborators, setHasCollaborators] = useState(false);
-    const [taskCollaborators, setTaskCollaborators] = useState(null);
+    const [taskCollaborators, setTaskCollaborators] = useState([]);
+    const [collaboratorsToDisplay, setCollaboratorsToDisplay] = useState([]);
+
+    const [searchInput, setSearchInput] = useState("");
+
 
     // const location = useLocation();
     // const categories = location.state.categories;
@@ -40,15 +45,39 @@ const AddNewTaskPage = ({ categories, priorities, users }) => {
         
     }, []);
 
+    useEffect(() => {
+        let collaboratorsToDisplay = users.filter((user) => {
+          return user.firstName.toLowerCase().match(searchInput);
+        });
+        setCollaboratorsToDisplay(collaboratorsToDisplay);
+      }, [searchInput]);
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchInput(e.target.value.toLowerCase());
+      };
+
+    const onClickingACategory = (collaborator,e) => {
+        e.preventDefault();
+        setTaskCollaborators([...taskCollaborators, collaborator]);
+    
+      };
+    
+    const removeCollaborator = (colaboratorID) => {
+    const newCollaborators = taskCollaborators.filter(
+        (category) => category.id !== colaboratorID
+    );
+    setTaskCollaborators(newCollaborators);
+    };
+
     const setCategoryFromDropDown = (choosenOption) => {
-            setTaskCategory(choosenOption);
+        setTaskCategory(choosenOption);
        
-        
     }
 
     const setPriorityFromDropDown = (choosenOption) => {
-            setTaskPriority(choosenOption);
-        
+        setTaskPriority(choosenOption);
+      
     }
 
     const closeMenuFunction = () => {
@@ -156,6 +185,32 @@ const AddNewTaskPage = ({ categories, priorities, users }) => {
                 :
                 <button onClick={()=> setHasDuration(true)}>+ Add Duration</button>
                 }  
+                <>
+                    <label> Categories </label>
+                    <div>
+                    {taskCollaborators.length > 0 &&
+                        Object.values(taskCollaborators).map((collaborator) => (
+                        <div>
+                            <p>{ taskCollaborators.firstName } { taskCollaborators.lastName }</p>
+                            <button key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}>
+                            X
+                            </button>
+                        </div>
+                        ))}
+                    </div>
+                    <input
+                    type="text"
+                    placeholder="Search For Category Here"
+                    onChange={handleChange}
+                    value={searchInput}
+                    />
+                    {searchInput.length > 0 
+                    && 
+                    <SearchBar
+                        onClickingAnOption={ (users, e)=> onClickingACategory(users, e) }
+                        optionsToDisplay={ collaboratorsToDisplay }
+                    />}
+                </>
 
                 <button type="submit">Create Task </button>
             </form>

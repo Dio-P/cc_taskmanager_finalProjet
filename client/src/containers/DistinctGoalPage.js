@@ -253,7 +253,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
             && 
             <SearchBar
               onClickingAnOption={ (category, e)=> onClickingACategory(category, e) }
-              categoriesToDisplay={ categoriesToDisplay }
+              optionsToDisplay={ categoriesToDisplay }
             />}
             <button
               onClick={() => {

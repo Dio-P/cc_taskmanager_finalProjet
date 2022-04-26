@@ -129,7 +129,7 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
                 && 
                 <SearchBar
                     onClickingAnOption={ (category, e)=> onClickingACategory(category, e) }
-                    categoriesToDisplay={ categoriesToDisplay }
+                    optionsToDisplay={ categoriesToDisplay }
                 />}
             </div>
             <button onClick={(e)=> onClickingDone(e)}> Create New Goal </button>
