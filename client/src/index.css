@@ -77,13 +77,11 @@ code {
   width: 250px;
 }
 
-.menu-popup {
-  background-color: #717EC3;
-}
-
 .menu-close {
-  
-  transform: rotate(48deg);
+  transform: rotate(22deg);
+  margin-top: -8px;
+  margin-left: 70px;
+  font-size: 22px;
 }
 
 .menu-title {
