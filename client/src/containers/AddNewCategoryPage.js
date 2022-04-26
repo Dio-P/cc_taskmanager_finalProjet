@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaWrench } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import Menu from "../components/Menu";
 
@@ -38,7 +38,8 @@ const AddNewCategoryPage = () => {
                     priorities={ priorities }
                 />
             }
-            <p className='cat-header'>Create a New Category</p>
+            <p className='cat-header'>Create A Category</p>
+            <FaWrench className='wrench-icon'/>
             <form onSubmit={onSubmit}>
                 <div className='colour-section'>
                     <label className='font-semibold text-2xl'> Title </label>

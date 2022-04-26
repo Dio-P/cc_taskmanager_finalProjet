@@ -37,6 +37,14 @@ code {
   margin-bottom: 30px;
 }
 
+.wrench-icon {
+  color: #fff;
+  font-size: 18px;
+  margin-top: -50px;
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+
 .circle {
   height: 25px;
   width: 25px;
