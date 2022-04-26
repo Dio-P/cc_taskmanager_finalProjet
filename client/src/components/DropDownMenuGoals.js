@@ -14,7 +14,7 @@ const DropDownMenuPriority = ({ options, setValueFromDropDown }) => {
 
     return(
         <select onChange={e=>sendChoosenValueUp(e)}>
-            <option>Choose a Goal</option>
+            <option>Choose Goal</option>
             {options.map(option =>
                 <option key={Math.random()} value={option}>{option}</option>)}
             

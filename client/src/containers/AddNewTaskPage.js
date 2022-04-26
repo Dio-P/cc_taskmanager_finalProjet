@@ -103,14 +103,14 @@ const AddNewTaskPage = () => {
             }
             <p className='cat-header'>Create A Task</p>
             <FaWrench className='wrench-icon'/>
-            <form onSubmit={addNewTask}>
-                <label className='font-semibold text-2xl' htmlFor="taskTitle">Task Title</label>
-                <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
+            <form className='task-form' onSubmit={addNewTask}>
+                <label className='font-semibold text-xl' htmlFor="taskTitle">Task Title</label>
+                <input className='title-field' type="text" name="taskTitle" id="taskTitle" placeholder="enter title" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
                 <br/>
-                <label className='font-semibold text-2xl' htmlFor="taskCategory">Task Category</label>
+                <label className='font-semibold text-xl' htmlFor="taskCategory">Task Category</label>
                 <DropDownMenuCategory options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
                 <br/>
-                <label className='font-semibold text-2xl' htmlFor="taskPriority">Task Priority</label>
+                <label className='font-semibold text-xl' htmlFor="taskPriority">Task Priority</label>
                 <DropDownMenuPriority options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
 
                 {hasDescription?
@@ -136,7 +136,7 @@ const AddNewTaskPage = () => {
                     <input type="radio" name="timedTaskType" id="do_on" value="DO_BY" onChange={e=> setDatedTaskType(e.target.value)}/>
 
                     </div>
-                    <button className='btn' onClick={()=> setHasDate(false)}>- Remove Date</button>
+                    <button className='minus-btn' onClick={()=> setHasDate(false)}><FaMinus className='minus-icon'/>Date</button>
                 </>
                 :
                 <button className='add-btn' onClick={()=> setHasDate(true)}><FaPlus className='add-icon'/>Date</button>
@@ -146,7 +146,7 @@ const AddNewTaskPage = () => {
                 <>
                     <label htmlFor="taskDate">Task Time</label>
                     <input type="time" name="taskDate" id="taskDate" value={taskTime} onChange={e=> setTaskTime(e.target.value)}/>
-                    <button className="btn" onClick={()=> setHasTime(false)}>- Remove Date</button>
+                    <button className="minus-btn" onClick={()=> setHasTime(false)}><FaMinus className='minus-icon'/>Time</button>
                 </>
                 :
                 <button className='add-btn' onClick={()=> setHasTime(true)}><FaPlus className='add-icon'/>Time</button>
@@ -155,8 +155,8 @@ const AddNewTaskPage = () => {
                 {hasDuration?
                 <>
                     <label htmlFor="taskDuration">Task Duration</label>
-                    <input type="text" name="taskDuration" id="taskDuration" placeholder="in minutes" value={taskDuration} onChange={e=> setTaskDuration(e.target.value)}/>
-                    <button onClick={()=> setHasDuration(false)}>- Remove Duration</button>
+                    <input className='title-field' type="text" name="taskDuration" id="taskDuration" placeholder="in minutes" value={taskDuration} onChange={e=> setTaskDuration(e.target.value)}/>
+                    <button className='minus-btn' onClick={()=> setHasDuration(false)}><FaMinus className='minus-icon'/>Duration</button>
                 </>
                 :
                 <button className='add-btn' onClick={()=> setHasDuration(true)}><FaPlus className='add-icon'/>Duration</button>

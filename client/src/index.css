@@ -21,7 +21,11 @@ code {
 }
 
 .create-btn {
-  @apply bg-blue text-white font-semibold rounded shadow-md tracking-wider m-28 p-4;
+  @apply bg-blue text-white font-semibold rounded shadow-md tracking-wider m-16 p-4;
+}
+
+.create-cat {
+  @apply bg-yellow text-black font-semibold rounded shadow-md tracking-wider m-20 p-4;
 }
 
 .add-btn{
@@ -157,4 +161,8 @@ code {
   margin-right: 30px;
   background-color: #F15025;
   color: #fff;
+}
+
+.task-form {
+  margin-left: 42px;
 }

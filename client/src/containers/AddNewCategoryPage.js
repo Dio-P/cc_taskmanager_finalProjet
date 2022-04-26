@@ -68,7 +68,7 @@ const AddNewCategoryPage = () => {
                          />
                 </div>
                 <div className='colour-section'>
-                    <button className='btn' type="submit"> Create </button>
+                    <button className='create-cat' type="submit"> Create </button>
                 </div>
             </form>
         </div>
