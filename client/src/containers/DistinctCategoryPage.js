@@ -75,7 +75,7 @@ const DistinctCategoryPage = () => {
                         
                     }
             </div>
-            <div className='flex flex-box py-10 justify-center m-7'>
+            <div className='flex flex-box py-15 justify-center m-7'>
                 <label className='basis-1/3 font-semibold text-lg'>Colour</label>
                 <div className='basis-1/3'>
                     <div className='circle' style = {{backgroundColor: {colour}}}></div>
@@ -84,8 +84,8 @@ const DistinctCategoryPage = () => {
                         <button className='btn' onClick={()=> setEditColour(true)}>Edit</button>
                     :
                         <div>
-                            <p className='text-lg'>Select colour</p>
-                            <input 
+                            <p className='colour-info'>Select colour</p>
+                            <input className='colour-selector'
                                 type="color" 
                                 name="newColour" 
                                 value={colour} 
