@@ -4,25 +4,51 @@ import RequestContext from "../context/RequestContext";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
+import SearchBar from "../components/SearchBar";
 
 const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchInput, setSearchInput] = useState("");
+
     const [goalTitle, setGoalTitle] = useState(null);
     const [goalSetDate, setGoalSetDate] = useState(null);
     const [goalType, setGoalType] = useState(null);
     const [goalTarget, setGoalTarget] = useState(null);
     const [goalStartDate, setGoalStartDate] = useState(null);
     const [goalEndDate, setGoalEndDate] = useState(null);
-    const [goalCategories, setGoalCategories] = useState(null);
+    const [goalCategories, setGoalCategories] = useState([]);
+    const [editGoalCategories, setEditGoalCategories] = useState(false);
+    const [categoriesToDisplay, setCategoriesToDisplay] = useState([]);
     const [goalActive, setGoalActive] = useState(true);
 
     const {get, post} = useContext(RequestContext);
 
-    // const location = useLocation();
-    // const task = location.state.task;
-    // const categories = location.state.categories;
-    // const priorities = location.state.priorities;
-    // const goals = location.state.goals;
+
+    useEffect(() => {
+        let categoriesToDisplay = categories.filter((category) => {
+          return category.title.toLowerCase().match(searchInput);
+        });
+        setCategoriesToDisplay(categoriesToDisplay);
+      }, [searchInput]);
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchInput(e.target.value.toLowerCase());
+      };
+
+    const onClickingACategory = (category,e) => {
+        e.preventDefault();
+        setGoalCategories([...goalCategories, category]);
+    
+      };
+    
+    const removeGoalCategory = (categoryID) => {
+    const updatedCategories = goalCategories.filter(
+        (category) => category.id !== categoryID
+    );
+    setGoalCategories(updatedCategories);
+    };
+
 
     const closeMenuFunction = () => {
         setIsMenuOpen(false);
@@ -34,7 +60,9 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
             goalTitle, 
             goalType, 
             goalTarget, 
-            goalStartDate};
+            goalStartDate,
+            goalCategories
+        };
         console.log("updatedGoal", updatedGoal);/////////////
         // post(, updatedGoal);
     }
@@ -78,12 +106,32 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
                 <h3>{goalStartDate}</h3>
                 <input type="date" name="goalStartDate" id="goalStartDate" value={goalStartDate} onChange={e=> setGoalStartDate(e.target.value)} required/>
             </div>
-{/*             how will the categories be looked for?
             <div>
-                <label> Goal Categories </label>
-                <h3>{goalCategories}</h3>
-                <input type="text" name="goalCategories" id="goalCategories" value={goalSetDate} onChange={e=> setGoalCategories(e.target.value)} required/>
-            </div> */}
+                <label> Categories </label>
+                <div>
+                {goalCategories.length > 0 &&
+                    Object.values(goalCategories).map((goalCategory) => (
+                    <div>
+                        <p>{goalCategory.title} </p>
+                        <button key={goalCategory.id} onClick={() => removeGoalCategory(goalCategory.id)}>
+                        X
+                        </button>
+                    </div>
+                    ))}
+                </div>
+                <input
+                type="text"
+                placeholder="Search For Category Here"
+                onChange={handleChange}
+                value={searchInput}
+                />
+                {searchInput.length > 0 
+                && 
+                <SearchBar
+                    onClickingAnOption={ (category, e)=> onClickingACategory(category, e) }
+                    categoriesToDisplay={ categoriesToDisplay }
+                />}
+            </div>
             <button onClick={(e)=> onClickingDone(e)}> Create New Goal </button>
         </form>
     )

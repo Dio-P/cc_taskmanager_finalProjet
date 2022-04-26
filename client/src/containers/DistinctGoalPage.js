@@ -73,17 +73,15 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
   };
 
   const onClickingACategory = (category) => {
-    // console.log("A category was clicked");
-    // console.log("category inside onClickingACateogry", category);
-    // console.log("goalCategories inside onClickingACateogry", goalCategories);
     setGoalCategories([...goalCategories, category]);
+
   };
 
-  const removeGoalCategory = (categoryID) => {
+  const removeGoalCategory = (categoryID, e) => {
+    e.preventDefault();
     const updatedCategories = goalCategories.filter(
       (category) => category.id !== categoryID
     );
-    // return indexToBeRemoved;
     setGoalCategories(updatedCategories);
   };
 
@@ -232,16 +230,17 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
           <button onClick={() => setEditGoalCategories(true)}>Edit</button>
         ) : (
           <>
-            {/* <input type="text" name="goalCategories" id="goalCategories" value={searchInput} onChange={e=> setGoalCategories(e.target.value)} required/> */}
             <input
               type="text"
               placeholder="Search For Category Here"
               onChange={handleChange}
               value={searchInput}
             />
-            {searchInput.length > 0 && <SearchBar
-            onClickingAnOption={ (category)=> onClickingACategory(category) }
-            categoriesToDisplay={ categoriesToDisplay }
+            {searchInput.length > 0 
+            && 
+            <SearchBar
+              onClickingAnOption={ (category)=> onClickingACategory(category) }
+              categoriesToDisplay={ categoriesToDisplay }
             />}
             <button
               onClick={() => {
