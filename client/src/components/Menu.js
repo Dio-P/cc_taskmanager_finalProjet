@@ -24,7 +24,7 @@ const Menu = ({ closeMenuFunction, categories, priorities, goals, goalTypesList 
     return(
         <div>
             <ul className="MENU showMenuNav space-x-8 lg:flex">
-            <button onClick={()=> closeMenuFunction()}><FaPlus className='menu-close'/></button>
+            <button className='menu-close' onClick={()=> closeMenuFunction()}><FaPlus className='menu-close'/></button>
             <p className='menu-title -m-4'>Menu</p>
             <li>
                 <button className="addNewTaskButton text-lg -m-4" onClick={()=> onClick("/profile")}> Profile </button>
