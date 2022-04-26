@@ -60,7 +60,7 @@ const DistinctCategoryPage = () => {
                         <button className='btn' onClick={()=> setEditTitle(true)}>Edit</button>
                     :
                         <div>
-                            <input className=''
+                            <input className='title-field'
                                 type="text" 
                                 name="newTitle" 
                                 value={title} 
