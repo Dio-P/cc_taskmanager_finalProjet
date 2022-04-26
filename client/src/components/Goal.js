@@ -79,6 +79,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
                     &&
                     completedTasks.completedTimeStamp<=periodEnd
                     ){
+                        console.log("the task is about to be pushed");
                         periodTaskHelper.push(task);
                     }
 
@@ -121,20 +122,21 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     // because the problem is that it needs to be calculated in two places here to be desplayed and in the distinc to be changed.
 
     const findGoalEndDate = (goal) => {
-        console.log("within find goals end date");//////////
+        // console.log("within find goals end date");//////////
         let daysAfter = findDaysAfter(goal);
         let goalStartDate = goal.startDate;
+        
         console.log("goalStartDate", goalStartDate);/////////
         let endDate = new Date(goalStartDate.split("-").toString());
         console.log("endDate", endDate);//////////
         if(goalStartDate && daysAfter){
             if(daysAfter==="MONTHLY"){
                 endDate.setMonth(endDate.getMonth() + 1);
-                setGoalEndDate(endDate.toLocaleDateString());
+                setGoalEndDate(endDate.toLocaleDateString().split("/").reverse().join("-"));
 
             }else{
                 endDate.setDate(endDate.getDate() + daysAfter);
-                setGoalEndDate(endDate.toLocaleDateString());
+                setGoalEndDate(endDate.toLocaleDateString().split("/").reverse().join("-"));
 
             }
         }
@@ -143,7 +145,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     const calculatingTargetOutcome = () => {
         if(goalEndDate){
             let dateNow = Date.parse(new Date());
-            // console.log("endDate", goalEndDate);//////////
+            console.log("endDate", goalEndDate);//////////
             let dateEnd = Date.parse(new Date(goalEndDate.split("-")));
             console.log("dateEnd", dateEnd);//////////////
             if(dateNow <= dateEnd){

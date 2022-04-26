@@ -50,6 +50,15 @@ function App() {
 
   // const [fetchedTasks, setFetchedTasks] = useState([]);
 
+  //   useEffect(() => {
+
+  //   let test = new Date("2022-05-03".split("-").toString())
+  //   console.log("test!!!!!!!!!!!!!!!", test);
+  //   console.log("test.toLocaleDateString!!!!!!!!!!!!!!!", test.toLocaleDateString());
+
+      
+  // }, []);
+
     useEffect(() => {
       if(!isLoaded){
         return
