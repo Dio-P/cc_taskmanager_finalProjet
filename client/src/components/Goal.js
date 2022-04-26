@@ -10,8 +10,8 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     
     const [loading, setLoading] = useState(true);
 
-    const [allCompletedTasksGivenPeriod, setAllCompletedTasksGivenPeriod] = useState(null);
-    const [tasksOnTarget, setTasksOnTarget] = useState(null);
+    const [allCompletedTasksGivenPeriod, setAllCompletedTasksGivenPeriod] = useState([]);
+    const [tasksOnTarget, setTasksOnTarget] = useState([]);
 
     const navigate = useNavigate();
 
@@ -153,7 +153,9 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
                 return "pending"
 
             }else{
-                if(tasksOnTarget.length() >= translatingTheGoalTargetIntoTasksNumber()){
+                console.log("tasksOnTarget", tasksOnTarget);
+                console.log("translatingTheGoalTargetIntoTasksNumber()", translatingTheGoalTargetIntoTasksNumber());
+                if(tasksOnTarget.length >= translatingTheGoalTargetIntoTasksNumber()){
                     console.log("succeeded");//////////
                     return "succeeded"
 
