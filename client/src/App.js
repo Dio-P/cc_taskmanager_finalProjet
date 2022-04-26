@@ -11,6 +11,8 @@ import configData from "./config.json";
 import { createRequestHelper } from './helpers/requestHelper';
 import ProfilePage from './containers/ProfilePage';
 import GoalsPage from './containers/GoalsPage';
+import DistinctGoalPage from './containers/DistinctGoalPage';
+import AddNewGoalPage from './containers/AddNewGoalPage';
 import CategoriesPage from './containers/CategoriesPage';
 import DistinctCategoryPage from './containers/DistinctCategoryPage';
 import AddNewCategoryPage from './containers/AddNewCategoryPage';
@@ -39,6 +41,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [priorities, setPriorities] = useState([]);
   const [goals, setGoals] = useState([]);
+  const [goalTypesList, setGoalTypesList] = useState([]);
   
   const [isLoaded, setIsLoaded] = useState(false);
   const [get, setGet] = useState();
@@ -141,20 +144,23 @@ function App() {
     }, [allTasks]);
 
     useEffect(() => {
-      // get the categories from api
       const dummyCategoriesList = ["studieng", "playing", "making something beautiful", "get bored", "play tetris"]
-      console.log("categories", categories);
-      // setCategories(dummyCategoriesList)
+      console.log("categories", categories);//////////
       
     }, [allTasks, categories]);
 
     useEffect(() => {
       // get the categories from api
-      const dummyPrioritiesList = ["LOW", "MEDIUM", "HIGH"]
-      console.log("Priorities must have been gotten");
-      setPriorities(dummyPrioritiesList)
+      const prioritiesList = [ "LOW", "MEDIUM", "HIGH" ];
+      setPriorities(prioritiesList);
       
     }, [allTasks]);
+
+    useEffect(() => {
+      const goalTypesList = [ "DAILY", "WEEKLY", "MONTHLY" ];
+      setGoalTypesList(goalTypesList);
+      
+    }, [goals]);
 
     if (error) {
       return <div>Oops... {error.message}</div>;
@@ -180,10 +186,29 @@ function App() {
           priorities={ priorities }
           user = { user }
           goals = { goals }
+          goalTypesList ={ goalTypesList }
         />}/>
         <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
         <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
-        <Route path="/goals" element={ <GoalsPage/> }/>
+        <Route path="/goals" element={ <GoalsPage
+          categories={ categories }
+          priorities={ priorities }
+          goals = { goals }
+          goalTypesList ={ goalTypesList }
+          completedTasks={ completedTasks } 
+        /> }/>
+        <Route path="/goal/:goal_title" element={ <DistinctGoalPage
+          categories={ categories }
+          priorities={ priorities }
+          goals = { goals }
+          goalTypesList ={ goalTypesList }
+        /> }/>
+        <Route path="/goal/createNewGoal" element={ <AddNewGoalPage
+          categories={ categories }
+          priorities={ priorities }
+          goals = { goals }
+          goalTypesList ={ goalTypesList }
+        /> }/>
         <Route path="/categories" element={ <CategoriesPage/> }/>
         <Route path="/category/:category_title" element={ <DistinctCategoryPage/> }/>
         <Route path="/category/createNewCategory" element={ <AddNewCategoryPage/> }/>

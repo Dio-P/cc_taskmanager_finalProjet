@@ -1,14 +1,15 @@
 import { useState, useEffect, useContext  } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
+import Menu from "../components/Menu";
 
-const DistinctGoalPage = () => {
+const DistinctGoalPage = (categories, priorities, goals, goalTypesList) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [goalTitle, setGoalTitle] = useState(null);
     const [editGoalTitle, setEditGoalTitle] = useState(false);
-    // const [goalSetDate, setGoalSetDate] = useState(null);
-    // const [editGoalSetDate, setEditGoalSetDate] = useState(false);
     const [goalType, setGoalType] = useState(null);
     const [editGoalType, setEditGoalType] = useState(false);
+    const [goalTypes, setGoalTypes] = useState(null);
     const [goalTarget, setGoalTarget] = useState(null);
     const [editGoalTarget, setEditGoalTarget] = useState(false);
     const [goalStartDate, setGoalStartDate] = useState(null);
@@ -23,28 +24,39 @@ const DistinctGoalPage = () => {
     const {get, post} = useContext(RequestContext);
 
     const location = useLocation();
-    const goal = location.state.task;
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
+    const goal = location.state.goal;
+    // const categories = location.state.categories;
+    // const goalTypesList =location.state.goalTypesList;
     const endDate = location.state.endDate;
 
+    useEffect(() => {///////
+        console.log("goalTypesList Start", goalTypesList);//////
+        
+    }, []);////////
+
     useEffect(() => {
-        console.log("goal from inside distinct", goal);
         setGoalTitle(goal.title);
         setGoalType(goal.type);
         setGoalTarget(goal.target);
         setGoalStartDate(goal.startDate);
-        setGoalEndDate(goal.endDate);
+        setGoalEndDate(endDate);
         setGoalCategories(goal.categories);
         setGoalActive(goal.active);
 
     }, [goal]);
 
-    // this needs testing
+    useEffect(() => {
+        console.log("goalTypesList", goalTypesList);//////
+        setGoalTypes(goalTypesList);
+        
+    }, [goalTypesList]);
 
+    const closeMenuFunction = () => {
+        setIsMenuOpen(false);
+    }
 
     const onClickingDone = () => {
-        let updatedGoal = {}
+        let updatedGoal = {goalTitle, goalType, goalTarget, goalStartDate}
         console.log("updatedGoal", updatedGoal);
         // post(, updatedGoal);
         
@@ -52,21 +64,17 @@ const DistinctGoalPage = () => {
 
     return(
         <div>
-            {/* <div>
-                <label> Goal Set Date </label>
-                <h3>{goalSetDate}</h3>
-                {!editGoalSetDate?
-                    <button onClick={()=>setEditGoalSetDate(true)}>Edit</button>
-                :
-                    <>
-                        <input type="text" name="goalSetDate" id="goalSetDate" value={goalSetDate} onChange={e=> setGoalSetDate(e.target.value)} required/>
-                        <button onClick={()=>{
-                            setEditGoalSetDate(false)
-                            onClickingDone()
-                            }}>Done</button>
-                    </>
-                }  
-            </div> */}
+             {!isMenuOpen?
+                <>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                </>
+            :
+                <Menu
+                    closeMenuFunction={ ()=>closeMenuFunction() }
+                    categories={ categories }
+                    priorities={ priorities }
+                />
+            }
             <div>
                 <label> Goal Title </label>
                 <h3>{goalTitle}</h3>
@@ -74,7 +82,14 @@ const DistinctGoalPage = () => {
                     <button onClick={()=>setEditGoalTitle(true)}>Edit</button>
                 :
                     <>
-                        <input type="text" name="goalTitle" id="goalTitle" value={goalTitle} onChange={e=> setGoalTitle(e.target.value)} required/>
+                        <input 
+                            type="text" 
+                            name="goalTitle" 
+                            id="goalTitle" 
+                            value={goalTitle} 
+                            onChange={e=> setGoalTitle(e.target.value)} 
+                            required
+                        />
                         <button onClick={()=>{
                             setEditGoalTitle(false)
                             onClickingDone()
@@ -89,7 +104,11 @@ const DistinctGoalPage = () => {
                     <button onClick={()=>setEditGoalType(true)}>Edit</button>
                 :
                     <>
-                        <input type="text" name="goalType" id="goalType" value={goalType} onChange={e=> setGoalType(e.target.value)} required/>
+                        <select name="goalType" id="goalType" onChange={e=> setGoalType(e.target.value)}>
+                            {goalTypes.map(type => (
+                                <option value={ type }>{ type }</option>
+                            ))}
+                        </select>
                         <button onClick={()=>{
                             setEditGoalType(false)
                             onClickingDone()
@@ -104,7 +123,14 @@ const DistinctGoalPage = () => {
                     <button onClick={()=>setEditGoalTarget(true)}>Edit</button>
                 :
                     <>
-                        <input type="text" name="goalTarget" id="goalTarget" value={goalTarget} onChange={e=> setGoalTarget(e.target.value)} required/>
+                        <input 
+                            type="text" 
+                            name="goalTarget" 
+                            id="goalTarget" 
+                            value={goalTarget} 
+                            onChange={e=> setGoalTarget(e.target.value)} 
+                            required
+                        />
                         <button onClick={()=>{
                             setEditGoalTarget(false)
                             onClickingDone()
@@ -126,6 +152,10 @@ const DistinctGoalPage = () => {
                             }}>Done</button>
                     </>
                 }  
+            </div>
+            <div>
+                <label> Goal End Date </label>
+                <h3>{goalEndDate}</h3>
             </div>
 {/*             how will the categories be looked for?
             <div>

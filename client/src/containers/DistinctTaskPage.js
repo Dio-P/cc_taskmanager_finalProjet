@@ -9,8 +9,6 @@ const DistinctTaskPage = () => {
     const task = location.state.task;
     const categories = location.state.categories;
     const priorities = location.state.priorities;
-    console.log("location", location);/////////
-    console.log("task", task);////////////
 
     const [loading, setLoading] = useState(true);
 
@@ -33,6 +31,7 @@ const DistinctTaskPage = () => {
     const [taskTime, setTaskTime] = useState(task.time);
     const [editdatedTaskType, setEditdatedTaskType] = useState(false);
     const [datedTaskType, setDatedTaskType] = useState(task.type);
+    const [completedTimeStamp, setCompletedTimeStamp] = useState(null);
     
     
 
@@ -46,8 +45,12 @@ const DistinctTaskPage = () => {
         setLoading(false)
         
     }, [taskTitle, taskCompleted, taskCategory, taskPriority]);
-    
 
+    useEffect(() => {
+        onClickingDone()
+        
+    }, [completedTimeStamp]);
+    
     const setCategoryFromDropDown = (choosenOption) => {
         setTaskCategory(choosenOption);
    
@@ -59,13 +62,24 @@ const DistinctTaskPage = () => {
         
     }
 
+    const onClickingComplete = () => {
+        console.log("inside Complete");
+        setTaskCompleted(!taskCompleted)
+        if(!completedTimeStamp){
+            let timestamp = Date.parse(new Date());
+            setCompletedTimeStamp(timestamp);
+        }else{
+            setCompletedTimeStamp(null);
+        }
+    }
+
     const onClickingDone = () => {
         const updatedTask= { }
         updatedTask["title"] = taskTitle;
         updatedTask["category"] = taskCategory;
         updatedTask["priority"] = taskPriority;
         updatedTask["completed"]=taskCompleted;
-        updatedTask["completedTimeStamp"]=Date.now();
+        updatedTask["completedTimeStamp"]=completedTimeStamp;
 
         if(taskDescription){updatedTask["description"]=taskDescription;}
         if(taskDate){
@@ -78,7 +92,7 @@ const DistinctTaskPage = () => {
         if(taskTime){updatedTask["time"]=taskTime;}
         if(taskDuration){updatedTask["duration"]=taskDuration;}
         
-        console.log("updatedTask", updatedTask);
+        console.log("updatedTask", updatedTask);/////////////
         post("tasks", updatedTask)
         // redirect to home page            
     }
@@ -111,7 +125,7 @@ const DistinctTaskPage = () => {
                 
                 <div>
                     <label>Completed</label>
-                    <input type="checkbox" onClick={()=>setTaskCompleted(!taskCompleted)} checked={taskCompleted}/>
+                    <input type="checkbox" onClick={()=>{onClickingComplete()}} checked={taskCompleted}/>
                 </div>
             
 

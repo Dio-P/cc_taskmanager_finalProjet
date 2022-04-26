@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Menu = ({ closeMenuFunction, categories, priorities, goals }) => {
+const Menu = ({ closeMenuFunction, categories, priorities, goals, goalTypesList }) => {
     const navigate = useNavigate();
 
     const onClick = (url) => {
@@ -9,7 +9,8 @@ const Menu = ({ closeMenuFunction, categories, priorities, goals }) => {
             state:{
                 categories: categories,
                 priorities: priorities,
-                goals: goals
+                goals: goals, 
+                // goalTypesList: goalTypesList
             }
         });
         
@@ -40,6 +41,9 @@ const Menu = ({ closeMenuFunction, categories, priorities, goals }) => {
             </li>
             <li>
                 <button className="allGoalsButton" onClick={()=> onClick("/goals")}> Goals </button>
+            </li>
+            <li>
+                <button className="allGoalsButton" onClick={()=> onClick("/goal/createNewGoal")}> Add New Goal </button>
             </li>
             <li>
                 <button onClick={() => logout({ returnTo: window.location.origin })}>
