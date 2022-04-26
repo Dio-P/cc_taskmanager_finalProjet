@@ -4,7 +4,7 @@ const Category = ({ category, categories, priorities }) => {
     const navigate = useNavigate();
 
     const goToDistinctCategoryPage = () => {
-        navigate(`/category/:${category.title}`, {
+        navigate(`/category/${category.id}`, {
             state:{
                 category: category,
                 categories: categories,
