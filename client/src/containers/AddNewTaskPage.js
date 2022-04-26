@@ -4,6 +4,7 @@ import RequestContext from "../context/RequestContext";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
+import { FaBars, FaWrench } from "react-icons/fa";
 
 const AddNewTaskPage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -91,7 +92,7 @@ const AddNewTaskPage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -100,6 +101,8 @@ const AddNewTaskPage = () => {
                     priorities={ priorities }
                 />
             }
+            <p className='cat-header'>Create A Task</p>
+            <FaWrench className='wrench-icon'/>
             <form onSubmit={addNewTask}>
                 <label htmlFor="taskTitle">Task Title</label>
                 <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
