@@ -29,6 +29,14 @@ code {
   margin-top: 20px;
 }
 
+.user-icon {
+  color: #fff;
+  font-size: 18px;
+  margin-top: -50px;
+  margin-left: 90px;
+  margin-bottom: 30px;
+}
+
 .circle {
   height: 25px;
   width: 25px;

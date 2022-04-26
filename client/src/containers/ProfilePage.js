@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaUser } from 'react-icons/fa';
 import { useLocation } from "react-router-dom";
 import Menu from '../components/Menu';
 import RequestContext from '../context/RequestContext';
@@ -53,7 +53,8 @@ const ProfilePage = () => {
                     priorities={ priorities }
                 />
             }
-            <p className='cat-header'>User Profile</p>
+            <p className='cat-header'>My Profile</p>
+            <FaUser className='user-icon'/>
             <div className='colour-section'>
                 <label className='font-semibold text-2xl' htmlFor="firstName">First Name</label>
                 {!editFirstName?
