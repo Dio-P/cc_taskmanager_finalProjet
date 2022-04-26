@@ -51,8 +51,8 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
 
     const calculateAllCompletedTasksGivenPeriod = () => {
         if(goalStartDate&&goalEndDate){
-            let periodStart= Date.parse(new Date(goalStartDate.split("/").reverse()));
-            let periodEnd= Date.parse(new Date(goalEndDate.split("/").reverse()));
+            let periodStart= Date.parse(new Date(goalStartDate.split("-")));
+            let periodEnd= Date.parse(new Date(goalEndDate.split("-")));
             let periodTaskHelper = []
             for(let task of completedTasks){
                 if(
@@ -69,8 +69,8 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
 
     const calculateAllCompletedTaskOfCategoryGivenPeriod= () => {
         if(goalStartDate&&goalEndDate){
-            let periodStart= Date.parse(new Date(goalStartDate.split("/").reverse()));
-            let periodEnd= Date.parse(new Date(goalEndDate.split("/").reverse()));
+            let periodStart= Date.parse(new Date(goalStartDate.split("-")));
+            let periodEnd= Date.parse(new Date(goalEndDate.split("-")));
             let periodTaskHelper = []
             for(let task of completedTasks){
                 if(goal.categories.includes(task.category)){
@@ -125,7 +125,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         let daysAfter = findDaysAfter(goal);
         let goalStartDate = goal.startDate;
         console.log("goalStartDate", goalStartDate);/////////
-        let endDate = new Date(goalStartDate.split("/").reverse().toString());
+        let endDate = new Date(goalStartDate.split("-").toString());
         console.log("endDate", endDate);//////////
         if(goalStartDate && daysAfter){
             if(daysAfter==="MONTHLY"){
@@ -144,7 +144,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         if(goalEndDate){
             let dateNow = Date.parse(new Date());
             // console.log("endDate", goalEndDate);//////////
-            let dateEnd = Date.parse(new Date(goalEndDate.split("/").reverse()));
+            let dateEnd = Date.parse(new Date(goalEndDate.split("-")));
             console.log("dateEnd", dateEnd);//////////////
             if(dateNow <= dateEnd){
                 console.log("penidng");////////////

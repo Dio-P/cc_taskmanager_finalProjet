@@ -71,23 +71,23 @@ public class DataLoader implements ApplicationRunner {
         goal4.addCategory(category4);
         goalRepository.save(goal4);
 
-        Goal goal2 = new Goal(true, "My goal",GoalType.WEEKLY, "28-05-22", 10, user2);
+        Goal goal2 = new Goal(true, "My goal",GoalType.WEEKLY, "28/05/22", 10, user2);
         goalRepository.save(goal2);
         goal2.addCategory(category2);
         goalRepository.save(goal2);
 
-        Goal goal5 = new Goal(true, "My other goal",GoalType.DAILY, "23-04-22", 80, user2);
+        Goal goal5 = new Goal(true, "My other goal",GoalType.DAILY, "23/04/22", 80, user2);
         goalRepository.save(goal5);
         goal5.addCategory(category2);
         goal5.addCategory(category5);
         goalRepository.save(goal5);
 
-        Goal goal3 = new Goal(true, "My goal",GoalType.DAILY, "10-06-22", 30, user3);
+        Goal goal3 = new Goal(true, "My goal",GoalType.DAILY, "10/06/22", 30, user3);
         goalRepository.save(goal3);
         goal3.addCategory(category3);
         goalRepository.save(goal3);
 
-        Goal goal6 = new Goal(true, "My other goal",GoalType.WEEKLY, "20-04-22", 30, user3);
+        Goal goal6 = new Goal(true, "My other goal",GoalType.WEEKLY, "20/04/2022", 30, user3);
         goalRepository.save(goal6);
         goal6.addCategory(category3);
         goal6.addCategory(category6);
@@ -96,7 +96,7 @@ public class DataLoader implements ApplicationRunner {
         Task task1 = new Task(
                 "setting the authorisation up",
                 "finding a way to connect the users with the database",
-                "26.05.2022",
+                "26/05/2022",
                 "15:14",
                 70,
                 TaskType.DO_ON,
