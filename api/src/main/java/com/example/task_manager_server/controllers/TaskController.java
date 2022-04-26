@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins="*", methods={RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/auth0")
 public class TaskController {
 
@@ -70,11 +70,23 @@ public class TaskController {
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task){
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         Optional<User> user = userRepository.findByAuthId(userId);
-        if (user.isPresent()){
-            task.setUser(user.get());
-            task.setId(id);
-            taskRepository.save(task);
-            return new ResponseEntity<>(task, HttpStatus.CREATED);
+        Optional<Task> existingTask = taskRepository.findById(id);
+        if (user.isPresent() && existingTask.isPresent() && user.get().compareUser(existingTask.get().getUser())){
+            Task updatedTask = existingTask.get();
+            updatedTask.setTitle(task.getTitle());
+            updatedTask.setDescription(task.getDescription());
+            updatedTask.setDate(task.getDate());
+            updatedTask.setTime(task.getTime());
+            updatedTask.setDuration(task.getDuration());
+            updatedTask.setType(task.getType());
+            updatedTask.setCategory(task.getCategory());
+            updatedTask.setPriority(task.getPriority());
+            updatedTask.setCompleted(task.isCompleted());
+            updatedTask.setCompletedTimeStamp(task.getCompletedTimeStamp());
+            updatedTask.setCollaborators(task.getCollaborators());
+
+            taskRepository.save(updatedTask);
+            return new ResponseEntity<>(updatedTask, HttpStatus.CREATED);
         }
         return new ResponseEntity<>(task, HttpStatus.UNAUTHORIZED);
     }

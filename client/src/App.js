@@ -46,6 +46,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [get, setGet] = useState();
   const [post, setPost] = useState();
+  const [put, setPut] = useState();
 
   // const [fetchedTasks, setFetchedTasks] = useState([]);
 
@@ -57,6 +58,7 @@ function App() {
       console.log(accessToken)
       setGet(()=> requestHelper.get);
       setPost(()=> requestHelper.post);
+      setPut(()=> requestHelper.put);
 
     }, [accessToken]);
 
@@ -87,12 +89,12 @@ function App() {
             setAllTasks(resJson);
           })
           .catch((e) => console.log(e));
-    }
+        }
         getTasks();
         postUser();
         getCategories();
         getGoals()
-    }, [get, post]);
+    }, [get, post, put]);
 
     const postUser = (payload) => {
       fetch('http://localhost:8080/auth0/users', {
@@ -177,7 +179,7 @@ function App() {
     
 
   return (
-    <RequestContext.Provider value={{get, post}}>
+    <RequestContext.Provider value={{get, post, put}}>
       <Routes>
         <Route path="/" element={<WholeMainPageContainer 
           uncompletedTasks={ uncompletedTasks } 

@@ -127,4 +127,8 @@ public class User {
         );
         return userDTO;
     }
+
+    public Boolean compareUser(User user){
+        return authId.equals(user.getAuthId());
+    }
 }

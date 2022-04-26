@@ -39,27 +39,24 @@ const DistinctTaskPage = () => {
     const [taskDuration, setTaskDuration] = useState(task.duration);
     const [editCollaborators, setEditCollaborators] = useState(false);
     const [taskCollaborators, setTaskCollaborators] = useState(null);
-    const {get, post} = useContext(RequestContext);
+    const {get, post, put} = useContext(RequestContext);
     
     useEffect(() => {
         setLoading(false)
         
     }, [taskTitle, taskCompleted, taskCategory, taskPriority]);
 
-    useEffect(() => {
-        onClickingDone()
+    // useEffect(() => {
+    //     onClickingDone()
         
-    }, [completedTimeStamp]);
+    // }, [completedTimeStamp]);
     
     const setCategoryFromDropDown = (choosenOption) => {
         setTaskCategory(choosenOption);
-   
-    
     }
 
     const setPriorityFromDropDown = (choosenOption) => {
             setTaskPriority(choosenOption);
-        
     }
 
     const onClickingComplete = () => {
@@ -93,7 +90,10 @@ const DistinctTaskPage = () => {
         if(taskDuration){updatedTask["duration"]=taskDuration;}
         
         console.log("updatedTask", updatedTask);/////////////
-        post("tasks", updatedTask)
+        
+        put(`tasks/${task.id}`, updatedTask)
+    
+        
         // redirect to home page            
     }
 

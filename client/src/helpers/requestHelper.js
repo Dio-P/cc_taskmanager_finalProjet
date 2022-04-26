@@ -31,7 +31,7 @@ export const createRequestHelper = (accessToken) => {
                 headers: new Headers({
                     Authorization: "Bearer " + accessToken,
                     "Content-Type": "application/json",
-                }),
+                })
             })
             return await response.json();
         },
