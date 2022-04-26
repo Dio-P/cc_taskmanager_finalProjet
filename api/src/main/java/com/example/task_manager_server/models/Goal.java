@@ -52,6 +52,7 @@ public class Goal {
 
     public Goal(boolean active, String title, GoalType type, String startDate, int target, User user) {
         this.type = type;
+        this.title = title;
         this.startDate = startDate;
         this.target = target;
         this.user = user;
