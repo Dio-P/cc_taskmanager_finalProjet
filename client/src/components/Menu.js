@@ -25,12 +25,12 @@ const Menu = ({ closeMenuFunction, categories, priorities, goals, goalTypesList 
         <div>
             <ul className="MENU showMenuNav space-x-8 lg:flex">
             <button onClick={()=> closeMenuFunction()}><FaPlus className='menu-close'/></button>
-            <p className='menu-title'>Menu</p>
+            <p className='menu-title -m-4'>Menu</p>
             <li>
                 <button className="addNewTaskButton text-lg -m-4" onClick={()=> onClick("/profile")}> Profile </button>
             </li>
             <li>
-                <a href="/">View Tasks</a>
+            <button className="addNewTaskButton text-lg -m-4" onClick={()=> onClick("/tasks")}> View Tasks </button>
             </li>
             <li>
                 <button className="addNewTaskButton text-lg -m-4" onClick={()=> onClick("/task/createNewTask")}> Add New Tasks </button>
