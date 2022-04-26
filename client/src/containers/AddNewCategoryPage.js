@@ -38,13 +38,14 @@ const AddNewCategoryPage = () => {
                     priorities={ priorities }
                 />
             }
+            <p className='cat-header'>Create a New Category</p>
             <form onSubmit={onSubmit}>
                 <div className='colour-section'>
                     <label className='font-semibold text-2xl'> Title </label>
                     <h1>{ title }</h1>
                     <div>
-                    <p className='title-p text-xl'>Enter a title</p>
-                        <input className='category-input'
+                         <p className='title-p text-xl'>Enter a title</p>
+                         <input className='category-input'
                             type="text" 
                             name="newTitle" 
                             value={title} 
@@ -56,16 +57,14 @@ const AddNewCategoryPage = () => {
                 <div className='colour-section'>
                     <label className='font-semibold text-2xl'> Colour </label>
                     <div className='circle' style = {{backgroundColor: colour}}></div>
-                    <div>
-                        <p className='title-p'>Select a colour</p>
-                        <input className='colour-selector'
+                        <p className='title-p text-xl'>Select a colour</p>
+                         <input className='colour-selector'
                             type="color" 
                             name="newColour" 
                             value={colour} 
                             onChange={(e)=> setColour(e.target.value)}
                             required
-                            />
-                    </div>
+                         />
                 </div>
                 <div className='colour-section'>
                     <button className='btn' type="submit"> Create </button>
