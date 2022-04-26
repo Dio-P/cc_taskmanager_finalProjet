@@ -54,28 +54,28 @@ const ProfilePage = () => {
                 />
             }
             <p className='cat-header'>User Profile</p>
-            <div>
+            <div className='colour-section'>
                 <label className='font-semibold text-2xl' htmlFor="firstName">First Name</label>
                 {!editFirstName?
-                    <button onClick={()=> setEditFirstName(true)}>Edit</button>
+                    <button className='btn' onClick={()=> setEditFirstName(true)}>Edit</button>
                 :
                 <>
-                    <p className='title-p text-xl'>{ !firstName? "Choose a name" : "Choose a new name" } </p>
+                    <p className='title-p text-xl'>{ !firstName? "Enter a name" : "Enter a new name" } </p>
                     <input className='category-input' type="text" id="firstName" name="firstName" onChange={e => setFirstName(e.target.value)} value={firstName}/>
-                    <button onClick={() => {
+                    <button className='btn' onClick={() => {
                             sendInfoDb()
                             setEditFirstName(false)
                         }}> Done </button>
                 </>
                 }
             </div>
-            <div>
+            <div className='colour-section'>
                 <label className='font-semibold text-2xl' htmlFor="lastName"> Last Name </label>
                 {!editLastName?
                     <button className='btn' onClick={()=> setEditLastName(true)}> Edit </button>
                 :
                     <>
-                        <p className='title-p text-xl'>{ !firstName? "Choose a name" : "Choose a new name" } </p>
+                        <p className='title-p text-xl'>{ !firstName? "Enter a name" : "Enter a new name" } </p>
                         <input className='category-input' type="text" id="lastName" name="lastName" onChange={e => setLastName(e.target.value)} value={lastName}/>
                         <button className='btn' onClick={() => {
                             sendInfoDb()
