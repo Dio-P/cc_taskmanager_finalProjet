@@ -114,17 +114,16 @@ function App() {
   }
 
   const getGoals = () => {
-    console.log("goals called", dummyGoals);////////////
-    setGoals(dummyGoals)///////////Delete after getting it from api"
-    // get("goals")
-    // .then(data=> (setGoals(data)))
+    // console.log("goals called", dummyGoals);////////////
+    // setGoals(dummyGoals)///////////Delete after getting it from api"
+    get("goals")
+    .then(data=> (setGoals(data)))
   }
 
     useEffect(() => {
       // setting the comleted and unclompleted tasks 
       // in different states.
       if(allTasks){
-      // console.log("allTasks", allTasks);////////////
       let completedHelper = [];
       let uncompletedHelper = [];
       

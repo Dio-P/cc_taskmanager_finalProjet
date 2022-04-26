@@ -124,6 +124,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         console.log("within find goals end date");//////////
         let daysAfter = findDaysAfter(goal);
         let goalStartDate = goal.startDate;
+        console.log("goalStartDate", goalStartDate);/////////
         let endDate = new Date(goalStartDate.split("/").reverse().toString());
         console.log("endDate", endDate);//////////
         if(goalStartDate && daysAfter){

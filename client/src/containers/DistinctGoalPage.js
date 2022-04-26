@@ -20,7 +20,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
     const [editGoalStartDate, setEditGoalStartDate] = useState(false);
     const [goalEndDate, setGoalEndDate] = useState(null);
     const [editGoalEndDate, setEditGoalEndDate] = useState(false);
-    const [goalCategories, setGoalCategories] = useState(null);
+    const [goalCategories, setGoalCategories] = useState([]);
     const [editGoalCategories, setEditGoalCategories] = useState(false);
     const [goalActive, setGoalActive] = useState(true);
     
@@ -41,7 +41,8 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
         setGoalTarget(goal.target);
         setGoalStartDate(goal.startDate);
         setGoalEndDate(endDate);
-        setGoalCategories(goal.categories);
+        console.log("!!!!!!!goal.categories", goal.categories);
+        setGoalCategories(goal.categories);////////
         setGoalActive(goal.active);
 
     }, [goal]);
@@ -69,8 +70,11 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
         setSearchInput(e.target.value);
       };
 
-      const onClickingACateogry = () => {
-          return "A category was clicked";
+      const onClickingACateogry = (category) => {
+        console.log("A category was clicked");
+        console.log("category inside onClickingACateogry", category);
+        console.log("goalCategories inside onClickingACateogry", goalCategories);
+        setGoalCategories([...goalCategories, category]);
       }
 
       const SearchBar = () => {
@@ -78,18 +82,26 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
           return (
             <div>
                 {categoriesToDisplay.map(category => (
-                    <button onClick={onClickingACateogry}>{ category.title }</button>
+                    <button onClick={()=>onClickingACateogry(category)}>{ category.title }</button>
                 ))}
             </div>
           )
       }
 
-    const onClickingDone = () => {
-        let updatedGoal = {goalTitle, goalType, goalTarget, goalStartDate}
-        console.log("updatedGoal", updatedGoal);
-        // post(, updatedGoal);
-        
-    }
+      const removeGoalCategory = (categoryID) => {
+        const updatedCategories = goalCategories.filter(category => (
+            category.id!==categoryID
+        ))
+        // return indexToBeRemoved;
+        setGoalCategories(updatedCategories);
+      }
+
+        const onClickingDone = () => {
+            let updatedGoal = {goalTitle, goalType, goalTarget, goalStartDate}
+            console.log("updatedGoal", updatedGoal);
+            // post(, updatedGoal);
+            
+        }
 
     return(
         <div>
@@ -188,7 +200,15 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
             </div>
             <div>
                 <label> Goal Categories </label>
-                {/* <h3>{goalCategories}</h3> */}
+                <div>
+                    {goalCategories.length > 0&&
+                    Object.values(goalCategories).map(goalCategory=>(
+                        <div>
+                            <p>{ goalCategory.title } </p>
+                            <button onClick={()=>removeGoalCategory(goalCategory.id)}> X </button> 
+                        </div>
+                    ))}
+                </div>
                 {!editGoalCategories?
                     <button onClick={()=>setEditGoalCategories(true)}>Edit</button>
                 :
