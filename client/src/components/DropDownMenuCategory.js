@@ -14,7 +14,7 @@ const DropDownMenuCategory = ({ options, setValueFromDropDown }) => {
 
     return(
         <select onChange={e=>sendChoosenValueUp(e)}>
-            <option>--Please choose an option--</option>
+            <option>Choose a Category</option>
             {options.map(option =>
                 <option key={Math.random()} value={option.title}>{option.title}</option>)}
             

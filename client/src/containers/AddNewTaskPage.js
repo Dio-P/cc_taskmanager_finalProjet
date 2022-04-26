@@ -104,23 +104,23 @@ const AddNewTaskPage = () => {
             <p className='cat-header'>Create A Task</p>
             <FaWrench className='wrench-icon'/>
             <form onSubmit={addNewTask}>
-                <label htmlFor="taskTitle">Task Title</label>
+                <label className='font-semibold text-2xl' htmlFor="taskTitle">Task Title</label>
                 <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
-
-                <label htmlFor="taskCategory">Task Category</label>
+                <br/>
+                <label className='font-semibold text-2xl' htmlFor="taskCategory">Task Category</label>
                 <DropDownMenuCategory options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
-
-                <label htmlFor="taskPriority">Task Priority</label>
+                <br/>
+                <label className='font-semibold text-2xl' htmlFor="taskPriority">Task Priority</label>
                 <DropDownMenuPriority options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
 
                 {hasDescription?
                 <>
                     <label htmlFor="taskDescription">Task Description</label>
-                    <input type="text" name="taskDescription" id="taskDescription" value={taskDescription} onChange={e=> setTaskDescription(e.target.value)}/>
-                    <button onClick={()=> setHasDescription(false)}>- Remove Description</button>
+                    <input className='category-input' type="text" name="taskDescription" id="taskDescription" value={taskDescription} onChange={e=> setTaskDescription(e.target.value)}/>
+                    <button className='btn' onClick={()=> setHasDescription(false)}>Remove Description</button>
                 </>
                 :
-                <button onClick={()=> setHasDescription(true)}>+ Add Description</button>
+                <button className='btn' onClick={()=> setHasDescription(true)}>Add Description</button>
                 }
 
                 {hasDate?
