@@ -191,7 +191,7 @@ const AddNewTaskPage = ({ categories, priorities, users }) => {
                     {taskCollaborators.length > 0 &&
                         Object.values(taskCollaborators).map((collaborator) => (
                         <div>
-                            <p>{ taskCollaborators.firstName } { taskCollaborators.lastName }</p>
+                            <p>{ collaborator.firstName } { collaborator.lastName }</p>
                             <button key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}>
                             X
                             </button>
