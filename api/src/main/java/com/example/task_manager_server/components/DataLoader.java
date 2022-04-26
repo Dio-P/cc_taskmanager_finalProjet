@@ -91,6 +91,12 @@ public class DataLoader implements ApplicationRunner {
         goal8.addCategory(category7);
         goalRepository.save(goal8);
 
+        Goal goal9 = new Goal(true, "My other daily goal in the past",GoalType.DAILY, "2022-04-20", 20, user2);
+        goalRepository.save(goal9);
+        goal9.addCategory(category2);
+        goal9.addCategory(category7);
+        goalRepository.save(goal9);
+
         Goal goal3 = new Goal(true, "My goal",GoalType.DAILY, "2022-05-01", 30, user3);
         goalRepository.save(goal3);
         goal3.addCategory(category3);
@@ -184,17 +190,47 @@ public class DataLoader implements ApplicationRunner {
         Task task6 = new Task(
                 "6setting the authorisation up",
                 "finding a way to connect the users with the database",
-                "2022-04-27",
+                "2022-04-20",
                 "15:14",
                 70,
                 TaskType.DO_BY,
-                category1,
+                category2,
                 Priority.LOW,
-                false,
-                "",
+                true,
+                "1653001200000",
                 user2
         );
         taskRepository.save(task6);
+
+        Task task10 = new Task(
+                "Yet another task",
+                "finding a way to connect the users with the database",
+                "2022-04-20",
+                "15:14",
+                70,
+                TaskType.DO_BY,
+                category2,
+                Priority.LOW,
+                true,
+                "1653001200000",
+                user2
+        );
+        taskRepository.save(task10);
+
+        Task task9 = new Task(
+                "A task",
+                "finding a way to connect the users with the database",
+                "2022-04-20",
+                "15:14",
+                70,
+                TaskType.DO_BY,
+                category7,
+                Priority.LOW,
+                true,
+                "1653001200000",
+                user2
+        );
+        taskRepository.save(task9);
 
         Task task7 = new Task(
                 "3setting the authorisation up",
