@@ -76,3 +76,23 @@ code {
   margin-bottom: 10px;
   width: 250px;
 }
+
+.menu-popup {
+  background-color: #717EC3;
+}
+
+.menu-close {
+  
+  transform: rotate(48deg);
+}
+
+.menu-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.log-out {
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+}
