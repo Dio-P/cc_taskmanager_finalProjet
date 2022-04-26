@@ -95,17 +95,16 @@ code {
   font-weight: bold;
 }
 
-.new-cat-title, .title-p {
-  padding: 5px;
-  margin-left: 40px;
-}
-
 .category-input {
   margin-bottom: 30px;
-  margin-left: 44px;
   height: 30px;
   width: 130px;
   padding: 5px;
   border: 1px solid #F1B625;
   border-radius: 5px;
+}
+
+.colour-section {
+  padding: 5px;
+  margin-left: 40px;
 }
