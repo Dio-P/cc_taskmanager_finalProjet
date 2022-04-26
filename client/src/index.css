@@ -16,7 +16,7 @@ code {
     monospace;
 }
 
-.btn {
+.btn{
   @apply basis-1/3 bg-yellow p-2 rounded shadow-md tracking-wider m-auto;
 }
 

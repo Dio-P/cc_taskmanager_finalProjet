@@ -53,15 +53,15 @@ const ProfilePage = () => {
                     priorities={ priorities }
                 />
             }
-            <p> User Profile </p>
+            <p className='cat-header'>User Profile</p>
             <div>
-                <label htmlFor="firstName"> First Name </label>
+                <label className='font-semibold text-2xl' htmlFor="firstName">First Name</label>
                 {!editFirstName?
-                    <button onClick={()=> setEditFirstName(true)}> Edit </button>
+                    <button onClick={()=> setEditFirstName(true)}>Edit</button>
                 :
                 <>
-                    <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>
-                    <input type="text" id="firstName" name="firstName" onChange={e => setFirstName(e.target.value)} value={firstName}/>
+                    <p className='title-p text-xl'>{ !firstName? "Choose a name" : "Choose a new name" } </p>
+                    <input className='category-input' type="text" id="firstName" name="firstName" onChange={e => setFirstName(e.target.value)} value={firstName}/>
                     <button onClick={() => {
                             sendInfoDb()
                             setEditFirstName(false)
@@ -70,14 +70,14 @@ const ProfilePage = () => {
                 }
             </div>
             <div>
-                <label htmlFor="lastName"> Last Name </label>
+                <label className='font-semibold text-2xl' htmlFor="lastName"> Last Name </label>
                 {!editLastName?
-                    <button onClick={()=> setEditLastName(true)}> Edit </button>
+                    <button className='btn' onClick={()=> setEditLastName(true)}> Edit </button>
                 :
                     <>
-                        <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>
-                        <input type="text" id="lastName" name="lastName" onChange={e => setLastName(e.target.value)} value={lastName}/>
-                        <button onClick={() => {
+                        <p className='title-p text-xl'>{ !firstName? "Choose a name" : "Choose a new name" } </p>
+                        <input className='category-input' type="text" id="lastName" name="lastName" onChange={e => setLastName(e.target.value)} value={lastName}/>
+                        <button className='btn' onClick={() => {
                             sendInfoDb()
                             setEditLastName(false)
                         }}> Done </button>
