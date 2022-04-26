@@ -28,7 +28,7 @@ const DistinctCategoryPage = () => {
 
     const onClickingDone = () => {
         let updatedCategory = {colour: colour, title:title};
-        put(`categories/${category.id}`, updatedCategory)
+        put(`categories/:${category.title}`, updatedCategory)
     }
 
     return (
