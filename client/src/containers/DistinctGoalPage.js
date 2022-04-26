@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 
-const DistinctGoalPage = (categories, priorities, goals, goalTypesList) => {
+const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [goalTitle, setGoalTitle] = useState(null);
     const [editGoalTitle, setEditGoalTitle] = useState(false);

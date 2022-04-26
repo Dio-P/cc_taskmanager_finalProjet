@@ -113,6 +113,22 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     }
 
     const calculateAllCompletedTaskOfGoalGivenPeriod= () => {
+        let periodStart= Date.parse(new Date(goalStartDate.split("/").reverse()));
+        let periodEnd= Date.parse(new Date(goalEndDate.split("/").reverse()));
+        let periodTaskHelper = []
+        for(let task of completedTasks){
+            if(goal.categories.includes(task.category)){
+                if(
+                completedTasks.completedTimeStamp>=periodStart
+                &&
+                completedTasks.completedTimeStamp<=periodEnd
+                ){
+                    periodTaskHelper.push(task);
+                }
+
+            }
+        }
+        setAllTaskGivenPeriod(periodTaskHelper);
         
     }
 
