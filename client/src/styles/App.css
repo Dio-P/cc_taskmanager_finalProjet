@@ -1,5 +1,20 @@
-button{
+button {
   background-color: #f15025;
+}
+
+.pending {
+  background-color: yellow;
+
+}
+
+.succeeded {
+  background-color: green;
+
+}
+
+.failed {
+  background-color: red;
+
 }
 
 .hideMenuNav {
