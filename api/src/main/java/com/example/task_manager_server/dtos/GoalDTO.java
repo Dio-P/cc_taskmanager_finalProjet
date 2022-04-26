@@ -12,21 +12,21 @@ public class GoalDTO {
 
     private String title;
 
-    private GoalType frequency;
+    private GoalType type;
 
     private String startDate;
 
-    private int percentage;
+    private int target;
 
     private List<CategoryDTO> categories;
 
-    public GoalDTO(Long id, boolean active, String title, GoalType frequency, String startDate, int percentage, List<CategoryDTO> categories) {
+    public GoalDTO(Long id, boolean active, String title, GoalType type, String startDate, int target, List<CategoryDTO> categories) {
         this.id = id;
         this.active = active;
         this.title = title;
-        this.frequency = frequency;
+        this.type = type;
         this.startDate = startDate;
-        this.percentage = percentage;
+        this.target = target;
         this.categories = categories;
     }
 
@@ -42,12 +42,12 @@ public class GoalDTO {
         this.id = id;
     }
 
-    public GoalType getFrequency() {
-        return frequency;
+    public GoalType getType() {
+        return type;
     }
 
-    public void setFrequency(GoalType frequency) {
-        this.frequency = frequency;
+    public void setType(GoalType type) {
+        this.type = type;
     }
 
     public String getStartDate() {
@@ -58,12 +58,12 @@ public class GoalDTO {
         this.startDate = startDate;
     }
 
-    public int getPercentage() {
-        return percentage;
+    public int getTarget() {
+        return target;
     }
 
-    public void setPercentage(int percentage) {
-        this.percentage = percentage;
+    public void setTarget(int target) {
+        this.target = target;
     }
 
     public List<CategoryDTO> getCategories() {

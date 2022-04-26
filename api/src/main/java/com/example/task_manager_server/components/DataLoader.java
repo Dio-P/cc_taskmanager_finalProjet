@@ -61,28 +61,28 @@ public class DataLoader implements ApplicationRunner {
         Category category6 = new Category("Social", "#FF0000", user3);
         categoryRepository.save(category6);
 
-        Goal goal1 = new Goal(true, "My goal", GoalType.DAILY, "30-04-22", 20, user1);
+        Goal goal1 = new Goal(true, "My goal", GoalType.DAILY, "2022-04-30", 20, user1);
         goalRepository.save(goal1);
         goal1.addCategory(category1);
         goalRepository.save(goal1);
 
-        Goal goal4 = new Goal(true, "My other goal", GoalType.WEEKLY, "20-04-22", 40, user1);
+        Goal goal4 = new Goal(true, "My other goal", GoalType.WEEKLY, "2022-04-26", 40, user1);
         goalRepository.save(goal4);
         goal4.addCategory(category4);
         goalRepository.save(goal4);
 
-        Goal goal2 = new Goal(true, "My goal",GoalType.WEEKLY, "28-05-22", 10, user2);
+        Goal goal2 = new Goal(true, "My goal",GoalType.WEEKLY, "2022-05-03", 10, user2);
         goalRepository.save(goal2);
         goal2.addCategory(category2);
         goalRepository.save(goal2);
 
-        Goal goal5 = new Goal(true, "My other goal",GoalType.DAILY, "23-04-22", 80, user2);
+        Goal goal5 = new Goal(true, "My other goal",GoalType.DAILY, "2022-04-26", 80, user2);
         goalRepository.save(goal5);
         goal5.addCategory(category2);
         goal5.addCategory(category5);
         goalRepository.save(goal5);
 
-        Goal goal3 = new Goal(true, "My goal",GoalType.DAILY, "10-06-22", 30, user3);
+        Goal goal3 = new Goal(true, "My goal",GoalType.DAILY, "2022-05-01", 30, user3);
         goalRepository.save(goal3);
         goal3.addCategory(category3);
         goalRepository.save(goal3);
@@ -96,7 +96,7 @@ public class DataLoader implements ApplicationRunner {
         Task task1 = new Task(
                 "setting the authorisation up",
                 "finding a way to connect the users with the database",
-                "26.05.2022",
+                "2022-04-26",
                 "15:14",
                 70,
                 TaskType.DO_ON,
@@ -128,7 +128,7 @@ public class DataLoader implements ApplicationRunner {
         Task task3 = new Task(
                 "3setting the authorisation up",
                 "finding a way to connect the users with the database",
-                "26.05.2022",
+                "2022-04-28",
                 "15:14",
                 70,
                 TaskType.DO_ON,
@@ -145,7 +145,7 @@ public class DataLoader implements ApplicationRunner {
         Task task4 = new Task(
                 "1setting the authorisation up",
                 "finding a way to connect the users with the database",
-                "26.05.2022",
+                "2022-04-26",
                 "15:14",
                 70,
                 TaskType.DO_BY,
@@ -160,7 +160,7 @@ public class DataLoader implements ApplicationRunner {
         Task task5 = new Task(
                 "2setting the authorisation up",
                 "finding a way to connect the users with the database",
-                "26.05.2022",
+                "2022-04-30",
                 "15:14",
                 70,
                 TaskType.SOMEDAY,
@@ -175,7 +175,7 @@ public class DataLoader implements ApplicationRunner {
         Task task6 = new Task(
                 "6setting the authorisation up",
                 "finding a way to connect the users with the database",
-                "26.05.2022",
+                "2022-04-27",
                 "15:14",
                 70,
                 TaskType.DO_BY,
@@ -190,7 +190,7 @@ public class DataLoader implements ApplicationRunner {
         Task task7 = new Task(
                 "3setting the authorisation up",
                 "finding a way to connect the users with the database",
-                "26.05.2022",
+                "2022-04-29",
                 "15:14",
                 70,
                 TaskType.DO_ON,
