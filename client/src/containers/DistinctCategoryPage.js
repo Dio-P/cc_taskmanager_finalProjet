@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
+import { FaBars } from "react-icons/fa";
 
 const DistinctCategoryPage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,7 +44,7 @@ const DistinctCategoryPage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-2 text-xl'/></button>
                 </>
             :
                 <Menu
@@ -52,11 +53,11 @@ const DistinctCategoryPage = () => {
                     priorities={ priorities }
                 />
             }
-            <div>
-                <label> Title </label>
-                <h1>{ title }</h1>
+            <div className='flex flex-row py-10 w-5/6 m-7'>
+                <label className='basis-1/3 font-semibold'>Title</label>
+                <h1 className='basis-1/3'>{ title }</h1>
                     {!editTitle?
-                        <button onClick={()=> setEditTitle(true)}>Edit</button>
+                        <button className='btn' onClick={()=> setEditTitle(true)}>Edit</button>
                     :
                         <div>
                             <input 
@@ -66,7 +67,7 @@ const DistinctCategoryPage = () => {
                                 onChange={(e)=> setTitle(e.target.value)}
                                 required
                                 />
-                            <button onClick={()=> {
+                            <button className="btn" onClick={()=> {
                                 setEditTitle(false)
                                 onClickingDone()
                                 }}>Done</button>
@@ -74,16 +75,16 @@ const DistinctCategoryPage = () => {
                         
                     }
             </div>
-            <div>
-                <label> Colour </label>
-                <svg viewbox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+            <div className='flex flex-row py-10 m-7'>
+                <label className='basis-1/3 font-semibold'> Colour </label>
+                <svg className='basis-1/3' viewbox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="20" cy="20" r="20" fill={colour}/>
                 </svg>
                 {!editColour?
-                        <button onClick={()=> setEditColour(true)}>Edit</button>
+                        <button className='btn' onClick={()=> setEditColour(true)}>Edit</button>
                     :
                         <div>
-                            <p>Choose a new colour</p>
+                            <p>Select colour</p>
                             <input 
                                 type="color" 
                                 name="newColour" 
@@ -91,7 +92,7 @@ const DistinctCategoryPage = () => {
                                 onChange={(e)=> setColour(e.target.value)}
                                 required
                                 />
-                            <button onClick={()=> {
+                            <button className='btn' onClick={()=> {
                                 setEditColour(false)
                                 onClickingDone()
                                 }}>Done</button>
