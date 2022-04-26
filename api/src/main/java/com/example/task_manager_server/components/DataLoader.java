@@ -152,7 +152,7 @@ public class DataLoader implements ApplicationRunner {
                 category1,
                 Priority.LOW,
                 true,
-                "",
+                "1650967205000",
                 user2
         );
         taskRepository.save(task4);
@@ -167,7 +167,7 @@ public class DataLoader implements ApplicationRunner {
                 category1,
                 Priority.MEDIUM,
                 true,
-                "",
+                "1650967205000",
                 user2
         );
         taskRepository.save(task5);
