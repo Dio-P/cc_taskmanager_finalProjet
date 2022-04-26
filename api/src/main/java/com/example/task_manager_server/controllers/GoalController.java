@@ -31,25 +31,27 @@ public class GoalController {
     @GetMapping(value = "/goals")
     public ResponseEntity<List<GoalDTO>> getGoalsForUser() {
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
-        List<Goal> foundgoals = goalRepository.findByUserAuthId(userId);
+        List<Goal> foundGoals = goalRepository.findByUserAuthId(userId);
         List<GoalDTO> goalDTOS = new ArrayList<>();
-        for(Goal goal: foundgoals) {
+        for(Goal goal: foundGoals) {
             List<CategoryDTO> categoryDTOS = new ArrayList<>();
             for(Category category: goal.getCategories()) {
-                CategoryDTO categoryDTO = new CategoryDTO(
-                        category.getId(), category.getTitle(), category.getColour()
-                );
+//                CategoryDTO categoryDTO = new CategoryDTO(
+//                        category.getId(), category.getTitle(), category.getColour()
+//                );
+                CategoryDTO categoryDTO = category.createDTO();
                 categoryDTOS.add(categoryDTO);
             }
-            GoalDTO goalDTO = new GoalDTO(
-                    goal.getId(),
-                    goal.isActive(),
-                    goal.getTitle(),
-                    goal.getType(),
-                    goal.getStartDate(),
-                    goal.getTarget(),
-                    categoryDTOS
-            );
+//            GoalDTO goalDTO = new GoalDTO(
+//                    goal.getId(),
+//                    goal.isActive(),
+//                    goal.getTitle(),
+//                    goal.getType(),
+//                    goal.getStartDate(),
+//                    goal.getTarget(),
+//                    categoryDTOS
+//            );
+            GoalDTO goalDTO = goal.createDTO(categoryDTOS);
             goalDTOS.add(goalDTO);
         }
         return new ResponseEntity<>(goalDTOS, HttpStatus.OK);

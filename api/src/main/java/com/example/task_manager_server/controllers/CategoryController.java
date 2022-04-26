@@ -32,12 +32,7 @@ public class CategoryController {
         List<Category> foundCategories = categoryRepository.findByUserAuthId(userId);
 
         List<CategoryDTO> categoryDTOS = foundCategories.stream().map((category) -> {
-            CategoryDTO categoryDTO = new CategoryDTO(
-                    category.getId(),
-                    category.getTitle(),
-                    category.getColour()
-            );
-            return categoryDTO;
+            return category.createDTO();
         }).toList();
         return new ResponseEntity<>(categoryDTOS, HttpStatus.OK);
     }

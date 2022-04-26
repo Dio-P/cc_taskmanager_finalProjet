@@ -43,8 +43,9 @@ public class UserController {
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         Optional<User> foundUser = userRepository.findByAuthId(userId);
 
-        if( !foundUser.isPresent()){
+        if( foundUser.isPresent()){
             user.setId(id);
+            user.setAuthId(userId);
             userRepository.save(user);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         }
@@ -55,12 +56,7 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> getCollaborators(){
         List<User> users = userRepository.findAll();
         List<UserDTO> userDTOS = users.stream().map((user)->{
-            UserDTO userDTO = new UserDTO(
-                    user.getId(),
-                    user.getFirstName(),
-                    user.getLastName()
-            );
-            return userDTO;
+            return user.createDTO();
         }).toList();
 
         return new ResponseEntity<>(userDTOS, HttpStatus.OK);

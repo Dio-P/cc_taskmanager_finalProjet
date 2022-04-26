@@ -1,5 +1,6 @@
 package com.example.task_manager_server.models;
 
+import com.example.task_manager_server.dtos.CategoryDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
@@ -23,14 +24,11 @@ public class Category {
     private String colour;
 
     @ManyToOne
-//    @JsonManagedReference(value = "user-category")
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-//    @JsonBackReference(value = "task-category")
-    @JsonIgnoreProperties("category")
     private List<Task> tasks;
 
     @ManyToMany
@@ -106,7 +104,13 @@ public class Category {
         this.goals = goals;
     }
 
-    public void addGoal(Goal goal) {
-        this.goals.add(goal);
+    public CategoryDTO createDTO(){
+        CategoryDTO categoryDTO = new CategoryDTO(
+                this.getId(),
+                this.getTitle(),
+                this.getColour()
+        );
+        return categoryDTO;
     }
+
 }

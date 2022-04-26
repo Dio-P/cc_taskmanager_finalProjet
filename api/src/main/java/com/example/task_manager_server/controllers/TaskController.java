@@ -32,43 +32,21 @@ public class TaskController {
     @GetMapping(value="/tasks")
     public ResponseEntity<List<TaskDTO>> getTasksForUser(){
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
-//
-//        do find by user id, return list of tasks
+
         List<Task> foundTasks = taskRepository.findByUserAuthId(userId);
 
 
         List<TaskDTO> taskDTOS = foundTasks.stream().map((task) -> {
-            CategoryDTO categoryDTO = new CategoryDTO(
-                    task.getCategory().getId(),
-                    task.getCategory().getTitle(),
-                    task.getCategory().getColour()
-            );
+
+            CategoryDTO categoryDTO = task.getCategory().createDTO();
 
             List<UserDTO> collaborators = new ArrayList<>();
             for(User user : task.getCollaborators()){
-                UserDTO userDTO = new UserDTO(
-                        user.getId(),
-                        user.getFirstName(),
-                        user.getLastName()
-                );
+                UserDTO userDTO = user.createDTO();
                 collaborators.add(userDTO);
             }
 
-            TaskDTO taskDTO = new TaskDTO(
-                    task.getId(),
-                    task.getTitle(),
-                    task.getDescription(),
-                    task.getDate(),
-                    task.getTime(),
-                    task.getDuration(),
-                    task.getType(),
-                    categoryDTO,
-                    task.getPriority(),
-                    task.isCompleted(),
-                    task.getCompletedTimeStamp(),
-                    collaborators
-            );
-            return taskDTO;
+            return task.createDTO(categoryDTO, collaborators);
         }).toList();
 
 

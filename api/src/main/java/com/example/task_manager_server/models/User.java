@@ -1,5 +1,6 @@
 package com.example.task_manager_server.models;
 
+import com.example.task_manager_server.dtos.UserDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
@@ -27,13 +28,9 @@ public class User {
 
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    @JsonBackReference(value = "user-category")
-    @JsonIgnoreProperties("user")
     private List<Category> categories;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    @JsonBackReference(value = "user-task")
-    @JsonIgnoreProperties("user")
     private List<Task> tasks;
 
     @ManyToMany
@@ -120,5 +117,14 @@ public class User {
 
     public void addCollabTask(Task task){
         this.collabTasks.add(task);
+    }
+
+    public UserDTO createDTO(){
+        UserDTO userDTO = new UserDTO(
+                this.getId(),
+                this.getFirstName(),
+                this.getLastName()
+        );
+        return userDTO;
     }
 }
