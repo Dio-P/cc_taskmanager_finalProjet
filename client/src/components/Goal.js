@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const Goal = ({ goal, categories, priorities }) => {
+const Goal = ({ goal, categories, priorities, completedTasks }) => {
     const [goalTitle, setGoalTitle] = useState(null);
     const [goalTarget, setGoalTarget] = useState(null);
     const [goalStartDate, setGoalStartDate] = useState(null);
@@ -72,6 +72,10 @@ const Goal = ({ goal, categories, priorities }) => {
             
         } 
     }
+    // change the set to return and have the set with the function as argument to when edit is pressed.
+    // move that logic to the distinct page where this might actually change
+    // should I copy this or move it all in an outside function where it could happily leave for ever?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // because the problem is that it needs to be calculated in two places here to be desplayed and in the distinc to be changed.
 
     const findGoalEndDate = (goal) => {
         console.log("within find goals end date");//////////
@@ -92,16 +96,24 @@ const Goal = ({ goal, categories, priorities }) => {
         }
     }
 
-    const onGoalClick = (e) => {
-        console.log("a goal has been clicked", goal);/////////
-        navigate(`/goal/:${goal.title}`, {
-            state: {
-                goal:goal,
-                categories:categories,
-                priorities: priorities,
-                endDate: goalEndDate
+    const calculateAllCompletedTasksGivenPeriod = () => {
+        let periodStart= Date.parse(new Date(goalStartDate.split("/").reverse()));
+        let periodEnd= Date.parse(new Date(goalEndDate.split("/").reverse()));
+        let periodTaskHelper = []
+        for(let task of completedTasks){
+            if(
+            completedTasks.completedTimeStamp>=periodStart
+            &&
+            completedTasks.completedTimeStamp<=periodEnd
+            ){
+                periodTaskHelper.push(task);
             }
-        })
+        }
+        setAllTaskGivenPeriod(periodTaskHelper);
+    }
+
+    const calculateAllCompletedTaskOfGoalGivenPeriod= () => {
+        
     }
 
     const calculatingTargetOutcome = () => {
@@ -115,7 +127,7 @@ const Goal = ({ goal, categories, priorities }) => {
                 return "penidng"
 
             }else{
-                if(tasksOnTarget >= goalTask){
+                if(tasksOnTarget.length() >= goalTask){
                     console.log("succeeded");//////////
                     return "succeeded"
 
@@ -126,6 +138,18 @@ const Goal = ({ goal, categories, priorities }) => {
                 }
             }
         }
+    }
+
+    const onGoalClick = (e) => {
+        console.log("a goal has been clicked", goal);/////////
+        navigate(`/goal/:${goal.title}`, {
+            state: {
+                goal:goal,
+                categories:categories,
+                priorities: priorities,
+                endDate: goalEndDate
+            }
+        })
     }
 
 

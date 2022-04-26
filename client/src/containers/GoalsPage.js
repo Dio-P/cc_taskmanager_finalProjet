@@ -4,7 +4,7 @@ import Menu from '../components/Menu';
 import AllGoalsContainer from "./AllGoalsContainer";
 
 
-const GoalsPage = ({ goals }) => {
+const GoalsPage = ({ goals, completedTasks }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const location = useLocation();
@@ -36,6 +36,7 @@ const GoalsPage = ({ goals }) => {
                 categories={ categories }
                 priorities={ priorities }
                 goals={ goals }
+                completedTasks={ completedTasks }
             />
         </div>
     )

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Goal from "../components/Goal"
 
-const AllGoalsContainer = ( {categories, priorities, goals} ) => {
+const AllGoalsContainer = ({ categories, priorities, goals, completedTasks }) => {
     // const [goalEndDate, setGoalEndDate] = useState(null);
 
     // const findDaysAfter = (goal) => {
@@ -63,6 +63,7 @@ const AllGoalsContainer = ( {categories, priorities, goals} ) => {
                     // endDate={ findGoalEndDate(goal) }
                     categories={ categories }
                     priorities={ priorities }
+                    completedTasks={ completedTasks }
                 />
             )) }
         </div>

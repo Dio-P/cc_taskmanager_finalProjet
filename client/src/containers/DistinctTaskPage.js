@@ -66,7 +66,7 @@ const DistinctTaskPage = () => {
         console.log("inside Complete");
         setTaskCompleted(!taskCompleted)
         if(!completedTimeStamp){
-            let timestamp = Date.now();
+            let timestamp = Date.parse(new Date());
             setCompletedTimeStamp(timestamp);
         }else{
             setCompletedTimeStamp(null);

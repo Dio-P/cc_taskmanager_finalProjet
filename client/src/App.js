@@ -195,6 +195,7 @@ function App() {
           priorities={ priorities }
           goals = { goals }
           goalTypesList ={ goalTypesList }
+          completedTasks={ completedTasks } 
         /> }/>
         <Route path="/goal/:goal_title" element={ <DistinctGoalPage
           categories={ categories }
