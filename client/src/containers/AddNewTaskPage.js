@@ -4,7 +4,7 @@ import RequestContext from "../context/RequestContext";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
-import { FaBars, FaWrench, FaPlus } from "react-icons/fa";
+import { FaBars, FaWrench, FaPlus, FaMinus } from "react-icons/fa";
 
 const AddNewTaskPage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -117,10 +117,12 @@ const AddNewTaskPage = () => {
                 <>
                     <label htmlFor="taskDescription">Task Description</label>
                     <input className='category-input' type="text" name="taskDescription" id="taskDescription" value={taskDescription} onChange={e=> setTaskDescription(e.target.value)}/>
-                    <button className='btn' onClick={()=> setHasDescription(false)}>Remove Description</button>
+                    <button className='minus-btn' onClick={()=> setHasDescription(false)}><FaMinus className='minus-icon'/>Description</button>
                 </>
                 :
-                <button className='btn' onClick={()=> setHasDescription(true)}><FaPlus/>Description</button>
+                
+                <button className='add-btn' onClick={()=> setHasDescription(true)}><FaPlus className='add-icon'/>Description</button>
+                
                 }
                 <br/>
                 {hasDate?
@@ -137,17 +139,17 @@ const AddNewTaskPage = () => {
                     <button className='btn' onClick={()=> setHasDate(false)}>- Remove Date</button>
                 </>
                 :
-                <button className='btn' onClick={()=> setHasDate(true)}><FaPlus/>Date</button>
+                <button className='add-btn' onClick={()=> setHasDate(true)}><FaPlus className='add-icon'/>Date</button>
                 }
                 <br/>
                 {hasTime?
                 <>
                     <label htmlFor="taskDate">Task Time</label>
                     <input type="time" name="taskDate" id="taskDate" value={taskTime} onChange={e=> setTaskTime(e.target.value)}/>
-                    <button onClick={()=> setHasTime(false)}>- Remove Date</button>
+                    <button className="btn" onClick={()=> setHasTime(false)}>- Remove Date</button>
                 </>
                 :
-                <button className='btn' onClick={()=> setHasTime(true)}><FaPlus/>Add Time</button>
+                <button className='add-btn' onClick={()=> setHasTime(true)}><FaPlus className='add-icon'/>Time</button>
                 }
                 <br/>
                 {hasDuration?
@@ -157,7 +159,7 @@ const AddNewTaskPage = () => {
                     <button onClick={()=> setHasDuration(false)}>- Remove Duration</button>
                 </>
                 :
-                <button className='btn' onClick={()=> setHasDuration(true)}><FaPlus/>Add Duration</button>
+                <button className='add-btn' onClick={()=> setHasDuration(true)}><FaPlus className='add-icon'/>Duration</button>
                 }  
                 <br/>
                 <button className='create-btn' type="submit">Create Task </button>

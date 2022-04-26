@@ -24,6 +24,14 @@ code {
   @apply bg-blue text-white font-semibold rounded shadow-md tracking-wider m-28 p-4;
 }
 
+.add-btn{
+  @apply bg-yellow font-semibold p-2.5 rounded shadow-md tracking-wider m-2 w-52;
+}
+
+.minus-btn{
+  @apply bg-orange font-semibold p-2.5 rounded shadow-md tracking-wider m-2 w-52;
+}
+
 .plus-btn {
   background-color: #F1B625;
   color: #fff;
@@ -47,6 +55,14 @@ code {
   margin-top: -50px;
   margin-left: 50px;
   margin-bottom: 30px;
+}
+
+.add-icon, .minus-icon {
+  color: black;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-left: 20px;
+  margin-bottom: -18px;
 }
 
 .circle {
