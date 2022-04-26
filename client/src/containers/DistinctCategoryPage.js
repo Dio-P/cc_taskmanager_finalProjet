@@ -53,7 +53,7 @@ const DistinctCategoryPage = () => {
                     priorities={ priorities }
                 />
             }
-            <div className='flex flex-row py-10 w-5/6 m-7'>
+            <div className='flex flex-row py-10 justify-center m-7'>
                 <label className='basis-1/3 font-semibold'>Title</label>
                 <h1 className='basis-1/3'>{ title }</h1>
                     {!editTitle?
@@ -75,11 +75,11 @@ const DistinctCategoryPage = () => {
                         
                     }
             </div>
-            <div className='flex flex-row py-10 m-7'>
-                <label className='basis-1/3 font-semibold'> Colour </label>
-                <svg className='basis-1/3' viewbox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="20" r="20" fill={colour}/>
-                </svg>
+            <div className='flex flex-box py-10 justify-center m-7'>
+                <label className='basis-1/3 font-semibold'>Colour</label>
+                <div className='basis-1/3'>
+                    <div className='circle'/>
+                </div>
                 {!editColour?
                         <button className='btn' onClick={()=> setEditColour(true)}>Edit</button>
                     :
