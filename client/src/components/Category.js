@@ -17,7 +17,7 @@ const Category = ({ category, categories, priorities }) => {
     return(
         <div>
             <h1>
-                <button onClick={ goToDistinctCategoryPage } >{category.title}</button>
+                <button className="category" onClick={ goToDistinctCategoryPage } >{category.title}</button>
             </h1>
         </div>
     )

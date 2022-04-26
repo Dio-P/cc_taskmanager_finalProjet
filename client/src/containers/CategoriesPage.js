@@ -30,13 +30,15 @@ const CategoriesPage = () => {
                 />
             }
             <div className='flex flex-row'>
-                 <h1 className='categories-h1'>Categories</h1>
+                 <h1 className='categories-h1 basis-1/2'>Categories</h1>
                  <button className='plus-btn'><FaPlus /></button>
             </div>
+            <div>
             <AllCategoriesContainerForCatPage
             categories={ categories }
             priorities={ priorities }
             />
+            </div>
         </div>
     )
 }
