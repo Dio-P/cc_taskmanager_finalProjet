@@ -25,7 +25,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
   const [editGoalCategories, setEditGoalCategories] = useState(false);
   const [goalActive, setGoalActive] = useState(true);
 
-  const { get, post } = useContext(RequestContext);
+  const { get, post, put } = useContext(RequestContext);
 
   const location = useLocation();
   const goal = location.state.goal;
@@ -72,13 +72,20 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
     setSearchInput(e.target.value.toLowerCase());
   };
 
-  const onClickingACategory = (category) => {
-    setGoalCategories([...goalCategories, category]);
-
+  const onClickingACategory = (category, e) => {
+    e.preventDefault();
+    const existingCategoryIDs = 
+    Object.values(goalCategories).map(category => (
+      category.id
+    ));
+    if(existingCategoryIDs.includes(category.id)){
+      alert("this category has already been added")
+    }else{
+      setGoalCategories([...goalCategories, category]);
+    }
   };
 
-  const removeGoalCategory = (categoryID, e) => {
-    e.preventDefault();
+  const removeGoalCategory = (categoryID) => {
     const updatedCategories = goalCategories.filter(
       (category) => category.id !== categoryID
     );
@@ -86,9 +93,15 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
   };
 
   const onClickingDone = () => {
-    let updatedGoal = { goalTitle, goalType, goalTarget, goalStartDate };
-    console.log("updatedGoal", updatedGoal);
-    // post(, updatedGoal);
+    let updatedGoal = { 
+      goalTitle, 
+      goalType, 
+      goalTarget, 
+      goalStartDate,
+      goalCategories
+    };
+    console.log("updatedGoal", updatedGoal);/////////
+    put(`goals/${goal.id}`, updatedGoal)
   };
 
   return (
@@ -239,7 +252,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
             {searchInput.length > 0 
             && 
             <SearchBar
-              onClickingAnOption={ (category)=> onClickingACategory(category) }
+              onClickingAnOption={ (category, e)=> onClickingACategory(category, e) }
               categoriesToDisplay={ categoriesToDisplay }
             />}
             <button

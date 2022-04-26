@@ -56,15 +56,15 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
 
     const onClickingDone = (e) => {
         e.preventDefault();
-        let updatedGoal = {
+        let newGoal = {
             goalTitle, 
             goalType, 
             goalTarget, 
             goalStartDate,
             goalCategories
         };
-        console.log("updatedGoal", updatedGoal);/////////////
-        // post(, updatedGoal);
+        console.log("updatedGoal", newGoal);/////////////
+        post("goals", newGoal);
     }
         
     return(
