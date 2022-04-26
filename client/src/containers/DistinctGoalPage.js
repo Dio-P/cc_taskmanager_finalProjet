@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
+import SearchBar from "../components/SearchBar";
 
 const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,23 +72,11 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
     setSearchInput(e.target.value.toLowerCase());
   };
 
-  const onClickingACateogry = (category) => {
-    console.log("A category was clicked");
-    console.log("category inside onClickingACateogry", category);
-    console.log("goalCategories inside onClickingACateogry", goalCategories);
+  const onClickingACategory = (category) => {
+    // console.log("A category was clicked");
+    // console.log("category inside onClickingACateogry", category);
+    // console.log("goalCategories inside onClickingACateogry", goalCategories);
     setGoalCategories([...goalCategories, category]);
-  };
-
-  const SearchBar = () => {
-    return (
-      <div>
-        {categoriesToDisplay.map((category) => (
-          <button key={category.id} onClick={() => onClickingACateogry(category)}>
-            {category.title}
-          </button>
-        ))}
-      </div>
-    );
   };
 
   const removeGoalCategory = (categoryID) => {
@@ -250,11 +239,10 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
               onChange={handleChange}
               value={searchInput}
             />
-            {searchInput.length > 0 && <SearchBar />}
-            {/* <button onClick={()=>{
-                            setEditGoalCategories(false)
-                            onClickingDone()
-                            }}>Add Another Category</button> */}
+            {searchInput.length > 0 && <SearchBar
+            onClickingAnOption={ (category)=> onClickingACategory(category) }
+            categoriesToDisplay={ categoriesToDisplay }
+            />}
             <button
               onClick={() => {
                 setEditGoalCategories(false);
