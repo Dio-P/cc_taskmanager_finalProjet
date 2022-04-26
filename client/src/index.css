@@ -23,7 +23,6 @@ code {
 .circle {
   height: 25px;
   width: 25px;
-  background-color: blueviolet;
   border-radius: 50%;
   display: inline-block;
 }

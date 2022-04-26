@@ -44,7 +44,7 @@ const DistinctCategoryPage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-2 text-xl'/></button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -78,7 +78,7 @@ const DistinctCategoryPage = () => {
             <div className='flex flex-box py-10 justify-center m-7'>
                 <label className='basis-1/3 font-semibold'>Colour</label>
                 <div className='basis-1/3'>
-                    <div className='circle'/>
+                    <div className='circle' style = {{backgroundColor: {colour}}}></div>
                 </div>
                 {!editColour?
                         <button className='btn' onClick={()=> setEditColour(true)}>Edit</button>
