@@ -5,6 +5,10 @@ import Menu from "../components/Menu";
 
 const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchInput, setSearchInput] = useState("");
+
+    const [categoriesToDisplay, setCategoriesToDisplay] = useState([]);
+
     const [goalTitle, setGoalTitle] = useState(null);
     const [editGoalTitle, setEditGoalTitle] = useState(false);
     const [goalType, setGoalType] = useState(null);
@@ -16,17 +20,14 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
     const [editGoalStartDate, setEditGoalStartDate] = useState(false);
     const [goalEndDate, setGoalEndDate] = useState(null);
     const [editGoalEndDate, setEditGoalEndDate] = useState(false);
-    const [goalCategories, setGoalCategories] = useState(null);
+    const [goalCategories, setGoalCategories] = useState([]);
     const [editGoalCategories, setEditGoalCategories] = useState(false);
     const [goalActive, setGoalActive] = useState(true);
-    // const [goalSucceeded, setGoalSucceeded] = useState(true);
-
+    
     const {get, post} = useContext(RequestContext);
 
     const location = useLocation();
     const goal = location.state.goal;
-    // const categories = location.state.categories;
-    // const goalTypesList =location.state.goalTypesList;
     const endDate = location.state.endDate;
 
     useEffect(() => {///////
@@ -40,7 +41,8 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
         setGoalTarget(goal.target);
         setGoalStartDate(goal.startDate);
         setGoalEndDate(endDate);
-        setGoalCategories(goal.categories);
+        console.log("!!!!!!!goal.categories", goal.categories);
+        setGoalCategories(goal.categories);////////
         setGoalActive(goal.active);
 
     }, [goal]);
@@ -51,16 +53,55 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
         
     }, [goalTypesList]);
 
+    useEffect(() => {
+        let categoriesToDisplay = categories.filter((category) => {
+            return category.title.match(searchInput);
+        });
+        setCategoriesToDisplay(categoriesToDisplay);
+        
+    }, [searchInput]);
+
     const closeMenuFunction = () => {
         setIsMenuOpen(false);
     }
 
-    const onClickingDone = () => {
-        let updatedGoal = {goalTitle, goalType, goalTarget, goalStartDate}
-        console.log("updatedGoal", updatedGoal);
-        // post(, updatedGoal);
-        
-    }
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchInput(e.target.value);
+      };
+
+      const onClickingACateogry = (category) => {
+        console.log("A category was clicked");
+        console.log("category inside onClickingACateogry", category);
+        console.log("goalCategories inside onClickingACateogry", goalCategories);
+        setGoalCategories([...goalCategories, category]);
+      }
+
+      const SearchBar = () => {
+          
+          return (
+            <div>
+                {categoriesToDisplay.map(category => (
+                    <button onClick={()=>onClickingACateogry(category)}>{ category.title }</button>
+                ))}
+            </div>
+          )
+      }
+
+      const removeGoalCategory = (categoryID) => {
+        const updatedCategories = goalCategories.filter(category => (
+            category.id!==categoryID
+        ))
+        // return indexToBeRemoved;
+        setGoalCategories(updatedCategories);
+      }
+
+        const onClickingDone = () => {
+            let updatedGoal = {goalTitle, goalType, goalTarget, goalStartDate}
+            console.log("updatedGoal", updatedGoal);
+            // post(, updatedGoal);
+            
+        }
 
     return(
         <div>
@@ -145,7 +186,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
                     <button onClick={()=>setEditGoalStartDate(true)}>Edit</button>
                 :
                     <>
-                        <input type="date" name="goalStartDate" id="goalStartDate" value={goalStartDate} onChange={e=> setGoalStartDate(e.target.value)} required/>
+                        <input type="date" name="goalStartDate" id="goalStartDate" value={goalStartDate} onChange={e=> setSearchInput(e.target.value)} required/>
                         <button onClick={()=>{
                             setEditGoalStartDate(false)
                             onClickingDone()
@@ -157,22 +198,43 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
                 <label> Goal End Date </label>
                 <h3>{goalEndDate}</h3>
             </div>
-{/*             how will the categories be looked for?
             <div>
                 <label> Goal Categories </label>
-                <h3>{goalCategories}</h3>
+                <div>
+                    {goalCategories.length > 0&&
+                    Object.values(goalCategories).map(goalCategory=>(
+                        <div>
+                            <p>{ goalCategory.title } </p>
+                            <button onClick={()=>removeGoalCategory(goalCategory.id)}> X </button> 
+                        </div>
+                    ))}
+                </div>
                 {!editGoalCategories?
                     <button onClick={()=>setEditGoalCategories(true)}>Edit</button>
                 :
                     <>
-                        <input type="text" name="goalCategories" id="goalCategories" value={goalSetDate} onChange={e=> setGoalCategories(e.target.value)} required/>
+                        {/* <input type="text" name="goalCategories" id="goalCategories" value={searchInput} onChange={e=> setGoalCategories(e.target.value)} required/> */}
+                        <input
+                            type="text"
+                            placeholder="Search For Category Here"
+                            onChange={handleChange}
+                            value={searchInput} 
+                        />
+                        {searchInput.length > 0 
+                        &&
+                            <SearchBar/>
+                        }
+                        {/* <button onClick={()=>{
+                            setEditGoalCategories(false)
+                            onClickingDone()
+                            }}>Add Another Category</button> */}
                         <button onClick={()=>{
                             setEditGoalCategories(false)
                             onClickingDone()
                             }}>Done</button>
                     </>
                 }  
-            </div> */}
+            </div>
         </div>
 
     )

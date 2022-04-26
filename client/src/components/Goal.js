@@ -10,29 +10,30 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     
     const [loading, setLoading] = useState(true);
 
-    const [allTaskGivenPeriod, setAllTaskGivenPeriod] = useState(null);
-    const [allCategoryTaskGivenPeriod, setAllCategoryTaskGivenPeriod] = useState(null);
+    const [allCompletedTasksGivenPeriod, setAllCompletedTasksGivenPeriod] = useState(null);
     const [tasksOnTarget, setTasksOnTarget] = useState(null);
-    const [goalTask, setGoalTask] = useState(null);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         calculatingTargetOutcome();
         
-
     }, []);
 
-    // useEffect(() => {
-    //     calculatingTargetOutcome();
 
-    // }, [goalStartDate]);
+    useEffect(() => {
+        calculateAllCompletedTasksGivenPeriod();
+        calculateAllCompletedTaskOfCategoryGivenPeriod();
+        
+
+    }, [completedTasks]);
 
 
     useEffect(() => {
         setLoading(false)
         
     }, [goalTitle, goalTarget, goalStartDate, goalEndDate]);
+
 
     useEffect(() => {
         setGoalTitle(goal.title);
@@ -42,15 +43,57 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         
     }, [goal]);
 
-    // useEffect(() => {
-    //     calculatingTargetOutcome();
-        
-    // }, [goalStartDate]);
 
     useEffect(() => {
         calculatingTargetOutcome();
         
     }, [goalEndDate]);
+
+    const calculateAllCompletedTasksGivenPeriod = () => {
+        if(goalStartDate&&goalEndDate){
+            let periodStart= Date.parse(new Date(goalStartDate.split("/").reverse()));
+            let periodEnd= Date.parse(new Date(goalEndDate.split("/").reverse()));
+            let periodTaskHelper = []
+            for(let task of completedTasks){
+                if(
+                completedTasks.completedTimeStamp>=periodStart
+                &&
+                completedTasks.completedTimeStamp<=periodEnd
+                ){
+                    periodTaskHelper.push(task);
+                }
+            }
+            setAllCompletedTasksGivenPeriod(periodTaskHelper);
+        }
+    }
+
+    const calculateAllCompletedTaskOfCategoryGivenPeriod= () => {
+        if(goalStartDate&&goalEndDate){
+            let periodStart= Date.parse(new Date(goalStartDate.split("/").reverse()));
+            let periodEnd= Date.parse(new Date(goalEndDate.split("/").reverse()));
+            let periodTaskHelper = []
+            for(let task of completedTasks){
+                if(goal.categories.includes(task.category)){
+                    if(
+                    completedTasks.completedTimeStamp>=periodStart
+                    &&
+                    completedTasks.completedTimeStamp<=periodEnd
+                    ){
+                        periodTaskHelper.push(task);
+                    }
+
+                }
+            }
+            setTasksOnTarget(periodTaskHelper);
+        }  
+    }
+
+    const translatingTheGoalTargetIntoTasksNumber = () => {
+        const nuAllTasksPeriod = allCompletedTasksGivenPeriod.length;
+        const numberOfTaksNeededToMeetTarget = (goal.target / nuAllTasksPeriod) * 100;
+        return numberOfTaksNeededToMeetTarget
+        
+    }
 
     const findDaysAfter = (goal) => {
         console.log("within find days after");
@@ -81,6 +124,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         console.log("within find goals end date");//////////
         let daysAfter = findDaysAfter(goal);
         let goalStartDate = goal.startDate;
+        console.log("goalStartDate", goalStartDate);/////////
         let endDate = new Date(goalStartDate.split("/").reverse().toString());
         console.log("endDate", endDate);//////////
         if(goalStartDate && daysAfter){
@@ -96,42 +140,6 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         }
     }
 
-    const calculateAllCompletedTasksGivenPeriod = () => {
-        let periodStart= Date.parse(new Date(goalStartDate.split("/").reverse()));
-        let periodEnd= Date.parse(new Date(goalEndDate.split("/").reverse()));
-        let periodTaskHelper = []
-        for(let task of completedTasks){
-            if(
-            completedTasks.completedTimeStamp>=periodStart
-            &&
-            completedTasks.completedTimeStamp<=periodEnd
-            ){
-                periodTaskHelper.push(task);
-            }
-        }
-        setAllTaskGivenPeriod(periodTaskHelper);
-    }
-
-    const calculateAllCompletedTaskOfGoalGivenPeriod= () => {
-        let periodStart= Date.parse(new Date(goalStartDate.split("/").reverse()));
-        let periodEnd= Date.parse(new Date(goalEndDate.split("/").reverse()));
-        let periodTaskHelper = []
-        for(let task of completedTasks){
-            if(goal.categories.includes(task.category)){
-                if(
-                completedTasks.completedTimeStamp>=periodStart
-                &&
-                completedTasks.completedTimeStamp<=periodEnd
-                ){
-                    periodTaskHelper.push(task);
-                }
-
-            }
-        }
-        setAllTaskGivenPeriod(periodTaskHelper);
-        
-    }
-
     const calculatingTargetOutcome = () => {
         if(goalEndDate){
             let dateNow = Date.parse(new Date());
@@ -140,10 +148,10 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             console.log("dateEnd", dateEnd);//////////////
             if(dateNow <= dateEnd){
                 console.log("penidng");////////////
-                return "penidng"
+                return "pending"
 
             }else{
-                if(tasksOnTarget.length() >= goalTask){
+                if(tasksOnTarget.length() >= translatingTheGoalTargetIntoTasksNumber()){
                     console.log("succeeded");//////////
                     return "succeeded"
 
@@ -174,7 +182,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             {loading?
             <p>Loading...</p>
             :
-            <button onClick={ onGoalClick }><>
+            <button  className={calculatingTargetOutcome()} onClick={ onGoalClick }><>
                 <div>
                     <label> Goal Title </label>
                     <p> {goalTitle} </p>
