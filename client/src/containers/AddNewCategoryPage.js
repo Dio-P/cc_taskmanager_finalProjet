@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaBars } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import Menu from "../components/Menu";
 
@@ -28,7 +29,7 @@ const AddNewCategoryPage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -42,7 +43,7 @@ const AddNewCategoryPage = () => {
                     <label> Title </label>
                     <h1>{ title }</h1>
                     <div>
-                    <p>Choose a Title</p>
+                    <p>Enter a Title</p>
                         <input 
                             type="text" 
                             name="newTitle" 
@@ -54,11 +55,9 @@ const AddNewCategoryPage = () => {
                 </div>
                 <div>
                     <label> Colour </label>
-                    <svg viewbox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="20" fill={colour}/>
-                    </svg>
+                    <div className='circle' style = {{backgroundColor: {colour}}}></div>
                     <div>
-                        <p>Choose a colour</p>
+                        <p>Select a colour</p>
                         <input 
                             type="color" 
                             name="newColour" 
