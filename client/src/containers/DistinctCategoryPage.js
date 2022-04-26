@@ -15,7 +15,7 @@ const DistinctCategoryPage = () => {
     const category = location.state.category;
     const categories = location.state.categories;
     const priorities = location.state.priorities;
-    const {get, post} = useContext(RequestContext);
+    const {get, post, put} = useContext(RequestContext);
 
     useEffect(() => {
         setTitle(category.title);
@@ -29,15 +29,7 @@ const DistinctCategoryPage = () => {
 
     const onClickingDone = () => {
         let updatedCategory = {colour: colour, title:title};
-        console.log("updatedCategory", updatedCategory);////////////
-        // post(, newCategory)
-
-        // category object example
-        // colour: "#FF0000"
-        // goal: "WEEKLY"
-        // goalDuration: 2
-        // id: 2
-        // title: "Project"
+        put(`categories/${category.id}`, updatedCategory)
     }
 
     return (
