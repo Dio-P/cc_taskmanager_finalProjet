@@ -39,7 +39,16 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
 
     const onClickingACategory = (category,e) => {
         e.preventDefault();
-        setGoalCategories([...goalCategories, category]);
+        const existingCategoryIDs = 
+        Object.values(goalCategories).map(category => (
+        category.id
+        ));
+        if(existingCategoryIDs.includes(category.id)){
+            alert("this category has already been added")
+        }else{
+            setGoalCategories([...goalCategories, category]);
+        }
+        setSearchInput("");
     
       };
     
@@ -71,7 +80,7 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
     }
         
     return(
-        <form>
+        <form onSubmit={onClickingDone}>
             {!isMenuOpen?
                 <>
                     <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
@@ -135,7 +144,7 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
                     optionsToDisplay={ categoriesToDisplay }
                 />}
             </div>
-            <button onClick={(e)=> onClickingDone(e)}> Create New Goal </button>
+            <button type="submit"> Create New Goal </button>
         </form>
     )
 }
