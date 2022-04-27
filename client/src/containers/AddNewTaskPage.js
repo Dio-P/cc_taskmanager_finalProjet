@@ -57,7 +57,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
         setSearchInput(e.target.value.toLowerCase());
       };
 
-    const onClickingACategory = (collaborator,e) => {
+    const onClickingACollaborator = (collaborator,e) => {
         e.preventDefault();
         setTaskCollaborators([...taskCollaborators, collaborator]);
     
@@ -218,7 +218,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
                         {searchInput.length > 0 
                         && 
                         <SearchBar
-                            onClickingAnOption={ (users, e)=> onClickingACategory(users, e) }
+                            onClickingAnOption={ (users, e)=> onClickingACollaborator(users, e) }
                             optionsToDisplay={ collaboratorsToDisplay }
                         />}
                     </>
