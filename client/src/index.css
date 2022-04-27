@@ -32,6 +32,10 @@ code {
   @apply bg-yellow text-black font-semibold rounded shadow-md tracking-wider m-20 p-4;
 }
 
+.create-goal-btn {
+  @apply bg-blue text-white font-semibold rounded shadow-md tracking-wider m-24 p-4;
+}
+
 .add-btn{
   @apply bg-yellow font-semibold p-2.5 rounded shadow-md tracking-wider m-2 w-52;
 }
@@ -61,7 +65,7 @@ code {
   color: #fff;
   font-size: 18px;
   margin-top: -50px;
-  margin-left: 50px;
+  margin-left: 60px;
   margin-bottom: 30px;
 }
 
@@ -82,7 +86,7 @@ code {
 
 .title-field {
   margin-bottom: 10px;
-  margin-right: -50px;
+  margin-right: -60px;
   height: 30px;
   width: 130px;
   padding: 5px;
@@ -254,4 +258,9 @@ code {
   text-align: center;
   font-size: 18px;
   font-weight: 600;
+}
+
+.create-a-goal {
+  margin-left: 110px;
+  margin-top: 60px;
 }

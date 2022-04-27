@@ -153,7 +153,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateWholeMainPageTask
                     priorities={ priorities }
                 />
             }
-            <p className='cat-header'>Create A Task</p>
+            <p className='cat-header'>Create Task</p>
             <FaWrench className='wrench-icon'/>
             <form className='task-form' onSubmit={addNewTask}>
                 <label className='font-semibold text-xl' htmlFor="taskTitle">Task Title</label>
