@@ -34,18 +34,17 @@ const GoalsPage = ({ goals, completedTasks, categories, priorities }) => {
                     goals={ goals }
                 />
             }
-            
             <div className='flex flex-row'>
-            <h1 className='categories-h1 basis-1/2'>My Goals</h1>
-                <button onClick={()=> navigate("/goal/createNewGoal")} className='plus-btn'><FaPlus /></button>
+                <h1 className='categories-h1 basis-1/2'>My Goals</h1>
+                    <button onClick={()=> navigate("/goal/createNewGoal")} className='plus-btn'><FaPlus /></button>
             </div>
             <div className='mygoals'>
-            <AllGoalsContainer
-                categories={ categories }
-                priorities={ priorities }
-                goals={ goals }
-                completedTasks={ completedTasks }
-            />
+                <AllGoalsContainer
+                    categories={ categories }
+                    priorities={ priorities }
+                    goals={ goals }
+                    completedTasks={ completedTasks }
+                />
             </div>
         </div>
     )
