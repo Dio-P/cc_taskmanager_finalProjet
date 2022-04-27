@@ -6,7 +6,7 @@ import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
 import SearchBar from "../components/SearchBar";
 
-const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
+const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAppMainStateFromComponent }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchInput, setSearchInput] = useState("");
 
@@ -65,6 +65,7 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList }) => {
         };
         console.log("updatedGoal", newGoal);/////////////
         post("goals", newGoal);
+        // updateAppMainStateFromComponent(newGoal)
     }
         
     return(

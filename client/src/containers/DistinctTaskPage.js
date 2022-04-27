@@ -5,7 +5,7 @@ import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 
-const DistinctTaskPage = ({ categories, priorities, users }) => {
+const DistinctTaskPage = ({ categories, priorities, users, updateAppMainStateFromComponent }) => {
     const location = useLocation();
     const task = location.state.task;
     // const categories = location.state.categories;
@@ -84,7 +84,9 @@ const DistinctTaskPage = ({ categories, priorities, users }) => {
         updatedTask["completed"]=taskCompleted;
         updatedTask["completedTimeStamp"]=completedTimeStamp;
 
-        if(taskDescription){updatedTask["description"]=taskDescription;}
+        if(taskDescription){
+            updatedTask["description"]=taskDescription;
+        }
         if(taskDate){
             updatedTask["date"]=taskDate;
             updatedTask["type"]=datedTaskType;
@@ -92,13 +94,17 @@ const DistinctTaskPage = ({ categories, priorities, users }) => {
             updatedTask["type"]="SOMEDAY";
 
         }
-        if(taskTime){updatedTask["time"]=taskTime;}
-        if(taskDuration){updatedTask["duration"]=taskDuration;}
+        if(taskTime){
+            updatedTask["time"]=taskTime;
+        }
+        if(taskDuration){
+            updatedTask["duration"]=taskDuration;
+        }
         
         console.log("updatedTask", updatedTask);/////////////
         
         put(`tasks/${task.id}`, updatedTask)
-    
+        // updateAppMainStateFromComponent(updatedTask)
         
         // redirect to home page            
     }

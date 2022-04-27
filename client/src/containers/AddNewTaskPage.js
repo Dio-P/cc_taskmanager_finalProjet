@@ -6,7 +6,7 @@ import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
 import SearchBar from "../components/SearchBar";
 
-const AddNewTaskPage = ({ categories, priorities, users }) => {
+const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromComponent }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [taskTitle, setTaskTitle] = useState("");
     const [taskCategory, setTaskCategory] = useState(null);
@@ -123,6 +123,7 @@ const AddNewTaskPage = ({ categories, priorities, users }) => {
         console.log("post", post);
 
        post("tasks", newTask)
+    //    updateAppMainStateFromComponent(newTask)
     }
    
     return (

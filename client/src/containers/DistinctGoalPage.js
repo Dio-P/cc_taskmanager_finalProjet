@@ -4,7 +4,7 @@ import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 import SearchBar from "../components/SearchBar";
 
-const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users }) => {
+const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users, updateAppMainStateFromComponent }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -102,6 +102,8 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users 
     };
     console.log("updatedGoal", updatedGoal);/////////
     put(`goals/${goal.id}`, updatedGoal)
+    // updateAppMainStateFromComponent(updatedGoal)
+
   };
 
   return (
