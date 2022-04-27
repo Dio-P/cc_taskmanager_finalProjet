@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaBars, FaWrench, FaPlus, FaMinus } from "react-icons/fa";
+
+import Menu from "./Menu";
 
 
 const Goal = ({ goal, categories, priorities, completedTasks }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const [goalTitle, setGoalTitle] = useState(goal.title);
     const [goalTarget, setGoalTarget] = useState(goal.target);
     const [goalStartDate, setGoalStartDate] = useState(goal.startDate);
@@ -184,30 +189,49 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         })
     }
 
+    const closeMenuFunction = () => {
+        setIsMenuOpen(false);
+    }
+
 
     return(
         <div>
             {loading?
             <p>Loading...</p>
             :
-            <button  className={calculatingTargetOutcome()} onClick={ onGoalClick }><>
-                <div>
-                    <label> Goal Title </label>
-                    <p> {goalTitle} </p>
+            <div>
+                {!isMenuOpen?
+                    <>
+                        <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
+                    </>
+                : 
+                    <Menu
+                        closeMenuFunction={ ()=>closeMenuFunction() }
+                        categories={ categories }
+                        priorities={ priorities }
+                    />
+                }
+                <div className={calculatingTargetOutcome()} onClick={ onGoalClick }>
+                    <>
+                        <div>
+                            <label> Goal Title </label>
+                            <p> {goalTitle} </p>
+                        </div>
+                        <div>
+                            <label> Goal Start Date </label>
+                            <p> {goalStartDate} </p>
+                        </div>
+                        <div>
+                            <label> Goal End Date </label>
+                            <p> {goalEndDate} </p>
+                        </div>
+                        <div>
+                            <label> Goal Target </label>
+                            <p> {goalTarget} </p>
+                        </div>
+                    </>
                 </div>
-                <div>
-                    <label> Goal Start Date </label>
-                    <p> {goalStartDate} </p>
-                </div>
-                <div>
-                    <label> Goal End Date </label>
-                    <p> {goalEndDate} </p>
-                </div>
-                <div>
-                    <label> Goal Target </label>
-                    <p> {goalTarget} </p>
-                </div>
-            </>See Goal Details </button>
+            </div>
             }
             
         </div>

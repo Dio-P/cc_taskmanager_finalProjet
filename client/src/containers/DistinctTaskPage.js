@@ -73,7 +73,17 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
 
     const onClickingACollaborator = (collaborator,e) => {
         e.preventDefault();
-        setTaskCollaborators([...taskCollaborators, collaborator]);
+        const existingCollaboratorsIDs = 
+        Object.values(taskCollaborators).map(collaborator => (
+            collaborator.id
+        ));
+        if(existingCollaboratorsIDs.includes(collaborator.id)){
+            alert("this collaborator has already been added")
+        }else{
+            setTaskCollaborators([...taskCollaborators, collaborator]);
+        }
+        
+        setSearchInput("");
     
       };
     
@@ -154,13 +164,13 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                 <>
                     <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
                 </>
-            :
+                :
                 <Menu
                     closeMenuFunction={ ()=>closeMenuFunction() }
                     categories={ categories }
                     priorities={ priorities }
                 />
-            }
+                }
                 
                 <div>
                     <label>Task Title</label>

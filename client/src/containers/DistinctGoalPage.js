@@ -86,6 +86,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
     }else{
       setGoalCategories([...goalCategories, category]);
     }
+    setSearchInput("");
   };
 
   const removeGoalCategory = (categoryID) => {
@@ -272,6 +273,12 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
             </button>
           </>
         )}
+      </div>
+      <div>
+        <button onClick={()=>{
+          // delete
+          navigate("/goals")
+          }}>Delete Goals</button>
       </div>
       <div>
         <button onClick={()=>navigate("/goals")}>Back To Goals</button>
