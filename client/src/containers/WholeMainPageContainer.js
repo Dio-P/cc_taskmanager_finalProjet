@@ -175,9 +175,7 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                 />
             }
             <p className='greeting'>Hi, {user.email}! </p>
-            <div>
-                <button className='plus-btn' onClick={()=> navigate("/task/createNewTask")}><FaPlus/></button>
-            </div>
+            <div className='home-top flex flex-box p-2  m-5'>
             <TasksBoxMainMenuBar
                 categories={ categories }
                 priorities={ priorities }
@@ -185,6 +183,10 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                 setPrioritiesFromDropDown={(choosenOption)=> setPrioritiesFromDropDown(choosenOption) }
                 setCategoriesFromDropDown={(choosenOption)=> setCategoriesFromDropDown(choosenOption) }
             />
+            <div>
+                <button className='plus-btn basis-1/3' onClick={()=> navigate("/task/createNewTask")}><FaPlus/></button>
+            </div>
+            </div>
             <AllTasksContainer 
                 uncompletedTasksToDisplay={ uncompletedTasksToDisplay } 
                 completedTasksToDisplay={ completedTasksToDisplay }
@@ -192,6 +194,7 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                 priorities={ priorities }
                 updateWholeMainPageStateFromComponent={ updateWholeMainPageTasksFromComponent }
             />
+            
 
         </div>
     )
