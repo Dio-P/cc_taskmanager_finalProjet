@@ -5,6 +5,7 @@ import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 import SearchBar from "../components/SearchBar";
+import { FaBars } from "react-icons/fa";
 
 const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTasksFromComponent }) => {
     const location = useLocation();
@@ -152,7 +153,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
             <div>
                 {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -163,10 +164,11 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
             }
                 
                 <div>
-                    <label>Task Title</label>
-                    <h3>{taskTitle}</h3>
+                    <p className='cat-header'>{taskTitle}</p>
+                    <label className='basis-1/3 font-semibold text-lg'>Task Title</label>
+                    <h3 className='basis-1/3 text-lg italic'>{taskTitle}</h3>
                     {!editTitle?
-                        <button onClick={()=>setEditTitle(true)}>Edit</button>
+                        <button className='btn' onClick={()=>setEditTitle(true)}>Edit</button>
                     :
                         <>
                             <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
