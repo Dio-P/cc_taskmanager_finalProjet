@@ -206,14 +206,14 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
                 } 
                 {hasCollaborators?
                     <>
-                        <label> Collaborators </label>
+                        <label className='font-semibold text-xl'>Collaborators</label>
                         <div>
                         {taskCollaborators.length > 0 &&
                             Object.values(taskCollaborators).map((collaborator) => (
                             <div>
                                 <p>{ collaborator.firstName } { collaborator.lastName }</p>
-                                <button key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}>
-                                X
+                                <button className="minus-btn" key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}><FaMinus className='minus-icon'/>
+                                Collaborator
                                 </button>
                             </div>
                             ))}
