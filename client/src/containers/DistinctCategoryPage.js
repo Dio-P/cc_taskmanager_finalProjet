@@ -15,12 +15,11 @@ const DistinctCategoryPage = () => {
     const category = location.state.category;
     const categories = location.state.categories;
     const priorities = location.state.priorities;
-    const {get, post} = useContext(RequestContext);
+    const { put } = useContext(RequestContext);
 
     useEffect(() => {
         setTitle(category.title);
         setColour(category.colour);
-        
     }, [category]);
 
     const closeMenuFunction = () => {
@@ -29,15 +28,7 @@ const DistinctCategoryPage = () => {
 
     const onClickingDone = () => {
         let updatedCategory = {colour: colour, title:title};
-        console.log("updatedCategory", updatedCategory);////////////
-        // post(, newCategory)
-
-        // category object example
-        // colour: "#FF0000"
-        // goal: "WEEKLY"
-        // goalDuration: 2
-        // id: 2
-        // title: "Project"
+        put(`categories/:${category.title}`, updatedCategory)
     }
 
     return (
@@ -78,7 +69,7 @@ const DistinctCategoryPage = () => {
             <div className='flex flex-box py-15 justify-center m-7'>
                 <label className='basis-1/3 font-semibold text-lg'>Colour</label>
                 <div className='basis-1/3'>
-                    <div className='circle' style = {{backgroundColor: {colour}}}></div>
+                    <div className='circle' style = {{backgroundColor: colour}}></div>
                 </div>
                 {!editColour?
                         <button className='btn' onClick={()=> setEditColour(true)}>Edit</button>

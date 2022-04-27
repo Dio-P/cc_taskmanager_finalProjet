@@ -5,6 +5,8 @@ import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
 import SearchBar from "../components/SearchBar";
+import { FaBars, FaWrench, FaPlus, FaMinus } from "react-icons/fa";
+
 
 const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromComponent }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -130,7 +132,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -139,26 +141,30 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
                     priorities={ priorities }
                 />
             }
-            <form onSubmit={addNewTask}>
-                <label htmlFor="taskTitle">Task Title</label>
-                <input type="text" name="taskTitle" id="taskTitle" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
-
-                <label htmlFor="taskCategory">Task Category</label>
+            <p className='cat-header'>Create A Task</p>
+            <FaWrench className='wrench-icon'/>
+            <form className='task-form' onSubmit={addNewTask}>
+                <label className='font-semibold text-xl' htmlFor="taskTitle">Task Title</label>
+                <input className='title-field' type="text" name="taskTitle" id="taskTitle" placeholder="enter title" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
+                <br/>
+                <label className='font-semibold text-xl' htmlFor="taskCategory">Task Category</label>
                 <DropDownMenuCategory options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
-
-                <label htmlFor="taskPriority">Task Priority</label>
+                <br/>
+                <label className='font-semibold text-xl' htmlFor="taskPriority">Task Priority</label>
                 <DropDownMenuPriority options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
 
                 {hasDescription?
                 <>
                     <label htmlFor="taskDescription">Task Description</label>
-                    <input type="text" name="taskDescription" id="taskDescription" value={taskDescription} onChange={e=> setTaskDescription(e.target.value)}/>
-                    <button onClick={()=> setHasDescription(false)}>- Remove Description</button>
+                    <input className='category-input' type="text" name="taskDescription" id="taskDescription" value={taskDescription} onChange={e=> setTaskDescription(e.target.value)}/>
+                    <button className='minus-btn' onClick={()=> setHasDescription(false)}><FaMinus className='minus-icon'/>Description</button>
                 </>
                 :
-                <button onClick={()=> setHasDescription(true)}>+ Add Description</button>
+                
+                <button className='add-btn' onClick={()=> setHasDescription(true)}><FaPlus className='add-icon'/>Description</button>
+                
                 }
-
+                <br/>
                 {hasDate?
                 <>
                     <label htmlFor="taskDate">Task Date</label>
@@ -170,30 +176,31 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
                     <input type="radio" name="timedTaskType" id="do_on" value="DO_BY" onChange={e=> setDatedTaskType(e.target.value)}/>
 
                     </div>
-                    <button onClick={()=> setHasDate(false)}>- Remove Date</button>
+                    <button className='minus-btn' onClick={()=> setHasDate(false)}><FaMinus className='minus-icon'/>Date</button>
                 </>
                 :
-                <button onClick={()=> setHasDate(true)}>+ Add Date</button>
+                <button className='add-btn' onClick={()=> setHasDate(true)}><FaPlus className='add-icon'/>Date</button>
                 }
-
+                <br/>
                 {hasTime?
                 <>
                     <label htmlFor="taskDate">Task Time</label>
                     <input type="time" name="taskDate" id="taskDate" value={taskTime} onChange={e=> setTaskTime(e.target.value)}/>
-                    <button onClick={()=> setHasTime(false)}>- Remove Date</button>
+                    <button className="minus-btn" onClick={()=> setHasTime(false)}><FaMinus className='minus-icon'/>Time</button>
                 </>
                 :
-                <button onClick={()=> setHasTime(true)}>+ Add Time</button>
+                <button className='add-btn' onClick={()=> setHasTime(true)}><FaPlus className='add-icon'/>Time</button>
                 }
-
+                <br/>
                 {hasDuration?
                 <>
                     <label htmlFor="taskDuration">Task Duration</label>
-                    <input type="text" name="taskDuration" id="taskDuration" placeholder="in minutes" value={taskDuration} onChange={e=> setTaskDuration(e.target.value)}/>
-                    <button onClick={()=> setHasDuration(false)}>- Remove Duration</button>
+                    <input className='title-field' type="text" name="taskDuration" id="taskDuration" placeholder="in minutes" value={taskDuration} onChange={e=> setTaskDuration(e.target.value)}/>
+                    <button className='minus-btn' onClick={()=> setHasDuration(false)}><FaMinus className='minus-icon'/>Duration</button>
                 </>
                 :
-                <button onClick={()=> setHasDuration(true)}>+ Add Duration</button>
+
+                <button className='add-btn' onClick={()=> setHasDuration(true)}><FaPlus className='add-icon'/>Duration</button>
                 } 
                 {hasCollaborators?
                     <>
@@ -226,8 +233,8 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
                     <button onClick={()=> setHasCollaborators(true)}>+ Add Collaborators</button>
                 }
                 
-
-                <button type="submit">Create Task </button>
+                <br/>
+                <button className='create-btn' type="submit">Create Task </button>
             </form>
         </div>
     )

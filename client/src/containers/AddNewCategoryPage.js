@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaBars, FaWrench } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import Menu from "../components/Menu";
 
@@ -28,7 +29,7 @@ const AddNewCategoryPage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -37,13 +38,15 @@ const AddNewCategoryPage = () => {
                     priorities={ priorities }
                 />
             }
+            <p className='cat-header'>Create A Category</p>
+            <FaWrench className='wrench-icon'/>
             <form onSubmit={onSubmit}>
-                <div>
-                    <label> Title </label>
+                <div className='colour-section'>
+                    <label className='font-semibold text-2xl'> Title </label>
                     <h1>{ title }</h1>
                     <div>
-                    <p>Choose a Title</p>
-                        <input 
+                         <p className='title-p text-xl'>Enter a title</p>
+                         <input className='category-input'
                             type="text" 
                             name="newTitle" 
                             value={title} 
@@ -52,23 +55,21 @@ const AddNewCategoryPage = () => {
                             />
                     </div>
                 </div>
-                <div>
-                    <label> Colour </label>
-                    <svg viewbox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="20" fill={colour}/>
-                    </svg>
-                    <div>
-                        <p>Choose a colour</p>
-                        <input 
+                <div className='colour-section'>
+                    <label className='font-semibold text-2xl'> Colour </label>
+                    <div className='circle' style = {{backgroundColor: colour}}></div>
+                        <p className='title-p text-xl'>Select a colour</p>
+                         <input className='colour-selector'
                             type="color" 
                             name="newColour" 
                             value={colour} 
                             onChange={(e)=> setColour(e.target.value)}
                             required
-                            />
-                    </div>
+                         />
                 </div>
-                <button type="submit"> Create </button>
+                <div className='colour-section'>
+                    <button className='create-cat' type="submit"> Create </button>
+                </div>
             </form>
         </div>
     )
