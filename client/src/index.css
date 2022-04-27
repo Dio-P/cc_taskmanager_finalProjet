@@ -206,3 +206,9 @@ code {
   margin: 3px;
   font-weight: bold;
 }
+
+.checkbox {
+  padding: 2px;
+  border: 2px solid #F1B625;
+  font-weight: bold;
+}
