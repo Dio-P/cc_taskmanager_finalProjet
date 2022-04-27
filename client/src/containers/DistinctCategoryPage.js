@@ -104,8 +104,8 @@ const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromCo
                     }
             </div>
             <div>
-                <button onClick={()=> navigate("/categories")}>
-                    Back To The Categories
+                <button className="create-btn" onClick={()=> navigate("/categories")}>
+                    Back To Categories
                 </button>
             </div>
         </div>
