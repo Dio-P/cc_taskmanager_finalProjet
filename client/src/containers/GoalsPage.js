@@ -24,7 +24,7 @@ const GoalsPage = ({ goals, completedTasks, categories, priorities }) => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -35,16 +35,18 @@ const GoalsPage = ({ goals, completedTasks, categories, priorities }) => {
                 />
             }
             
-            <div>
-                <p>Goals</p>
+            <div className='flex flex-row'>
+            <h1 className='categories-h1 basis-1/2'>My Goals</h1>
                 <button onClick={()=> navigate("/goal/createNewGoal")} className='plus-btn'><FaPlus /></button>
             </div>
+            <div className='mygoals'>
             <AllGoalsContainer
                 categories={ categories }
                 priorities={ priorities }
                 goals={ goals }
                 completedTasks={ completedTasks }
             />
+            </div>
         </div>
     )
 }

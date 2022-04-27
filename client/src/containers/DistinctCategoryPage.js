@@ -117,8 +117,8 @@ const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromCo
                     Back To Categories
 
                 </button>
-            </div>
         </div>
+        
     )
 }
 

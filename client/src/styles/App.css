@@ -4,17 +4,26 @@
 
 .pending {
   background-color: yellow;
-
+  color: black;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
 }
 
 .succeeded {
   background-color: green;
-
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
 }
 
 .failed {
   background-color: red;
-
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
 }
 
 .hideMenuNav {

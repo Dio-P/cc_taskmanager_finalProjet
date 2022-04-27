@@ -246,5 +246,12 @@ code {
 
 .home-top {
   display: inline-flex;
- 
+}
+
+.mygoals {
+  margin-left: 40px;
+  margin-right: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
 }
