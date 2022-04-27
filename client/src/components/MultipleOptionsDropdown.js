@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown }) => {
+const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown, uiState }) => {
     const [optionshandler, setOptionshandler] = useState(null);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown }) => {
     }, []);
 
     useEffect(() => {
-        console.log("optionshandler", optionshandler);//////////
+        // console.log("optionshandler", optionshandler);//////////
         setOptionsFromDropDown(optionshandler)
     }, [optionshandler]);
 
@@ -38,7 +38,7 @@ const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown }) => {
 
     
     return(
-        <ul>
+        <ul className={uiState}>
             {optionshandler?
                 options.map(option => (
                     <li><input type="checkbox" onClick={(e)=> onClick(e)} checked={optionshandler[option].checked} value={option} />{option}</li>

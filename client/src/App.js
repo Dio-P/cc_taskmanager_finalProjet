@@ -136,12 +136,22 @@ function App() {
     .then(data=> (setUsers(data)))
   }
 
-  // updateAppMainStateFromComponent
+  // updateAppMainStateFromComponent={ updateAppGoalsFromComponent }
   const updateAppTasksFromComponent =() => {
      
   }
 
-  const updateAppGoalsFromComponent =() => {
+  const updateAppGoalsFromComponent =(goalToChange) => {
+    let allIdInGoals = goals.map(goal=> goal.id);
+    if(allIdInGoals.includes(goalToChange.id)){
+      goals.filter(goal => {
+        return goal.id!==goalToChange.id
+      })
+      setGoals([...goals, goalToChange]);
+
+    }else{
+      setGoals([...goals, goalToChange]);
+    }
      
   }
 
@@ -171,10 +181,10 @@ function App() {
       
     }, [allTasks]);
 
-    useEffect(() => {
-      const dummyCategoriesList = ["studieng", "playing", "making something beautiful", "get bored", "play tetris"]
+    // useEffect(() => {
+    //   const dummyCategoriesList = ["studieng", "playing", "making something beautiful", "get bored", "play tetris"]
       
-    }, [allTasks, categories]);
+    // }, [allTasks, categories]);
 
     useEffect(() => {
       const prioritiesList = [ "LOW", "MEDIUM", "HIGH" ];
@@ -241,12 +251,15 @@ function App() {
           goals = { goals }
           goalTypesList ={ goalTypesList }
           users= { users }
+          updateAppMainStateFromComponent={ updateAppGoalsFromComponent }
+
         /> }/>
         <Route path="/goal/createNewGoal" element={ <AddNewGoalPage
           categories={ categories }
           priorities={ priorities }
           goals = { goals }
           goalTypesList ={ goalTypesList }
+          updateAppMainStateFromComponent={ updateAppGoalsFromComponent }
         /> }/>
         <Route path="/categories" element={ <CategoriesPage/> }/>
         <Route path="/category/:category_title" element={ <DistinctCategoryPage/> }/>

@@ -22,6 +22,7 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
     const [goalActive, setGoalActive] = useState(true);
 
     const {get, post} = useContext(RequestContext);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -57,15 +58,16 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
     const onClickingDone = (e) => {
         e.preventDefault();
         let newGoal = {
-            goalTitle, 
-            goalType, 
-            goalTarget, 
-            goalStartDate,
-            goalCategories
+            title: goalTitle, 
+            type: goalType, 
+            target: goalTarget, 
+            startDate: goalStartDate,
+            categories: goalCategories
         };
         console.log("updatedGoal", newGoal);/////////////
         post("goals", newGoal);
-        // updateAppMainStateFromComponent(newGoal)
+        updateAppMainStateFromComponent(newGoal);
+        navigate("/goals");
     }
         
     return(

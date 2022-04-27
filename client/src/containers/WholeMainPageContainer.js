@@ -1,26 +1,78 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import AllTasksContainer from './AllTasksContainer';
 import TasksBoxMainMenuBar from '../components/TasksBoxMainMenuBar';
 import Menu from '../components/Menu';
+import RequestContext from '../context/RequestContext';
 
-const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, priorities, user, goals, goalTypesList}) => {
+const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesList}) => {
+    const [allTasks, setAllTasks] = useState([]);
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [categoriesTitles, setCategoriesTitles] = useState([]);
+    const [completedTasks, setCompletedTasks] = useState([]);
+    const [uncompletedTasks, setUncompletedTasks] = useState([]);
 
     const [categoriesToDisplay, setCategoriesToDisplay] = useState([]);
     const [prioritiesToDisplay, setPrioritiesToDisplay] = useState([]);
     const [uncompletedTasksToDisplay, setUncompletedTasksToDisplay] = useState([]);
     const [completedTasksToDisplay, setCompletedTasksToDisplay] = useState([]);
 
+    const { get } = useContext(RequestContext);
+
     const closeMenuFunction = () => {
         setIsMenuOpen(false);
     }
+
+    // useEffect(() => {
+    //     setUncompletedTasksToDisplay(uncompletedTasks);
+    //     setCompletedTasksToDisplay(completedTasks);
+        
+    // }, []);
+
+    useEffect(() => {
+        const getTasks =  async (authId) => {
+            get("tasks")
+            .then(function (resJson) {
+                setAllTasks(resJson);
+            })
+            .catch((e) => console.log(e));
+            }
+            getTasks();
+            // postUser();
+            // getCategories();
+            // getGoals();
+            // getUsers();
+    }, [get]);
+
+    useEffect(() => {
+        // setting the comleted and unclompleted tasks 
+        // in different states.
+        if(allTasks){
+        let completedHelper = [];
+        let uncompletedHelper = [];
+        
+          for(let task of allTasks){
+            if(task.completed){
+              completedHelper.push(task);
+  
+            }else{
+              uncompletedHelper.push(task);
+  
+            }
+          }
+          setCompletedTasks(completedHelper);
+          setUncompletedTasks(uncompletedHelper);
+        }
+        
+      }, [allTasks]);
 
     useEffect(() => {
         setUncompletedTasksToDisplay(uncompletedTasks);
         setCompletedTasksToDisplay(completedTasks);
         
     }, [uncompletedTasks, completedTasks]);
+
+
 
     useEffect(() => {
         let categoriesTitles = categories.map(category => (
@@ -94,6 +146,15 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
         }
     }
 
+    // updateAppMainStateFromComponent={ updateAppTasksFromComponent }
+    const updateWholeMainPageTasksFromComponent =(task) => {
+        let allTasksUpdateHelper = allTasks.filter(taskInAll => taskInAll.id!==task.id);
+        console.log("allTasksUpdateHelper", allTasksUpdateHelper);
+        console.log("task", task);
+        setAllTasks([...allTasksUpdateHelper, task]);
+
+    }
+
     return (
         <div>
             {!isMenuOpen?
@@ -122,6 +183,7 @@ const WholeMainPageContainer= ({ uncompletedTasks, completedTasks, categories, p
                 completedTasksToDisplay={ completedTasksToDisplay }
                 categories={ categories }
                 priorities={ priorities }
+                updateWholeMainPageStateFromComponent={ updateWholeMainPageTasksFromComponent }
             />
 
         </div>

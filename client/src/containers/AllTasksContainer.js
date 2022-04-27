@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TasksBox from "./TasksBox";
 
-const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay, categories, priorities }) => {
+const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay, categories, priorities, updateWholeMainPageStateFromComponent }) => {
     const [doOns, setDoOns] = useState([]);
     const [doBys, setDoBys] = useState([]);
     const [somedays, setSomedays] = useState([]);
@@ -82,6 +82,8 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
                 categories={ categories }
                 priorities={ priorities } 
                 title = "Weeks Tasks"
+                updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
+
             />
 
             <TasksBox 
@@ -90,6 +92,8 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
                 categories={ categories }
                 priorities={ priorities }
                 title = "Get it done soon"
+                updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
+
             />
 
             <TasksBox 
@@ -98,6 +102,8 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
                 categories={ categories }
                 priorities={ priorities }
                 title = "Get it done someday"
+                updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
+
             />
 
             </div>

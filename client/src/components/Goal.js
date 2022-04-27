@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 
 const Goal = ({ goal, categories, priorities, completedTasks }) => {
-    const [goalTitle, setGoalTitle] = useState(null);
-    const [goalTarget, setGoalTarget] = useState(null);
-    const [goalStartDate, setGoalStartDate] = useState(null);
-    const [goalEndDate, setGoalEndDate] = useState(null);
+    const [goalTitle, setGoalTitle] = useState("");
+    const [goalTarget, setGoalTarget] = useState("");
+    const [goalStartDate, setGoalStartDate] = useState("");
+    const [goalEndDate, setGoalEndDate] = useState("");
     
     const [loading, setLoading] = useState(true);
 
@@ -113,6 +113,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             return 7;
             
         }if(goal.type==="MONTHLY"){
+            console.log("monthly");
             return "MONTHLY";
             
         } 
@@ -165,9 +166,10 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         navigate(`/goal/:${goal.title}`, {
             state: {
                 goal:goal,
-                categories:categories,
-                priorities: priorities,
+                // categories:categories,
+                // priorities: priorities,
                 endDate: goalEndDate
+
             }
         })
     }

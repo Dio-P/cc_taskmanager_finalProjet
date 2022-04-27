@@ -37,6 +37,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
     // const priorities = location.state.priorities;
 
     const {get, post} = useContext(RequestContext);
+    const navigate = useNavigate();
 
     // let year = Date.prototype.getFullYear()
     // let month = Date.prototype.getMonth()
@@ -126,6 +127,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
 
        post("tasks", newTask)
     //    updateAppMainStateFromComponent(newTask)
+        navigate("/");
     }
    
     return (

@@ -9,16 +9,35 @@ import MultipleOptionsDropdown from "./MultipleOptionsDropdown";
 
 
 const TasksBoxMainMenuBar = ({ categories, priorities, setCategoriesFromDropDown, setPrioritiesFromDropDown, categoriesTitles }) => {
-    const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
-    const [prioritiesIsOpen, setPrioritiesIsOpen] = useState(false);
+    const [categoriesIsOpen, setCategoriesIsOpen] = useState(true);
+    const [prioritiesIsOpen, setPrioritiesIsOpen] = useState(true);
+    const [uiStateCategories, setUiStateCategories] = useState("invisible");
+    const [uiStatePriorities, setUiStatePriorities] = useState("invisible");
 
+    useEffect(() => {
+        if(categoriesIsOpen){
+            setUiStateCategories("invisible");
+        }else{
+            setUiStateCategories();
+        }
+        
+    }, [ categoriesIsOpen ]);
+
+    useEffect(() => {
+        if(prioritiesIsOpen){
+            setUiStatePriorities("invisible");
+        }else{
+            setUiStatePriorities("visible");
+        }
+        
+    }, [ prioritiesIsOpen ]);
 
     return (
         <div>
             <div>
                 <div>
                     <button onClick={()=> setPrioritiesIsOpen(!prioritiesIsOpen)}>Priorities</button>
-                    {prioritiesIsOpen?
+                    {!prioritiesIsOpen?
                         <MultipleOptionsDropdown 
                             options={ priorities }
                             setOptionsFromDropDown={ setPrioritiesFromDropDown }
@@ -29,7 +48,7 @@ const TasksBoxMainMenuBar = ({ categories, priorities, setCategoriesFromDropDown
                 </div>
                 <div>
                     <button onClick={()=> setCategoriesIsOpen(!categoriesIsOpen)}>Categories</button>
-                    {categoriesIsOpen?
+                    {!categoriesIsOpen?
                         <MultipleOptionsDropdown 
                             options={ categoriesTitles }
                             setOptionsFromDropDown={ setCategoriesFromDropDown }

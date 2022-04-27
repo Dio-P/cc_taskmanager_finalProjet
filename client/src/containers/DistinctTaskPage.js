@@ -91,13 +91,15 @@ const DistinctTaskPage = ({ categories, priorities, users, updateAppMainStateFro
     }
 
     const onClickingComplete = () => {
-        console.log("inside Complete");
+        // console.log("inside Complete");
         setTaskCompleted(!taskCompleted)
         if(!completedTimeStamp){
             let timestamp = Date.parse(new Date());
             setCompletedTimeStamp(timestamp);
+            // onClickingDone()
         }else{
             setCompletedTimeStamp(null);
+            // onClickingDone()
         }
     }
 

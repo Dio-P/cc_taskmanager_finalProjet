@@ -30,6 +30,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
   const location = useLocation();
   const goal = location.state.goal;
   const endDate = location.state.endDate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     ///////
@@ -94,15 +95,16 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
 
   const onClickingDone = () => {
     let updatedGoal = { 
-      goalTitle, 
-      goalType, 
-      goalTarget, 
-      goalStartDate,
-      goalCategories
+      title: goalTitle, 
+      type: goalType, 
+      target: goalTarget, 
+      startDate: goalStartDate,
+      categories: goalCategories
     };
     console.log("updatedGoal", updatedGoal);/////////
-    put(`goals/${goal.id}`, updatedGoal)
-    // updateAppMainStateFromComponent(updatedGoal)
+    put(`goals/${goal.id}`, updatedGoal);
+    updateAppMainStateFromComponent(updatedGoal);
+    navigate("/");
 
   };
 

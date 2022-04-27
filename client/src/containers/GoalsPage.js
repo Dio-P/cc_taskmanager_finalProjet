@@ -4,12 +4,12 @@ import Menu from '../components/Menu';
 import AllGoalsContainer from "./AllGoalsContainer";
 
 
-const GoalsPage = ({ goals, completedTasks }) => {
+const GoalsPage = ({ goals, completedTasks, categories, priorities }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const location = useLocation();
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
+    // const location = useLocation();
+    // const categories = location.state.categories;
+    // const priorities = location.state.priorities;
     // const goals = location.state.goals;
 
 

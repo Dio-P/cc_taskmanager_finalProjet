@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { matchRoutes } from "react-router-dom";
 import Task from "../components/Task";
 
-const TasksBox = ({ tasks, tasksComplete, title, categories, priorities }) => {
+const TasksBox = ({ tasks, tasksComplete, title, categories, priorities, updateWholeMainPageStateFromComponent }) => {
     
 
     return (
@@ -16,6 +16,7 @@ const TasksBox = ({ tasks, tasksComplete, title, categories, priorities }) => {
                 task={ task }
                 categories={ categories }
                 priorities={ priorities }
+                updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
               />
            ))
            }  
@@ -27,6 +28,8 @@ const TasksBox = ({ tasks, tasksComplete, title, categories, priorities }) => {
                 task={ task }
                 categories={ categories }
                 priorities={ priorities }
+                updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
+
               />
            ))
            }    
