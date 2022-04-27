@@ -162,9 +162,8 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                     priorities={ priorities }
                 />
             }
-                
-                <div>
-                    <p className='cat-header'>{taskTitle}</p>
+                <p className='cat-header'>{taskTitle}</p>
+                <div className="distinct-task">
                     <label className='basis-1/3 font-semibold text-lg'>Task Title</label>
                     <h3 className='basis-1/3 text-lg italic'>{taskTitle}</h3>
                     {!editTitle?
@@ -178,7 +177,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                                 }}>Done</button>
                         </>
                     }  
-                </div>
+            
                 
                 <div>
                     <label className='basis-1/3 font-semibold text-lg'>Completed</label>
@@ -373,15 +372,17 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                 ) : (
                     null
                 )}
-                
+                </div>
             </div>
             }
 
             <div>
                 <button className='create-btn' onClick={()=>navigate("/")}>Back to Tasks</button>
             </div>
+            
 
         </div>
+        
     )
 }
 
