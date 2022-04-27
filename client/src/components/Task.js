@@ -28,6 +28,7 @@ const Task = ({ task, categories, priorities, updateWholeMainPageStateFromCompon
     const [completedTimeStamp, setCompletedTimeStamp] = useState(null);
     const [taskDuration, setTaskDuration] = useState(task.duration);
     const [taskCollaborators, setTaskCollaborators] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     // const [collaboratorsToDisplay, setCollaboratorsToDisplay] = useState([]);
     // const [searchInput, setSearchInput] = useState("");
@@ -35,22 +36,31 @@ const Task = ({ task, categories, priorities, updateWholeMainPageStateFromCompon
     const {get, post, put} = useContext(RequestContext);
 
 
-    useEffect(() => {
-        setTaskCompleted(task.completed);
+    // useEffect(() => {
+    //     setTaskCompleted(task.completed);
         
-    }, [task]);
+    // }, [task]);
+
+    useEffect(() => {
+        setIsLoaded(true);
+        
+    }, []);
 
     useEffect(() => {
         onClickingDone()
     }, [taskCompleted]);
 
     const onClickingDone = () => {
+        if(!isLoaded){
+            return
+        }
         const updatedTask= { }
         updatedTask["title"] = taskTitle;
         updatedTask["category"] = taskCategory;
         updatedTask["priority"] = taskPriority;
         updatedTask["completed"] = taskCompleted;
         updatedTask["completedTimeStamp"] = completedTimeStamp;
+        console.log("completedTimeStamp", completedTimeStamp);
         updatedTask["id"] = taskID;
 
 
@@ -79,9 +89,17 @@ const Task = ({ task, categories, priorities, updateWholeMainPageStateFromCompon
         // redirect to home page            
     }
 
+    useEffect(() => {
+        if(!isLoaded){
+            return
+        }
+        setTaskCompleted(!taskCompleted);
+        
+    }, [completedTimeStamp]);
+
     const onCheckboxClick= () => {
-        // console.log("inside Complete");
-        setTaskCompleted(!taskCompleted)
+        // let timestamp = Date.parse(new Date());
+        // console.log("timestamp", timestamp);  
         if(!completedTimeStamp){
             let timestamp = Date.parse(new Date());
             setCompletedTimeStamp(timestamp);
@@ -90,6 +108,7 @@ const Task = ({ task, categories, priorities, updateWholeMainPageStateFromCompon
             setCompletedTimeStamp(null);
             // onClickingDone()
         }
+        // setTaskCompleted(!taskCompleted);
         
     }
 

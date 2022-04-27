@@ -8,7 +8,7 @@ import SearchBar from "../components/SearchBar";
 import { FaBars, FaWrench, FaPlus, FaMinus } from "react-icons/fa";
 
 
-const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromComponent }) => {
+const AddNewTaskPage = ({ categories, priorities, users, updateWholeMainPageTasksFromComponent }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [taskTitle, setTaskTitle] = useState("");
     const [taskCategory, setTaskCategory] = useState(null);
@@ -126,7 +126,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
         console.log("post", post);
 
        post("tasks", newTask)
-       updateAppMainStateFromComponent(newTask)
+       updateWholeMainPageTasksFromComponent(newTask)
         navigate("/");
     }
    

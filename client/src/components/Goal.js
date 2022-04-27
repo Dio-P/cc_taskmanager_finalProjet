@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 
 const Goal = ({ goal, categories, priorities, completedTasks }) => {
-    const [goalTitle, setGoalTitle] = useState("");
-    const [goalTarget, setGoalTarget] = useState("");
-    const [goalStartDate, setGoalStartDate] = useState("");
+    const [goalTitle, setGoalTitle] = useState(goal.title);
+    const [goalTarget, setGoalTarget] = useState(goal.target);
+    const [goalStartDate, setGoalStartDate] = useState(goal.startDate);
     const [goalEndDate, setGoalEndDate] = useState("");
     
     const [loading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         calculateAllCompletedTaskOfCategoryGivenPeriod();
         
 
-    }, [completedTasks]);
+    }, [goalEndDate]);
 
 
     useEffect(() => {
@@ -36,9 +36,9 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
 
 
     useEffect(() => {
-        setGoalTitle(goal.title);
-        setGoalTarget(goal.target);
-        setGoalStartDate(goal.startDate);
+        // setGoalTitle(goal.title);
+        // setGoalTarget(goal.target);
+        // setGoalStartDate(goal.startDate);
         findGoalEndDate(goal)
         
     }, [goal]);
@@ -68,7 +68,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     }
 
     const calculateAllCompletedTaskOfCategoryGivenPeriod= () => {
-        
+        console.log("hello from line 73");
         if(goalStartDate&&goalEndDate){
             
             let periodStart= Date.parse(new Date(goalStartDate.split("-")));
@@ -76,21 +76,30 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             
             let periodTaskHelper = [];
             let idsArray = goal.categories.map(category => category.id);
-
+            console.log("periodStart", periodStart);
+            console.log("periodEnd", periodEnd);
+            console.log("completedTasks", completedTasks);
             for(let task of completedTasks){
+                console.log("task.completedTimeStamp", task.completedTimeStamp);
+                console.log("task.completedTimeStamp", task.completedTimeStamp);
+                
                 if(idsArray.includes(task.category.id)){
+                    console.log("task.completedTimeStamp", task.completedTimeStamp);
+                    
                     if(
                         task.completedTimeStamp>=periodStart
                     &&
                         task.completedTimeStamp<=periodEnd
                     ){
                         periodTaskHelper.push(task);
+                        console.log("periodTaskHelper", periodTaskHelper);
                         
                     }
-                    setTasksOnTarget(periodTaskHelper);
+                    
                 }
                 
             }
+            setTasksOnTarget(periodTaskHelper);
             
         }  
     }
@@ -150,6 +159,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
 
             }else{
                 console.log("tasksOnTarget", tasksOnTarget);
+                console.log("tasksOnTarget.length", tasksOnTarget.length);
                 console.log("translatingTheGoalTargetIntoTasksNumber()", translatingTheGoalTargetIntoTasksNumber());
                 if(tasksOnTarget.length >= translatingTheGoalTargetIntoTasksNumber()){
                     return "succeeded"
