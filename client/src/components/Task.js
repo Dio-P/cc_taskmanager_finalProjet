@@ -125,7 +125,7 @@ const Task = ({ task, categories, priorities, updateWholeMainPageStateFromCompon
     return (
             <div>
                 <input type="checkbox" id="task" name="task" checked={taskCompleted} onClick={()=>onCheckboxClick()}/>
-                <label htmlFor="task"> <button onClick={onTaskClick}>{ task.title }</button> </label>
+                <label htmlFor="task"> <button className="task-checkbox" onClick={onTaskClick}>{ task.title }</button> </label>
             </div>
       )
 }
