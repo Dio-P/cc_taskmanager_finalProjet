@@ -63,6 +63,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateWholeMainPageTask
     const onClickingACollaborator = (collaborator,e) => {
         e.preventDefault();
         setTaskCollaborators([...taskCollaborators, collaborator]);
+        setSearchInput("");
     
       };
     
