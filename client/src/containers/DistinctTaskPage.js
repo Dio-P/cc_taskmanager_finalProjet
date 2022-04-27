@@ -49,7 +49,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
     const [collaboratorsToDisplay, setCollaboratorsToDisplay] = useState([]);
     const [searchInput, setSearchInput] = useState("");
 
-    const {get, post, put} = useContext(RequestContext);
+    const {put, deleteElement} = useContext(RequestContext);
     
     useEffect(() => {
         setLoading(false)
@@ -74,7 +74,17 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
 
     const onClickingACollaborator = (collaborator,e) => {
         e.preventDefault();
-        setTaskCollaborators([...taskCollaborators, collaborator]);
+        const existingCollaboratorsIDs = 
+        Object.values(taskCollaborators).map(collaborator => (
+            collaborator.id
+        ));
+        if(existingCollaboratorsIDs.includes(collaborator.id)){
+            alert("this collaborator has already been added")
+        }else{
+            setTaskCollaborators([...taskCollaborators, collaborator]);
+        }
+        
+        setSearchInput("");
     
       };
     
@@ -155,18 +165,25 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                 <>
                     <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
-            :
+                :
                 <Menu
                     closeMenuFunction={ ()=>closeMenuFunction() }
                     categories={ categories }
                     priorities={ priorities }
                 />
+
+                }
+                
+                <div>
+              
+
             }
                 <p className='cat-header'>{taskTitle}</p>
                 <div className="distinct-task">
                     <div className="flex flex-box">
                     <label className='basis-1/3 font-semibold text-lg'>Task Title:</label>
                     <h3 className='text-lg italic'>{taskTitle}</h3>
+
                     {!editTitle?
                         <button className='btn' onClick={()=>setEditTitle(true)}>Edit</button>
                     :
@@ -387,6 +404,12 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                 </div>
             </div>
             }
+            <div>
+                <button onClick={()=>{
+                deleteElement("tasks", taskID)
+                navigate("/")
+                }}>Delete</button>
+            </div>
 
             <div>
                 <button className='create-btn' onClick={()=>navigate("/")}>Back to Tasks</button>
