@@ -99,7 +99,9 @@ const AddNewTaskPage = ({ categories, priorities, users }) => {
         newTask["completed"]=false;
         newTask["completedTimeStamp"]=completedTimeStamp;
 
-        if(taskDescription){newTask["description"]=taskDescription;}
+        if(taskDescription){
+            newTask["description"]=taskDescription;
+        }
         if(taskDate){
             newTask["date"]=taskDate;
             newTask["type"]=datedTaskType;
@@ -107,8 +109,15 @@ const AddNewTaskPage = ({ categories, priorities, users }) => {
             newTask["type"]="SOMEDAY";
 
         }
-        if(taskTime){newTask["time"]=taskTime;}
-        if(taskDuration){newTask["duration"]=taskDuration;}
+        if(taskTime){
+            newTask["time"]=taskTime;
+        }
+        if(taskDuration){
+            newTask["duration"]=taskDuration;
+        }
+        if(taskCollaborators.length>0){
+            newTask["collaborators"]=taskCollaborators;
+        }
         
         console.log("newTask", newTask);
         console.log("post", post);
