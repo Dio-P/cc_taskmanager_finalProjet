@@ -136,6 +136,19 @@ function App() {
     .then(data=> (setUsers(data)))
   }
 
+  // updateAppMainStateFromComponent
+  const updateAppTasksFromComponent =() => {
+     
+  }
+
+  const updateAppGoalsFromComponent =() => {
+     
+  }
+
+  const updateAppCategoriesFromComponent =() => {
+     
+  }
+
     useEffect(() => {
       // setting the comleted and unclompleted tasks 
       // in different states.
