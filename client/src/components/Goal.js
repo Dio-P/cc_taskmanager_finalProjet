@@ -56,62 +56,63 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             let periodTaskHelper = []
             for(let task of completedTasks){
                 if(
-                completedTasks.completedTimeStamp>=periodStart
+                task.completedTimeStamp>=periodStart
                 &&
-                completedTasks.completedTimeStamp<=periodEnd
+                task.completedTimeStamp<=periodEnd
                 ){
                     periodTaskHelper.push(task);
                 }
+                setAllCompletedTasksGivenPeriod(periodTaskHelper);
             }
-            setAllCompletedTasksGivenPeriod(periodTaskHelper);
         }
     }
 
     const calculateAllCompletedTaskOfCategoryGivenPeriod= () => {
+        
         if(goalStartDate&&goalEndDate){
+            
             let periodStart= Date.parse(new Date(goalStartDate.split("-")));
             let periodEnd= Date.parse(new Date(goalEndDate.split("-")));
-            let periodTaskHelper = []
-            for(let task of completedTasks){
-                if(goal.categories.includes(task.category)){
-                    if(
-                    completedTasks.completedTimeStamp>=periodStart
-                    &&
-                    completedTasks.completedTimeStamp<=periodEnd
-                    ){
-                        console.log("the task is about to be pushed");
-                        periodTaskHelper.push(task);
-                    }
+            
+            let periodTaskHelper = [];
+            let idsArray = goal.categories.map(category => category.id);
 
+            for(let task of completedTasks){
+                if(idsArray.includes(task.category.id)){
+                    if(
+                        task.completedTimeStamp>=periodStart
+                    &&
+                        task.completedTimeStamp<=periodEnd
+                    ){
+                        periodTaskHelper.push(task);
+                        
+                    }
+                    setTasksOnTarget(periodTaskHelper);
                 }
+                
             }
-            setTasksOnTarget(periodTaskHelper);
+            
         }  
     }
 
     const translatingTheGoalTargetIntoTasksNumber = () => {
-        const nuAllTasksPeriod = allCompletedTasksGivenPeriod.length;
-        const numberOfTaksNeededToMeetTarget = (goal.target / nuAllTasksPeriod) * 100;
+        const numberAllTasksPeriod = allCompletedTasksGivenPeriod.length||1;
+        // console.log("numberAllTasksPeriod", numberAllTasksPeriod);
+        // console.log("goalTarget", goalTarget);
+        const numberOfTaksNeededToMeetTarget = (goalTarget * numberAllTasksPeriod) / 100;
+        // console.log("numberOfTaksNeededToMeetTarget", numberOfTaksNeededToMeetTarget);
         return numberOfTaksNeededToMeetTarget
         
     }
 
     const findDaysAfter = (goal) => {
-        console.log("within find days after");
         if(goal.type==="DAILY"){
-            console.log("of daily type");///////
-            console.log("1 to be returned");///////
             return 1;
 
         }if(goal.type==="WEEKLY"){
-            console.log("of weekly type");///////
-            console.log("7 to be returned");///////
             return 7;
             
         }if(goal.type==="MONTHLY"){
-            // return 30;
-            console.log("of monthly type");///////
-            console.log("monthly to be returned");///////
             return "MONTHLY";
             
         } 
@@ -122,13 +123,10 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     // because the problem is that it needs to be calculated in two places here to be desplayed and in the distinc to be changed.
 
     const findGoalEndDate = (goal) => {
-        // console.log("within find goals end date");//////////
         let daysAfter = findDaysAfter(goal);
         let goalStartDate = goal.startDate;
         
-        console.log("goalStartDate", goalStartDate);/////////
         let endDate = new Date(goalStartDate.split("-").toString());
-        console.log("endDate", endDate);//////////
         if(goalStartDate && daysAfter){
             if(daysAfter==="MONTHLY"){
                 endDate.setMonth(endDate.getMonth() + 1);
@@ -145,22 +143,17 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     const calculatingTargetOutcome = () => {
         if(goalEndDate){
             let dateNow = Date.parse(new Date());
-            console.log("endDate", goalEndDate);//////////
             let dateEnd = Date.parse(new Date(goalEndDate.split("-")));
-            console.log("dateEnd", dateEnd);//////////////
             if(dateNow <= dateEnd){
-                console.log("penidng");////////////
                 return "pending"
 
             }else{
                 console.log("tasksOnTarget", tasksOnTarget);
                 console.log("translatingTheGoalTargetIntoTasksNumber()", translatingTheGoalTargetIntoTasksNumber());
                 if(tasksOnTarget.length >= translatingTheGoalTargetIntoTasksNumber()){
-                    console.log("succeeded");//////////
                     return "succeeded"
 
                 }else{
-                    console.log("failed");///////
                     return "failed"
 
                 }
@@ -169,7 +162,6 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     }
 
     const onGoalClick = (e) => {
-        console.log("a goal has been clicked", goal);/////////
         navigate(`/goal/:${goal.title}`, {
             state: {
                 goal:goal,

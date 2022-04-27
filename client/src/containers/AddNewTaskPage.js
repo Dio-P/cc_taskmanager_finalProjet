@@ -4,9 +4,11 @@ import RequestContext from "../context/RequestContext";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
+import SearchBar from "../components/SearchBar";
 import { FaBars, FaWrench, FaPlus, FaMinus } from "react-icons/fa";
 
-const AddNewTaskPage = () => {
+
+const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromComponent }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [taskTitle, setTaskTitle] = useState("");
     const [taskCategory, setTaskCategory] = useState(null);
@@ -24,11 +26,15 @@ const AddNewTaskPage = () => {
     const [hasDuration, setHasDuration] = useState(false);
     const [taskDuration, setTaskDuration] = useState(null);
     const [hasCollaborators, setHasCollaborators] = useState(false);
-    const [taskCollaborators, setTaskCollaborators] = useState(null);
+    const [taskCollaborators, setTaskCollaborators] = useState([]);
+    const [collaboratorsToDisplay, setCollaboratorsToDisplay] = useState([]);
 
-    const location = useLocation();
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
+    const [searchInput, setSearchInput] = useState("");
+
+
+    // const location = useLocation();
+    // const categories = location.state.categories;
+    // const priorities = location.state.priorities;
 
     const {get, post} = useContext(RequestContext);
 
@@ -41,15 +47,39 @@ const AddNewTaskPage = () => {
         
     }, []);
 
+    useEffect(() => {
+        let collaboratorsToDisplay = users.filter((user) => {
+          return user.firstName.toLowerCase().match(searchInput);
+        });
+        setCollaboratorsToDisplay(collaboratorsToDisplay);
+      }, [searchInput]);
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchInput(e.target.value.toLowerCase());
+      };
+
+    const onClickingACollaborator = (collaborator,e) => {
+        e.preventDefault();
+        setTaskCollaborators([...taskCollaborators, collaborator]);
+    
+      };
+    
+    const removeCollaborator = (colaboratorID) => {
+    const newCollaborators = taskCollaborators.filter(
+        (category) => category.id !== colaboratorID
+    );
+    setTaskCollaborators(newCollaborators);
+    };
+
     const setCategoryFromDropDown = (choosenOption) => {
-            setTaskCategory(choosenOption);
+        setTaskCategory(choosenOption);
        
-        
     }
 
     const setPriorityFromDropDown = (choosenOption) => {
-            setTaskPriority(choosenOption);
-        
+        setTaskPriority(choosenOption);
+      
     }
 
     const closeMenuFunction = () => {
@@ -71,7 +101,9 @@ const AddNewTaskPage = () => {
         newTask["completed"]=false;
         newTask["completedTimeStamp"]=completedTimeStamp;
 
-        if(taskDescription){newTask["description"]=taskDescription;}
+        if(taskDescription){
+            newTask["description"]=taskDescription;
+        }
         if(taskDate){
             newTask["date"]=taskDate;
             newTask["type"]=datedTaskType;
@@ -79,13 +111,21 @@ const AddNewTaskPage = () => {
             newTask["type"]="SOMEDAY";
 
         }
-        if(taskTime){newTask["time"]=taskTime;}
-        if(taskDuration){newTask["duration"]=taskDuration;}
+        if(taskTime){
+            newTask["time"]=taskTime;
+        }
+        if(taskDuration){
+            newTask["duration"]=taskDuration;
+        }
+        if(taskCollaborators.length>0){
+            newTask["collaborators"]=taskCollaborators;
+        }
         
         console.log("newTask", newTask);
         console.log("post", post);
 
        post("tasks", newTask)
+    //    updateAppMainStateFromComponent(newTask)
     }
    
     return (
@@ -159,8 +199,40 @@ const AddNewTaskPage = () => {
                     <button className='minus-btn' onClick={()=> setHasDuration(false)}><FaMinus className='minus-icon'/>Duration</button>
                 </>
                 :
+
                 <button className='add-btn' onClick={()=> setHasDuration(true)}><FaPlus className='add-icon'/>Duration</button>
-                }  
+                } 
+                {hasCollaborators?
+                    <>
+                        <label> Collaborators </label>
+                        <div>
+                        {taskCollaborators.length > 0 &&
+                            Object.values(taskCollaborators).map((collaborator) => (
+                            <div>
+                                <p>{ collaborator.firstName } { collaborator.lastName }</p>
+                                <button key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}>
+                                X
+                                </button>
+                            </div>
+                            ))}
+                        </div>
+                        <input
+                        type="text"
+                        placeholder="Add Collaborators"
+                        onChange={handleChange}
+                        value={searchInput}
+                        />
+                        {searchInput.length > 0 
+                        && 
+                        <SearchBar
+                            onClickingAnOption={ (users, e)=> onClickingACollaborator(users, e) }
+                            optionsToDisplay={ collaboratorsToDisplay }
+                        />}
+                    </>
+                :
+                    <button onClick={()=> setHasCollaborators(true)}>+ Add Collaborators</button>
+                }
+                
                 <br/>
                 <button className='create-btn' type="submit">Create Task </button>
             </form>

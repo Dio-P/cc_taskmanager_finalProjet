@@ -41,6 +41,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [priorities, setPriorities] = useState([]);
   const [goals, setGoals] = useState([]);
+  const [users, setUsers] = useState([]);
   const [goalTypesList, setGoalTypesList] = useState([]);
   
   const [isLoaded, setIsLoaded] = useState(false);
@@ -64,7 +65,7 @@ function App() {
         return
       }
       const requestHelper = createRequestHelper(accessToken);
-      console.log(accessToken)
+      // console.log(accessToken)///////
       setGet(()=> requestHelper.get);
       setPost(()=> requestHelper.post);
       setPut(()=> requestHelper.put);
@@ -102,7 +103,8 @@ function App() {
         getTasks();
         postUser();
         getCategories();
-        getGoals()
+        getGoals();
+        getUsers();
     }, [get, post, put]);
 
     const postUser = (payload) => {
@@ -118,9 +120,7 @@ function App() {
   }
 
   const getCategories = () => {
-    console.log("categories called");////////////
     get("categories")
-      // .then(res=> (console.log("categoriesGotten", res)))
     .then(data=> (setCategories(data)))
   }
 
@@ -129,6 +129,24 @@ function App() {
     // setGoals(dummyGoals)///////////Delete after getting it from api"
     get("goals")
     .then(data=> (setGoals(data)))
+  }
+
+  const getUsers = () => {
+    get("users")
+    .then(data=> (setUsers(data)))
+  }
+
+  // updateAppMainStateFromComponent
+  const updateAppTasksFromComponent =() => {
+     
+  }
+
+  const updateAppGoalsFromComponent =() => {
+     
+  }
+
+  const updateAppCategoriesFromComponent =() => {
+     
   }
 
     useEffect(() => {
@@ -155,12 +173,10 @@ function App() {
 
     useEffect(() => {
       const dummyCategoriesList = ["studieng", "playing", "making something beautiful", "get bored", "play tetris"]
-      console.log("categories", categories);//////////
       
     }, [allTasks, categories]);
 
     useEffect(() => {
-      // get the categories from api
       const prioritiesList = [ "LOW", "MEDIUM", "HIGH" ];
       setPriorities(prioritiesList);
       
@@ -198,8 +214,20 @@ function App() {
           goals = { goals }
           goalTypesList ={ goalTypesList }
         />}/>
-        <Route path="/task/:task_title" element={ <DistinctTaskPage/> }/>
-        <Route path="/task/createNewTask" element={ <AddNewTaskPage/> }/>
+        <Route path="/task/:task_title" element={ <DistinctTaskPage
+          categories={ categories }
+          priorities={ priorities }
+          goals = { goals }
+          goalTypesList ={ goalTypesList }
+          users= { users }
+        /> }/>
+        <Route path="/task/createNewTask" element={ <AddNewTaskPage
+          categories={ categories }
+          priorities={ priorities }
+          goals = { goals }
+          goalTypesList ={ goalTypesList }
+          users= { users }
+        /> }/>
         <Route path="/goals" element={ <GoalsPage
           categories={ categories }
           priorities={ priorities }
@@ -212,6 +240,7 @@ function App() {
           priorities={ priorities }
           goals = { goals }
           goalTypesList ={ goalTypesList }
+          users= { users }
         /> }/>
         <Route path="/goal/createNewGoal" element={ <AddNewGoalPage
           categories={ categories }

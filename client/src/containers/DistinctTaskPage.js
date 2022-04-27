@@ -3,14 +3,17 @@ import { useNavigate, useLocation } from "react-router-dom";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import RequestContext from "../context/RequestContext";
+import Menu from "../components/Menu";
+import SearchBar from "../components/SearchBar";
 
-const DistinctTaskPage = () => {
+const DistinctTaskPage = ({ categories, priorities, users, updateAppMainStateFromComponent }) => {
     const location = useLocation();
     const task = location.state.task;
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
+    // const categories = location.state.categories;
+    // const priorities = location.state.priorities;
 
     const [loading, setLoading] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const [editTitle, setEditTitle] = useState(false);
     const [taskTitle, setTaskTitle] = useState(task.title);
@@ -39,6 +42,10 @@ const DistinctTaskPage = () => {
     const [taskDuration, setTaskDuration] = useState(task.duration);
     const [editCollaborators, setEditCollaborators] = useState(false);
     const [taskCollaborators, setTaskCollaborators] = useState(null);
+
+    const [collaboratorsToDisplay, setCollaboratorsToDisplay] = useState([]);
+    const [searchInput, setSearchInput] = useState("");
+
     const {get, post, put} = useContext(RequestContext);
     
     useEffect(() => {
@@ -46,10 +53,30 @@ const DistinctTaskPage = () => {
         
     }, [taskTitle, taskCompleted, taskCategory, taskPriority]);
 
-    // useEffect(() => {
-    //     onClickingDone()
-        
-    // }, [completedTimeStamp]);
+    useEffect(() => {
+        let collaboratorsToDisplay = users.filter((user) => {
+          return user.firstName.toLowerCase().match(searchInput);
+        });
+        setCollaboratorsToDisplay(collaboratorsToDisplay);
+      }, [searchInput]);
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchInput(e.target.value.toLowerCase());
+      };
+
+    const onClickingACollaborator = (collaborator,e) => {
+        e.preventDefault();
+        setTaskCollaborators([...taskCollaborators, collaborator]);
+    
+      };
+    
+    const removeCollaborator = (colaboratorID) => {
+    const newCollaborators = taskCollaborators.filter(
+        (category) => category.id !== colaboratorID
+    );
+    setTaskCollaborators(newCollaborators);
+    };
     
     const setCategoryFromDropDown = (choosenOption) => {
         setTaskCategory(choosenOption);
@@ -57,6 +84,10 @@ const DistinctTaskPage = () => {
 
     const setPriorityFromDropDown = (choosenOption) => {
             setTaskPriority(choosenOption);
+    }
+
+    const closeMenuFunction = () => {
+        setIsMenuOpen(false);
     }
 
     const onClickingComplete = () => {
@@ -78,7 +109,9 @@ const DistinctTaskPage = () => {
         updatedTask["completed"]=taskCompleted;
         updatedTask["completedTimeStamp"]=completedTimeStamp;
 
-        if(taskDescription){updatedTask["description"]=taskDescription;}
+        if(taskDescription){
+            updatedTask["description"]=taskDescription;
+        }
         if(taskDate){
             updatedTask["date"]=taskDate;
             updatedTask["type"]=datedTaskType;
@@ -86,13 +119,17 @@ const DistinctTaskPage = () => {
             updatedTask["type"]="SOMEDAY";
 
         }
-        if(taskTime){updatedTask["time"]=taskTime;}
-        if(taskDuration){updatedTask["duration"]=taskDuration;}
+        if(taskTime){
+            updatedTask["time"]=taskTime;
+        }
+        if(taskDuration){
+            updatedTask["duration"]=taskDuration;
+        }
         
         console.log("updatedTask", updatedTask);/////////////
         
         put(`tasks/${task.id}`, updatedTask)
-    
+        // updateAppMainStateFromComponent(updatedTask)
         
         // redirect to home page            
     }
@@ -106,6 +143,17 @@ const DistinctTaskPage = () => {
             :
 
             <div>
+                {!isMenuOpen?
+                <>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                </>
+            :
+                <Menu
+                    closeMenuFunction={ ()=>closeMenuFunction() }
+                    categories={ categories }
+                    priorities={ priorities }
+                />
+            }
                 
                 <div>
                     <label>Task Title</label>
@@ -272,12 +320,51 @@ const DistinctTaskPage = () => {
                 </div>
                 :
                     null
-                }  
+                } 
+                
 
 
+                {taskCollaborators? (   
                 <div>
-                    <h4>Collaborators</h4>
+                    <label> Collaborators </label>
+                    {taskCollaborators.length > 0 &&
+                        Object.values(taskCollaborators).map((collaborator) => (
+                        <div>
+                            <p>{ collaborator.firstName } { collaborator.lastName }</p>
+                            <button key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}>
+                            X
+                            </button>
+                        </div>
+                        ))}
+
+                    {!editCollaborators? ( 
+                        <button onClick={()=> setEditCollaborators(true)}>Edit</button>
+                    ) : ( 
+                        <>
+                    <input
+                    type="text"
+                    placeholder="Add Collaborators"
+                    onChange={handleChange}
+                    value={searchInput}
+                    />
+                        {searchInput.length > 0 
+                            && 
+                        <SearchBar
+                            onClickingAnOption={ (users, e)=> onClickingACollaborator(users, e) }
+                            optionsToDisplay={ collaboratorsToDisplay }
+                        />
+                    }
+                    <button onClick={()=>{
+                        setEditCollaborators(false)
+                        onClickingDone()
+                        }}>Done</button>
+                    </>
+                    )}
                 </div>
+                ) : (
+                    null
+                )}
+                
             </div>
             }
 
