@@ -48,6 +48,10 @@ code {
   @apply bg-orange font-semibold p-2.5 rounded shadow-md tracking-wider m-2 w-52;
 }
 
+.minus-goal-cat{
+  @apply bg-orange font-semibold p-2.5 rounded shadow-md tracking-wider m-2 w-16;
+}
+
 .minus-cat-btn {
   @apply bg-orange text-white font-semibold p-2.5 rounded shadow-md tracking-wider ml-16 -mb-56 mt-10 w-48;
 }

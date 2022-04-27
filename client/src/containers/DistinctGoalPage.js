@@ -129,7 +129,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       <p className='cat-header'>{goal.title}</p>
       <div className='flex flex-row py-1 justify-center m-7'>
         <label className='basis-1/3 font-semibold text-lg'> Title </label>
-        <h3 className='basis-1/3 text-lg italic'>{goalTitle}</h3>
+        <h3 className='basis-1/3 text-md italic ml-1'>{goalTitle}</h3>
         {!editGoalTitle ? (
           <button className='btn' onClick={() => setEditGoalTitle(true)}>Edit</button>
         ) : (
@@ -155,7 +155,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
       <div className='flex flex-row py-1 justify-center m-7'>
         <label className='basis-1/3 font-semibold text-lg'> Type </label>
-        <h3 className='basis-1/3 text-lg italic'>{goalType}</h3>
+        <h3 className='basis-1/3 text-md italic'>{goalType}</h3>
         {!editGoalType ? (
           <button className='btn' onClick={() => setEditGoalType(true)}>Edit</button>
         ) : (
@@ -208,7 +208,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
       <div className='flex flex-row py-1 justify-center m-7'>
         <label className='basis-1/3 font-semibold text-lg'> Start Date </label>
-        <h3 className='basis-1/3 text-lg italic'>{goalStartDate}</h3>
+        <h3 className='basis-1/3 text-md italic'>{goalStartDate}</h3>
         {!editGoalStartDate ? (
           <button className='btn' onClick={() => setEditGoalStartDate(true)}>Edit</button>
         ) : (
@@ -234,7 +234,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
       <div className='flex flex-row py-1 justify-center m-7'>
         <label className='basis-1/3 font-semibold text-lg'>End Date </label>
-        <h3 className='basis-1/3 text-lg italic'>{goalEndDate}</h3>
+        <h3 className='basis-1/3 text-md italic'>{goalEndDate}</h3>
         {!editGoalEndDate ? (
           <button className='btn' onClick={() => setEditGoalEndDate(true)}>Edit</button>
         ) : (
@@ -260,13 +260,13 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
      
       <div className='flex flex-row py-1 justify-center m-7'>
-        <label className='basis-1/3 font-semibold text-lg'>Category </label>
+        <label className='basis-1/2 font-semibold text-lg'>Category </label>
         <div className=''>
           {goalCategories.length > 0 &&
             Object.values(goalCategories).map((goalCategory) => (
-              <div>
-                <p className='basis-1/3'>{goalCategory.title} </p>
-                <button className='remove-btn basis-1/3' key={goalCategory.id} onClick={() => removeGoalCategory(goalCategory.id)}>
+              <div className='cat-dist flex flex-row py-1 justify-center m-7'>
+                <p className='basis-1/3 -ml-14 mt-1'>{goalCategory.title} </p>
+                <button className='minus-goal-cat' key={goalCategory.id} onClick={() => removeGoalCategory(goalCategory.id)}>
                 X
                 </button>
               </div>
@@ -298,12 +298,13 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               Done
             </button>
           </>
+          
         
         )}
         </div>
       </div>
       <div>
-        <button className='minus-btn' onClick={()=>{
+        <button className='minus-goal-cat' onClick={()=>{
           deleteElement("goals", goalID)
           navigate("/goals")
           }}>X</button>
