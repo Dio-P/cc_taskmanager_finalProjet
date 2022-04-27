@@ -106,7 +106,7 @@ const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromCo
             </div>
             <div>
 
-                <button onClick={()=>{
+                <button className='minus-cat-btn' onClick={()=>{
                 deleteElement("categories",categoryID)
                 navigate("/categories")
                 }}>Delete</button>

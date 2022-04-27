@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 import SearchBar from "../components/SearchBar";
+import { FaBars, FaMinus } from "react-icons/fa";
 
 const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users, updateAppMainStateFromComponent }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -115,7 +116,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
     <div>
       {!isMenuOpen ? (
         <>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>Menu</button>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
         </>
       ) : (
         <Menu
@@ -124,11 +125,13 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           priorities={priorities}
         />
       )}
-      <div>
-        <label> Goal Title </label>
-        <h3>{goalTitle}</h3>
+      
+      <p className='cat-header'>{goal.title}</p>
+      <div className='flex flex-row py-1 justify-center m-7'>
+        <label className='basis-1/3 font-semibold text-lg'> Title </label>
+        <h3 className='basis-1/3 text-lg italic'>{goalTitle}</h3>
         {!editGoalTitle ? (
-          <button onClick={() => setEditGoalTitle(true)}>Edit</button>
+          <button className='btn' onClick={() => setEditGoalTitle(true)}>Edit</button>
         ) : (
           <>
             <input
@@ -139,7 +142,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               onChange={(e) => setGoalTitle(e.target.value)}
               required
             />
-            <button
+            <button className='btn'
               onClick={() => {
                 setEditGoalTitle(false);
                 onClickingDone();
@@ -150,11 +153,11 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           </>
         )}
       </div>
-      <div>
-        <label> Goal Type </label>
-        <h3>{goalType}</h3>
+      <div className='flex flex-row py-1 justify-center m-7'>
+        <label className='basis-1/3 font-semibold text-lg'> Type </label>
+        <h3 className='basis-1/3 text-lg italic'>{goalType}</h3>
         {!editGoalType ? (
-          <button onClick={() => setEditGoalType(true)}>Edit</button>
+          <button className='btn' onClick={() => setEditGoalType(true)}>Edit</button>
         ) : (
           <>
             <select
@@ -166,7 +169,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
                 <option value={type}>{type}</option>
               ))}
             </select>
-            <button
+            <button className='btn'
               onClick={() => {
                 setEditGoalType(false);
                 onClickingDone();
@@ -177,11 +180,11 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           </>
         )}
       </div>
-      <div>
-        <label> Goal Target </label>
-        <h3>{goalTarget}</h3>
+      <div className='flex flex-row py-1 justify-center m-7'>
+        <label className='basis-1/3 font-semibold text-lg'> Target </label>
+        <h3 className='basis-1/3 text-lg italic'>{goalTarget}</h3>
         {!editGoalTarget ? (
-          <button onClick={() => setEditGoalTarget(true)}>Edit</button>
+          <button className='btn' onClick={() => setEditGoalTarget(true)}>Edit</button>
         ) : (
           <>
             <input
@@ -192,7 +195,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               onChange={(e) => setGoalTarget(e.target.value)}
               required
             />
-            <button
+            <button className='btn'
               onClick={() => {
                 setEditGoalTarget(false);
                 onClickingDone();
@@ -203,11 +206,11 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           </>
         )}
       </div>
-      <div>
-        <label> Goal Start Date </label>
-        <h3>{goalStartDate}</h3>
+      <div className='flex flex-row py-1 justify-center m-7'>
+        <label className='basis-1/3 font-semibold text-lg'> Start Date </label>
+        <h3 className='basis-1/3 text-lg italic'>{goalStartDate}</h3>
         {!editGoalStartDate ? (
-          <button onClick={() => setEditGoalStartDate(true)}>Edit</button>
+          <button className='btn' onClick={() => setEditGoalStartDate(true)}>Edit</button>
         ) : (
           <>
             <input
@@ -218,7 +221,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               onChange={(e) => setSearchInput(e.target.value)}
               required
             />
-            <button
+            <button className='btn'
               onClick={() => {
                 setEditGoalStartDate(false);
                 onClickingDone();
@@ -229,26 +232,49 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           </>
         )}
       </div>
-      <div>
-        <label> Goal End Date </label>
-        <h3>{goalEndDate}</h3>
+      <div className='flex flex-row py-1 justify-center m-7'>
+        <label className='basis-1/3 font-semibold text-lg'>End Date </label>
+        <h3 className='basis-1/3 text-lg italic'>{goalEndDate}</h3>
+        {!editGoalEndDate ? (
+          <button className='btn' onClick={() => setEditGoalEndDate(true)}>Edit</button>
+        ) : (
+          <>
+            <input
+              type="date"
+              name="goalEndDate"
+              id="goalEndDate"
+              value={goalEndDate}
+              onChange={(e) => setSearchInput(e.target.value)}
+              required
+            />
+            <button className='btn'
+              onClick={() => {
+                setEditGoalEndDate(false);
+                onClickingDone();
+              }}
+            >
+              Done
+            </button>
+          </>
+        )}
       </div>
-      <div>
-        <label> Goal Categories </label>
-        <div>
+     
+      <div className='flex flex-row py-1 justify-center m-7'>
+        <label className='basis-1/3 font-semibold text-lg'>Category </label>
+        <div className=''>
           {goalCategories.length > 0 &&
             Object.values(goalCategories).map((goalCategory) => (
               <div>
-                <p>{goalCategory.title} </p>
-                <button key={goalCategory.id} onClick={() => removeGoalCategory(goalCategory.id)}>
-                  X
+                <p className='basis-1/3'>{goalCategory.title} </p>
+                <button className='remove-btn basis-1/3' key={goalCategory.id} onClick={() => removeGoalCategory(goalCategory.id)}>
+                X
                 </button>
               </div>
             ))}
         </div>
-        
+        <div className='flex flex-row py-1 justify-center m-7'>
         {!editGoalCategories ? (
-          <button onClick={() => setEditGoalCategories(true)}>Edit</button>
+          <button className='btn basis-1/1' onClick={() => setEditGoalCategories(true)}>Edit</button>
         ) : (
           <>
             <input
@@ -263,7 +289,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               onClickingAnOption={ (category, e)=> onClickingACategory(category, e) }
               optionsToDisplay={ categoriesToDisplay }
             />}
-            <button
+            <button className='btn'
               onClick={() => {
                 setEditGoalCategories(false);
                 onClickingDone();
@@ -272,16 +298,18 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               Done
             </button>
           </>
+        
         )}
+        </div>
       </div>
       <div>
-        <button onClick={()=>{
+        <button className='minus-btn' onClick={()=>{
           deleteElement("goals", goalID)
           navigate("/goals")
-          }}>Delete</button>
+          }}>X</button>
       </div>
       <div>
-        <button onClick={()=>navigate("/goals")}>Back To Goals</button>
+        <button className="create-goal-btn" onClick={()=>navigate("/goals")}>Back To Goals</button>
       </div>
     </div>
   );

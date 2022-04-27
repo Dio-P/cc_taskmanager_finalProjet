@@ -164,8 +164,9 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
             }
                 <p className='cat-header'>{taskTitle}</p>
                 <div className="distinct-task">
-                    <label className='basis-1/3 font-semibold text-lg'>Task Title</label>
-                    <h3 className='basis-1/3 text-lg italic'>{taskTitle}</h3>
+                <div className='flex flex-box justify-center m-1'>
+                    <label className='basis-1/2 font-semibold text-lg'>Title</label>
+                    <h3 className='basis-1/1 text-md italic'>{taskTitle}</h3>
                     {!editTitle?
                         <button className='btn' onClick={()=>setEditTitle(true)}>Edit</button>
                     :
@@ -177,17 +178,17 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                                 }}>Done</button>
                         </>
                     }  
-            
+                </div>
                 
-                <div>
-                    <label className='basis-1/3 font-semibold text-lg'>Completed</label>
-                    <input type="checkbox" onClick={()=>{onClickingComplete()}} checked={taskCompleted}/>
+                <div className='flex flex-box justify-left m-1'>
+                    <label className='font-semibold text-lg'>Completed</label>
+                    <input className='checkbox-task' type="checkbox" onClick={()=>{onClickingComplete()}} checked={taskCompleted}/>
                 </div>
             
 
-                <div>
+                <div className='flex flex-box justify-center m-1'>
                     <label className='basis-1/3 font-semibold text-lg'>Category</label>
-                    <p className='basis-1/3 text-lg italic'>{ taskCategory.title }</p>
+                    <p className='basis-1/3 text-md italic'>{ taskCategory.title }</p>
                     {!editCategory?
                         <button className="btn" onClick={()=>setEditCategory(true)}>Edit</button>
                     :
@@ -203,9 +204,9 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                 </div>
 
                 
-                <div>
+                <div className='flex flex-box justify-center m-1'>
                     <label className='basis-1/3 font-semibold text-lg'>Priority</label>
-                    <p className='basis-1/3 text-lg italic'>{ taskPriority }</p>
+                    <p className='basis-1/3 text-md italic'>{ taskPriority }</p>
                     {!editPriority?
                         <button className='btn' onClick={()=>setEditPriority(true)}>Edit</button>
                     :
@@ -224,7 +225,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                 {taskDescription?
                 <div>
                     <label className='basis-1/3 font-semibold text-lg'> Description </label>
-                    <p className='basis-1/3 text-lg italic'>{ taskDescription }</p>
+                    <p className='basis-1/3 text-sm italic'>{ taskDescription }</p>
                     {!editDescription?
                         <button className="btn" onClick={()=>setEditDescription(true)}>Edit</button>
                     :
@@ -245,9 +246,9 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                 {taskDate?
                 <div>
 
-                    <div>
+                    <div className='flex flex-box justify-center m-1'>
                         <label className='basis-1/3 font-semibold text-lg'> Date </label>
-                        <p className='basis-1/3 text-lg italic'>{ taskDate }</p>
+                        <p className='basis-1/3 text-md -ml-4 italic'>{ taskDate }</p>
                         {!editDate?
                             <button className="btn" onClick={()=>setEditDate(true)}>Edit</button>
                         :
@@ -261,10 +262,10 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                         }
                     </div>
 
-                    <div>
+                    <div className='flex flex-box justify-center m-1'>
                         <label className='basis-1/3 font-semibold text-lg'> Type </label>
-                        <label htmlFor="taskDate">Do On</label>
-                        <input 
+                        <label className="text-sm ml-3" htmlFor="taskDate">Do On</label>
+                        <input className='basis-1/3 -ml-4'
                             type="radio" 
                             name="timedTaskType" 
                             id="do_on" 
@@ -272,8 +273,8 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                             checked={datedTaskType==="DO_ON"?true:false} 
                             onChange={e=> setDatedTaskType(e.target.value)}
                         />
-                        <label htmlFor="taskDate">Do By</label>
-                        <input 
+                        <label className="text-sm ml-3" htmlFor="taskDate">Do By</label>
+                        <input className='basis-1/3 -ml-4'
                             type="radio" 
                             name="timedTaskType" 
                             id="do_on" 
@@ -290,9 +291,9 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
 
 
                 {taskTime?
-                <div>
-                    <label className='basis-1/3 font-semibold text-lg' htmlFor="taskDate">Task Time</label>
-                    <p className='basis-1/3 text-lg italic'>{ taskTime }</p>
+                <div className='flex flex-box justify-center m-1'>
+                    <label className='basis-1/3 font-semibold text-lg' htmlFor="taskDate">Time</label>
+                    <p className='basis-1/3 text-md -ml-4 italic'>{ taskTime }</p>
                     {!editTime?
                         <button className="btn" onClick={()=> setEditTime(true)}>Edit</button>   
                     :
@@ -311,9 +312,9 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
 
 
                 {taskDuration?
-                <div>
-                    <label className='basis-1/3 font-semibold text-lg' htmlFor="taskDuration">Task Duration</label>
-                    <p className='basis-1/3 text-lg italic'>{ taskDuration }</p>
+                <div className='flex flex-box justify-center m-1'>
+                    <label className='basis-1/3 font-semibold text-lg' htmlFor="taskDuration">Duration</label>
+                    <p className='basis-1/3 text-md -ml-4 italic'>{ taskDuration }</p>
                     {!editDuration?
                         <button className="btn" onClick={()=> setEditDuration(true)}>Edit</button>
                     :
@@ -333,7 +334,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
 
 
                 {taskCollaborators? (   
-                <div>
+                <div className='flex flex-box justify-center m-1'>
                     <label className='basis-1/3 font-semibold text-lg'> Collaborators </label>
                     {taskCollaborators.length > 0 &&
                         Object.values(taskCollaborators).map((collaborator) => (
@@ -377,7 +378,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
             }
 
             <div>
-                <button className='create-btn' onClick={()=>navigate("/")}>Back to Tasks</button>
+                <button className='create-task-btn' onClick={()=>navigate("/")}>Back to Tasks</button>
             </div>
             
 
