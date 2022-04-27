@@ -107,7 +107,6 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
     console.log("updatedGoal", updatedGoal);/////////
     put(`goals/${goal.id}`, updatedGoal);
     updateAppMainStateFromComponent(updatedGoal);
-    navigate("/");
 
   };
 
@@ -273,6 +272,9 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
             </button>
           </>
         )}
+      </div>
+      <div>
+        <button onClick={()=>navigate("/goals")}>Back To Goals</button>
       </div>
     </div>
   );

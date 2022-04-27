@@ -126,7 +126,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
         console.log("post", post);
 
        post("tasks", newTask)
-    //    updateAppMainStateFromComponent(newTask)
+       updateAppMainStateFromComponent(newTask)
         navigate("/");
     }
    

@@ -1,4 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
+
 import AllTasksContainer from './AllTasksContainer';
 import TasksBoxMainMenuBar from '../components/TasksBoxMainMenuBar';
 import Menu from '../components/Menu';
@@ -18,6 +20,7 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
     const [completedTasksToDisplay, setCompletedTasksToDisplay] = useState([]);
 
     const { get } = useContext(RequestContext);
+    const navigate = useNavigate();
 
     const closeMenuFunction = () => {
         setIsMenuOpen(false);
@@ -170,6 +173,9 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                     goalTypesList ={ goalTypesList }
                 />
             }
+            <div>
+                <button onClick={()=> navigate("/task/createNewTask")}>Add a task</button>
+            </div>
             <TasksBoxMainMenuBar 
                 categories={ categories }
                 priorities={ priorities }

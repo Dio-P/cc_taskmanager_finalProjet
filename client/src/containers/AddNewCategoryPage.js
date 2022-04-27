@@ -1,22 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FaBars, FaWrench } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 
-const AddNewCategoryPage = () => {
+const AddNewCategoryPage = ({ categories, priorities, updateAppMainStateFromComponent }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [title, setTitle] = useState(null);
     const [colour, setColour] = useState(null);
 
-    const location = useLocation();
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
+    // const location = useLocation();
+    // const categories = location.state.categories;
+    // const priorities = location.state.priorities;
+
+    const { post } = useContext(RequestContext);
+
+    const navigate = useNavigate();
 
     const onSubmit = (e) => {
         e.preventDefault();
         let newCategory = {colour: colour, title:title};
         console.log("newCategory", newCategory);////////////
-        // post("categories", newCategory)
+        post("categories", newCategory)
+        updateAppMainStateFromComponent(newCategory);
+        navigate("/categories");
 
     }
 

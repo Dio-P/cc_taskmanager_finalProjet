@@ -64,8 +64,8 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
             startDate: goalStartDate,
             categories: goalCategories
         };
-        console.log("updatedGoal", newGoal);/////////////
-        post("goals", newGoal);
+        // console.log("updatedGoal", newGoal);/////////////
+        post("goals", newGoal);/////
         updateAppMainStateFromComponent(newGoal);
         navigate("/goals");
     }

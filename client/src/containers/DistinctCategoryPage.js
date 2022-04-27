@@ -1,21 +1,27 @@
 import { useState, useEffect, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 import { FaBars } from "react-icons/fa";
 
-const DistinctCategoryPage = () => {
+const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromComponent }) => {
+    const location = useLocation();
+    const category = location.state.category;
+    
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
+
     const [title, setTitle] = useState(null);
+    const [categoryID, setCategoryID] = useState(category.id);
     const [editColour, setEditColour] = useState(false);
     const [colour, setColour] = useState(null);
 
-    const location = useLocation();
-    const category = location.state.category;
-    const categories = location.state.categories;
-    const priorities = location.state.priorities;
+    
+    // const categories = location.state.categories;
+    // const priorities = location.state.priorities;
+
     const { put } = useContext(RequestContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setTitle(category.title);
@@ -27,8 +33,14 @@ const DistinctCategoryPage = () => {
     }
 
     const onClickingDone = () => {
-        let updatedCategory = {colour: colour, title:title};
-        put(`categories/:${category.title}`, updatedCategory)
+        let updatedCategory = {
+            colour: colour, 
+            title: title,
+            id: categoryID
+        };
+        put(`categories/${category.id}`, updatedCategory);
+        updateAppMainStateFromComponent(updatedCategory);
+
     }
 
     return (
@@ -90,6 +102,11 @@ const DistinctCategoryPage = () => {
                         </div>
                         
                     }
+            </div>
+            <div>
+                <button onClick={()=> navigate("/categories")}>
+                    Back To The Categories
+                </button>
             </div>
         </div>
     )

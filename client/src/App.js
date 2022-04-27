@@ -136,7 +136,7 @@ function App() {
     .then(data=> (setUsers(data)))
   }
 
-  const updateWholeMainPageTasksFromComponent =(task) => {
+  const updateAppMainStateTasksFromComponent =(task) => {
     let allTasksUpdateHelper = allTasks.filter(taskInAll => taskInAll.id!==task.id);
     console.log("allTasksUpdateHelper", allTasksUpdateHelper);
     console.log("task", task);
@@ -158,9 +158,13 @@ function App() {
      
   }
 
-  const updateAppCategoriesFromComponent =() => {
-     
-  }
+  const updateAppMainStateCategoryFromComponent =(category) => {
+    let allCategoriesUpdateHelper = categories.filter(categoryInAll => categoryInAll.id!==category.id);
+    console.log("allCategoriesUpdateHelper", allCategoriesUpdateHelper);///////
+    console.log("category", category);/////////
+    setCategories([...allCategoriesUpdateHelper, category]);
+
+  } 
 
     useEffect(() => {
       // setting the comleted and unclompleted tasks 
@@ -233,7 +237,7 @@ function App() {
           goals = { goals }
           goalTypesList ={ goalTypesList }
           users= { users }
-          updateWholeMainPageTasksFromComponent={(task)=>updateWholeMainPageTasksFromComponent(task)}
+          updateWholeMainPageTasksFromComponent={(task)=>updateAppMainStateTasksFromComponent(task)}
         /> }/>
         <Route path="/task/createNewTask" element={ <AddNewTaskPage
           categories={ categories }
@@ -241,6 +245,8 @@ function App() {
           goals = { goals }
           goalTypesList ={ goalTypesList }
           users= { users }
+          updateWholeMainPageTasksFromComponent={(task)=>updateAppMainStateTasksFromComponent(task)}
+
         /> }/>
         <Route path="/goals" element={ <GoalsPage
           categories={ categories }
@@ -265,9 +271,20 @@ function App() {
           goalTypesList ={ goalTypesList }
           updateAppMainStateFromComponent={ updateAppGoalsFromComponent }
         /> }/>
-        <Route path="/categories" element={ <CategoriesPage/> }/>
-        <Route path="/category/:category_title" element={ <DistinctCategoryPage/> }/>
-        <Route path="/category/createNewCategory" element={ <AddNewCategoryPage/> }/>
+        <Route path="/categories" element={ <CategoriesPage
+          categories={ categories }
+          priorities={ priorities }
+        /> }/>
+        <Route path="/category/:category_title" element={ <DistinctCategoryPage
+          categories={ categories }
+          priorities={ priorities }
+          updateAppMainStateFromComponent={(category)=> updateAppMainStateCategoryFromComponent(category)}
+        /> }/>
+        <Route path="/category/createNewCategory" element={ <AddNewCategoryPage
+          categories={ categories }
+          priorities={ priorities }
+          updateAppMainStateFromComponent={(category)=> updateAppMainStateCategoryFromComponent(category)}
+        /> }/>
         <Route path="/profile" element={ <ProfilePage/> }/>
       </Routes>
     </RequestContext.Provider>
