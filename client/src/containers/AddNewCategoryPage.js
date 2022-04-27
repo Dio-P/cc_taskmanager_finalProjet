@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaWrench } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import Menu from "../components/Menu";
 
@@ -38,13 +38,15 @@ const AddNewCategoryPage = () => {
                     priorities={ priorities }
                 />
             }
+            <p className='cat-header'>Create A Category</p>
+            <FaWrench className='wrench-icon'/>
             <form onSubmit={onSubmit}>
-                <div>
-                    <label className='new-cat-title font-semibold text-lg'> Title </label>
+                <div className='colour-section'>
+                    <label className='font-semibold text-2xl'> Title </label>
                     <h1>{ title }</h1>
                     <div>
-                    <p className='title-p'>Enter a Title</p>
-                        <input className='category-input'
+                         <p className='title-p text-xl'>Enter a title</p>
+                         <input className='category-input'
                             type="text" 
                             name="newTitle" 
                             value={title} 
@@ -53,21 +55,21 @@ const AddNewCategoryPage = () => {
                             />
                     </div>
                 </div>
-                <div>
-                    <label className='new-cat-title font-semibold text-lg'> Colour </label>
-                    <div className='circle' style = {{backgroundColor: {colour}}}></div>
-                    <div>
-                        <p>Select a colour</p>
-                        <input 
+                <div className='colour-section'>
+                    <label className='font-semibold text-2xl'> Colour </label>
+                    <div className='circle' style = {{backgroundColor: colour}}></div>
+                        <p className='title-p text-xl'>Select a colour</p>
+                         <input className='colour-selector'
                             type="color" 
                             name="newColour" 
                             value={colour} 
                             onChange={(e)=> setColour(e.target.value)}
                             required
-                            />
-                    </div>
+                         />
                 </div>
-                <button type="submit"> Create </button>
+                <div className='colour-section'>
+                    <button className='create-cat' type="submit"> Create </button>
+                </div>
             </form>
         </div>
     )

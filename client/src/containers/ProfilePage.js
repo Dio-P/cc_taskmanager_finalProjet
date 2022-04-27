@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { FaBars, FaUser } from 'react-icons/fa';
 import { useLocation } from "react-router-dom";
 import Menu from '../components/Menu';
 import RequestContext from '../context/RequestContext';
@@ -43,7 +44,7 @@ const ProfilePage = () => {
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -52,31 +53,32 @@ const ProfilePage = () => {
                     priorities={ priorities }
                 />
             }
-            <p> User Profile </p>
-            <div>
-                <label htmlFor="firstName"> First Name </label>
+            <p className='cat-header'>My Profile</p>
+            <FaUser className='user-icon'/>
+            <div className='colour-section'>
+                <label className='font-semibold text-2xl' htmlFor="firstName">First Name</label>
                 {!editFirstName?
-                    <button onClick={()=> setEditFirstName(true)}> Edit </button>
+                    <button className='btn' onClick={()=> setEditFirstName(true)}>Edit</button>
                 :
                 <>
-                    <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>
-                    <input type="text" id="firstName" name="firstName" onChange={e => setFirstName(e.target.value)} value={firstName}/>
-                    <button onClick={() => {
+                    <p className='title-p text-xl'>{ !firstName? "Enter a name" : "Enter a new name" } </p>
+                    <input className='category-input' type="text" id="firstName" name="firstName" onChange={e => setFirstName(e.target.value)} value={firstName}/>
+                    <button className='btn' onClick={() => {
                             sendInfoDb()
                             setEditFirstName(false)
                         }}> Done </button>
                 </>
                 }
             </div>
-            <div>
-                <label htmlFor="lastName"> Last Name </label>
+            <div className='colour-section'>
+                <label className='font-semibold text-2xl' htmlFor="lastName"> Last Name </label>
                 {!editLastName?
-                    <button onClick={()=> setEditLastName(true)}> Edit </button>
+                    <button className='btn' onClick={()=> setEditLastName(true)}> Edit </button>
                 :
                     <>
-                        <p>{ !firstName? "Choose a name" : "Choose a new name" } </p>
-                        <input type="text" id="lastName" name="lastName" onChange={e => setLastName(e.target.value)} value={lastName}/>
-                        <button onClick={() => {
+                        <p className='title-p text-xl'>{ !firstName? "Enter a name" : "Enter a new name" } </p>
+                        <input className='category-input' type="text" id="lastName" name="lastName" onChange={e => setLastName(e.target.value)} value={lastName}/>
+                        <button className='btn' onClick={() => {
                             sendInfoDb()
                             setEditLastName(false)
                         }}> Done </button>
