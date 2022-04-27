@@ -150,6 +150,7 @@ function App() {
       goals.filter(goal => {
         return goal.id!==goalToChange.id
       })
+      console.log("!!!!!!!!!goals", goals);
       setGoals([...goals, goalToChange]);
 
     }else{
@@ -261,7 +262,7 @@ function App() {
           goals = { goals }
           goalTypesList ={ goalTypesList }
           users= { users }
-          updateAppMainStateFromComponent={ updateAppGoalsFromComponent }
+          updateAppMainStateFromComponent={(goal)=> updateAppGoalsFromComponent(goal) }
 
         /> }/>
         <Route path="/goal/createNewGoal" element={ <AddNewGoalPage
@@ -269,7 +270,7 @@ function App() {
           priorities={ priorities }
           goals = { goals }
           goalTypesList ={ goalTypesList }
-          updateAppMainStateFromComponent={ updateAppGoalsFromComponent }
+          updateAppMainStateFromComponent={(goal)=> updateAppGoalsFromComponent(goal) }
         /> }/>
         <Route path="/categories" element={ <CategoriesPage
           categories={ categories }
