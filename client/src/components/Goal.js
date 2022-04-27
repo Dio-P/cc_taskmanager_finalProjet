@@ -138,9 +138,10 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     // because the problem is that it needs to be calculated in two places here to be desplayed and in the distinc to be changed.
 
     const findGoalEndDate = (goal) => {
+        if(!goal){return}
         let daysAfter = findDaysAfter(goal);
         let goalStartDate = goal.startDate;
-        
+    
         let endDate = new Date(goalStartDate.split("-").toString());
         if(goalStartDate && daysAfter){
             if(daysAfter==="MONTHLY"){
