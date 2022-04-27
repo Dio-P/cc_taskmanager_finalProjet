@@ -241,6 +241,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               </div>
             ))}
         </div>
+        
         {!editGoalCategories ? (
           <button onClick={() => setEditGoalCategories(true)}>Edit</button>
         ) : (
