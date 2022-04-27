@@ -5,6 +5,7 @@ import AllTasksContainer from './AllTasksContainer';
 import TasksBoxMainMenuBar from '../components/TasksBoxMainMenuBar';
 import Menu from '../components/Menu';
 import RequestContext from '../context/RequestContext';
+import { FaBars, FaPlus } from "react-icons/fa";
 
 const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesList}) => {
     const [allTasks, setAllTasks] = useState([]);
@@ -162,7 +163,7 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
         <div>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -173,17 +174,19 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                     goalTypesList ={ goalTypesList }
                 />
             }
-            <div>
-                <button onClick={()=> navigate("/task/createNewTask")}>Add a task</button>
-            </div>
-            <TasksBoxMainMenuBar 
+            <p className='greeting'>Hi, {user.email}! </p>
+            <div className='home-top flex flex-box p-2  m-5'>
+            <TasksBoxMainMenuBar
                 categories={ categories }
                 priorities={ priorities }
                 categoriesTitles={ categoriesTitles }
                 setPrioritiesFromDropDown={(choosenOption)=> setPrioritiesFromDropDown(choosenOption) }
                 setCategoriesFromDropDown={(choosenOption)=> setCategoriesFromDropDown(choosenOption) }
             />
-            <p>Hello {user.email} </p>
+            <div>
+                <button className='plus-btn basis-1/3' onClick={()=> navigate("/task/createNewTask")}><FaPlus/></button>
+            </div>
+            </div>
             <AllTasksContainer 
                 uncompletedTasksToDisplay={ uncompletedTasksToDisplay } 
                 completedTasksToDisplay={ completedTasksToDisplay }
@@ -191,6 +194,7 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                 priorities={ priorities }
                 updateWholeMainPageStateFromComponent={ updateWholeMainPageTasksFromComponent }
             />
+            
 
         </div>
     )

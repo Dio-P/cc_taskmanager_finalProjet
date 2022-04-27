@@ -216,14 +216,14 @@ const AddNewTaskPage = ({ categories, priorities, users, updateWholeMainPageTask
                 } 
                 {hasCollaborators?
                     <>
-                        <label> Collaborators </label>
+                        <label className='font-semibold text-xl'>Collaborators</label>
                         <div>
                         {taskCollaborators.length > 0 &&
                             Object.values(taskCollaborators).map((collaborator) => (
                             <div>
-                                <p>{ collaborator.firstName } { collaborator.lastName }</p>
-                                <button key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}>
-                                X
+                                <p className="collab-name">{ collaborator.firstName } { collaborator.lastName }</p>
+                                <button className="minus-btn" key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}><FaMinus className='minus-icon'/>
+                                Collaborator
                                 </button>
                             </div>
                             ))}
@@ -242,7 +242,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateWholeMainPageTask
                         />}
                     </>
                 :
-                    <button onClick={()=> setHasCollaborators(true)}>+ Add Collaborators</button>
+                    <button className='add-btn' onClick={()=> setHasCollaborators(true)}><FaPlus className='add-icon'/>Collaborators</button>
                 }
                 
                 <br/>
