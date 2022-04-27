@@ -6,9 +6,10 @@ import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 import SearchBar from "../components/SearchBar";
 
-const DistinctTaskPage = ({ categories, priorities, users, updateAppMainStateFromComponent }) => {
+const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTasksFromComponent }) => {
     const location = useLocation();
     const task = location.state.task;
+    const navigate = useNavigate();
     // const categories = location.state.categories;
     // const priorities = location.state.priorities;
 
@@ -17,6 +18,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateAppMainStateFro
 
     const [editTitle, setEditTitle] = useState(false);
     const [taskTitle, setTaskTitle] = useState(task.title);
+    const [taskID, setTaskID] = useState(task.id);
     
     const [taskCompleted, setTaskCompleted] = useState(task.completed);///////////
 
@@ -52,6 +54,10 @@ const DistinctTaskPage = ({ categories, priorities, users, updateAppMainStateFro
         setLoading(false)
         
     }, [taskTitle, taskCompleted, taskCategory, taskPriority]);
+
+    // useEffect(() => {
+    //     setTaskID(task)
+    // }, [task]);
 
     useEffect(() => {
         let collaboratorsToDisplay = users.filter((user) => {
@@ -106,6 +112,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateAppMainStateFro
     const onClickingDone = () => {
         const updatedTask= { }
         updatedTask["title"] = taskTitle;
+        updatedTask["id"] = taskID;
         updatedTask["category"] = taskCategory;
         updatedTask["priority"] = taskPriority;
         updatedTask["completed"]=taskCompleted;
@@ -131,9 +138,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateAppMainStateFro
         console.log("updatedTask", updatedTask);/////////////
         
         put(`tasks/${task.id}`, updatedTask)
-        // updateAppMainStateFromComponent(updatedTask)
-        
-        // redirect to home page            
+        updateWholeMainPageTasksFromComponent(updatedTask);       
     }
 
     return (
@@ -369,6 +374,10 @@ const DistinctTaskPage = ({ categories, priorities, users, updateAppMainStateFro
                 
             </div>
             }
+
+            <div>
+                <button onClick={()=>navigate("/")}>Back to Tasks</button>
+            </div>
 
         </div>
     )

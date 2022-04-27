@@ -11,6 +11,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
   const [categoriesToDisplay, setCategoriesToDisplay] = useState([]);
 
   const [goalTitle, setGoalTitle] = useState(null);
+  const [goalID, setGoalID] = useState(null);
   const [editGoalTitle, setEditGoalTitle] = useState(false);
   const [goalType, setGoalType] = useState(null);
   const [editGoalType, setEditGoalType] = useState(false);
@@ -39,6 +40,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
 
   useEffect(() => {
     setGoalTitle(goal.title);
+    setGoalID(goal.id);
     setGoalType(goal.type);
     setGoalTarget(goal.target);
     setGoalStartDate(goal.startDate);
@@ -95,7 +97,8 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
 
   const onClickingDone = () => {
     let updatedGoal = { 
-      title: goalTitle, 
+      title: goalTitle,
+      id: goalID,
       type: goalType, 
       target: goalTarget, 
       startDate: goalStartDate,

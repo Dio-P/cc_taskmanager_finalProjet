@@ -136,10 +136,13 @@ function App() {
     .then(data=> (setUsers(data)))
   }
 
-  // updateAppMainStateFromComponent={ updateAppGoalsFromComponent }
-  const updateAppTasksFromComponent =() => {
-     
-  }
+  const updateWholeMainPageTasksFromComponent =(task) => {
+    let allTasksUpdateHelper = allTasks.filter(taskInAll => taskInAll.id!==task.id);
+    console.log("allTasksUpdateHelper", allTasksUpdateHelper);
+    console.log("task", task);
+    setAllTasks([...allTasksUpdateHelper, task]);
+
+  } 
 
   const updateAppGoalsFromComponent =(goalToChange) => {
     let allIdInGoals = goals.map(goal=> goal.id);
@@ -230,6 +233,7 @@ function App() {
           goals = { goals }
           goalTypesList ={ goalTypesList }
           users= { users }
+          updateWholeMainPageTasksFromComponent={(task)=>updateWholeMainPageTasksFromComponent(task)}
         /> }/>
         <Route path="/task/createNewTask" element={ <AddNewTaskPage
           categories={ categories }

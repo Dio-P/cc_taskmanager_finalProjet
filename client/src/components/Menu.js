@@ -30,7 +30,7 @@ const Menu = ({ closeMenuFunction, categories, priorities, goals, goalTypesList 
                 <button className="addNewTaskButton text-lg -m-4" onClick={()=> onClick("/profile")}> Profile </button>
             </li>
             <li>
-            <button className="addNewTaskButton text-lg -m-4" onClick={()=> onClick("/tasks")}> View Tasks </button>
+            <button className="addNewTaskButton text-lg -m-4" onClick={()=> onClick("/")}> View Tasks </button>
             </li>
             <li>
                 <button className="addNewTaskButton text-lg -m-4" onClick={()=> onClick("/task/createNewTask")}> Add New Tasks </button>
