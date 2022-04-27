@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import RequestContext from "../context/RequestContext";
+import Menu from "../components/Menu";
 
 const DistinctTaskPage = ({ categories, priorities, users }) => {
     const location = useLocation();
@@ -11,6 +12,7 @@ const DistinctTaskPage = ({ categories, priorities, users }) => {
     // const priorities = location.state.priorities;
 
     const [loading, setLoading] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const [editTitle, setEditTitle] = useState(false);
     const [taskTitle, setTaskTitle] = useState(task.title);
@@ -57,6 +59,10 @@ const DistinctTaskPage = ({ categories, priorities, users }) => {
 
     const setPriorityFromDropDown = (choosenOption) => {
             setTaskPriority(choosenOption);
+    }
+
+    const closeMenuFunction = () => {
+        setIsMenuOpen(false);
     }
 
     const onClickingComplete = () => {
@@ -106,6 +112,17 @@ const DistinctTaskPage = ({ categories, priorities, users }) => {
             :
 
             <div>
+                {!isMenuOpen?
+                <>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                </>
+            :
+                <Menu
+                    closeMenuFunction={ ()=>closeMenuFunction() }
+                    categories={ categories }
+                    priorities={ priorities }
+                />
+            }
                 
                 <div>
                     <label>Task Title</label>
