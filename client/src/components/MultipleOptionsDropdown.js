@@ -41,7 +41,7 @@ const MultipleOptionsDropdown = ({ options, setOptionsFromDropDown, uiState }) =
         <ul className={uiState}>
             {optionshandler?
                 options.map(option => (
-                    <li><input type="checkbox" onClick={(e)=> onClick(e)} checked={optionshandler[option].checked} value={option} />{option}</li>
+                    <li className="checkbox"><input className="checkbox" type="checkbox" onClick={(e)=> onClick(e)} checked={optionshandler[option].checked} value={option} />{option}</li>
                     
                 ))
             :

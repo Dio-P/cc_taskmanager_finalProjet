@@ -263,7 +263,7 @@ public class DataLoader implements ApplicationRunner {
         taskRepository.save(task9);
 
         Task task7 = new Task(
-                "3setting the authorisation up",
+                "Setting The Authorisation",
                 "finding a way to connect the users with the database",
                 "2022-04-29",
                 "15:14",
