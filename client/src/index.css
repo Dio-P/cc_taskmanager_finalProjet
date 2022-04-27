@@ -36,6 +36,10 @@ code {
   @apply bg-blue text-white font-semibold rounded shadow-md tracking-wider m-24 p-4;
 }
 
+.create-goal-btn-new {
+  @apply bg-blue text-white font-semibold rounded shadow-md tracking-wider m-12 ml-16 p-4 w-48;
+}
+
 .create-task-btn {
   @apply bg-blue text-white font-semibold rounded shadow-md tracking-wider m-5 ml-24 p-4;
 }

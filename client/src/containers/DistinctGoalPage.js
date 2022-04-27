@@ -127,7 +127,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       )}
       
       <p className='cat-header'>{goal.title}</p>
-      <div className='flex flex-row py-1 justify-center m-7'>
+      <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'> Title </label>
         <h3 className='basis-1/3 text-md italic ml-1'>{goalTitle}</h3>
         {!editGoalTitle ? (
@@ -153,7 +153,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           </>
         )}
       </div>
-      <div className='flex flex-row py-1 justify-center m-7'>
+      <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'> Type </label>
         <h3 className='basis-1/3 text-md italic'>{goalType}</h3>
         {!editGoalType ? (
@@ -180,7 +180,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           </>
         )}
       </div>
-      <div className='flex flex-row py-1 justify-center m-7'>
+      <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'> Target </label>
         <h3 className='basis-1/3 text-lg italic'>{goalTarget}</h3>
         {!editGoalTarget ? (
@@ -206,7 +206,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           </>
         )}
       </div>
-      <div className='flex flex-row py-1 justify-center m-7'>
+      <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'> Start Date </label>
         <h3 className='basis-1/3 text-md italic'>{goalStartDate}</h3>
         {!editGoalStartDate ? (
@@ -232,7 +232,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           </>
         )}
       </div>
-      <div className='flex flex-row py-1 justify-center m-7'>
+      <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'>End Date </label>
         <h3 className='basis-1/3 text-md italic'>{goalEndDate}</h3>
         {!editGoalEndDate ? (
@@ -259,12 +259,12 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
         )}
       </div>
      
-      <div className='flex flex-row py-1 justify-center m-7'>
+      <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/2 font-semibold text-lg'>Category </label>
         <div className=''>
           {goalCategories.length > 0 &&
             Object.values(goalCategories).map((goalCategory) => (
-              <div className='cat-dist flex flex-row py-1 justify-center m-7'>
+              <div className='cat-dist flex flex-row justify-center m-7'>
                 <p className='basis-1/3 -ml-14 mt-1'>{goalCategory.title} </p>
                 <button className='minus-goal-cat' key={goalCategory.id} onClick={() => removeGoalCategory(goalCategory.id)}>
                 X
@@ -272,7 +272,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               </div>
             ))}
         </div>
-        <div className='flex flex-row py-1 justify-center m-7'>
+        <div className='flex flex-row justify-center m-7'>
         {!editGoalCategories ? (
           <button className='btn basis-1/1' onClick={() => setEditGoalCategories(true)}>Edit</button>
         ) : (
@@ -304,13 +304,13 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
         </div>
       </div>
       <div>
-        <button className='minus-goal-cat' onClick={()=>{
+        <button className='minus-cat-btn' onClick={()=>{
           deleteElement("goals", goalID)
           navigate("/goals")
-          }}>X</button>
+          }}>Delete Goal</button>
       </div>
       <div>
-        <button className="create-goal-btn" onClick={()=>navigate("/goals")}>Back To Goals</button>
+        <button className="create-goal-btn-new" onClick={()=>navigate("/goals")}>Back To Goals</button>
       </div>
     </div>
   );
