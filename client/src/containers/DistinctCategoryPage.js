@@ -56,6 +56,7 @@ const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromCo
                     priorities={ priorities }
                 />
             }
+            <p className='cat-header'>{category.title}</p>
             <div className='flex flex-row py-10 justify-center m-7'>
                 <label className='basis-1/3 font-semibold text-lg'>Title</label>
                 <h1 className='basis-1/3 text-lg italic'>{ title }</h1>
