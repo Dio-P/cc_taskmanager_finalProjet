@@ -184,33 +184,38 @@ const AddNewTaskPage = ({ categories, priorities, users }) => {
                 </>
                 :
                 <button onClick={()=> setHasDuration(true)}>+ Add Duration</button>
-                }  
-                <>
-                    <label> Categories </label>
-                    <div>
-                    {taskCollaborators.length > 0 &&
-                        Object.values(taskCollaborators).map((collaborator) => (
+                } 
+                {hasCollaborators?
+                    <>
+                        <label> Collaborators </label>
                         <div>
-                            <p>{ collaborator.firstName } { collaborator.lastName }</p>
-                            <button key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}>
-                            X
-                            </button>
+                        {taskCollaborators.length > 0 &&
+                            Object.values(taskCollaborators).map((collaborator) => (
+                            <div>
+                                <p>{ collaborator.firstName } { collaborator.lastName }</p>
+                                <button key={collaborator.id} onClick={() => removeCollaborator(collaborator.id)}>
+                                X
+                                </button>
+                            </div>
+                            ))}
                         </div>
-                        ))}
-                    </div>
-                    <input
-                    type="text"
-                    placeholder="Search For Category Here"
-                    onChange={handleChange}
-                    value={searchInput}
-                    />
-                    {searchInput.length > 0 
-                    && 
-                    <SearchBar
-                        onClickingAnOption={ (users, e)=> onClickingACategory(users, e) }
-                        optionsToDisplay={ collaboratorsToDisplay }
-                    />}
-                </>
+                        <input
+                        type="text"
+                        placeholder="Add Collaborators"
+                        onChange={handleChange}
+                        value={searchInput}
+                        />
+                        {searchInput.length > 0 
+                        && 
+                        <SearchBar
+                            onClickingAnOption={ (users, e)=> onClickingACategory(users, e) }
+                            optionsToDisplay={ collaboratorsToDisplay }
+                        />}
+                    </>
+                :
+                    <button onClick={()=> setHasCollaborators(true)}>+ Add Collaborators</button>
+                }
+                
 
                 <button type="submit">Create Task </button>
             </form>
