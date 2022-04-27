@@ -48,7 +48,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
     const [collaboratorsToDisplay, setCollaboratorsToDisplay] = useState([]);
     const [searchInput, setSearchInput] = useState("");
 
-    const {get, post, put} = useContext(RequestContext);
+    const {put, deleteElement} = useContext(RequestContext);
     
     useEffect(() => {
         setLoading(false)
@@ -384,6 +384,12 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                 
             </div>
             }
+            <div>
+                <button onClick={()=>{
+                deleteElement("tasks", taskID)
+                navigate("/")
+                }}>Delete</button>
+            </div>
 
             <div>
                 <button onClick={()=>navigate("/")}>Back to Tasks</button>

@@ -26,7 +26,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
   const [editGoalCategories, setEditGoalCategories] = useState(false);
   const [goalActive, setGoalActive] = useState(true);
 
-  const { get, post, put } = useContext(RequestContext);
+  const { get, post, put, deleteElement } = useContext(RequestContext);
 
   const location = useLocation();
   const goal = location.state.goal;
@@ -106,7 +106,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       categories: goalCategories
     };
     console.log("updatedGoal", updatedGoal);/////////
-    put(`goals/${goal.id}`, updatedGoal);
+    put(`goals/${goalID}`, updatedGoal);
     updateAppMainStateFromComponent(updatedGoal);
 
   };
@@ -276,9 +276,9 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
       <div>
         <button onClick={()=>{
-          // delete
+          deleteElement("goals", goalID)
           navigate("/goals")
-          }}>Delete Goals</button>
+          }}>Delete</button>
       </div>
       <div>
         <button onClick={()=>navigate("/goals")}>Back To Goals</button>

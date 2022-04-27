@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaBars, FaWrench, FaPlus, FaMinus } from "react-icons/fa";
-
-import Menu from "./Menu";
-
 
 const Goal = ({ goal, categories, priorities, completedTasks }) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const [goalTitle, setGoalTitle] = useState(goal.title);
     const [goalTarget, setGoalTarget] = useState(goal.target);
@@ -41,9 +36,6 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
 
 
     useEffect(() => {
-        // setGoalTitle(goal.title);
-        // setGoalTarget(goal.target);
-        // setGoalStartDate(goal.startDate);
         findGoalEndDate(goal)
         
     }, [goal]);
@@ -73,7 +65,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
     }
 
     const calculateAllCompletedTaskOfCategoryGivenPeriod= () => {
-        console.log("hello from line 73");
+  
         if(goalStartDate&&goalEndDate){
             
             let periodStart= Date.parse(new Date(goalStartDate.split("-")));
@@ -81,23 +73,16 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             
             let periodTaskHelper = [];
             let idsArray = goal.categories.map(category => category.id);
-            console.log("periodStart", periodStart);
-            console.log("periodEnd", periodEnd);
-            console.log("completedTasks", completedTasks);
+   
             for(let task of completedTasks){
-                console.log("task.completedTimeStamp", task.completedTimeStamp);
-                console.log("task.completedTimeStamp", task.completedTimeStamp);
                 
-                if(idsArray.includes(task.category.id)){
-                    console.log("task.completedTimeStamp", task.completedTimeStamp);
-                    
+                if(idsArray.includes(task.category.id)){                    
                     if(
                         task.completedTimeStamp>=periodStart
                     &&
                         task.completedTimeStamp<=periodEnd
                     ){
                         periodTaskHelper.push(task);
-                        console.log("periodTaskHelper", periodTaskHelper);
                         
                     }
                     
@@ -111,10 +96,7 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
 
     const translatingTheGoalTargetIntoTasksNumber = () => {
         const numberAllTasksPeriod = allCompletedTasksGivenPeriod.length||1;
-        // console.log("numberAllTasksPeriod", numberAllTasksPeriod);
-        // console.log("goalTarget", goalTarget);
         const numberOfTaksNeededToMeetTarget = (goalTarget * numberAllTasksPeriod) / 100;
-        // console.log("numberOfTaksNeededToMeetTarget", numberOfTaksNeededToMeetTarget);
         return numberOfTaksNeededToMeetTarget
         
     }
@@ -132,10 +114,6 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             
         } 
     }
-    // change the set to return and have the set with the function as argument to when edit is pressed.
-    // move that logic to the distinct page where this might actually change
-    // should I copy this or move it all in an outside function where it could happily leave for ever?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // because the problem is that it needs to be calculated in two places here to be desplayed and in the distinc to be changed.
 
     const findGoalEndDate = (goal) => {
         if(!goal){return}
@@ -164,9 +142,6 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
                 return "pending"
 
             }else{
-                console.log("tasksOnTarget", tasksOnTarget);
-                console.log("tasksOnTarget.length", tasksOnTarget.length);
-                console.log("translatingTheGoalTargetIntoTasksNumber()", translatingTheGoalTargetIntoTasksNumber());
                 if(tasksOnTarget.length >= translatingTheGoalTargetIntoTasksNumber()){
                     return "succeeded"
 
@@ -182,16 +157,10 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
         navigate(`/goal/:${goal.title}`, {
             state: {
                 goal:goal,
-                // categories:categories,
-                // priorities: priorities,
                 endDate: goalEndDate
 
             }
         })
-    }
-
-    const closeMenuFunction = () => {
-        setIsMenuOpen(false);
     }
 
 
@@ -200,38 +169,25 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             {loading?
             <p>Loading...</p>
             :
-            <div>
-                {!isMenuOpen?
-                    <>
-                        <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
-                    </>
-                : 
-                    <Menu
-                        closeMenuFunction={ ()=>closeMenuFunction() }
-                        categories={ categories }
-                        priorities={ priorities }
-                    />
-                }
-                <div className={calculatingTargetOutcome()} onClick={ onGoalClick }>
-                    <>
-                        <div>
-                            <label> Goal Title </label>
-                            <p> {goalTitle} </p>
-                        </div>
-                        <div>
-                            <label> Goal Start Date </label>
-                            <p> {goalStartDate} </p>
-                        </div>
-                        <div>
-                            <label> Goal End Date </label>
-                            <p> {goalEndDate} </p>
-                        </div>
-                        <div>
-                            <label> Goal Target </label>
-                            <p> {goalTarget} </p>
-                        </div>
-                    </>
-                </div>
+            <div className={calculatingTargetOutcome()} onClick={ onGoalClick }>
+                <>
+                    <div>
+                        <label> Goal Title </label>
+                        <p> {goalTitle} </p>
+                    </div>
+                    <div>
+                        <label> Goal Start Date </label>
+                        <p> {goalStartDate} </p>
+                    </div>
+                    <div>
+                        <label> Goal End Date </label>
+                        <p> {goalEndDate} </p>
+                    </div>
+                    <div>
+                        <label> Goal Target </label>
+                        <p> {goalTarget} </p>
+                    </div>
+                </>
             </div>
             }
             

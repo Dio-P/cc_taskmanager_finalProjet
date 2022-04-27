@@ -35,9 +35,9 @@ export const createRequestHelper = (accessToken) => {
             })
             return await response.json();
         },
-        delete: async function(url){
+        deleteElement: async function(url, id){
             console.log("delete url", url);
-            const response = await fetch(`http://localhost:8080/auth0/${url}`, { 
+            const response = await fetch(`http://localhost:8080/auth0/${url}/${id}`, { 
                 method: "DELETE",
                 headers: new Headers({
                     Authorization: "Bearer " + accessToken,

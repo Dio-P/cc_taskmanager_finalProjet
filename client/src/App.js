@@ -48,6 +48,7 @@ function App() {
   const [get, setGet] = useState();
   const [post, setPost] = useState();
   const [put, setPut] = useState();
+  const [deleteElement, setDeleteElement] = useState();
 
   // const [fetchedTasks, setFetchedTasks] = useState([]);
 
@@ -69,6 +70,7 @@ function App() {
       setGet(()=> requestHelper.get);
       setPost(()=> requestHelper.post);
       setPut(()=> requestHelper.put);
+      setDeleteElement(()=>requestHelper.deleteElement)
 
     }, [accessToken]);
 
@@ -105,7 +107,7 @@ function App() {
         getCategories();
         getGoals();
         getUsers();
-    }, [get, post, put]);
+    }, [get, post, put, deleteElement]);
 
     const postUser = (payload) => {
       fetch('http://localhost:8080/auth0/users', {
@@ -221,7 +223,7 @@ function App() {
     
 
   return (
-    <RequestContext.Provider value={{get, post, put}}>
+    <RequestContext.Provider value={{get, post, put, deleteElement}}>
       <Routes>
         <Route path="/" element={<WholeMainPageContainer 
           uncompletedTasks={ uncompletedTasks } 

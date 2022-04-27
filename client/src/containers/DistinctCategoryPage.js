@@ -20,7 +20,7 @@ const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromCo
     // const categories = location.state.categories;
     // const priorities = location.state.priorities;
 
-    const { put } = useContext(RequestContext);
+    const { put, deleteElement } = useContext(RequestContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -102,6 +102,12 @@ const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromCo
                         </div>
                         
                     }
+            </div>
+            <div>
+                <button onClick={()=>{
+                deleteElement("categories",categoryID)
+                navigate("/categories")
+                }}>Delete</button>
             </div>
             <div>
                 <button onClick={()=> navigate("/categories")}>
