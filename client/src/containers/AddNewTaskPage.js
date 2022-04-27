@@ -232,7 +232,7 @@ const AddNewTaskPage = ({ categories, priorities, users, updateAppMainStateFromC
                         />}
                     </>
                 :
-                    <button onClick={()=> setHasCollaborators(true)}>+ Add Collaborators</button>
+                    <button className='add-btn' onClick={()=> setHasCollaborators(true)}><FaPlus className='add-icon'/>Collaborators</button>
                 }
                 
                 <br/>
