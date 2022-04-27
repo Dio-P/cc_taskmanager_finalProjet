@@ -260,24 +260,12 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
      
       <div className='flex flex-row justify-center m-3'>
-        <label className='basis-1/2 font-semibold text-lg'>Category </label>
-        <div className=''>
-          {goalCategories.length > 0 &&
-            Object.values(goalCategories).map((goalCategory) => (
-              <div className='cat-dist flex flex-row justify-center m-7'>
-                <p className='basis-1/3 -ml-14 mt-1'>{goalCategory.title} </p>
-                <button className='minus-goal-cat' key={goalCategory.id} onClick={() => removeGoalCategory(goalCategory.id)}>
-                X
-                </button>
-              </div>
-            ))}
-        </div>
-        <div className='flex flex-row justify-center m-7'>
+        <label className='basis-1/3 font-semibold text-lg'>Category </label>
         {!editGoalCategories ? (
-          <button className='btn basis-1/1' onClick={() => setEditGoalCategories(true)}>Edit</button>
+          <button className='btn basis-1/3' onClick={() => setEditGoalCategories(true)}>Edit</button>
         ) : (
           <>
-            <input
+            <input className="title-field"
               type="text"
               placeholder="Search For Category Here"
               onChange={handleChange}
@@ -289,7 +277,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               onClickingAnOption={ (category, e)=> onClickingACategory(category, e) }
               optionsToDisplay={ categoriesToDisplay }
             />}
-            <button className='btn'
+            <button className='btn basis-1/3'
               onClick={() => {
                 setEditGoalCategories(false);
                 onClickingDone();
@@ -301,6 +289,17 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
           
         
         )}
+        
+        <div className=''>
+          {goalCategories.length > 0 &&
+            Object.values(goalCategories).map((goalCategory) => (
+              <div className=''>
+                <p className=''>{goalCategory.title} </p>
+                <button className='minus-goal-cat' key={goalCategory.id} onClick={() => removeGoalCategory(goalCategory.id)}>
+                X
+                </button>
+              </div>
+            ))}
         </div>
       </div>
       <div>
