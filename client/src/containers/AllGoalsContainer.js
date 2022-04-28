@@ -14,7 +14,7 @@ const AllGoalsContainer = ({ categories, priorities, goals, completedTasks }) =>
 
     return(
         <div>
-            {!isMenuOpen?
+            {/* {!isMenuOpen?
                 <>
                     <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
@@ -24,7 +24,7 @@ const AllGoalsContainer = ({ categories, priorities, goals, completedTasks }) =>
                     categories={ categories }
                     priorities={ priorities }
                 />
-            }
+            } */}
             { goals.map(goal => (
                 <Goal
                     key={Math.random()}
