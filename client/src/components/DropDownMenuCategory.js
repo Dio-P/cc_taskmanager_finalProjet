@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-const DropDownMenuCategory = ({ options, setValueFromDropDown }) => {
+const DropDownMenuCategory = ({ value, options, setValueFromDropDown }) => {
     // const location = useLocation();
     // const options = location.state.options;
 
@@ -13,10 +13,10 @@ const DropDownMenuCategory = ({ options, setValueFromDropDown }) => {
     }
 
     return(
-        <select onChange={e=>sendChoosenValueUp(e)}>
+        <select value={value} onChange={e=>sendChoosenValueUp(e)}>
             <option>Choose Category</option>
             {options.map(option =>
-                <option key={Math.random()} value={option.title}>{option.title}</option>)}
+                <option key={option.title} value={option.title}>{value}</option>)}
             
         </select>
 

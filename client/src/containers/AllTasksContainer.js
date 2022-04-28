@@ -26,7 +26,6 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
             for(let task of uncompletedTasksToDisplay){
                 // console.log("task", task);/////////////
                 if(task.type==="DO_ON"){
-                    if(task.priority)
                     doOnsHelper.push(task)
 
                 }if(task.type==="DO_BY"){
@@ -66,9 +65,9 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
 
                 }
             }
-            setDoOnsCompl(doOnsHelper);
-            setDoBysCompl(doBysHelper);
-            setSomedaysCompl(somedaysHelper);
+            setDoOnsCompl(doOnsHelper.sort((a,b)=> a.priorityNumeral -b.priorityNumeral));
+            setDoBysCompl(doBysHelper.sort((a,b)=> a.priorityNumeral -b.priorityNumeral));
+            setSomedaysCompl(somedaysHelper.sort((a,b)=> a.priorityNumeral -b.priorityNumeral));
         // }
     }, [completedTasksToDisplay]);
 
