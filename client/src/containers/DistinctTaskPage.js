@@ -371,7 +371,7 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                     )}
                 </div>
                 ) : (
-                    <button onClick={()=>setTaskCollaborators("Please add new collaborator")}> Add Collaborator </button>
+                    <button onClick={()=>setSearchInput("Please add new collaborator")}> Add Collaborator </button>
                 )}
                 </div>
             </div>
