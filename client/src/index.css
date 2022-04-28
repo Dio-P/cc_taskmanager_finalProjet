@@ -79,6 +79,15 @@ code {
   margin-top: 20px;
 }
 
+.plus-btn-tasks {
+  background-color: #F1B625;
+  color: #fff;
+  width: 40px;
+  height: 100%;
+  padding: 14px;
+  margin: 4px;
+}
+
 .user-icon {
   color: #fff;
   font-size: 18px;
@@ -115,6 +124,16 @@ code {
   margin-right: -60px;
   height: 30px;
   width: 130px;
+  padding: 5px;
+  border: 1px solid #F1B625;
+  border-radius: 5px;
+}
+
+.title-field-goal {
+  margin-bottom: 10px;
+  margin-right: -60px;
+  height: 30px;
+  width: 120px;
   padding: 5px;
   border: 1px solid #F1B625;
   border-radius: 5px;
