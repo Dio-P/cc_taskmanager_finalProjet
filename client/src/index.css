@@ -79,6 +79,15 @@ code {
   margin-top: 20px;
 }
 
+.plus-btn-tasks {
+  background-color: #F1B625;
+  color: #fff;
+  width: 40px;
+  height: 100%;
+  padding: 14px;
+  margin: 4px;
+}
+
 .user-icon {
   color: #fff;
   font-size: 18px;

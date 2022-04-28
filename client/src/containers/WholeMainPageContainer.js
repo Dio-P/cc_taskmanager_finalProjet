@@ -175,7 +175,7 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                 />
             }
             <p className='greeting'>Hi, {user.email}! </p>
-            <div className='home-top flex flex-box p-2  m-5'>
+            <div className='flex flex-box items-start p-2  m-5'>
             <TasksBoxMainMenuBar
                 categories={ categories }
                 priorities={ priorities }
@@ -183,7 +183,7 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                 setPrioritiesFromDropDown={(choosenOption)=> setPrioritiesFromDropDown(choosenOption) }
                 setCategoriesFromDropDown={(choosenOption)=> setCategoriesFromDropDown(choosenOption) }
             />
-                <button className='plus-btn basis-1/3' onClick={()=> navigate("/task/createNewTask")}><FaPlus/></button>
+                <button className='plus-btn-tasks' onClick={()=> navigate("/task/createNewTask")}><FaPlus/></button>
             </div>
             <AllTasksContainer 
                 uncompletedTasksToDisplay={ uncompletedTasksToDisplay } 

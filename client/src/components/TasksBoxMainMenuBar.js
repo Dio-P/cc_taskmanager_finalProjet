@@ -33,10 +33,10 @@ const TasksBoxMainMenuBar = ({ categories, priorities, setCategoriesFromDropDown
     }, [ prioritiesIsOpen ]);
 
     return (
-        <div>
+        <>
            
                 <div>
-                    <button className="prior-tab basis-1/3" onClick={()=> setPrioritiesIsOpen(!prioritiesIsOpen)}>Priorities</button>
+                    <button className="prior-tab" onClick={()=> setPrioritiesIsOpen(!prioritiesIsOpen)}>Priorities</button>
                     {!prioritiesIsOpen?
                         <MultipleOptionsDropdown 
                             options={ priorities }
@@ -47,7 +47,7 @@ const TasksBoxMainMenuBar = ({ categories, priorities, setCategoriesFromDropDown
                     }
                 </div>
                 <div>
-                    <button className="categ-tab basis-1/3" onClick={()=> setCategoriesIsOpen(!categoriesIsOpen)}>Categories</button>
+                    <button className="categ-tab" onClick={()=> setCategoriesIsOpen(!categoriesIsOpen)}>Categories</button>
                     {!categoriesIsOpen?
                         <MultipleOptionsDropdown 
                             options={ categoriesTitles }
@@ -58,7 +58,7 @@ const TasksBoxMainMenuBar = ({ categories, priorities, setCategoriesFromDropDown
                     }
                 </div>
            
-        </div>
+        </>
 
     )
 }
