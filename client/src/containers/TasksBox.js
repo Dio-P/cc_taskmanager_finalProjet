@@ -7,7 +7,7 @@ const TasksBox = ({ tasks, tasksComplete, title, categories, priorities, updateW
 
     return (
         <div>
-            <h3 className='home-title'>{title}</h3>
+            {/* <h3 className='home-title'>{title}</h3> */}
 
            {   
            tasks.map(task => (

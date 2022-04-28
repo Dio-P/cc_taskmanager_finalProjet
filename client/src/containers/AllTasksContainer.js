@@ -2,13 +2,19 @@ import { useEffect, useState } from "react";
 import TasksBox from "./TasksBox";
 
 const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay, categories, priorities, updateWholeMainPageStateFromComponent }) => {
+    const [loading, setLoading] = useState(true);
+
+    const [doOnsOpen, setDoOnsOpen] = useState(false);
+    const [doBysOpen, setDoBysOpen] = useState(false);
+    const [somedaysOpen, setSomedaysOpen] = useState(false);
+
     const [doOns, setDoOns] = useState([]);
     const [doBys, setDoBys] = useState([]);
     const [somedays, setSomedays] = useState([]);
     const [doOnsCompl, setDoOnsCompl] = useState([]);
     const [doBysCompl, setDoBysCompl] = useState([]);
     const [somedaysCompl, setSomedaysCompl] = useState([]);
-    const [loading, setLoading] = useState(true);
+    
 
     useEffect(() => {
         const doOnsHelper = [];
@@ -76,36 +82,62 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
             <p>Loading</p>
             :
             <div>
-            <TasksBox 
-                tasks={ doOns } 
-                tasksComplete={ doOnsCompl }
-                categories={ categories }
-                priorities={ priorities } 
-                title = "Weeks Tasks"
-                updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
-
-            />
-
-            <TasksBox 
-                tasks={ doBys } 
-                tasksComplete={ doBysCompl }
-                categories={ categories }
-                priorities={ priorities }
-                title = "Get it done soon"
-                updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
-
-            />
-
-            <TasksBox 
-                tasks={ somedays } 
-                tasksComplete={ somedaysCompl }
-                categories={ categories }
-                priorities={ priorities }
-                title = "Get it done someday"
-                updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
-
-            />
-
+                
+                <>
+                    <button onClick={()=> setDoOnsOpen(!doOnsOpen) }>
+                        <h3> 
+                            Weeks Tasks 
+                        </h3>
+                    </button>
+                    {doOnsOpen?
+                        <TasksBox 
+                            tasks={ doOns } 
+                            tasksComplete={ doOnsCompl }
+                            categories={ categories }
+                            priorities={ priorities }
+                            updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
+                        />
+                    :
+                        null
+                    }  
+                </>
+                <>
+                    <button onClick={()=> setDoBysOpen(!doBysOpen) }>
+                        <h3> 
+                            Get it done soon 
+                        </h3>
+                    </button>
+                    {doBysOpen?
+                        <TasksBox 
+                            tasks={ doBys } 
+                            tasksComplete={ doBysCompl }
+                            categories={ categories }
+                            priorities={ priorities }
+                            updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
+                        />
+                    :
+                        null
+                    }  
+                </>
+                <>
+                    <button onClick={()=> setSomedaysOpen(!somedaysOpen) }>
+                        <h3> 
+                            Get it done someday
+                        </h3>
+                    </button>
+                    {somedaysOpen?
+                        <TasksBox 
+                        tasks={ somedays } 
+                        tasksComplete={ somedaysCompl }
+                        categories={ categories }
+                        priorities={ priorities }
+                        updateWholeMainPageStateFromComponent={ updateWholeMainPageStateFromComponent }
+                    />
+                    :
+                        null
+                    }  
+                </>
+                
             </div>
             }
             
