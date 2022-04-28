@@ -34,7 +34,7 @@ const TasksBoxMainMenuBar = ({ categories, priorities, setCategoriesFromDropDown
 
     return (
         <div>
-            <div>
+           
                 <div>
                     <button className="prior-tab basis-1/3" onClick={()=> setPrioritiesIsOpen(!prioritiesIsOpen)}>Priorities</button>
                     {!prioritiesIsOpen?
@@ -57,7 +57,7 @@ const TasksBoxMainMenuBar = ({ categories, priorities, setCategoriesFromDropDown
                         null
                     }
                 </div>
-            </div>
+           
         </div>
 
     )
