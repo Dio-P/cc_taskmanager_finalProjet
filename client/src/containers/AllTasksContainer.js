@@ -26,6 +26,7 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
             for(let task of uncompletedTasksToDisplay){
                 // console.log("task", task);/////////////
                 if(task.type==="DO_ON"){
+                    if(task.priority)
                     doOnsHelper.push(task)
 
                 }if(task.type==="DO_BY"){
@@ -52,12 +53,15 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
             for(let task of completedTasksToDisplay){
                 // console.log("task", task);/////////////
                 if(task.type==="DO_ON"){
-                    doOnsHelper.push(task)
+                    addPriorityNumeralHelper(task);
+                    doOnsHelper.push(task);
 
                 }if(task.type==="DO_BY"){
+                    addPriorityNumeralHelper(task);
                     doBysHelper.push(task)
 
                 }if(task.type==="SOMEDAY"){
+                    addPriorityNumeralHelper(task);
                     somedaysHelper.push(task)
 
                 }
@@ -75,6 +79,15 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
         
     }, [doOns, doBys, somedays]);
 
+    const addPriorityNumeralHelper = (task) => {
+        if(task.priority==="LOW"){
+            task.priorityNumeral = 3
+        }if(task.priority==="MEDIUM"){
+            task.priorityNumeral = 2
+        }if(task.priority==="HIGH"){
+            task.priorityNumeral = 1
+        }
+    }
 
     return (
         <div>
