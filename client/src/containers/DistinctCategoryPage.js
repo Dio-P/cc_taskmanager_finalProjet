@@ -4,7 +4,7 @@ import RequestContext from "../context/RequestContext";
 import Menu from "../components/Menu";
 import { FaBars } from "react-icons/fa";
 
-const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromComponent }) => {
+const DistinctCategoryPage = ({ allTasks, categories, priorities, updateAppMainStateFromComponent }) => {
     const location = useLocation();
     const category = location.state.category;
     
@@ -32,6 +32,31 @@ const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromCo
         setIsMenuOpen(false);
     }
 
+    const checkingIfAreTasksAssosiatedToCategory = () => {
+        let allTasksCategoriesID = allTasks.map(task =>(
+            task.category.id
+        ))
+        allTasksCategoriesID = new Set(allTasksCategoriesID)
+        if(allTasksCategoriesID.includes(category.id)){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    const onClickingDeleteCategory = () => {
+        if(checkingIfAreTasksAssosiatedToCategory){
+            alert("sorry, there are tasks assosiated with this category")
+            
+        }else {
+            deleteElement("categories",categoryID)
+            navigate("/categories")
+
+        }
+        
+        
+    }
+
     const onClickingDone = () => {
         let updatedCategory = {
             colour: colour, 
@@ -40,7 +65,6 @@ const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromCo
         };
         put(`categories/${category.id}`, updatedCategory);
         updateAppMainStateFromComponent(updatedCategory);
-
     }
 
     return (
@@ -106,10 +130,7 @@ const DistinctCategoryPage = ({ categories, priorities, updateAppMainStateFromCo
             </div>
             <div>
 
-                <button className='minus-cat-btn' onClick={()=>{
-                deleteElement("categories",categoryID)
-                navigate("/categories")
-                }}>Delete</button>
+                <button className='minus-cat-btn' onClick={onClickingDeleteCategory}>Delete</button>
             </div>
             
 

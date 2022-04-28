@@ -281,6 +281,7 @@ function App() {
         <Route path="/category/:category_title" element={ <DistinctCategoryPage
           categories={ categories }
           priorities={ priorities }
+          allTasks={ allTasks }
           updateAppMainStateFromComponent={(category)=> updateAppMainStateCategoryFromComponent(category)}
         /> }/>
         <Route path="/category/createNewCategory" element={ <AddNewCategoryPage
