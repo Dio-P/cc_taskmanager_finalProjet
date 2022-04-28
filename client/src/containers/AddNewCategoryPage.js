@@ -45,7 +45,7 @@ const AddNewCategoryPage = ({ categories, priorities, updateAppMainStateFromComp
                     priorities={ priorities }
                 />
             }
-            <p className='cat-header'>Create A Category</p>
+            <p className='cat-header'>Create Category</p>
             <FaWrench className='wrench-icon'/>
             <form onSubmit={onSubmit}>
                 <div className='colour-section'>

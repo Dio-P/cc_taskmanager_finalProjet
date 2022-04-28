@@ -5,6 +5,8 @@ import DropDownMenuCategory from "../components/DropDownMenuCategory";
 import DropDownMenuPriority from "../components/DropDownMenuPriority";
 import Menu from "../components/Menu";
 import SearchBar from "../components/SearchBar";
+import { FaBars, FaWrench, FaPlus, FaMinus } from "react-icons/fa";
+
 
 const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAppMainStateFromComponent }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -83,7 +85,7 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
         <form onSubmit={onClickingDone}>
             {!isMenuOpen?
                 <>
-                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}>Menu</button>
+                    <button onClick={()=>setIsMenuOpen(!isMenuOpen)}><FaBars className='m-4' size='2rem'/></button>
                 </>
             :
                 <Menu
@@ -94,13 +96,16 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
                 />
             }
             <div>
-                <label> Goal Title </label>
-                <h3>{goalTitle}</h3>
-                <input type="text" name="goalTitle" id="goalTitle" value={goalTitle} onChange={e=> setGoalTitle(e.target.value)} required/>
-
+                <p className='cat-header'>Create Goal</p>
+                <FaWrench className='wrench-icon'/>
             </div>
+            <div className="create-a-goal">
+                <p className='font-semibold text-xl'>Goal Title</p>
+                <h3 className='font-semibold text-l'>{goalTitle}</h3>
+                <input className="title-field" type="text" name="goalTitle" id="goalTitle" placeholder="enter title" value={goalTitle} onChange={e=> setGoalTitle(e.target.value)} required/>
             <div>
-                <label> Goal Type </label>
+            <br/>
+                <label className='font-semibold text-xl'> Goal Type </label>
                 <h3>{goalType}</h3>
                 <select name="goalType" id="goalType" onChange={e=> setGoalType(e.target.value)}>
                     {goalTypesList.map(type => (
@@ -108,18 +113,21 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
                     ))}
                 </select>
             </div>
+            <br/>
             <div>
-                <label> Goal Target </label>
+                <label className='font-semibold text-xl'> Goal Target </label>
                 <h3>{goalTarget}</h3>
-                <input type="text" name="goalTarget" id="goalTarget" value={goalTarget} onChange={e=> setGoalTarget(e.target.value)} required/>
+                <input className="title-field" type="text" name="goalTarget" id="goalTarget" placeholder="in minutes" value={goalTarget} onChange={e=> setGoalTarget(e.target.value)} required/>
             </div>
+            <br/>
             <div>
-                <label> Goal Start Date </label>
+                <label className='font-semibold text-xl'> Goal Start Date </label>
                 <h3>{goalStartDate}</h3>
                 <input type="date" name="goalStartDate" id="goalStartDate" value={goalStartDate} onChange={e=> setGoalStartDate(e.target.value)} required/>
             </div>
+            <br/>
             <div>
-                <label> Categories </label>
+                <label className='font-semibold text-xl'> Categories </label>
                 <div>
                 {goalCategories.length > 0 &&
                     Object.values(goalCategories).map((goalCategory) => (
@@ -131,9 +139,9 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
                     </div>
                     ))}
                 </div>
-                <input
+                <input className="title-field"
                 type="text"
-                placeholder="Search For Category Here"
+                placeholder="search here"
                 onChange={handleChange}
                 value={searchInput}
                 />
@@ -144,7 +152,8 @@ const AddNewGoalPage = ({ categories, priorities, goals, goalTypesList, updateAp
                     optionsToDisplay={ categoriesToDisplay }
                 />}
             </div>
-            <button type="submit"> Create New Goal </button>
+            </div>
+            <button className='create-goal-btn' type="submit"> Create Goal </button>
         </form>
     )
 }

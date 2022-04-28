@@ -171,21 +171,21 @@ const Goal = ({ goal, categories, priorities, completedTasks }) => {
             :
             <div className={calculatingTargetOutcome()} onClick={ onGoalClick }>
                 <>
-                    <div>
-                        <label> Goal Title </label>
-                        <p> {goalTitle} </p>
+                    <div className="flex flex-box">
+                        <label className="basis-1/2 -ml-6 font-extrabold"> Title: </label>
+                        <p className="basis-1/2 -ml-1"> {goalTitle} </p>
                     </div>
-                    <div>
-                        <label> Goal Start Date </label>
-                        <p> {goalStartDate} </p>
+                    <div className="flex flex-box">
+                        <label className="basis-1/2 font-extrabold"> Start Date: </label>
+                        <p className="basis-1/2 -ml-1"> {goalStartDate} </p>
                     </div>
-                    <div>
-                        <label> Goal End Date </label>
-                        <p> {goalEndDate} </p>
+                    <div className="flex flex-box">
+                        <label className="basis-1/2 -ml-1 font-extrabold"> End Date: </label>
+                        <p className="basis-1/2"> {goalEndDate} </p>
                     </div>
-                    <div>
-                        <label> Goal Target </label>
-                        <p> {goalTarget} </p>
+                    <div className="flex flex-box">
+                        <label className="basis-1/2 -ml-4 font-extrabold"> Target: </label>
+                        <p className="basis-1/3"> {goalTarget} </p>
                     </div>
                 </>
             </div>
