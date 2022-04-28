@@ -160,10 +160,10 @@ const AddNewTaskPage = ({ categories, priorities, users, updateWholeMainPageTask
                 <input className='title-field' type="text" name="taskTitle" id="taskTitle" placeholder="enter title" value={taskTitle} onChange={e=> setTaskTitle(e.target.value)} required/>
                 <br/>
                 <label className='font-semibold text-xl' htmlFor="taskCategory">Task Category</label>
-                <DropDownMenuCategory options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
+                <DropDownMenuCategory value={taskCategory} options={ categories } setValueFromDropDown={(choosenOption)=> setCategoryFromDropDown(choosenOption)}/>
                 <br/>
                 <label className='font-semibold text-xl' htmlFor="taskPriority">Task Priority</label>
-                <DropDownMenuPriority options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
+                <DropDownMenuPriority value={taskPriority} options={ priorities } setValueFromDropDown={(choosenOption)=> setPriorityFromDropDown(choosenOption)}/>
 
                 {hasDescription?
                 <>

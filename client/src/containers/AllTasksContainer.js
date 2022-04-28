@@ -26,7 +26,6 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
             for(let task of uncompletedTasksToDisplay){
                 // console.log("task", task);/////////////
                 if(task.type==="DO_ON"){
-                    if(task.priority)
                     doOnsHelper.push(task)
 
                 }if(task.type==="DO_BY"){
