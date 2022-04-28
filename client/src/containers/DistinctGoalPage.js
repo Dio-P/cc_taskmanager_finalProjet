@@ -129,12 +129,14 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       <p className='cat-header'>{goal.title}</p>
       <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'> Title </label>
-        <h3 className='basis-1/3 text-md italic ml-1'>{goalTitle}</h3>
         {!editGoalTitle ? (
+          <>
+          <h3 className='basis-1/3 text-md italic ml-1'>{goalTitle}</h3>
           <button className='btn' onClick={() => setEditGoalTitle(true)}>Edit</button>
+          </>
         ) : (
           <>
-            <input
+            <input 
               type="text"
               name="goalTitle"
               id="goalTitle"
@@ -155,9 +157,12 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
       <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'> Type </label>
-        <h3 className='basis-1/3 text-md italic'>{goalType}</h3>
+
         {!editGoalType ? (
+          <>
+          <h3 className='basis-1/3 text-md italic'>{goalType}</h3>
           <button className='btn' onClick={() => setEditGoalType(true)}>Edit</button>
+          </>
         ) : (
           <>
             <select
@@ -182,9 +187,12 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
       <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'> Target </label>
-        <h3 className='basis-1/3 text-lg italic'>{goalTarget}</h3>
+        
         {!editGoalTarget ? (
+          <>
+          <h3 className='basis-1/3 text-lg italic'>{goalTarget}</h3>
           <button className='btn' onClick={() => setEditGoalTarget(true)}>Edit</button>
+          </>
         ) : (
           <>
             <input
@@ -208,9 +216,12 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
       <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'> Start Date </label>
-        <h3 className='basis-1/3 text-md italic'>{goalStartDate}</h3>
+        
         {!editGoalStartDate ? (
+          <>
+          <h3 className='basis-1/3 text-md italic'>{goalStartDate}</h3>
           <button className='btn' onClick={() => setEditGoalStartDate(true)}>Edit</button>
+          </>
         ) : (
           <>
             <input
@@ -234,9 +245,12 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       </div>
       <div className='flex flex-row justify-center m-3'>
         <label className='basis-1/3 font-semibold text-lg'>End Date </label>
-        <h3 className='basis-1/3 text-md italic'>{goalEndDate}</h3>
+        
         {!editGoalEndDate ? (
+          <>
+          <h3 className='basis-1/3 text-md italic'>{goalEndDate}</h3>
           <button className='btn' onClick={() => setEditGoalEndDate(true)}>Edit</button>
+          </>
         ) : (
           <>
             <input
