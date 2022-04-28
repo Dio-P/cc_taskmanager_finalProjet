@@ -183,9 +183,7 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                 setPrioritiesFromDropDown={(choosenOption)=> setPrioritiesFromDropDown(choosenOption) }
                 setCategoriesFromDropDown={(choosenOption)=> setCategoriesFromDropDown(choosenOption) }
             />
-            <div>
                 <button className='plus-btn basis-1/3' onClick={()=> navigate("/task/createNewTask")}><FaPlus/></button>
-            </div>
             </div>
             <AllTasksContainer 
                 uncompletedTasksToDisplay={ uncompletedTasksToDisplay } 

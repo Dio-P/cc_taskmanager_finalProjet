@@ -53,7 +53,7 @@ code {
 }
 
 .minus-goal-cat{
-  @apply bg-orange font-semibold p-2.5 rounded shadow-md tracking-wider m-2 w-16;
+  @apply bg-orange font-semibold p-2.5 rounded shadow-md tracking-wider m-2 w-8 h-8;
 }
 
 .minus-cat-btn {
@@ -275,7 +275,7 @@ code {
 }
 
 .home-top {
-  display: inline-flex;
+  /* display: inline-flex; */
 }
 
 .mygoals {
