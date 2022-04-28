@@ -262,7 +262,7 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
       <div className='flex flex-wrap justify-center m-3'>
         
         <label className='basis-1/3 font-semibold text-lg'>Category </label>
-        <div className=''>
+        <div className='basis-1/3'>
           {goalCategories.length > 0 &&
             Object.values(goalCategories).map((goalCategory) => (
               <div className='flex'>
@@ -273,14 +273,14 @@ const DistinctGoalPage = ({ categories, priorities, goals, goalTypesList, users,
               </div>
             ))}
         </div>
-        <div className=''>
+        <div className='basis-1/3'>
         {!editGoalCategories ? (
           <button className='btn' onClick={() => setEditGoalCategories(true)}>Edit</button>
         ) : (
-          <div className="">
-            <input className="title-field"
+          <div className="flex-col">
+            <input className="title-field-goal"
               type="text"
-              placeholder="Search For Category Here"
+              placeholder="Search"
               onChange={handleChange}
               value={searchInput}
             />

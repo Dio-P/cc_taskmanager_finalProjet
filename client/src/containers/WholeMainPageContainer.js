@@ -174,7 +174,7 @@ const WholeMainPageContainer= ({ categories, priorities, user, goals, goalTypesL
                     goalTypesList ={ goalTypesList }
                 />
             }
-            <p className='greeting'>Hi, {user.email}! </p>
+            <p className='greeting'>Hi, {user.name}! </p>
             <div className='flex flex-box items-start p-2  m-5'>
             <TasksBoxMainMenuBar
                 categories={ categories }
