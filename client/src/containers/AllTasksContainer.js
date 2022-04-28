@@ -66,9 +66,9 @@ const AllTasksContainer = ({ uncompletedTasksToDisplay, completedTasksToDisplay,
 
                 }
             }
-            setDoOnsCompl(doOnsHelper);
-            setDoBysCompl(doBysHelper);
-            setSomedaysCompl(somedaysHelper);
+            setDoOnsCompl(doOnsHelper.sort((a,b)=> a.priorityNumeral -b.priorityNumeral));
+            setDoBysCompl(doBysHelper.sort((a,b)=> a.priorityNumeral -b.priorityNumeral));
+            setSomedaysCompl(somedaysHelper.sort((a,b)=> a.priorityNumeral -b.priorityNumeral));
         // }
     }, [completedTasksToDisplay]);
 

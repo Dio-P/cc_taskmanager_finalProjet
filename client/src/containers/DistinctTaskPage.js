@@ -335,7 +335,8 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
 
                 {taskCollaborators? (   
                 <div className='flex flex-box justify-center m-1'>
-                    <label className='basis-1/3 font-semibold text-lg'> Collaborators </label>
+                    <label className='basis-1/3 font-semibold text-lg'> 
+                        {taskCollaborators.length<=0? "There are no collaborators right now ": "Collaborators"} </label>
                     {taskCollaborators.length > 0 &&
                         Object.values(taskCollaborators).map((collaborator) => (
                         <div>
@@ -346,8 +347,8 @@ const DistinctTaskPage = ({ categories, priorities, users, updateWholeMainPageTa
                         </div>
                         ))}
 
-                    {!editCollaborators? ( 
-                        <button className="btn" onClick={()=> setEditCollaborators(true)}>Edit</button>
+                    {!searchInput? ( 
+                        <button className="btn" onClick={()=> setEditCollaborators(true)}>Add Collaborator</button>
                     ) : ( 
                         <>
                     <input
