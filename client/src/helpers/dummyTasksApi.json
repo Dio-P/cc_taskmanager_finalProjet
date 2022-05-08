@@ -1,0 +1,56 @@
+[
+    {
+        "user": "Steph",
+        "title": "seting the authorisation up",
+        "description": "finding a way to connect the users with the database",
+        "date": "26.05.2022",
+        "time": "15:14",
+        "type": "DO_ON",
+        "duration": "70",
+        "priority": "high",
+        "category": "third project",
+        "collaborators": [],
+        "completed": false,
+        "completedTimeStamp": ""
+    },
+
+    {
+        "user": "Dio",
+        "title": "front end",
+        "description": "starting with the react app and the front end",
+        "date": "26.05.2022",
+        "type": "DO_BY",
+        "duration": "70",
+        "priority": "high",
+        "category": "third project",
+        "collaborators": [],
+        "completed": false,
+        "completedTimeStamp": ""
+    },
+
+    {
+        "user": "Rach",
+        "title": "front end style",
+        "description": "starting with tailwind and css",
+        "type": "SOMEDAY",
+        "duration": "70",
+        "priority": "high",
+        "category": "third project",
+        "collaborators": [],
+        "completed": false,
+        "completedTimeStamp": ""
+    },
+
+    {
+        "user": "Rach",
+        "title": "css",
+        "description": "starting with tailwind and css",
+        "type": "SOMEDAY",
+        "duration": "70",
+        "priority": "high",
+        "category": "third project",
+        "collaborators": [],
+        "completed": true,
+        "completedTimeStamp": ""
+    }
+]
